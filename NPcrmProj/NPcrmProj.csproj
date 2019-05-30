@@ -68,15 +68,43 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="inc\angular.min.js" />
+    <Content Include="inc\bootstrap.min.css" />
+    <Content Include="inc\bootstrap.min.js" />
+    <Content Include="inc\font-awesome.min.css" />
+    <Content Include="inc\jquery-3.4.1.min.js" />
+    <Content Include="inc\popper.min.js" />
+    <Content Include="index.aspx" />
+    <Content Include="pics\login.jpg" />
+    <Content Include="pics\logo.JPG" />
+    <Content Include="pics\maalot.jpg" />
+    <Content Include="pics\merkaz.jpg" />
+    <Content Include="pics\merkaz_btf_icon.ico" />
+    <Content Include="styles\Login.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPage.Master.cs">
+      <DependentUpon>MasterPage.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPage.Master.designer.cs">
+      <DependentUpon>MasterPage.Master</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="MasterPage.Master" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -87,6 +115,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="js\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
