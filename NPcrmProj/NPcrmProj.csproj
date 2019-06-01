@@ -77,8 +77,11 @@
     <Content Include="inc\bootstrap.min.js" />
     <Content Include="inc\font-awesome.min.css" />
     <Content Include="inc\jquery-3.4.1.min.js" />
+    <Content Include="inc\moment-with-locales.js" />
     <Content Include="inc\popper.min.js" />
     <Content Include="index.aspx" />
+    <Content Include="js\Controllers.js" />
+    <Content Include="js\DateTime.js" />
     <Content Include="pics\login.jpg" />
     <Content Include="pics\logo.JPG" />
     <Content Include="pics\maalot.jpg" />
@@ -128,7 +131,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="js\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>

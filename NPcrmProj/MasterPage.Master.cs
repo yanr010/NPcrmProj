@@ -15,6 +15,8 @@ namespace NPcrmProj
             if (!IsPostBack)
             {
                 navbar.Visible = false;
+                
+                
             }
             else
             {
@@ -28,6 +30,8 @@ namespace NPcrmProj
             login.Visible = false;
             navbar.Visible = true;
         }
+
+        
 
     }
 }
