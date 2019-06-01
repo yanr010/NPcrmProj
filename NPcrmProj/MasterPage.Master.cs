@@ -14,7 +14,7 @@ namespace NPcrmProj
 
             if (!IsPostBack)
             {
-                logdiv.Visible = false;
+                navbar.Visible = false;
             }
             else
             {
@@ -25,8 +25,8 @@ namespace NPcrmProj
         
         protected void enterclc(object sender, EventArgs e)
         {
-            log.Visible = false;
-            logdiv.Visible = true;
+            login.Visible = false;
+            navbar.Visible = true;
         }
 
     }

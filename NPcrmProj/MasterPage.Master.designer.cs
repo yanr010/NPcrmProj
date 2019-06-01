@@ -22,13 +22,13 @@ namespace NPcrmProj {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
         
         /// <summary>
-        /// log control.
+        /// login control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm log;
+        protected global::System.Web.UI.HtmlControls.HtmlForm login;
         
         /// <summary>
         /// button control.
@@ -40,13 +40,13 @@ namespace NPcrmProj {
         protected global::System.Web.UI.WebControls.Button button;
         
         /// <summary>
-        /// logdiv control.
+        /// navbar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl logdiv;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl navbar;
         
         /// <summary>
         /// ContentPlaceHolder1 control.
