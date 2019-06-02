@@ -43,7 +43,7 @@ input[type=text], input[type=password] {
 /* Avatar image */
 img.avatar {
     width: 20%;
-    border-radius: 50%;
+    border-radius: 20%;
 }
 
 /* Add padding to containers */

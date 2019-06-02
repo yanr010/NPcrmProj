@@ -72,9 +72,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="inc\angular-chart.min.js" />
     <Content Include="inc\angular.min.js" />
     <Content Include="inc\bootstrap.min.css" />
     <Content Include="inc\bootstrap.min.js" />
+    <Content Include="inc\Chart.min.css" />
+    <Content Include="inc\Chart.min.js" />
     <Content Include="inc\font-awesome.min.css" />
     <Content Include="inc\jquery-3.4.1.min.js" />
     <Content Include="inc\moment-with-locales.js" />
@@ -89,6 +92,7 @@
     <Content Include="pics\merkaz_btf_icon.ico" />
     <Content Include="styles\Login.css" />
     <Content Include="Web.config" />
+    <Content Include="WebService.asmx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Global.asax.cs">
@@ -113,6 +117,10 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="WebService.asmx.cs">
+      <DependentUpon>WebService.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
