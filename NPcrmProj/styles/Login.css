@@ -1,8 +1,8 @@
 ﻿
 /* Bordered form */
-form {
+#login {
     border: 3px solid #f1f1f1;
- 
+    box-sizing: content-box;
 }
 
 /* Full-width inputs */

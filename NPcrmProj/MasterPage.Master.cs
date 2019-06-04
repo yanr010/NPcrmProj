@@ -15,6 +15,7 @@ namespace NPcrmProj
             if (!IsPostBack)
             {
                 navbar.Visible = false;
+                logfail.Visible = false;
                 
                 
             }
@@ -27,8 +28,26 @@ namespace NPcrmProj
         
         protected void enterclc(object sender, EventArgs e)
         {
-            login.Visible = false;
-            navbar.Visible = true;
+            
+            dbEntities DB = new dbEntities();
+            
+            
+
+
+            var auth = DB.Users.FirstOrDefault(i => i.Username == uname.Value && i.Password == psw.Value);
+            
+            if(auth == null)
+            {
+                logfail.Visible = true;
+                
+            }
+            else
+            {
+                
+                login.Visible = false;
+                navbar.Visible = true;
+            }
+ 
         }
 
         
