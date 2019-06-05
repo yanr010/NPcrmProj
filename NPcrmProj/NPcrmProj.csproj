@@ -1,4 +1,5 @@
-﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -97,6 +98,7 @@
     <Content Include="inc\popper.min.js" />
     <Content Include="js\Controllers.js" />
     <Content Include="js\DateTime.js" />
+    <Content Include="js\ProjForm.js" />
     <Content Include="Login.aspx" />
     <Content Include="pics\login.jpg" />
     <Content Include="pics\logo.JPG" />
@@ -104,6 +106,7 @@
     <Content Include="pics\merkaz.jpg" />
     <Content Include="pics\merkaz_btf_icon.ico" />
     <Content Include="styles\Login.css" />
+    <Content Include="views\ProjForm.aspx" />
     <Content Include="Web.config" />
     <Content Include="WebService.asmx" />
   </ItemGroup>
@@ -167,6 +170,13 @@
     <Compile Include="Users.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
+    <Compile Include="views\ProjForm.aspx.cs">
+      <DependentUpon>ProjForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="views\ProjForm.aspx.designer.cs">
+      <DependentUpon>ProjForm.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebService.asmx.cs">
       <DependentUpon>WebService.asmx</DependentUpon>
       <SubType>Component</SubType>
@@ -195,7 +205,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="views\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
