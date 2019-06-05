@@ -129,13 +129,13 @@
 
 
 
-       <div class="float-center" ng-if="missions">
+       <div class="float-right" ng-if="missions">
         <h1> משימות</h1>
        </div>
 
 
-       <div class="float-center" ng-if="newcust">
-        <div ng-include="include"></div>
+       <div class="float-right" ng-if="newcust">
+        <h1> משימות</h1>
        </div>
 
 
