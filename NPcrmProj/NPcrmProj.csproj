@@ -170,6 +170,20 @@
     <Compile Include="Users.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
+    <Compile Include="views\CustForm.aspx.cs">
+      <DependentUpon>CustForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="views\CustForm.aspx.designer.cs">
+      <DependentUpon>CustForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="views\ProjForm.aspx.cs">
+      <DependentUpon>ProjForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="views\ProjForm.aspx.designer.cs">
+      <DependentUpon>ProjForm.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebService.asmx.cs">
       <DependentUpon>WebService.asmx</DependentUpon>
       <SubType>Component</SubType>

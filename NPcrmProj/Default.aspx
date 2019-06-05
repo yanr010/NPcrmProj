@@ -82,7 +82,7 @@
 <li class="nav-item dropdown">
 <a class="nav-link dropdown-toggle" href="#">פרוייקטים</a>
 <div class="dropdown-menu">
-<a class="dropdown-item" href="#">הוספת פרוייקט</a>
+<a class="dropdown-item" href="#" ng-click="mainclc('5')">הוספת פרוייקט</a>
 <a class="dropdown-item" href="#">פרוייקטים מאושרים</a>
 <div class="dropdown-divider"></div>
 <a class="dropdown-item" href="#">רשימת פרוייקטים</a>
@@ -135,6 +135,11 @@
 
 
        <div class="float-center" ng-if="newcust">
+        <div ng-include="include"></div>
+
+       </div>
+
+      <div class="float-center" ng-if="newproj">
         <div ng-include="include"></div>
 
        </div>

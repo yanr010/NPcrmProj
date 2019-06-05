@@ -1,6 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CustForm.aspx.cs" Inherits="NPcrmProj.views.CustForm" %>
 
-
 <div style="background-color:rgb(250, 250, 250)">
     <div class="text-center">
         <img src="pics/merkaz.jpg" style="width:100px;height:100px;">
@@ -566,3 +565,4 @@
     </div>
     </div>
     </div>
+

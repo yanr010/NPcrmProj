@@ -42,6 +42,15 @@ app.controller("MainCtrl", function ($scope, $window) {
                 $scope.include = 'views/CustForm.aspx';
                 break;
 
+            case '5':
+                $scope.missions = false;
+                $scope.main = false;
+                $scope.reports = false;
+                $scope.newcust = false;
+                $scope.newproj = true;
+                $scope.include = 'views/ProjForm.aspx';
+                break;
+
             default:
 
                 break;

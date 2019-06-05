@@ -1,41 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ProjForm.aspx.cs" Inherits="NPcrmProj.views.ProjForm" %>
 
-<!DOCTYPE html>
-
-<html dir="rtl" lang="he">
-    <head runat="server">
-    <title></title>
-       <meta charset="utf-8" />
-   <%-- Frameworks & Addons --%>
-    <script src="inc/jquery-3.4.1.min.js"></script>
-    <script src="inc/popper.min.js"></script>
-    <script src="inc/bootstrap.min.js"></script>
-    <script src="inc/angular.min.js"></script>
-    <script src="inc/moment-with-locales.js"></script>
-    <script src="inc/Chart.min.js"></script>
-    <script src="inc/angular-chart.min.js"></script>
-     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-            crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-
-    <%-- Css --%>
-    <link href="inc/bootstrap.min.css" rel="stylesheet" />
-    <link href="inc/font-awesome.min.css" rel="stylesheet" />
-    <link href="inc/Chart.min.css" rel="stylesheet" />
-     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
-
-
-
-    <%-- Js --%>
-    <script src="js/Controllers.js"></script>
-    <script src="js/DateTime.js"></script>
-    
-    
-
-</head>
-<body dir="rtl" style="background-color: rgb(240, 240, 240)">
-    <div class="text-center">
+<div class="text-center" style="background-color: rgb(240, 240, 240)">
         <img src="pics/merkaz.jpg" style="width:100px;height:100px;">
     </div>
     <div class="text-center">
@@ -203,6 +168,3 @@
             </form>
 
         </div>
-
-</body>
-</html>
