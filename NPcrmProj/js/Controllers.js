@@ -12,11 +12,13 @@ app.controller("MainCtrl", function ($scope, $window) {
                 $scope.main = true;
                 $scope.reports = false;
                 $scope.missions = false;
+                $scope.newcust = false;
                 break;
             case '2':
                 $scope.main = false;
                 $scope.missions = false;
                 $scope.reports = true;
+                $scope.newcust = false;
                 $scope.labels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
                 $scope.series = ['Series A', 'Series B'];
 
@@ -29,6 +31,24 @@ app.controller("MainCtrl", function ($scope, $window) {
                 $scope.missions = true;
                 $scope.main = false;
                 $scope.reports = false;
+                $scope.newcust = false;
+                break;
+
+            case '4':
+                $scope.missions = false;
+                $scope.main = false;
+                $scope.reports = false;
+                $scope.newcust = true;
+                $scope.include = 'views/CustForm.aspx';
+                break;
+
+            case '5':
+                $scope.missions = false;
+                $scope.main = false;
+                $scope.reports = false;
+                $scope.newcust = false;
+                $scope.newproj = true;
+                $scope.include = 'views/ProjForm.aspx';
                 break;
 
             default:
@@ -37,6 +57,8 @@ app.controller("MainCtrl", function ($scope, $window) {
 
         }
     }
+
+  
 
     $scope.exit = function () {
         $window.location.href = 'Login.aspx';

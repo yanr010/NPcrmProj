@@ -26,11 +26,11 @@
             
            
             <label><b>שם משתמש</b></label>
-            <input runat="server" type="text" id="uname" required>
+            <input runat="server" type="text" id="uname" required="" oninvalid="this.setCustomValidity('נא להכניס שם משתמש')" oninput="setCustomValidity('')">
 
 
             <label><b>סיסמא</b></label>
-            <input runat="server" type="password" id="psw" required>
+            <input runat="server" type="password" id="psw" required="" oninvalid="this.setCustomValidity('נא להכניס סיסמא')" oninput="setCustomValidity('')">
 
             
             <asp:Button ID="button" runat="server" OnClick="enterclc" Text="כניסה" />

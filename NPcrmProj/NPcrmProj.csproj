@@ -98,7 +98,6 @@
     <Content Include="inc\popper.min.js" />
     <Content Include="js\Controllers.js" />
     <Content Include="js\DateTime.js" />
-    <Content Include="js\ProjForm.js" />
     <Content Include="Login.aspx" />
     <Content Include="pics\login.jpg" />
     <Content Include="pics\logo.JPG" />
@@ -106,6 +105,8 @@
     <Content Include="pics\merkaz.jpg" />
     <Content Include="pics\merkaz_btf_icon.ico" />
     <Content Include="styles\Login.css" />
+    <Content Include="views\CustForm.aspx" />
+    <Content Include="views\ProjForm.aspx" />
     <Content Include="Web.config" />
     <Content Include="WebService.asmx" />
   </ItemGroup>
@@ -169,6 +170,20 @@
     <Compile Include="Users.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
+    <Compile Include="views\CustForm.aspx.cs">
+      <DependentUpon>CustForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="views\CustForm.aspx.designer.cs">
+      <DependentUpon>CustForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="views\ProjForm.aspx.cs">
+      <DependentUpon>ProjForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="views\ProjForm.aspx.designer.cs">
+      <DependentUpon>ProjForm.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebService.asmx.cs">
       <DependentUpon>WebService.asmx</DependentUpon>
       <SubType>Component</SubType>
@@ -197,7 +212,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="views\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

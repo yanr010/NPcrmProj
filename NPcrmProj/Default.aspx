@@ -71,7 +71,7 @@
 
         <a class="nav-link dropdown-toggle" href="#">צעירים</a>
             <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">כרטיס חדש</a>
+            <a class="dropdown-item" href="#" ng-click="mainclc('4')">כרטיס חדש</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">רשימת צעירים</a>
             </div>
@@ -82,7 +82,7 @@
 <li class="nav-item dropdown">
 <a class="nav-link dropdown-toggle" href="#">פרוייקטים</a>
 <div class="dropdown-menu">
-<a class="dropdown-item" href="#">הוספת פרוייקט</a>
+<a class="dropdown-item" href="#" ng-click="mainclc('5')">הוספת פרוייקט</a>
 <a class="dropdown-item" href="#">פרוייקטים מאושרים</a>
 <div class="dropdown-divider"></div>
 <a class="dropdown-item" href="#">רשימת פרוייקטים</a>
@@ -123,24 +123,30 @@
 
         <%---------------------------- Pages ----------------------------%>
 
-       <div class="float-right" ng-if="main">
+       <div class="float-center" ng-if="main">
         <h1> ראשי</h1>
        </div>
 
 
 
-       <div class="float-right" ng-if="missions">
+       <div class="float-center" ng-if="missions">
         <h1> משימות</h1>
        </div>
 
 
-       <div class="float-right" ng-if="newcust">
-        <h1> משימות</h1>
+       <div class="float-center" ng-if="newcust">
+        <div ng-include="include"></div>
+
+       </div>
+
+      <div class="float-center" ng-if="newproj">
+        <div ng-include="include"></div>
+
        </div>
 
 
 
-        <div class="float-right" ng-if="reports">
+        <div class="float-center" ng-if="reports">
             <canvas id="bar" class="chart chart-bar"
                 chart-data="data" chart-labels="labels" chart-series="series">
             </canvas
