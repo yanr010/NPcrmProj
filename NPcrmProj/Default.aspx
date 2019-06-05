@@ -5,7 +5,7 @@
 <html dir="rtl" lang="he">
 <head runat="server">
 
-    <title></title>
+    <title>מערכת מידע צעירים</title>
 
 
     <%-- Frameworks & Addons --%>
@@ -86,11 +86,24 @@
         <li class="nav-item ml-auto">
             <a class="nav-link" ng-click="" href="#">אודות</a>
         </li>
+
+
+        
     </ul>
-            
-        <span id="datetime" class="text-white my-2 my-lg-0 mr-auto font-weight-bold"></span>
-    
-        <span class="mr-2"><button type="button" class="btn btn-danger" ng-click="exit()">יציאה</button></span>
+
+    <span id="datetime" class="text-white my-2 my-lg-0 mr-auto"></span>
+
+
+   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+           <ul class="navbar-nav">
+
+        <li class="nav-item ml-auto">
+            <a class="nav-link" ng-click="exit()" href="#" >התנתק</a>
+        </li>
+       </ul>
+
+   </nav>
+
             
 </div>
 </nav>

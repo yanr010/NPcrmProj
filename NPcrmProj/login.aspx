@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>כניסה</title>
     <script src="inc/jquery-3.4.1.min.js"></script>
     <script src="inc/bootstrap.min.js"></script>
     <link href="inc/bootstrap.min.css" rel="stylesheet" />

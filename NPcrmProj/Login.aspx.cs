@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+
 namespace NPcrmProj
 {
     public partial class login : System.Web.UI.Page
@@ -13,8 +14,10 @@ namespace NPcrmProj
         {
             if (!IsPostBack)
             {
-                Session["login"] = null;
+                
                 logfail.Visible = false;
+                
+                
 
                 if (Request.Cookies["userid"] != null)
 
@@ -45,7 +48,7 @@ namespace NPcrmProj
             if (auth == null)
             {
                 logfail.Visible = true;
-                Session["login"] = null;
+                Session.Clear();
             }
             else
             {
