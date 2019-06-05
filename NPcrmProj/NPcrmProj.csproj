@@ -98,7 +98,6 @@
     <Content Include="inc\popper.min.js" />
     <Content Include="js\Controllers.js" />
     <Content Include="js\DateTime.js" />
-    <Content Include="js\ProjForm.js" />
     <Content Include="Login.aspx" />
     <Content Include="pics\login.jpg" />
     <Content Include="pics\logo.JPG" />
