@@ -67,6 +67,15 @@
         <li class="nav-item ml-auto">
             <a class="nav-link" href="#" ng-click="mainclc('1')">ראשי</a>
         </li>
+        <li class="nav-item dropdown">
+
+        <a class="nav-link dropdown-toggle" href="#">צעירים</a>
+            <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">כרטיס חדש</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">רשימת צעירים</a>
+            </div>
+        </li>
         <li class="nav-item ml-auto">
             <a class="nav-link" href="#" ng-click="mainclc('3')">משימות</a>
         </li>
@@ -120,7 +129,12 @@
 
 
 
-    <div class="float-right" ng-if="missions">
+       <div class="float-right" ng-if="missions">
+        <h1> משימות</h1>
+       </div>
+
+
+       <div class="float-right" ng-if="newcust">
         <h1> משימות</h1>
        </div>
 
