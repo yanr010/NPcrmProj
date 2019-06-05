@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="NPcrmProj.MasterPage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="NPcrmProj.Default" %>
 
 <!DOCTYPE html>
 
@@ -6,8 +6,7 @@
 <head runat="server">
 
     <title></title>
-    <asp:ContentPlaceHolder ID="head" runat="server">
-    </asp:ContentPlaceHolder>
+
 
     <%-- Frameworks & Addons --%>
     <script src="inc/jquery-3.4.1.min.js"></script>
@@ -23,7 +22,7 @@
     <link href="inc/bootstrap.min.css" rel="stylesheet" />
     <link href="inc/font-awesome.min.css" rel="stylesheet" />
     <link href="inc/Chart.min.css" rel="stylesheet" />
-    <link href="styles/Login.css" rel="stylesheet" />
+
 
 
     <%-- Js --%>
@@ -46,46 +45,6 @@
 </head>
 <body ng-app="myApp">
   
-    <%---------------------------- Login ----------------------------%>
-    
-
-    <form id="login" runat="server">
-
-        <div class="imgcontainer">
-            <img src="pics/login.jpg" alt="Avatar" class="avatar">
-        </div>
-
-        
-
-        <div class="container">
-
-            
-            
-           
-            <label><b>שם משתמש</b></label>
-            <input runat="server" type="text" id="uname" required>
-
-
-            <label><b>סיסמא</b></label>
-            <input runat="server" type="password" id="psw" required>
-
-            
-            <asp:Button ID="button" runat="server" OnClick="enterclc" Text="כניסה" />
-            <label>
-                <input type="checkbox" name="remember"> זכור אותי
-            </label>
-
-     
-          
-
-            <div runat="server" id="logfail" class="alert alert-danger">
-                שם משתמש או סיסמא שגויים
-            </div>
-           
-            
-        </div>
-
-    </form>
 
 
 
@@ -130,6 +89,8 @@
     </ul>
             
         <span id="datetime" class="text-white my-2 my-lg-0 mr-auto font-weight-bold"></span>
+    
+        <span class="mr-2"><button type="button" class="btn btn-danger" ng-click="exit()">יציאה</button></span>
             
 </div>
 </nav>
@@ -166,11 +127,5 @@
 
    
 
-
-    <div>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
-    </div>
-  
 </body>
 </html>

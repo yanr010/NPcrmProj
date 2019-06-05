@@ -2,7 +2,7 @@
 
 
 
-app.controller("MainCtrl", function ($scope) {
+app.controller("MainCtrl", function ($scope, $window) {
    
 
 
@@ -36,6 +36,11 @@ app.controller("MainCtrl", function ($scope) {
                 break;
 
         }
+    }
+
+    $scope.exit = function () {
+        $window.location.href = 'Login.aspx';
+
     }
 
 
