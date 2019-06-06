@@ -54,6 +54,9 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -85,6 +88,7 @@
       <LastGenOutput>Database.cs</LastGenOutput>
     </Content>
     <Content Include="Default.aspx" />
+    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="inc\angular-chart.min.js" />
     <Content Include="inc\angular.min.js" />
@@ -105,8 +109,11 @@
     <Content Include="pics\merkaz.jpg" />
     <Content Include="pics\merkaz_btf_icon.ico" />
     <Content Include="styles\Login.css" />
+    <Content Include="views\Charts.aspx" />
     <Content Include="views\CustForm.aspx" />
+    <Content Include="views\Main.aspx" />
     <Content Include="views\ProjForm.aspx" />
+    <Content Include="views\ProjList.aspx" />
     <Content Include="Web.config" />
     <Content Include="WebService.asmx" />
   </ItemGroup>
@@ -170,6 +177,13 @@
     <Compile Include="Users.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
+    <Compile Include="views\Charts.aspx.cs">
+      <DependentUpon>Charts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="views\Charts.aspx.designer.cs">
+      <DependentUpon>Charts.aspx</DependentUpon>
+    </Compile>
     <Compile Include="views\CustForm.aspx.cs">
       <DependentUpon>CustForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -177,12 +191,26 @@
     <Compile Include="views\CustForm.aspx.designer.cs">
       <DependentUpon>CustForm.aspx</DependentUpon>
     </Compile>
+    <Compile Include="views\Main.aspx.cs">
+      <DependentUpon>Main.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="views\Main.aspx.designer.cs">
+      <DependentUpon>Main.aspx</DependentUpon>
+    </Compile>
     <Compile Include="views\ProjForm.aspx.cs">
       <DependentUpon>ProjForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="views\ProjForm.aspx.designer.cs">
       <DependentUpon>ProjForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="views\ProjList.aspx.cs">
+      <DependentUpon>ProjList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="views\ProjList.aspx.designer.cs">
+      <DependentUpon>ProjList.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebService.asmx.cs">
       <DependentUpon>WebService.asmx</DependentUpon>
@@ -198,6 +226,7 @@
       <DependentUpon>Database.edmx</DependentUpon>
     </Content>
     <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\NPcrmProj1 - Web Deploy.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

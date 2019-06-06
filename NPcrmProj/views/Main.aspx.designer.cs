@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NPcrmProj {
+namespace NPcrmProj.views {
     
     
-    public partial class Default {
+    public partial class Main {
     }
 }

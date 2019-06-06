@@ -18,13 +18,13 @@
             <img src="pics/login.jpg" alt="Avatar" class="avatar">
         </div>
 
-        
+
 
         <div class="container">
 
-            
-            
-           
+
+
+
             <label><b>שם משתמש</b></label>
             <input runat="server" type="text" id="uname" required="" oninvalid="this.setCustomValidity('נא להכניס שם משתמש')" oninput="setCustomValidity('')">
 
@@ -32,20 +32,21 @@
             <label><b>סיסמא</b></label>
             <input runat="server" type="password" id="psw" required="" oninvalid="this.setCustomValidity('נא להכניס סיסמא')" oninput="setCustomValidity('')">
 
-            
+
             <asp:Button ID="button" runat="server" OnClick="enterclc" Text="כניסה" />
             <label>
-                <input runat="server" id="rememberme" type="checkbox" name="remember"> זכור אותי
+                <input runat="server" id="rememberme" type="checkbox" name="remember">
+                זכור אותי
             </label>
 
-     
-          
+
+
 
             <div runat="server" id="logfail" class="alert alert-danger">
                 שם משתמש או סיסמא שגויים
             </div>
-           
-            
+
+
         </div>
 
     </form>

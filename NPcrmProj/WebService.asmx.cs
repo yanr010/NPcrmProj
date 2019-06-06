@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
+using System.Web.Script.Services;
+using System.Web.Script.Serialization;
 
 namespace NPcrmProj
 {
@@ -18,9 +20,22 @@ namespace NPcrmProj
     {
 
         [WebMethod]
-        public string HelloWorld()
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+
+        public string GetProj()
         {
             return "Hello World";
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public void GetAllProjects()
+        {
+            dbEntities db = new dbEntities();
+
+            var projects = db.Projects;
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            Context.Response.Write(js.Serialize(projects));
         }
     }
 }
