@@ -12,7 +12,7 @@
 
 <canvas id="bar" class="chart chart-bar"
                 chart-data="data" chart-labels="labels" chart-series="series">
-</canvas
+</canvas>
 
 
 </div>

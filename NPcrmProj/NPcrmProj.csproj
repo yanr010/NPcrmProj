@@ -100,6 +100,7 @@
     <Content Include="inc\jquery-3.4.1.min.js" />
     <Content Include="inc\moment-with-locales.js" />
     <Content Include="inc\popper.min.js" />
+    <Content Include="inc\xml2json.min.js" />
     <Content Include="js\Controllers.js" />
     <Content Include="js\DateTime.js" />
     <Content Include="Login.aspx" />
@@ -114,14 +115,15 @@
     <Content Include="views\Main.aspx" />
     <Content Include="views\ProjForm.aspx" />
     <Content Include="views\ProjList.aspx" />
+    <Content Include="views\TaskForm.aspx" />
     <Content Include="Web.config" />
     <Content Include="WebService.asmx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Categories.cs">
+    <Compile Include="Category.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
-    <Compile Include="Customers.cs">
+    <Compile Include="Customer.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
     <Compile Include="Database.Context.cs">
@@ -146,7 +148,7 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Departments.cs">
+    <Compile Include="Department.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
@@ -159,7 +161,7 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Projects.cs">
+    <Compile Include="Project.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -168,13 +170,16 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Reports.cs">
+    <Compile Include="Report.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
-    <Compile Include="Tasks.cs">
+    <Compile Include="sysdiagram.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
-    <Compile Include="Users.cs">
+    <Compile Include="Task.cs">
+      <DependentUpon>Database.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
     <Compile Include="views\Charts.aspx.cs">
@@ -211,6 +216,13 @@
     </Compile>
     <Compile Include="views\ProjList.aspx.designer.cs">
       <DependentUpon>ProjList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="views\TaskForm.aspx.cs">
+      <DependentUpon>TaskForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="views\TaskForm.aspx.designer.cs">
+      <DependentUpon>TaskForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebService.asmx.cs">
       <DependentUpon>WebService.asmx</DependentUpon>

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Services;
 using System.Web.Script.Services;
 using System.Web.Script.Serialization;
+using Newtonsoft.Json;
 
 namespace NPcrmProj
 {
@@ -29,13 +30,25 @@ namespace NPcrmProj
 
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public void GetAllProjects()
+        public string GetAllProjects()
         {
-            dbEntities db = new dbEntities();
+            merkazEntities db = new merkazEntities();
 
             var projects = db.Projects;
-            JavaScriptSerializer js = new JavaScriptSerializer();
-            Context.Response.Write(js.Serialize(projects));
+            string json = JsonConvert.SerializeObject(projects);
+
+            return json;
+            //JavaScriptSerializer js = new JavaScriptSerializer();
+            //Context.Response.Write(js.Serialize(projects));
+        }
+
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+
+        public string AddProject(dynamic obj)
+        {
+            return "Hello World";
         }
     }
 }

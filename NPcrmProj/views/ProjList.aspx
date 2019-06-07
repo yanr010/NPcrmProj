@@ -6,7 +6,7 @@
             <td>{{project.Id}}</td>
             <td>{{project.Name}}</td>
             <td>{{project.Description}}</td>
-            <td>{{project.StartDate | date:'yyyy-MM-dd HH:mm:ss Z'}}</td>
+            <td>{{project.StartDate | date:'shortDate'}}</td>
             <td>{{project.Time}}</td>
             <td>{{project.FinalTime}}</td>
             <td>{{project.Frequency}}</td>

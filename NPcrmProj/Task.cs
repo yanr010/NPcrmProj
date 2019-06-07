@@ -12,19 +12,27 @@ namespace NPcrmProj
     using System;
     using System.Collections.Generic;
     
-    public partial class Users
+    public partial class Task
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Users()
+        public Task()
         {
-            this.Departments = new HashSet<Departments>();
+            this.Departments = new HashSet<Department>();
+            this.Reports = new HashSet<Report>();
         }
     
         public string Id { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
+        public string Name { get; set; }
+        public System.DateTime FinalDate { get; set; }
+        public string Description { get; set; }
+        public string Coordinator { get; set; }
+        public string ProjectId { get; set; }
+        public string CustomerId { get; set; }
     
+        public virtual Project Project { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Departments> Departments { get; set; }
+        public virtual ICollection<Department> Departments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Report> Reports { get; set; }
     }
 }

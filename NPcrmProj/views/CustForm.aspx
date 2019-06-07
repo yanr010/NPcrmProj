@@ -1,12 +1,9 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CustForm.aspx.cs" Inherits="NPcrmProj.views.CustForm" %>
 
 <div style="background-color:rgb(250, 250, 250)">
-    <div class="text-center">
-        <img src="pics/merkaz.jpg" style="width:100px;height:100px;">
-        <img src="pics/maalot.jpg" style="width:100px;height:90px;">
-    </div>
-    <div class="text-center">
-        <h2>מרכז צעירים ורשות מקדמת תעסוקה - טופס אינטק - שאלון הכרות</h2>
+    
+    <div class="text-center p-3">
+        <h2>טופס אינטק - שאלון הכרות</h2>
     </div>
     
  <ul class="nav nav-tabs nav-justified">
@@ -16,9 +13,7 @@
     <li class="nav-item">
     <a class="nav-link" data-toggle="tab" href="#education">השכלה</a>
   </li>
- <li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="#language">שפות</a>
-  </li>
+
   <li class="nav-item">
     <a class="nav-link" data-toggle="tab" href="#MilitaryService">שירות צבאי</a>
   </li>
@@ -88,23 +83,8 @@
                                     </div>
                                     
                                 </div>
-                               <div class="form-group row">
-                                    <label for="immigrationCountry" class="col-md-2 control-label">ארץ מוצא</label>
-                                    <div class="col-md-3 inputGroupContainer">
-                                        <div class="input-group">
-                                            <span class="input-group-addon" style="max-width: 100%;"><i class="glyphicon glyphicon-list"></i>
-                                            </span>
-                                            <select class="selectpicker countrypicker"></select>
-                                        </div>
-                                    </div>
-                                </div>
-                                 <div class="form-group row">
-                                    <label for="immigrationDate" class="col-sm-2 col-form-label">תאריך עלייה</label>
-                                    <div class="col-md-3 inputGroupContainer">
-                                        <div class="input-group"><input id="immigrationDate" name="immigrationDate" placeholder="תאריך עלייה" class="form-control" required="false" value="" type="Date">
-                                        </div>
-                                    </div>
-                                </div>
+                               
+                                 
                                      <div class="form-group row">
                                     <label for="city" class="col-sm-2 col-form-label">עיר<span style="color:red">   *</span></label>
                                     <div class="col-md-3 inputGroupContainer">
@@ -119,90 +99,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                 <div class="form-group row">
-                                    <label for="status" class="col-md-2 col-form-label">מצב משפחתי<span style="color:red">   *</span></label>
-                                    <div class="col-md-2 inputGroupContainer">
-                                        <div class="form-group">
-                                            <select class="form-control" id="status">
-                                                <option>רווק/ה</option>
-                                                <option>נשוי/נשואה</option>
-                                                <option>אלמן/ה</option>
-                                                <option>גרוש/ה</option>
-                                            </select>
-                                        </div>
-                                        </div>
-                                </div>
-                                 <div class="form-group row">
-                                    <label for="children" class="col-sm-2 col-form-label">מספר ילדים</label>
-                                    <div class="col-md-2 inputGroupContainer">
-                                        <div class="input-group"><input id="children" name="children" placeholder="מספר ילדים" class="form-control" value="" type="number" min="0" required="false">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="license" class="col-sm-2 control-label">רשיון</label>
-                                    <div class="col-sm-2 inputGroupContainer">
-                                        <input type="radio" name="license" value="1" > כן
-                                        <input type="radio" name="license" value="0" > לא
-                                    </div>
-                                   
-                                </div>
-                                <div class="form-group row">
-                                    <label for="car" class="col-md-2 control-label">רכב</label>
-                                    <div class="col-md-2 inputGroupContainer">
-                                        <input type="radio" name="car" value="1" > כן
-                                        <input type="radio" name="car" value="0"> לא
-                                    </div>
-                                   
-                                </div>
-                                <div class="form-group row">
-                                    <label for="licenseType" class="col-sm-2 col-form-label">סוג רשיון</label>
-                                    <div class="col-md-3 inputGroupContainer">
-                                        <div class="form-group">
-                                            <select class="form-control" id="licenseType">
-                                                <option>פרטי</option>
-                                                 <option>עד 12 טון</option>
-                                                 <option>עד 15 טון</option>
-                                                 <option>מעל 15 טון</option>
-                                             
-                                            </select>
-                                        </div>
-                                        </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="partnerWork" class="col-md-2 control-label">בן/בת זוג עובד</label>
-                                    <div class="col-md-2 inputGroupContainer">
-                                        <input type="radio" name="partnerWork" value="1" >כן
-                                        <input type="radio" name="partnerWork" value="0"> לא
-                                    </div>
-                                   
-                                </div>
-                                <div class="form-group row">
-                                    <label for="healthStatus" class="col-sm-2 col-form-label">מצב בריאותי</label>
-                                    <div class="col-md-3 inputGroupContainer">
-                                        <div class="form-group">
-                                            <select class="form-control" id="healthStatus">
-                                               <option>בריא</option>
-                                                <option>חולה כרוני</option>
-                                                <option>מוגבל</option>
-                                                <option>נכה</option>
-                                            </select>
-                                        </div>
-                                        </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="allowance" class="col-sm-2 col-form-label">מקבל קצבה חודשית</label>
-                                    <div class="col-md-3 inputGroupContainer">
-                                        <div class="form-group">
-                                            <select class="form-control" id="allowance">
-                                              <option>אבטלה</option>
-                                                <option>נכות</option>
-                                                <option>הבטחת הכנסה</option>
-                                            </select>
-                                        </div>
-                                        </div>
-               
-                      </div>
+                                 
+                                 
+                                
+                               
+                                
+                               
+                                
+                                
                             </fieldset>
                         </form>
     </div>
@@ -232,20 +136,8 @@
                                     </div>
                                    
                                 </div>
-                                 <div class="form-group row">
-                                    <label for="year" class="col-sm-2 col-form-label">שנת לימוד</label>
-                                    <div class="col-md-3 inputGroupContainer">
-                                        <div class="input-group"><input id="year" name="year" placeholder="שנת לימוד" class="form-control" required="false" value="" type="text">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="University" class="col-sm-2 col-form-label">מקום לימוד</label>
-                                    <div class="col-md-3 inputGroupContainer">
-                                        <div class="input-group"><input id="University" name="University" placeholder="מקום לימוד" class="form-control" required="false" value="" type="number">
-                                        </div>
-                                    </div>
-                                </div>
+                                 
+                               
                                  <div class="form-group row">
                                     <label for="AcademicDegree" class="col-sm-2 col-form-label">בעל תואר אקדמי במקצוע</label>
                                     <div class="col-md-3 inputGroupContainer">
@@ -264,107 +156,7 @@
                         </form>
                   
     </div>
-     <div class="tab-pane fade" id="language"  style="background-color:rgb(240, 240, 240)">
-                        <form class="well form-horizontal text-right">
-                            <fieldset>
-                                <br>
-                                <div class="form-group row">
-                                    <label for="hebrew" class="col-sm-2 col-form-label">עברית<span style="color:red">   *</span></label>
-                                    <div class="col-md-3 inputGroupContainer">
-                                        <div class="form-group">
-                                            <select class="form-control" id="hebrew">
-                                                <option>שפת אם</option>
-                                                 <option>רמה טובה מאוד</option>
-                                                 <option>רמה טובה</option>
-                                                 <option>בינוני</option>
-                                                <option>חלש</option>
-                                            </select>
-                                        </div>
-                                        </div>
-                                </div>
-                                   <div class="form-group row">
-                                    <label for="english" class="col-sm-2 col-form-label">אנגלית<span style="color:red">   *</span></label>
-                                    <div class="col-md-3 inputGroupContainer">
-                                        <div class="form-group">
-                                            <select class="form-control" id="english">
-                                                <option>שפת אם</option>
-                                                 <option>רמה טובה מאוד</option>
-                                                 <option>רמה טובה</option>
-                                                 <option>בינוני</option>
-                                                <option>חלש</option>
-                                            </select>
-                                        </div>
-                                        </div>
-                                </div>
-                                   <div class="form-group row">
-                                    <label for="arabic" class="col-sm-2 col-form-label">ערבית</label>
-                                    <div class="col-md-3 inputGroupContainer">
-                                        <div class="form-group">
-                                            <select class="form-control" id="arabic">
-                                                <option>שפת אם</option>
-                                                 <option>רמה טובה מאוד</option>
-                                                 <option>רמה טובה</option>
-                                                 <option>בינוני</option>
-                                                <option>חלש</option>
-                                            </select>
-                                        </div>
-                                        </div>
-                                </div>
-                                   <div class="form-group row">
-                                    <label for="russian" class="col-sm-2 col-form-label">רוסית</label>
-                                    <div class="col-md-3 inputGroupContainer">
-                                        <div class="form-group">
-                                            <select class="form-control" id="russian">
-                                                <option>שפת אם</option>
-                                                 <option>רמה טובה מאוד</option>
-                                                 <option>רמה טובה</option>
-                                                 <option>בינוני</option>
-                                                <option>חלש</option>
-                                            </select>
-                                        </div>
-                                        </div>
-                                </div>
-                                
-                                <div class="form-group row">
-                                    <label for="language1" class="col-sm-2 col-form-label">אחר</label>
-                                    <div class="col-md-3 inputGroupContainer">
-                                        <div class="input-group"><input id="language1" name="language1" placeholder="אחר" class="form-control" required="false" value="" type="text">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 inputGroupContainer">
-                                        <div class="form-group">
-                                            <select class="form-control" id="hebrew">
-                                                <option>שפת אם</option>
-                                                 <option>רמה טובה מאוד</option>
-                                                 <option>רמה טובה</option>
-                                                 <option>בינוני</option>
-                                                <option>חלש</option>
-                                            </select>
-                                        </div>
-                                        </div>
-                                </div>
-                                 <div class="form-group row">
-                                    <label for="language2" class="col-sm-2 col-form-label">אחר</label>
-                                    <div class="col-md-3 inputGroupContainer">
-                                        <div class="input-group"><input id="language1" name="language2" placeholder="אחר" class="form-control" required="false" value="" type="text">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 inputGroupContainer">
-                                        <div class="form-group">
-                                            <select class="form-control" id="hebrew">
-                                                <option>שפת אם</option>
-                                                 <option>רמה טובה מאוד</option>
-                                                 <option>רמה טובה</option>
-                                                 <option>בינוני</option>
-                                                <option>חלש</option>
-                                            </select>
-                                        </div>
-                                        </div>
-                                </div>
-                            </fieldset>
-                        </form>
-                  
-    </div>
+     
      <div class="tab-pane fade" id="MilitaryService"  style="background-color:rgb(240, 240, 240)">
                         <form class="well form-horizontal text-right">
                             <fieldset>
@@ -388,47 +180,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                 <div class="form-group row">
-                                    <label for="recruitmentDate" class="col-md-2 control-label">תאריך גיוס</label>
-                                     <div class="col-md-3 inputGroupContainer">
-                                        <div class="input-group"><input id="recruitmentDate" name="recruitmentDate" placeholder="תאריך גיוס" class="form-control" type="date" name="birthDate" min="1000-01-01"
-                                        max="3000-12-31" class="form-control"  required="false"></div>
-                                    </div>
-                                    
-                                </div>
-                                <div class="form-group row">
-                                    <label for="serviceType" class="col-sm-2 col-form-label">סוג חיול</label>
-                                    <div class="col-md-3 inputGroupContainer">
-                                        <div class="form-group">
-                                            <select class="form-control" id="serviceType">
-                                                <option>לוחם</option>
-                                                 <option>תומך לחימה</option>
-                                                 <option>שירות כללי</option>
-                                            </select>
-                                        </div>
-                                        </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="releaseDate" class="col-md-2 control-label">תאריך שחרור</label>
-                                     <div class="col-md-3 inputGroupContainer">
-                                        <div class="input-group"><input id="releaseDate" name="releaseDate" placeholder="תאריך שחרור" class="form-control" type="date" name="birthDate" min="1000-01-01"
-                                        max="3000-12-31" class="form-control"  required="false"></div>
-                                    </div>
-                                    
-                                </div>
+                                 
+                                
+                               
                  
-                                   <div class="form-group row">
-                                    <label for="releaseReason" class="col-sm-2 col-form-label">סיבת שחרור</label>
-                                    <div class="col-md-3 inputGroupContainer">
-                                        <div class="form-group">
-                                            <select class="form-control" id="releaseReason">
-                                                <option>תום שירות</option>
-                                                 <option>טעמי בריאות</option>
-                                                 <option>אחר</option>
-                                            </select>
-                                        </div>
-                                        </div>
-                                </div>
+                                  
                             </fieldset>
                         </form>
                 
@@ -446,28 +202,9 @@
                                     </div>
                                    
                                 </div>
-                                 <div class="form-group row">
-                                    <label for="lastWork" class="col-sm-2 col-form-label">מקום עבודה אחרון</label>
-                                    <div class="col-md-3 inputGroupContainer">
-                                        <div class="input-group"><input id="lastWork" name="lastWork" placeholder="מקום עבודה" class="form-control" required="false" value="" type="text">
-                                        </div>
-                                    </div>
-                                </div>
-                                      <div class="form-group row">
-                                    <label for="work3Month" class="col-sm-2 control-label">האם עבד ב-3 חודשים אחרונים?<span style="color:red">   *</span></label>
-                                    <div class="col-sm-2 inputGroupContainer">
-                                        <input type="radio" name="license" value="1" > כן
-                                        <input type="radio" name="license" value="0" > לא
-                                    </div>
+                                 
                                    
-                                </div>
-                                <div class="form-group row">
-                                    <label for="month2Years" class="col-sm-2 col-form-label">כמה חודשים עבד בשנתיים האחרונות?</label>
-                                    <div class="col-md-3 inputGroupContainer">
-                                        <div class="input-group"><input id="month2Years" name="month2Years" placeholder="מספר חודשים" class="form-control" required="false" value="" type="number">
-                                        </div>
-                                    </div>
-                                </div>
+                                
                             </fieldset>
                         </form>
     </div>
@@ -479,25 +216,34 @@
                                  <label for="Services" class="col-sm-right-2 col-form-label">שירותים רלוונטים<span style="color:red">   *</span></label>
                                     <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" id="Services1" name="Services1">
-                                     <label class="custom-control-label" for="Services1">סיוע בחיפוש עבודה/ בניית קורות חיים/ הכנה לראיון עבודה/ אמצעים לחיפוש עבודה</label>
+                                     <label class="custom-control-label" for="Services1">מציאת עבודה </label>
+                                    </div>
+                               <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="Services2" name="Services2">
+                                     <label class="custom-control-label" for="Services2">כספים</label>
                                     </div>
                                  <div class="custom-control custom-checkbox">
-                                   <input type="checkbox" class="custom-control-input" id="Services2" name="Services2">
-                                     <label class="custom-control-label" for="Services2">קורסים: עברית/ אנגלית/ פסיכומטרי/ הכשרה מקצועית/ אחר</label>
-                                </div>
-                                 <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" id="Services3" name="Services3">
-                                    <label class="custom-control-label" for="Services3">מידע על מלגות לימודים</label>
+                                    <label class="custom-control-label" for="Services3">מלגות לימודים</label>
                                 </div>
                                 <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" id="Services4" name="Services4">
-                                    <label class="custom-control-label" for="Services4"> ייעוץ לימודים אקדמאיים, תחום לימודים, מקום, תנאי קבלה וכו'</label>
+                                    <label class="custom-control-label" for="Services4"> לימודים</label>
                                 </div>
                                  <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" id="Services5" name="5">
-                                    <label class="custom-control-label" for="Services5">מידע על זכויות של חיילים משוחררים ובנית שירות לאומי ואזרחי</label>
+                                    <label class="custom-control-label" for="Services5">זכויות של חיילים משוחררים</label>
         
                                 </div>
+                                 <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="Services6" name="Services6">
+                                     <label class="custom-control-label" for="Services6">קורסי פסיכומטרי </label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="Services7" name="Services7">
+                                     <label class="custom-control-label" for="Services7">משפחה והורות </label>
+                                    </div>
+                                
                                 </div>
                                  <div class="form-group float-right mb-3">
                                  <label for="Directions" class="col-sm-right-2 col-form-label">דרך הגעה למרכז צעירים:</label>
@@ -536,10 +282,7 @@
                                      <label for="Summary" class="col-sm-2 col-form-label">  סיכום פגישה<span style="color:red">   *</span></label>
                                      <textarea class="form-control col-sm-8" id="Summary" rows="6"></textarea>
                                 </div>
-                                 <div class="form-group row ">
-                                     <label for="Jobs"class="col-sm-2 col-form-label">  משרות לשליחה</label>
-                                     <textarea class="form-control col-sm-8" id="Jobs" rows="6"></textarea>
-                                </div>
+                                 
                     
                                 <div class="form-group float-right mb-3 col-sm-right-6">
                                  <label for="distribution" class="col-sm-right-2 col-form-label">קבלת מידע באמצעות<span style="color:red">   *</span></label>

@@ -7,15 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace NPcrmProj.views
 {
-    public partial class ProjForm : System.Web.UI.Page
+    public partial class TaskForm : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (Session["login"] == null)
-            //{
-            //    Session.Clear();
-            //    Response.Redirect("Login.aspx");
-            //}
+
         }
     }
 }

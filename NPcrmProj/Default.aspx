@@ -16,6 +16,7 @@
     <script src="inc/moment-with-locales.js"></script>
     <script src="inc/Chart.min.js"></script>
     <script src="inc/angular-chart.min.js"></script>
+    <script src="inc/xml2json.min.js"></script>
 
 
     <%-- Css --%>
@@ -77,9 +78,17 @@
                             <a class="dropdown-item" href="#">רשימת צעירים</a>
                         </div>
                     </li>
-                    <li class="nav-item ml-auto">
-                        <a class="nav-link" href="#" ng-click="mainclc('3')">משימות</a>
+                
+
+                     <li class="nav-item dropdown ml-auto">
+                        <a class="nav-link dropdown-toggle" href="#">משימות</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#" ng-click="mainclc('3')">הוספת משימה</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" ng-click="mainclc('7')">רשימת משימות</a>
+                        </div>
                     </li>
+
                     <li class="nav-item dropdown ml-auto">
                         <a class="nav-link dropdown-toggle" href="#">פרוייקטים</a>
                         <div class="dropdown-menu">
@@ -124,7 +133,6 @@
 
         <div class="float-center" ng-controller="projctrl" ng-if="newproj">
             <div ng-include="include"></div>
-
         </div>
 
         <div class="float-center" ng-if="main">
@@ -135,26 +143,16 @@
             <div ng-include="include"></div>
         </div>
 
-
-
-        <div class="float-center" ng-if="missions">
-            <h1>משימות</h1>
+        <div class="float-center" ng-if="newtask">
+            <div ng-include="include"></div>
         </div>
-
 
         <div class="float-center" ng-if="newcust">
             <div ng-include="include"></div>
-
         </div>
-
-        
-
-
 
         <div class="float-center" ng-if="reports">
             <div ng-include="include"></div>
-
-
         </div>
 
 

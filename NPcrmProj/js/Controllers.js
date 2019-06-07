@@ -12,7 +12,7 @@ app.controller("MainCtrl", function ($scope, $window) {
             case '1':
                 $scope.main = true;
                 $scope.reports = false;
-                $scope.missions = false;
+                $scope.newtask = false;
                 $scope.newcust = false;
                 $scope.newproj = false;
                 $scope.projlist = false;
@@ -21,7 +21,7 @@ app.controller("MainCtrl", function ($scope, $window) {
                 break;
             case '2':
                 $scope.main = false;
-                $scope.missions = false;
+                $scope.newtask = false;
                 $scope.reports = true;
                 $scope.newcust = false;
                 $scope.newproj = false;
@@ -31,16 +31,17 @@ app.controller("MainCtrl", function ($scope, $window) {
                 
                 break;
             case '3':
-                $scope.missions = true;
+                $scope.newtask = true;
                 $scope.main = false;
                 $scope.reports = false;
                 $scope.newcust = false;
                 $scope.newproj = false;
                 $scope.projlist = false;
+                $scope.include = 'views/TaskForm.aspx';
                 break;
 
             case '4':
-                $scope.missions = false;
+                $scope.newtask = false;
                 $scope.main = false;
                 $scope.reports = false;
                 $scope.newcust = true;
@@ -50,7 +51,7 @@ app.controller("MainCtrl", function ($scope, $window) {
                 break;
 
             case '5':
-                $scope.missions = false;
+                $scope.newtask = false;
                 $scope.main = false;
                 $scope.reports = false;
                 $scope.newcust = false;
@@ -61,7 +62,7 @@ app.controller("MainCtrl", function ($scope, $window) {
                 break;
 
             case '6':
-                $scope.missions = false;
+                $scope.newtask = false;
                 $scope.main = false;
                 $scope.reports = false;
                 $scope.newcust = false;
@@ -124,7 +125,15 @@ app.controller('getprojctrl', function ($scope, $http) {
         $http.get("WebService.asmx/GetAllProjects")
             .then(function (response) {
                 
-                $scope.projects = response.data;
+                //var s = new XMLSerializer();
+                //var newXmlStr = s.serializeToString(response.data);
+
+                var x2js = new X2JS();
+                
+                var jsonobj = x2js.xml_str2json(xmlstr);
+                
+                console.log(jsonobj);
+                $scope.projects = jsonobj.data;
             });
     }
 

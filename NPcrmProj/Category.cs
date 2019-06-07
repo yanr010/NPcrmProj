@@ -12,32 +12,27 @@ namespace NPcrmProj
     using System;
     using System.Collections.Generic;
     
-    public partial class Departments
+    public partial class Category
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Departments()
+        public Category()
         {
-            this.Categories = new HashSet<Categories>();
-            this.Customers = new HashSet<Customers>();
-            this.Projects = new HashSet<Projects>();
-            this.Reports = new HashSet<Reports>();
-            this.Tasks = new HashSet<Tasks>();
+            this.Departments = new HashSet<Department>();
+            this.Projects = new HashSet<Project>();
+            this.Reports = new HashSet<Report>();
+            this.Customers = new HashSet<Customer>();
         }
     
         public string Id { get; set; }
         public string Name { get; set; }
-        public string Coordinator { get; set; }
     
-        public virtual Users Users { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Categories> Categories { get; set; }
+        public virtual ICollection<Department> Departments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Customers> Customers { get; set; }
+        public virtual ICollection<Project> Projects { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Projects> Projects { get; set; }
+        public virtual ICollection<Report> Reports { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Reports> Reports { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tasks> Tasks { get; set; }
+        public virtual ICollection<Customer> Customers { get; set; }
     }
 }
