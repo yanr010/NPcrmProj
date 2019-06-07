@@ -45,6 +45,7 @@ namespace NPcrmProj
         public string Directions { get; set; }
         public string Summary { get; set; }
         public string distribution { get; set; }
+        public System.DateTime CreateDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Category> Categories { get; set; }

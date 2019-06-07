@@ -26,7 +26,7 @@ app.controller("MainCtrl", function ($scope, $window) {
                 $scope.newcust = false;
                 $scope.newproj = false;
                 $scope.projlist = false;
-                $scope.include = 'views/Charts.aspx';
+                $scope.include = 'views/ReportForm.aspx';
 
                 
                 break;
@@ -127,21 +127,40 @@ app.controller('getprojctrl', function ($scope, $http) {
                 
                 //var s = new XMLSerializer();
                 //var newXmlStr = s.serializeToString(response.data);
+                var jsondata = response.data;
+                
+                $scope.projects = jsondata;
 
-                var x2js = new X2JS();
-                
-                var jsonobj = x2js.xml_str2json(xmlstr);
-                
-                console.log(jsonobj);
-                $scope.projects = jsonobj.data;
+
             });
     }
+
+
 
 
 });
 
 
 
+app.directive('loading', ['$http', function ($http) {
+    return {
+        restrict: 'A',
+        link: function (scope, elm, attrs) {
+            scope.isLoading = function () {
+                return $http.pendingRequests.length > 0;
+            };
+
+            scope.$watch(scope.isLoading, function (v) {
+                if (v) {
+                    elm.show();
+                } else {
+                    elm.hide();
+                }
+            });
+        }
+    };
+
+}]);
 
 
 

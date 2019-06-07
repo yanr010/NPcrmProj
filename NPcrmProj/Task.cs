@@ -28,6 +28,7 @@ namespace NPcrmProj
         public string Coordinator { get; set; }
         public string ProjectId { get; set; }
         public string CustomerId { get; set; }
+        public System.DateTime CreateDate { get; set; }
     
         public virtual Project Project { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

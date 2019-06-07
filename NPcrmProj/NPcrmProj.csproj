@@ -115,6 +115,7 @@
     <Content Include="views\Main.aspx" />
     <Content Include="views\ProjForm.aspx" />
     <Content Include="views\ProjList.aspx" />
+    <Content Include="views\ReportForm.aspx" />
     <Content Include="views\TaskForm.aspx" />
     <Content Include="Web.config" />
     <Content Include="WebService.asmx" />
@@ -216,6 +217,13 @@
     </Compile>
     <Compile Include="views\ProjList.aspx.designer.cs">
       <DependentUpon>ProjList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="views\ReportForm.aspx.cs">
+      <DependentUpon>ReportForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="views\ReportForm.aspx.designer.cs">
+      <DependentUpon>ReportForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="views\TaskForm.aspx.cs">
       <DependentUpon>TaskForm.aspx</DependentUpon>

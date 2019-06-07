@@ -33,6 +33,8 @@
 
 
 
+
+
     <%-- Style --%>
     <style>
         .dropdown:hover > .dropdown-menu {
@@ -93,9 +95,8 @@
                         <a class="nav-link dropdown-toggle" href="#">פרוייקטים</a>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="#" ng-click="mainclc('5')">הוספת פרוייקט</a>
-                            <a class="dropdown-item" href="#">פרוייקטים מאושרים</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" ng-click="mainclc('6')">רשימת פרוייקטים</a>
+                            <a class="dropdown-item" href="#">פרוייקטים עתידיים</a>
+                            <a class="dropdown-item" href="#" ng-click="mainclc('6')">פרוייקטים שהסתיימו</a>
                         </div>
                     </li>
                     <li class="nav-item ml-auto">
