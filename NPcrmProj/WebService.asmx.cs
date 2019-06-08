@@ -38,7 +38,6 @@ namespace NPcrmProj
             string json = JsonConvert.SerializeObject(projects);
 
             
-            //JavaScriptSerializer js = new JavaScriptSerializer();
             Context.Response.Write(json);
         }
 
@@ -52,7 +51,19 @@ namespace NPcrmProj
             string json = JsonConvert.SerializeObject(projects);
 
 
-            //JavaScriptSerializer js = new JavaScriptSerializer();
+            Context.Response.Write(json);
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public void GetAllTasks()
+        {
+            dEntities db = new dEntities();
+
+            System.Data.Entity.DbSet<Task> tasks = db.Tasks;
+            string json = JsonConvert.SerializeObject(tasks);
+
+
             Context.Response.Write(json);
         }
 

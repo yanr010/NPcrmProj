@@ -19,7 +19,10 @@ app.controller("MainCtrl", function ($scope, $window) {
                 $scope.include = 'views/Main.aspx';
                 $scope.mainview = 'views/Charts.aspx';
                 $scope.custlist = false;
+                $scope.tasklist = false;
                 break;
+
+
             case '2':
                 $scope.main = false;
                 $scope.newtask = false;
@@ -29,8 +32,9 @@ app.controller("MainCtrl", function ($scope, $window) {
                 $scope.projlist = false;
                 $scope.include = 'views/ReportForm.aspx';
                 $scope.custlist = false;
+                $scope.tasklist = false;
 
-                
+
                 break;
             case '3':
                 $scope.newtask = true;
@@ -41,6 +45,7 @@ app.controller("MainCtrl", function ($scope, $window) {
                 $scope.projlist = false;
                 $scope.include = 'views/TaskForm.aspx';
                 $scope.custlist = false;
+                $scope.tasklist = false;
                 break;
 
             case '4':
@@ -52,6 +57,7 @@ app.controller("MainCtrl", function ($scope, $window) {
                 $scope.projlist = false;
                 $scope.include = 'views/CustForm.aspx';
                 $scope.custlist = false;
+                $scope.tasklist = false;
                 break;
 
             case '5':
@@ -63,7 +69,8 @@ app.controller("MainCtrl", function ($scope, $window) {
                 $scope.newproj = true;
                 $scope.projlist = false;
                 $scope.custlist = false;
-                
+                $scope.tasklist = false;
+
                 break;
 
             case '6':
@@ -75,6 +82,20 @@ app.controller("MainCtrl", function ($scope, $window) {
                 $scope.newproj = false;
                 $scope.projlist = true;
                 $scope.custlist = false;
+                $scope.tasklist = false;
+
+                break;
+
+            case '7':
+                $scope.newtask = false;
+                $scope.main = false;
+                $scope.reports = false;
+                $scope.newcust = false;
+                $scope.include = 'views/TaskList.aspx';
+                $scope.newproj = false;
+                $scope.projlist = false;
+                $scope.custlist = false;
+                $scope.tasklist = true;
 
                 break;
 
@@ -87,20 +108,21 @@ app.controller("MainCtrl", function ($scope, $window) {
                 $scope.newproj = false;
                 $scope.projlist = false;
                 $scope.custlist = true;
+                $scope.tasklist = false;
 
                 break;
 
             default:
-                
+
                 break;
 
         }
     }
 
 
-   
 
-  
+
+
 
     $scope.exit = function () {
         $window.location.href = 'Login.aspx';
@@ -115,13 +137,13 @@ app.controller("MainCtrl", function ($scope, $window) {
 app.controller('projctrl', function ($scope, $http) {
 
     $scope.data = {};
-    
-    
+
+
 
     $scope.submitproj = function () {
         var dat = $scope.data;
         var json = angular.toJson(dat);
-        data: {proj}
+        data: { proj }
         var str = JSON.stringify(json);
 
 
@@ -147,20 +169,12 @@ app.controller('getprojctrl', function ($scope, $http) {
     function GetAllProjects() {
         $http.get("WebService.asmx/GetAllProjects")
             .then(function (response) {
-                
-                //var s = new XMLSerializer();
-                //var newXmlStr = s.serializeToString(response.data);
+
                 var jsondata = response.data;
-                
+
                 $scope.projects = jsondata;
-
-
             });
     }
-    
-
-
-
 });
 
 app.controller('getcustctrl', function ($scope, $http) {
@@ -168,27 +182,29 @@ app.controller('getcustctrl', function ($scope, $http) {
     $scope.sortType = 'FirstName'; // set the default sort type
     $scope.sortReverse = false;  // set the default sort order
 
-
     GetAllCustomers();
     function GetAllCustomers() {
         $http.get("WebService.asmx/GetAllCustomers")
             .then(function (response) {
-
-                //var s = new XMLSerializer();
-                //var newXmlStr = s.serializeToString(response.data);
                 var jsondata = response.data;
-
                 $scope.customers = jsondata;
-
-
             });
     }
+});
 
-    
+app.controller('gettaskctrl', function ($scope, $http) {
 
+    $scope.sortType = 'Name'; // set the default sort type
+    $scope.sortReverse = false;  // set the default sort order
 
-
-
+    GetAllTasks();
+    function GetAllTasks() {
+        $http.get("WebService.asmx/GetAllTasks")
+            .then(function (response) {
+                var jsondata = response.data;
+                $scope.customers = jsondata;
+            });
+    }
 });
 
 

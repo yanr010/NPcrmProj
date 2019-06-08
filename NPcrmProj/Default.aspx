@@ -74,11 +74,11 @@
                     </li>
                     <li class="nav-item dropdown ml-auto">
 
-                        <a class="nav-link dropdown-toggle" href="#">צעירים</a>
+                        <a class="nav-link dropdown-toggle" href="#">לקוחות</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#" ng-click="mainclc('4')">כרטיס חדש</a>
+                            <a class="dropdown-item" href="#" ng-click="mainclc('4')">הוספת לקוח חדש</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" ng-click="mainclc('8')">רשימת צעירים</a>
+                            <a class="dropdown-item" href="#" ng-click="mainclc('8')">רשימת לקוחות</a>
                         </div>
                     </li>
                 
@@ -150,6 +150,10 @@
 
 
         <div class="float-center" ng-controller="getprojctrl" ng-if="projlist">
+            <div ng-include="include"></div>
+        </div>
+
+        <div class="float-center" ng-controller="gettaskctrl" ng-if="tasklist">
             <div ng-include="include"></div>
         </div>
 

@@ -1,11 +1,14 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CustList.aspx.cs" Inherits="NPcrmProj.views.CustList" %>
 
+<h1 class="text-center p-2">רשימת לקוחות</h1>
+
+
 <div class="container mt-3">
 
     <form>
         <div class="form-group">
             <div class="input-group">
-                <div class="input-group-addon"><i class="fas fa-search fa-2x"></i></div>
+                <div class="input-group-addon"><i class="fas fa-search fa-2x pl-1"></i></div>
                 <input class="form-control" id="myInput" type="text" placeholder="חיפוש...">
             </div>
         </div>
@@ -42,8 +45,8 @@
                 <td>{{customer.LastName}}</td>
                 <td>{{customer.Mobile}}</td>
                 <td>{{customer.Email}}</td>
-                <td><i class="far fa-edit fa-2x"></i></td>
-                <td><i class="far fa-trash-alt fa-2x"></i></td>
+                <td><a class="far fa-edit fa-2x" href="#"></a></td>
+                <td><a class="far fa-trash-alt fa-2x" href="#"></a></td>
 
             </tr>
         </tbody>

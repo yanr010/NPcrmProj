@@ -1,11 +1,14 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ProjList.aspx.cs" Inherits="NPcrmProj.views.ProjList" %>
 
+<h1 class="text-center p-2">רשימת פרוייקטים</h1>
+
+
 <div class="container mt-3">
 
     <form>
         <div class="form-group">
             <div class="input-group">
-                <div class="input-group-addon"><i class="fas fa-search fa-2x"></i></div>
+                <div class="input-group-addon"><i class="fas fa-search fa-2x pl-1"></i></div>
                 <input class="form-control" id="myInput" type="text" placeholder="חיפוש...">
             </div>
         </div>
@@ -47,8 +50,8 @@
                 <td>{{project.Time}}</td>
                 <td>{{project.FinalTime}}</td>
                 <td>{{project.Responsible}}</td>
-                <td><i class="far fa-edit fa-2x"></i></td>
-                <td><i class="far fa-trash-alt fa-2x"></i></td>
+                <td><a class="far fa-edit fa-2x" href="#"></a></td>
+                <td><a class="far fa-trash-alt fa-2x" href="#"></a></td>
 
             </tr>
         </tbody>

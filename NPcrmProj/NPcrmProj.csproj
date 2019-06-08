@@ -121,6 +121,7 @@
     <Content Include="views\ProjList.aspx" />
     <Content Include="views\ReportForm.aspx" />
     <Content Include="views\TaskForm.aspx" />
+    <Content Include="views\TaskList.aspx" />
     <Content Include="Web.config" />
     <Content Include="WebService.asmx" />
   </ItemGroup>
@@ -245,6 +246,13 @@
     </Compile>
     <Compile Include="views\TaskForm.aspx.designer.cs">
       <DependentUpon>TaskForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="views\TaskList.aspx.cs">
+      <DependentUpon>TaskList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="views\TaskList.aspx.designer.cs">
+      <DependentUpon>TaskList.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebService.asmx.cs">
       <DependentUpon>WebService.asmx</DependentUpon>
