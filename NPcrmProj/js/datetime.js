@@ -12,7 +12,7 @@ var update = function () {
 
     localLocale = moment();
     localLocale.locale('he')
-    datetime.html(localLocale.format('dddd,  Do MMMM YYYY,    h:mm:ss'));
+    datetime.html(localLocale.format('LLLL'));
 
 
 };

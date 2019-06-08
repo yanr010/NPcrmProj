@@ -21,8 +21,8 @@
 
     <%-- Css --%>
     <link href="inc/bootstrap.min.css" rel="stylesheet" />
-    <link href="inc/font-awesome.min.css" rel="stylesheet" />
     <link href="inc/Chart.min.css" rel="stylesheet" />
+    <link href="inc/webfonts/all.css" rel="stylesheet" />
 
 
 

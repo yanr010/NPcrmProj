@@ -90,16 +90,19 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="inc\webfonts\all.css" />
     <Content Include="inc\angular-chart.min.js" />
     <Content Include="inc\angular.min.js" />
     <Content Include="inc\bootstrap.min.css" />
     <Content Include="inc\bootstrap.min.js" />
     <Content Include="inc\Chart.min.css" />
     <Content Include="inc\Chart.min.js" />
-    <Content Include="inc\font-awesome.min.css" />
     <Content Include="inc\jquery-3.4.1.min.js" />
     <Content Include="inc\moment-with-locales.js" />
     <Content Include="inc\popper.min.js" />
+    <Content Include="inc\webfonts\fa-brands-400.svg" />
+    <Content Include="inc\webfonts\fa-regular-400.svg" />
+    <Content Include="inc\webfonts\fa-solid-900.svg" />
     <Content Include="inc\xml2json.min.js" />
     <Content Include="js\Controllers.js" />
     <Content Include="js\DateTime.js" />
@@ -253,6 +256,18 @@
     <Content Include="Database.edmx.diagram">
       <DependentUpon>Database.edmx</DependentUpon>
     </Content>
+    <Content Include="inc\webfonts\fa-brands-400.eot" />
+    <Content Include="inc\webfonts\fa-brands-400.ttf" />
+    <Content Include="inc\webfonts\fa-brands-400.woff" />
+    <Content Include="inc\webfonts\fa-brands-400.woff2" />
+    <Content Include="inc\webfonts\fa-regular-400.eot" />
+    <Content Include="inc\webfonts\fa-regular-400.ttf" />
+    <Content Include="inc\webfonts\fa-regular-400.woff" />
+    <Content Include="inc\webfonts\fa-regular-400.woff2" />
+    <Content Include="inc\webfonts\fa-solid-900.eot" />
+    <Content Include="inc\webfonts\fa-solid-900.ttf" />
+    <Content Include="inc\webfonts\fa-solid-900.woff" />
+    <Content Include="inc\webfonts\fa-solid-900.woff2" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\NPcrmProj1 - Web Deploy.pubxml" />
     <None Include="Properties\Settings.settings">

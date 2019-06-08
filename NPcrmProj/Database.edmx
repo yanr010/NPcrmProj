@@ -10,7 +10,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="Name" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="CategoryDepartment">
           <Key>
@@ -84,14 +84,13 @@
           <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="YearsofEducation" Type="int" Nullable="false" />
           <Property Name="Education" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="Student" Type="binary" MaxLength="50" Nullable="false" />
+          <Property Name="Student" Type="nchar" MaxLength="10" />
           <Property Name="Studyfield" Type="nvarchar" MaxLength="50" />
           <Property Name="AcademicDegree" Type="nvarchar" MaxLength="50" />
           <Property Name="Qualification" Type="nvarchar" MaxLength="50" />
           <Property Name="MilitaryService" Type="nchar" MaxLength="10" />
           <Property Name="role" Type="nchar" MaxLength="10" />
-          <Property Name="WorkStatus" Type="binary" MaxLength="50" Nullable="false" />
-          <Property Name="Services" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="WorkStatus" Type="int" />
           <Property Name="Directions" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Summary" Type="nvarchar(max)" Nullable="false" />
           <Property Name="distribution" Type="nchar" MaxLength="10" Nullable="false" />
@@ -645,7 +644,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Departments" Relationship="Self.CategoryDepartment" FromRole="Categories" ToRole="Departments" />
           <NavigationProperty Name="Projects" Relationship="Self.CategoryProject" FromRole="Categories" ToRole="Projects" />
           <NavigationProperty Name="Reports" Relationship="Self.CategoryReport" FromRole="Categories" ToRole="Reports" />
@@ -666,13 +665,13 @@
           <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="YearsofEducation" Type="Int32" Nullable="false" />
           <Property Name="Education" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Student" Type="Binary" MaxLength="50" FixedLength="true" Nullable="false" />
+          <Property Name="Student" Type="Binary" MaxLength="10" FixedLength="true" />
           <Property Name="Studyfield" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="AcademicDegree" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Qualification" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MilitaryService" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="role" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="WorkStatus" Type="Binary" MaxLength="50" FixedLength="true" Nullable="false" />
+          <Property Name="WorkStatus" Type="Binary" />
           <Property Name="Services" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Directions" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
@@ -939,7 +938,6 @@
                 <ScalarProperty Name="MilitaryService" ColumnName="MilitaryService" />
                 <ScalarProperty Name="role" ColumnName="role" />
                 <ScalarProperty Name="WorkStatus" ColumnName="WorkStatus" />
-                <ScalarProperty Name="Services" ColumnName="Services" />
                 <ScalarProperty Name="Directions" ColumnName="Directions" />
                 <ScalarProperty Name="Summary" ColumnName="Summary" />
                 <ScalarProperty Name="distribution" ColumnName="distribution" />

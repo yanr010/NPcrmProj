@@ -161,6 +161,10 @@ app.controller('getprojctrl', function ($scope, $http) {
 
 app.controller('getcustctrl', function ($scope, $http) {
 
+    $scope.sortType = 'Id'; // set the default sort type
+    $scope.sortReverse = false;  // set the default sort order
+
+
     GetAllProjects();
     function GetAllProjects() {
         $http.get("WebService.asmx/GetAllProjects")
@@ -175,6 +179,8 @@ app.controller('getcustctrl', function ($scope, $http) {
 
             });
     }
+
+    
 
 
 
