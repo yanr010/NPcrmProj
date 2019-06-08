@@ -112,6 +112,7 @@
     <Content Include="styles\Login.css" />
     <Content Include="views\Charts.aspx" />
     <Content Include="views\CustForm.aspx" />
+    <Content Include="views\CustList.aspx" />
     <Content Include="views\Main.aspx" />
     <Content Include="views\ProjForm.aspx" />
     <Content Include="views\ProjList.aspx" />
@@ -196,6 +197,13 @@
     </Compile>
     <Compile Include="views\CustForm.aspx.designer.cs">
       <DependentUpon>CustForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="views\CustList.aspx.cs">
+      <DependentUpon>CustList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="views\CustList.aspx.designer.cs">
+      <DependentUpon>CustList.aspx</DependentUpon>
     </Compile>
     <Compile Include="views\Main.aspx.cs">
       <DependentUpon>Main.aspx</DependentUpon>

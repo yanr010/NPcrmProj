@@ -29,6 +29,7 @@
     <%-- Js --%>
     <script src="js/Controllers.js"></script>
     <script src="js/DateTime.js"></script>
+
     
 
 
@@ -77,7 +78,7 @@
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="#" ng-click="mainclc('4')">כרטיס חדש</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">רשימת צעירים</a>
+                            <a class="dropdown-item" href="#" ng-click="mainclc('8')">רשימת צעירים</a>
                         </div>
                     </li>
                 
@@ -110,6 +111,7 @@
                 </ul>
 
                 <span id="datetime" class="text-white my-2 my-lg-0 mr-auto d-none d-lg-block"></span>
+                
 
 
                 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -139,6 +141,11 @@
         <div class="float-center" ng-if="main">
             <div ng-include="include"></div>
         </div>
+
+        <div class="float-center" ng-controller="getcustctrl" ng-if="custlist">
+            <div ng-include="include"></div>
+        </div>
+
 
         <div class="float-center" ng-controller="getprojctrl" ng-if="projlist">
             <div ng-include="include"></div>

@@ -18,6 +18,7 @@ app.controller("MainCtrl", function ($scope, $window) {
                 $scope.projlist = false;
                 $scope.include = 'views/Main.aspx';
                 $scope.mainview = 'views/Charts.aspx';
+                $scope.custlist = false;
                 break;
             case '2':
                 $scope.main = false;
@@ -27,6 +28,7 @@ app.controller("MainCtrl", function ($scope, $window) {
                 $scope.newproj = false;
                 $scope.projlist = false;
                 $scope.include = 'views/ReportForm.aspx';
+                $scope.custlist = false;
 
                 
                 break;
@@ -38,6 +40,7 @@ app.controller("MainCtrl", function ($scope, $window) {
                 $scope.newproj = false;
                 $scope.projlist = false;
                 $scope.include = 'views/TaskForm.aspx';
+                $scope.custlist = false;
                 break;
 
             case '4':
@@ -48,6 +51,7 @@ app.controller("MainCtrl", function ($scope, $window) {
                 $scope.newproj = false;
                 $scope.projlist = false;
                 $scope.include = 'views/CustForm.aspx';
+                $scope.custlist = false;
                 break;
 
             case '5':
@@ -58,6 +62,7 @@ app.controller("MainCtrl", function ($scope, $window) {
                 $scope.include = 'views/ProjForm.aspx';
                 $scope.newproj = true;
                 $scope.projlist = false;
+                $scope.custlist = false;
                 
                 break;
 
@@ -69,6 +74,19 @@ app.controller("MainCtrl", function ($scope, $window) {
                 $scope.include = 'views/ProjList.aspx';
                 $scope.newproj = false;
                 $scope.projlist = true;
+                $scope.custlist = false;
+
+                break;
+
+            case '8':
+                $scope.newtask = false;
+                $scope.main = false;
+                $scope.reports = false;
+                $scope.newcust = false;
+                $scope.include = 'views/CustList.aspx';
+                $scope.newproj = false;
+                $scope.projlist = false;
+                $scope.custlist = true;
 
                 break;
 
@@ -118,6 +136,7 @@ app.controller('projctrl', function ($scope, $http) {
 
 
 });
+
 app.controller('getprojctrl', function ($scope, $http) {
 
     GetAllProjects();
@@ -129,6 +148,28 @@ app.controller('getprojctrl', function ($scope, $http) {
                 //var newXmlStr = s.serializeToString(response.data);
                 var jsondata = response.data;
                 
+                $scope.projects = jsondata;
+
+
+            });
+    }
+    
+
+
+
+});
+
+app.controller('getcustctrl', function ($scope, $http) {
+
+    GetAllProjects();
+    function GetAllProjects() {
+        $http.get("WebService.asmx/GetAllProjects")
+            .then(function (response) {
+
+                //var s = new XMLSerializer();
+                //var newXmlStr = s.serializeToString(response.data);
+                var jsondata = response.data;
+
                 $scope.projects = jsondata;
 
 
