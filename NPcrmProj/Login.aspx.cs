@@ -38,7 +38,7 @@ namespace NPcrmProj
         protected void enterclc(object sender, EventArgs e)
         {
 
-            merkazEntities DB = new merkazEntities();
+            dEntities DB = new dEntities();
 
 
 

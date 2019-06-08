@@ -156,6 +156,9 @@
     <Compile Include="Department.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
+    <Compile Include="Distribution.cs">
+      <DependentUpon>Database.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -249,13 +252,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Database.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Database.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Database.edmx.diagram">
-      <DependentUpon>Database.edmx</DependentUpon>
-    </Content>
     <Content Include="inc\webfonts\fa-brands-400.eot" />
     <Content Include="inc\webfonts\fa-brands-400.ttf" />
     <Content Include="inc\webfonts\fa-brands-400.woff" />
@@ -268,6 +264,13 @@
     <Content Include="inc\webfonts\fa-solid-900.ttf" />
     <Content Include="inc\webfonts\fa-solid-900.woff" />
     <Content Include="inc\webfonts\fa-solid-900.woff2" />
+    <EntityDeploy Include="Database.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Database.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Database.edmx.diagram">
+      <DependentUpon>Database.edmx</DependentUpon>
+    </Content>
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\NPcrmProj1 - Web Deploy.pubxml" />
     <None Include="Properties\Settings.settings">

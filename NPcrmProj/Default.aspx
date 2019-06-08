@@ -96,7 +96,9 @@
                         <a class="nav-link dropdown-toggle" href="#">פרוייקטים</a>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="#" ng-click="mainclc('5')">הוספת פרוייקט</a>
+                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">פרוייקטים עתידיים</a>
+                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" ng-click="mainclc('6')">פרוייקטים שהסתיימו</a>
                         </div>
                     </li>

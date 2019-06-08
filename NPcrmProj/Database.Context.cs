@@ -13,10 +13,10 @@ namespace NPcrmProj
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class merkazEntities : DbContext
+    public partial class dEntities : DbContext
     {
-        public merkazEntities()
-            : base("name=merkazEntities")
+        public dEntities()
+            : base("name=dEntities")
         {
         }
     
@@ -28,6 +28,7 @@ namespace NPcrmProj
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
+        public virtual DbSet<Distribution> Distributions { get; set; }
         public virtual DbSet<Project> Projects { get; set; }
         public virtual DbSet<Report> Reports { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }

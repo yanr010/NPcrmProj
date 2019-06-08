@@ -139,6 +139,10 @@ app.controller('projctrl', function ($scope, $http) {
 
 app.controller('getprojctrl', function ($scope, $http) {
 
+    $scope.sortType = 'Name'; // set the default sort type
+    $scope.sortReverse = false;  // set the default sort order
+
+
     GetAllProjects();
     function GetAllProjects() {
         $http.get("WebService.asmx/GetAllProjects")
@@ -161,20 +165,20 @@ app.controller('getprojctrl', function ($scope, $http) {
 
 app.controller('getcustctrl', function ($scope, $http) {
 
-    $scope.sortType = 'Id'; // set the default sort type
+    $scope.sortType = 'FirstName'; // set the default sort type
     $scope.sortReverse = false;  // set the default sort order
 
 
-    GetAllProjects();
-    function GetAllProjects() {
-        $http.get("WebService.asmx/GetAllProjects")
+    GetAllCustomers();
+    function GetAllCustomers() {
+        $http.get("WebService.asmx/GetAllCustomers")
             .then(function (response) {
 
                 //var s = new XMLSerializer();
                 //var newXmlStr = s.serializeToString(response.data);
                 var jsondata = response.data;
 
-                $scope.projects = jsondata;
+                $scope.customers = jsondata;
 
 
             });

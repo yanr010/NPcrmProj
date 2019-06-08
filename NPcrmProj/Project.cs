@@ -25,6 +25,7 @@ namespace NPcrmProj
         }
     
         public string Id { get; set; }
+        public Nullable<System.DateTime> CreateDate { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public System.DateTime StartDate { get; set; }
@@ -34,7 +35,6 @@ namespace NPcrmProj
         public string Responsible { get; set; }
         public int ProjectCost { get; set; }
         public Nullable<int> ActualParticipant { get; set; }
-        public Nullable<System.DateTime> CreateDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Task> Tasks { get; set; }

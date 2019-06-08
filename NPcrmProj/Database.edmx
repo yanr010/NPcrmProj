@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="MerkazModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="MerkazModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Categories">
           <Key>
             <PropertyRef Name="Id" />
@@ -52,6 +52,14 @@
           <Property Name="CustomerID" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="DepartmentID" Type="nchar" MaxLength="10" Nullable="false" />
         </EntityType>
+        <EntityType Name="CustomerDistribution">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+            <PropertyRef Name="distributionId" />
+          </Key>
+          <Property Name="CustomerId" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="distributionId" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
         <EntityType Name="CustomerProject">
           <Key>
             <PropertyRef Name="CustomerId" />
@@ -74,7 +82,7 @@
           </Key>
           <Property Name="Id" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
-          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Gender" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="BirthDate" Type="date" Nullable="false" />
@@ -83,17 +91,16 @@
           <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="YearsofEducation" Type="int" Nullable="false" />
-          <Property Name="Education" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="Student" Type="nchar" MaxLength="10" />
+          <Property Name="Education" Type="bit" Nullable="false" />
+          <Property Name="Student" Type="bit" Nullable="false" />
           <Property Name="Studyfield" Type="nvarchar" MaxLength="50" />
           <Property Name="AcademicDegree" Type="nvarchar" MaxLength="50" />
           <Property Name="Qualification" Type="nvarchar" MaxLength="50" />
           <Property Name="MilitaryService" Type="nchar" MaxLength="10" />
           <Property Name="role" Type="nchar" MaxLength="10" />
-          <Property Name="WorkStatus" Type="int" />
+          <Property Name="WorkStatus" Type="bit" Nullable="false" />
           <Property Name="Directions" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Summary" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="distribution" Type="nchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="DepartmentProject">
           <Key>
@@ -118,6 +125,13 @@
           <Property Name="Id" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="Name" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="Coordinator" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Distribution">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="ProjectReport">
           <Key>
@@ -290,6 +304,30 @@
             </Principal>
             <Dependent Role="CustomerCategory">
               <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomerDistribution_Customers">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+          <End Role="CustomerDistribution" Type="Self.CustomerDistribution" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CustomerDistribution">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomerDistribution_Distribution">
+          <End Role="Distribution" Type="Self.Distribution" Multiplicity="1" />
+          <End Role="CustomerDistribution" Type="Self.CustomerDistribution" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Distribution">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CustomerDistribution">
+              <PropertyRef Name="distributionId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -516,12 +554,14 @@
           <EntitySet Name="CategoryReport" EntityType="Self.CategoryReport" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomerCategory" EntityType="Self.CustomerCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomerDepartment" EntityType="Self.CustomerDepartment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CustomerDistribution" EntityType="Self.CustomerDistribution" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomerProject" EntityType="Self.CustomerProject" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomerReport" EntityType="Self.CustomerReport" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DepartmentProject" EntityType="Self.DepartmentProject" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DepartmentReport" EntityType="Self.DepartmentReport" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Distribution" EntityType="Self.Distribution" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProjectReport" EntityType="Self.ProjectReport" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Projects" EntityType="Self.Projects" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reports" EntityType="Self.Reports" Schema="dbo" store:Type="Tables" />
@@ -561,6 +601,14 @@
           <AssociationSet Name="FK_CustomerCategory_Customers" Association="Self.FK_CustomerCategory_Customers">
             <End Role="Customers" EntitySet="Customers" />
             <End Role="CustomerCategory" EntitySet="CustomerCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomerDistribution_Customers" Association="Self.FK_CustomerDistribution_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="CustomerDistribution" EntitySet="CustomerDistribution" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomerDistribution_Distribution" Association="Self.FK_CustomerDistribution_Distribution">
+            <End Role="Distribution" EntitySet="Distribution" />
+            <End Role="CustomerDistribution" EntitySet="CustomerDistribution" />
           </AssociationSet>
           <AssociationSet Name="FK_CustomerinDepartment_CustomerinDepartment" Association="Self.FK_CustomerinDepartment_CustomerinDepartment">
             <End Role="Departments" EntitySet="Departments" />
@@ -635,7 +683,8 @@
             <End Role="Tasks" EntitySet="Tasks" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MerkazModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -655,7 +704,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Gender" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="0" />
@@ -664,23 +714,21 @@
           <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="YearsofEducation" Type="Int32" Nullable="false" />
-          <Property Name="Education" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Student" Type="Binary" MaxLength="10" FixedLength="true" />
+          <Property Name="Education" Type="Boolean" Nullable="false" />
+          <Property Name="Student" Type="Boolean" Nullable="false" />
           <Property Name="Studyfield" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="AcademicDegree" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Qualification" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MilitaryService" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="role" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="WorkStatus" Type="Binary" />
-          <Property Name="Services" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="WorkStatus" Type="Boolean" Nullable="false" />
           <Property Name="Directions" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="distribution" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Categories" Relationship="Self.CustomerCategory" FromRole="Customers" ToRole="Categories" />
           <NavigationProperty Name="Departments" Relationship="Self.CustomerDepartment" FromRole="Customers" ToRole="Departments" />
+          <NavigationProperty Name="Distributions" Relationship="Self.CustomerDistribution" FromRole="Customers" ToRole="Distribution" />
           <NavigationProperty Name="Projects" Relationship="Self.CustomerProject" FromRole="Customers" ToRole="Projects" />
           <NavigationProperty Name="Reports" Relationship="Self.CustomerReport" FromRole="Customers" ToRole="Reports" />
-          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
@@ -696,11 +744,20 @@
           <NavigationProperty Name="Reports" Relationship="Self.DepartmentReport" FromRole="Departments" ToRole="Reports" />
           <NavigationProperty Name="Tasks" Relationship="Self.TaskDepartment" FromRole="Departments" ToRole="Tasks" />
         </EntityType>
+        <EntityType Name="Distribution">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Customers" Relationship="Self.CustomerDistribution" FromRole="Distribution" ToRole="Customers" />
+        </EntityType>
         <EntityType Name="Project">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
           <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
@@ -715,7 +772,6 @@
           <NavigationProperty Name="Customers" Relationship="Self.CustomerProject" FromRole="Projects" ToRole="Customers" />
           <NavigationProperty Name="Departments" Relationship="Self.DepartmentProject" FromRole="Projects" ToRole="Departments" />
           <NavigationProperty Name="Reports" Relationship="Self.ProjectReport" FromRole="Projects" ToRole="Reports" />
-          <Property Name="CreateDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Report">
           <Key>
@@ -744,6 +800,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="FinalDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
@@ -753,7 +810,6 @@
           <NavigationProperty Name="Project" Relationship="Self.FK_Tasks_Projects" FromRole="Tasks" ToRole="Projects" />
           <NavigationProperty Name="Departments" Relationship="Self.TaskDepartment" FromRole="Tasks" ToRole="Departments" />
           <NavigationProperty Name="Reports" Relationship="Self.TaskReport" FromRole="Tasks" ToRole="Reports" />
-          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -808,6 +864,10 @@
           <End Role="Departments" Type="Self.Department" Multiplicity="*" />
           <End Role="Customers" Type="Self.Customer" Multiplicity="*" />
         </Association>
+        <Association Name="CustomerDistribution">
+          <End Role="Customers" Type="Self.Customer" Multiplicity="*" />
+          <End Role="Distribution" Type="Self.Distribution" Multiplicity="*" />
+        </Association>
         <Association Name="CustomerProject">
           <End Role="Customers" Type="Self.Customer" Multiplicity="*" />
           <End Role="Projects" Type="Self.Project" Multiplicity="*" />
@@ -836,10 +896,11 @@
           <End Role="Reports" Type="Self.Report" Multiplicity="*" />
           <End Role="Tasks" Type="Self.Task" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="merkazEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="dEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="Departments" EntityType="Self.Department" />
+          <EntitySet Name="Distributions" EntityType="Self.Distribution" />
           <EntitySet Name="Projects" EntityType="Self.Project" />
           <EntitySet Name="Reports" EntityType="Self.Report" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
@@ -872,6 +933,10 @@
           <AssociationSet Name="CustomerDepartment" Association="Self.CustomerDepartment">
             <End Role="Departments" EntitySet="Departments" />
             <End Role="Customers" EntitySet="Customers" />
+          </AssociationSet>
+          <AssociationSet Name="CustomerDistribution" Association="Self.CustomerDistribution">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Distribution" EntitySet="Distributions" />
           </AssociationSet>
           <AssociationSet Name="CustomerProject" Association="Self.CustomerProject">
             <End Role="Customers" EntitySet="Customers" />
@@ -907,7 +972,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="MerkazModelStoreContainer" CdmEntityContainer="merkazEntities">
+        <EntityContainerMapping StorageEntityContainer="MerkazModelStoreContainer" CdmEntityContainer="dEntities">
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="MerkazModel.Category">
               <MappingFragment StoreEntitySet="Categories">
@@ -919,8 +984,8 @@
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="MerkazModel.Customer">
               <MappingFragment StoreEntitySet="Customers">
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
@@ -940,7 +1005,6 @@
                 <ScalarProperty Name="WorkStatus" ColumnName="WorkStatus" />
                 <ScalarProperty Name="Directions" ColumnName="Directions" />
                 <ScalarProperty Name="Summary" ColumnName="Summary" />
-                <ScalarProperty Name="distribution" ColumnName="distribution" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -953,11 +1017,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Distributions">
+            <EntityTypeMapping TypeName="MerkazModel.Distribution">
+              <MappingFragment StoreEntitySet="Distribution">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Projects">
             <EntityTypeMapping TypeName="MerkazModel.Project">
               <MappingFragment StoreEntitySet="Projects">
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
@@ -992,8 +1064,8 @@
           <EntitySetMapping Name="Tasks">
             <EntityTypeMapping TypeName="MerkazModel.Task">
               <MappingFragment StoreEntitySet="Tasks">
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="FinalDate" ColumnName="FinalDate" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -1050,6 +1122,14 @@
             </EndProperty>
             <EndProperty Name="Customers">
               <ScalarProperty Name="Id" ColumnName="CustomerID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="CustomerDistribution" TypeName="MerkazModel.CustomerDistribution" StoreEntitySet="CustomerDistribution">
+            <EndProperty Name="Customers">
+              <ScalarProperty Name="Id" ColumnName="CustomerId" />
+            </EndProperty>
+            <EndProperty Name="Distribution">
+              <ScalarProperty Name="Id" ColumnName="distributionId" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="CustomerProject" TypeName="MerkazModel.CustomerProject" StoreEntitySet="CustomerProject">

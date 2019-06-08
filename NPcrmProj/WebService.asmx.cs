@@ -32,12 +32,26 @@ namespace NPcrmProj
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public void GetAllProjects()
         {
-            merkazEntities db = new merkazEntities();
+            dEntities db = new dEntities();
 
             System.Data.Entity.DbSet<Project> projects = db.Projects;
             string json = JsonConvert.SerializeObject(projects);
 
             
+            //JavaScriptSerializer js = new JavaScriptSerializer();
+            Context.Response.Write(json);
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public void GetAllCustomers()
+        {
+            dEntities db = new dEntities();
+
+            System.Data.Entity.DbSet<Customer> projects = db.Customers;
+            string json = JsonConvert.SerializeObject(projects);
+
+
             //JavaScriptSerializer js = new JavaScriptSerializer();
             Context.Response.Write(json);
         }

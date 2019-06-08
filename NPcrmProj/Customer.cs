@@ -19,11 +19,13 @@ namespace NPcrmProj
         {
             this.Categories = new HashSet<Category>();
             this.Departments = new HashSet<Department>();
+            this.Distributions = new HashSet<Distribution>();
             this.Projects = new HashSet<Project>();
             this.Reports = new HashSet<Report>();
         }
     
         public string Id { get; set; }
+        public System.DateTime CreateDate { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Gender { get; set; }
@@ -33,24 +35,23 @@ namespace NPcrmProj
         public string Address { get; set; }
         public string City { get; set; }
         public int YearsofEducation { get; set; }
-        public string Education { get; set; }
-        public byte[] Student { get; set; }
+        public bool Education { get; set; }
+        public bool Student { get; set; }
         public string Studyfield { get; set; }
         public string AcademicDegree { get; set; }
         public string Qualification { get; set; }
         public string MilitaryService { get; set; }
         public string role { get; set; }
-        public byte[] WorkStatus { get; set; }
-        public string Services { get; set; }
+        public bool WorkStatus { get; set; }
         public string Directions { get; set; }
         public string Summary { get; set; }
-        public string distribution { get; set; }
-        public System.DateTime CreateDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Category> Categories { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Department> Departments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Distribution> Distributions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Project> Projects { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

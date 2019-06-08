@@ -4,15 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e03f520d72724797949a1d9fabd26b4a" Name="Diagram1" ZoomLevel="89">
-        <EntityTypeShape EntityType="MerkazModel.Category" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MerkazModel.Customer" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MerkazModel.Department" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MerkazModel.Project" Width="1.5" PointX="7.5" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MerkazModel.Report" Width="1.5" PointX="9.75" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MerkazModel.sysdiagram" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MerkazModel.Task" Width="1.5" PointX="12" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MerkazModel.User" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="ce828e2e5ced4e9998ee29dd140ed00a" Name="Diagram1">
+        <EntityTypeShape EntityType="MerkazModel.Category" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MerkazModel.Customer" Width="1.5" PointX="5.25" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MerkazModel.Department" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MerkazModel.Distribution" Width="1.5" PointX="7.5" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MerkazModel.Project" Width="1.5" PointX="10.5" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MerkazModel.Report" Width="1.5" PointX="12.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MerkazModel.sysdiagram" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MerkazModel.Task" Width="1.5" PointX="15" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="MerkazModel.User" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
         <AssociationConnector Association="MerkazModel.FK_Departments_Users" ManuallyRouted="false" />
         <AssociationConnector Association="MerkazModel.FK_Tasks_Projects" ManuallyRouted="false" />
         <AssociationConnector Association="MerkazModel.CategoryDepartment" ManuallyRouted="false" />
@@ -20,6 +21,7 @@
         <AssociationConnector Association="MerkazModel.CategoryReport" ManuallyRouted="false" />
         <AssociationConnector Association="MerkazModel.CustomerCategory" ManuallyRouted="false" />
         <AssociationConnector Association="MerkazModel.CustomerDepartment" ManuallyRouted="false" />
+        <AssociationConnector Association="MerkazModel.CustomerDistribution" ManuallyRouted="false" />
         <AssociationConnector Association="MerkazModel.CustomerProject" ManuallyRouted="false" />
         <AssociationConnector Association="MerkazModel.CustomerReport" ManuallyRouted="false" />
         <AssociationConnector Association="MerkazModel.DepartmentProject" ManuallyRouted="false" />
