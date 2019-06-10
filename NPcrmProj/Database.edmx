@@ -896,7 +896,7 @@
           <End Role="Reports" Type="Self.Report" Multiplicity="*" />
           <End Role="Tasks" Type="Self.Task" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="dEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="dEntities" annotation:LazyLoadingEnabled="false">
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="Departments" EntityType="Self.Department" />

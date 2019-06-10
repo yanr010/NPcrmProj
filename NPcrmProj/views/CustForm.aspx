@@ -1,37 +1,13 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CustForm.aspx.cs" Inherits="NPcrmProj.views.CustForm" %>
 
-<div style="background-color:rgb(250, 250, 250)">
-    
-    <div class="text-center p-3">
+<div class="text-center p-3">
         <h2>טופס אינטק - שאלון הכרות</h2>
     </div>
     
- <ul class="nav nav-tabs nav-justified">
-  <li class="nav-item">
-    <a class="nav-link active" data-toggle="tab" href="#home">פרטים אישיים</a>
-  </li>
-    <li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="#education">השכלה</a>
-  </li>
-
-  <li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="#MilitaryService">שירות צבאי</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="#employment">תעסוקה</a>
-  </li>
-<li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="#ReasonforArrival">סיבת הגעה</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="#Conclusions">מסקנות</a>
-  </li>
-</ul>
-<div id="myTabContent" class="tab-content"   style="background-color:rgb(240, 240, 240)">
-  <div class="tab-pane fade show active" id="home" >
-                        <form class="well form-horizontal text-right">
+  <div style="background-color:rgb(240, 240, 240)">
+                        <form class="well form-horizontal text-right border">
                             <fieldset>
-                                <br>
+                                <H5>פרטים אישיים:</H5>
                                 <div class="form-group row">
                                 <label for="firstName" class="col-sm-2 col-form-label">שם פרטי<span style="color:red">   *</span></label>
                                     <div class="col-md-3 inputGroupContainer">
@@ -99,21 +75,16 @@
                                         </div>
                                     </div>
                                 </div>
-                                 
-                                 
-                                
-                               
-                                
-                               
-                                
+                         
                                 
                             </fieldset>
                         </form>
     </div>
-  <div class="tab-pane fade" id="education"  style="background-color:rgb(240, 240, 240)">
-                        <form class="well form-horizontal text-right">
+    <div style="background-color:rgb(245, 245, 245")>
+                        <form class="well form-horizontal text-right border">
                             <fieldset>
                                 <br>
+                                <H5>פרטים נוספים:</H5>
                                 <div class="form-group row">
                                     <label for="yearsofEducation" class="col-sm-2 col-form-label">מספר שנות לימוד</label>
                                     <div class="col-md-2 inputGroupContainer">
@@ -152,15 +123,7 @@
                                       </div>
                                         </div>
                                     </div>
-                            </fieldset>
-                        </form>
-                  
-    </div>
-     
-     <div class="tab-pane fade" id="MilitaryService"  style="background-color:rgb(240, 240, 240)">
-                        <form class="well form-horizontal text-right">
-                            <fieldset>
-                                <br>
+          
                                 <div class="form-group row">
                                     <label for="militaryService" class="col-sm-2 col-form-label">סוג שירות<span style="color:red">   *</span></label>
                                     <div class="col-md-3 inputGroupContainer">
@@ -181,19 +144,7 @@
                                     </div>
                                 </div>
                                  
-                                
-                               
-                 
-                                  
-                            </fieldset>
-                        </form>
-                
-    </div>
-     <div class="tab-pane fade" id="employment"  style="background-color:rgb(240, 240, 240)">
-     
-                        <form class="well form-horizontal text-right">
-                            <fieldset>
-                                <br>
+                            
                                   <div class="form-group row">
                                     <label for="workStatus" class="col-sm-2 control-label">סטטוס<span style="color:red">   *</span></label>
                                     <div class="col-sm-2 inputGroupContainer">
@@ -202,17 +153,16 @@
                                     </div>
                                    
                                 </div>
-                                 
-                                   
-                                
+  
                             </fieldset>
                         </form>
     </div>
-    <div class="tab-pane fade" id="ReasonforArrival" style="background-color:rgb(240, 240, 240)">
-                        <form class="well form-horizontal text-right">
+    <div style="background-color:rgb(240, 240, 240)">
+                        <form class="well form-horizontal text-right border">
                             <fieldset>
                                 <br>
-                                 <div class="form-group float-right mb-3">
+                                <H5>סיבת הגעה</H5>
+                                 <div class="form-group">
                                  <label for="Services" class="col-sm-right-2 col-form-label">שירותים רלוונטים<span style="color:red">   *</span></label>
                                     <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" id="Services1" name="Services1">
@@ -245,7 +195,7 @@
                                     </div>
                                 
                                 </div>
-                                 <div class="form-group float-right mb-3">
+                                 <div class="form-group text-right mb-3">
                                  <label for="Directions" class="col-sm-right-2 col-form-label">דרך הגעה למרכז צעירים:</label>
                                     <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" id="Directions1" name="Directions1">
@@ -263,21 +213,17 @@
                                     <input type="checkbox" class="custom-control-input" id="Directions4" name="Directions4">
                                     <label class="custom-control-label" for="Directions4"> אתר האינטרנט youngs-maalot.co.il</label>
                                 </div>
-                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="Directions5" name="Directions5">
-                                    <label class="custom-control-label" for="Directions5">אחר</label>
-                                     <div class="input-group"><input id="Directions5" name="Directionד5" class="form-control" required="false" value="" type="text">
-                                </div>
-                                </div>
+                                
                                 </div>
                             </fieldset>
                         </form>
         
     </div>
-    <div class="tab-pane fade" id="Conclusions" style="background-color:rgb(240, 240, 240)">
-                        <form class="well form-horizontal text-right">
+    <div style="background-color:rgb(245, 245, 245)">
+                        <form class="well form-horizontal text-right border">
                             <fieldset>
                                 <br>
+                                  <H5>מסקנות:</H5>
                                  <div class="form-group row">
                                      <label for="Summary" class="col-sm-2 col-form-label">  סיכום פגישה<span style="color:red">   *</span></label>
                                      <textarea class="form-control col-sm-8" id="Summary" rows="6"></textarea>
@@ -307,5 +253,8 @@
                         </form>
     </div>
     </div>
-    </div>
+        <br>
+            <div class="col-sm-10 text-left">
+                <button ng-click="submitCust()" class="btn btn-primary btn-lg">אישור</button>
+            </div>
 

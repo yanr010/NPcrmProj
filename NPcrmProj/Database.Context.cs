@@ -18,6 +18,7 @@ namespace NPcrmProj
         public dEntities()
             : base("name=dEntities")
         {
+            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

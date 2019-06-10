@@ -6,6 +6,7 @@ using System.Web.Services;
 using System.Web.Script.Services;
 using System.Web.Script.Serialization;
 using Newtonsoft.Json;
+using System.Data.SqlClient;
 
 namespace NPcrmProj
 {
@@ -37,7 +38,7 @@ namespace NPcrmProj
             System.Data.Entity.DbSet<Project> projects = db.Projects;
             string json = JsonConvert.SerializeObject(projects);
 
-            
+
             Context.Response.Write(json);
         }
 
@@ -77,3 +78,4 @@ namespace NPcrmProj
         }
     }
 }
+
