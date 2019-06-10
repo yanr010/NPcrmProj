@@ -13,10 +13,10 @@ namespace NPcrmProj
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class dEntities : DbContext
+    public partial class dbEntities : DbContext
     {
-        public dEntities()
-            : base("name=dEntities")
+        public dbEntities()
+            : base("name=dbEntities")
         {
             this.Configuration.LazyLoadingEnabled = false;
         }
@@ -26,14 +26,14 @@ namespace NPcrmProj
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Category> Categories { get; set; }
-        public virtual DbSet<Customer> Customers { get; set; }
-        public virtual DbSet<Department> Departments { get; set; }
-        public virtual DbSet<Distribution> Distributions { get; set; }
-        public virtual DbSet<Project> Projects { get; set; }
-        public virtual DbSet<Report> Reports { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<Task> Tasks { get; set; }
-        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Categories> Categories { get; set; }
+        public virtual DbSet<CustomerDistribution> CustomerDistribution { get; set; }
+        public virtual DbSet<Customers> Customers { get; set; }
+        public virtual DbSet<Departments> Departments { get; set; }
+        public virtual DbSet<Projects> Projects { get; set; }
+        public virtual DbSet<Reports> Reports { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<Tasks> Tasks { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
     }
 }

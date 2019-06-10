@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MerkazModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MerkazModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Categories">
           <Key>
             <PropertyRef Name="Id" />
@@ -43,14 +43,6 @@
           </Key>
           <Property Name="CustomerID" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="CategoryID" Type="nchar" MaxLength="10" Nullable="false" />
-        </EntityType>
-        <EntityType Name="CustomerDepartment">
-          <Key>
-            <PropertyRef Name="CustomerID" />
-            <PropertyRef Name="DepartmentID" />
-          </Key>
-          <Property Name="CustomerID" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="DepartmentID" Type="nchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="CustomerDistribution">
           <Key>
@@ -97,18 +89,11 @@
           <Property Name="AcademicDegree" Type="nvarchar" MaxLength="50" />
           <Property Name="Qualification" Type="nvarchar" MaxLength="50" />
           <Property Name="MilitaryService" Type="nchar" MaxLength="10" />
-          <Property Name="role" Type="nchar" MaxLength="10" />
+          <Property Name="role" Type="nvarchar" MaxLength="50" />
           <Property Name="WorkStatus" Type="bit" Nullable="false" />
           <Property Name="Directions" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Summary" Type="nvarchar(max)" Nullable="false" />
-        </EntityType>
-        <EntityType Name="DepartmentProject">
-          <Key>
-            <PropertyRef Name="DepartmentId" />
-            <PropertyRef Name="ProjectId" />
-          </Key>
-          <Property Name="DepartmentId" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="ProjectId" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Department" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="DepartmentReport">
           <Key>
@@ -123,15 +108,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="Name" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="Coordinator" Type="nchar" MaxLength="10" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Distribution">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="Name" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Coordinator" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="ProjectReport">
           <Key>
@@ -147,7 +125,7 @@
           </Key>
           <Property Name="Id" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="CreateDate" Type="datetime" />
-          <Property Name="Name" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
           <Property Name="StartDate" Type="date" Nullable="false" />
           <Property Name="Time" Type="time" Precision="7" Nullable="false" />
@@ -174,14 +152,6 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <EntityType Name="TaskDepartment">
-          <Key>
-            <PropertyRef Name="TaskId" />
-            <PropertyRef Name="DepartmentId" />
-          </Key>
-          <Property Name="TaskId" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="DepartmentId" Type="nchar" MaxLength="10" Nullable="false" />
-        </EntityType>
         <EntityType Name="TaskReport">
           <Key>
             <PropertyRef Name="TaskId" />
@@ -196,18 +166,19 @@
           </Key>
           <Property Name="Id" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
-          <Property Name="Name" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="FinalDate" Type="datetime" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Coordinator" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="ProjectId" Type="nchar" MaxLength="10" />
           <Property Name="CustomerId" Type="nchar" MaxLength="10" />
+          <Property Name="Done" Type="bit" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Id" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
@@ -307,54 +278,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CustomerDistribution_Customers">
-          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
-          <End Role="CustomerDistribution" Type="Self.CustomerDistribution" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CustomerDistribution">
-              <PropertyRef Name="CustomerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CustomerDistribution_Distribution">
-          <End Role="Distribution" Type="Self.Distribution" Multiplicity="1" />
-          <End Role="CustomerDistribution" Type="Self.CustomerDistribution" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Distribution">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CustomerDistribution">
-              <PropertyRef Name="distributionId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CustomerinDepartment_CustomerinDepartment">
-          <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
-          <End Role="CustomerDepartment" Type="Self.CustomerDepartment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Departments">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CustomerDepartment">
-              <PropertyRef Name="DepartmentID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CustomerinDepartment_Customers">
-          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
-          <End Role="CustomerDepartment" Type="Self.CustomerDepartment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CustomerDepartment">
-              <PropertyRef Name="CustomerID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_CustomerProject_Customers">
           <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
           <End Role="CustomerProject" Type="Self.CustomerProject" Multiplicity="*" />
@@ -403,27 +326,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DepartmentProject_Departments">
-          <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
-          <End Role="DepartmentProject" Type="Self.DepartmentProject" Multiplicity="*" />
+        <Association Name="FK_Customers_Departments">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="0..1" />
+          <End Role="Customers" Type="Self.Customers" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Departments">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="DepartmentProject">
-              <PropertyRef Name="DepartmentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_DepartmentProject_Projects">
-          <End Role="Projects" Type="Self.Projects" Multiplicity="1" />
-          <End Role="DepartmentProject" Type="Self.DepartmentProject" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Projects">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="DepartmentProject">
-              <PropertyRef Name="ProjectId" />
+            <Dependent Role="Customers">
+              <PropertyRef Name="Department" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -487,27 +398,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TaskDepartment_Departments">
+        <Association Name="FK_Projects_Departments">
           <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
-          <End Role="TaskDepartment" Type="Self.TaskDepartment" Multiplicity="*" />
+          <End Role="Projects" Type="Self.Projects" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Departments">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="TaskDepartment">
-              <PropertyRef Name="DepartmentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TaskDepartment_Tasks">
-          <End Role="Tasks" Type="Self.Tasks" Multiplicity="1" />
-          <End Role="TaskDepartment" Type="Self.TaskDepartment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tasks">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="TaskDepartment">
-              <PropertyRef Name="TaskId" />
+            <Dependent Role="Projects">
+              <PropertyRef Name="Responsible" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -535,6 +434,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Tasks_Customers">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tasks_Departments">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="Coordinator" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Tasks_Projects">
           <End Role="Projects" Type="Self.Projects" Multiplicity="0..1" />
           <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
@@ -553,20 +476,16 @@
           <EntitySet Name="CategoryProject" EntityType="Self.CategoryProject" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CategoryReport" EntityType="Self.CategoryReport" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomerCategory" EntityType="Self.CustomerCategory" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CustomerDepartment" EntityType="Self.CustomerDepartment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomerDistribution" EntityType="Self.CustomerDistribution" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomerProject" EntityType="Self.CustomerProject" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomerReport" EntityType="Self.CustomerReport" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DepartmentProject" EntityType="Self.DepartmentProject" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DepartmentReport" EntityType="Self.DepartmentReport" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Distribution" EntityType="Self.Distribution" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProjectReport" EntityType="Self.ProjectReport" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Projects" EntityType="Self.Projects" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reports" EntityType="Self.Reports" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TaskDepartment" EntityType="Self.TaskDepartment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TaskReport" EntityType="Self.TaskReport" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tasks" EntityType="Self.Tasks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
@@ -602,22 +521,6 @@
             <End Role="Customers" EntitySet="Customers" />
             <End Role="CustomerCategory" EntitySet="CustomerCategory" />
           </AssociationSet>
-          <AssociationSet Name="FK_CustomerDistribution_Customers" Association="Self.FK_CustomerDistribution_Customers">
-            <End Role="Customers" EntitySet="Customers" />
-            <End Role="CustomerDistribution" EntitySet="CustomerDistribution" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CustomerDistribution_Distribution" Association="Self.FK_CustomerDistribution_Distribution">
-            <End Role="Distribution" EntitySet="Distribution" />
-            <End Role="CustomerDistribution" EntitySet="CustomerDistribution" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CustomerinDepartment_CustomerinDepartment" Association="Self.FK_CustomerinDepartment_CustomerinDepartment">
-            <End Role="Departments" EntitySet="Departments" />
-            <End Role="CustomerDepartment" EntitySet="CustomerDepartment" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CustomerinDepartment_Customers" Association="Self.FK_CustomerinDepartment_Customers">
-            <End Role="Customers" EntitySet="Customers" />
-            <End Role="CustomerDepartment" EntitySet="CustomerDepartment" />
-          </AssociationSet>
           <AssociationSet Name="FK_CustomerProject_Customers" Association="Self.FK_CustomerProject_Customers">
             <End Role="Customers" EntitySet="Customers" />
             <End Role="CustomerProject" EntitySet="CustomerProject" />
@@ -634,13 +537,9 @@
             <End Role="Reports" EntitySet="Reports" />
             <End Role="CustomerReport" EntitySet="CustomerReport" />
           </AssociationSet>
-          <AssociationSet Name="FK_DepartmentProject_Departments" Association="Self.FK_DepartmentProject_Departments">
+          <AssociationSet Name="FK_Customers_Departments" Association="Self.FK_Customers_Departments">
             <End Role="Departments" EntitySet="Departments" />
-            <End Role="DepartmentProject" EntitySet="DepartmentProject" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DepartmentProject_Projects" Association="Self.FK_DepartmentProject_Projects">
-            <End Role="Projects" EntitySet="Projects" />
-            <End Role="DepartmentProject" EntitySet="DepartmentProject" />
+            <End Role="Customers" EntitySet="Customers" />
           </AssociationSet>
           <AssociationSet Name="FK_DepartmentReport_Department" Association="Self.FK_DepartmentReport_Department">
             <End Role="Departments" EntitySet="Departments" />
@@ -662,13 +561,9 @@
             <End Role="Reports" EntitySet="Reports" />
             <End Role="ProjectReport" EntitySet="ProjectReport" />
           </AssociationSet>
-          <AssociationSet Name="FK_TaskDepartment_Departments" Association="Self.FK_TaskDepartment_Departments">
+          <AssociationSet Name="FK_Projects_Departments" Association="Self.FK_Projects_Departments">
             <End Role="Departments" EntitySet="Departments" />
-            <End Role="TaskDepartment" EntitySet="TaskDepartment" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TaskDepartment_Tasks" Association="Self.FK_TaskDepartment_Tasks">
-            <End Role="Tasks" EntitySet="Tasks" />
-            <End Role="TaskDepartment" EntitySet="TaskDepartment" />
+            <End Role="Projects" EntitySet="Projects" />
           </AssociationSet>
           <AssociationSet Name="FK_TaskReport_Reports" Association="Self.FK_TaskReport_Reports">
             <End Role="Reports" EntitySet="Reports" />
@@ -678,17 +573,24 @@
             <End Role="Tasks" EntitySet="Tasks" />
             <End Role="TaskReport" EntitySet="TaskReport" />
           </AssociationSet>
+          <AssociationSet Name="FK_Tasks_Customers" Association="Self.FK_Tasks_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tasks_Departments" Association="Self.FK_Tasks_Departments">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
           <AssociationSet Name="FK_Tasks_Projects" Association="Self.FK_Tasks_Projects">
             <End Role="Projects" EntitySet="Projects" />
             <End Role="Tasks" EntitySet="Tasks" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MerkazModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Category">
+        <EntityType Name="Categories">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -699,7 +601,15 @@
           <NavigationProperty Name="Reports" Relationship="Self.CategoryReport" FromRole="Categories" ToRole="Reports" />
           <NavigationProperty Name="Customers" Relationship="Self.CustomerCategory" FromRole="Categories" ToRole="Customers" />
         </EntityType>
-        <EntityType Name="Customer">
+        <EntityType Name="CustomerDistribution">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+            <PropertyRef Name="distributionId" />
+          </Key>
+          <Property Name="CustomerId" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="distributionId" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customers">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -720,45 +630,38 @@
           <Property Name="AcademicDegree" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Qualification" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MilitaryService" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="role" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="WorkStatus" Type="Boolean" Nullable="false" />
           <Property Name="Directions" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Department" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Departments" Relationship="Self.FK_Customers_Departments" FromRole="Customers" ToRole="Departments" />
+          <NavigationProperty Name="Tasks" Relationship="Self.FK_Tasks_Customers" FromRole="Customers" ToRole="Tasks" />
           <NavigationProperty Name="Categories" Relationship="Self.CustomerCategory" FromRole="Customers" ToRole="Categories" />
-          <NavigationProperty Name="Departments" Relationship="Self.CustomerDepartment" FromRole="Customers" ToRole="Departments" />
-          <NavigationProperty Name="Distributions" Relationship="Self.CustomerDistribution" FromRole="Customers" ToRole="Distribution" />
           <NavigationProperty Name="Projects" Relationship="Self.CustomerProject" FromRole="Customers" ToRole="Projects" />
           <NavigationProperty Name="Reports" Relationship="Self.CustomerReport" FromRole="Customers" ToRole="Reports" />
         </EntityType>
-        <EntityType Name="Department">
+        <EntityType Name="Departments">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Coordinator" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Departments_Users" FromRole="Departments" ToRole="Users" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Coordinator" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Customers" Relationship="Self.FK_Customers_Departments" FromRole="Departments" ToRole="Customers" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Departments_Users" FromRole="Departments" ToRole="Users" />
+          <NavigationProperty Name="Projects" Relationship="Self.FK_Projects_Departments" FromRole="Departments" ToRole="Projects" />
+          <NavigationProperty Name="Tasks" Relationship="Self.FK_Tasks_Departments" FromRole="Departments" ToRole="Tasks" />
           <NavigationProperty Name="Categories" Relationship="Self.CategoryDepartment" FromRole="Departments" ToRole="Categories" />
-          <NavigationProperty Name="Customers" Relationship="Self.CustomerDepartment" FromRole="Departments" ToRole="Customers" />
-          <NavigationProperty Name="Projects" Relationship="Self.DepartmentProject" FromRole="Departments" ToRole="Projects" />
           <NavigationProperty Name="Reports" Relationship="Self.DepartmentReport" FromRole="Departments" ToRole="Reports" />
-          <NavigationProperty Name="Tasks" Relationship="Self.TaskDepartment" FromRole="Departments" ToRole="Tasks" />
         </EntityType>
-        <EntityType Name="Distribution">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Customers" Relationship="Self.CustomerDistribution" FromRole="Distribution" ToRole="Customers" />
-        </EntityType>
-        <EntityType Name="Project">
+        <EntityType Name="Projects">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="CreateDate" Type="DateTime" Precision="3" />
-          <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Time" Type="Time" Nullable="false" Precision="7" />
@@ -767,13 +670,13 @@
           <Property Name="Responsible" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="ProjectCost" Type="Int32" Nullable="false" />
           <Property Name="ActualParticipant" Type="Int32" />
+          <NavigationProperty Name="Departments" Relationship="Self.FK_Projects_Departments" FromRole="Projects" ToRole="Departments" />
           <NavigationProperty Name="Tasks" Relationship="Self.FK_Tasks_Projects" FromRole="Projects" ToRole="Tasks" />
           <NavigationProperty Name="Categories" Relationship="Self.CategoryProject" FromRole="Projects" ToRole="Categories" />
           <NavigationProperty Name="Customers" Relationship="Self.CustomerProject" FromRole="Projects" ToRole="Customers" />
-          <NavigationProperty Name="Departments" Relationship="Self.DepartmentProject" FromRole="Projects" ToRole="Departments" />
           <NavigationProperty Name="Reports" Relationship="Self.ProjectReport" FromRole="Projects" ToRole="Reports" />
         </EntityType>
-        <EntityType Name="Report">
+        <EntityType Name="Reports">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -785,7 +688,7 @@
           <NavigationProperty Name="Projects" Relationship="Self.ProjectReport" FromRole="Reports" ToRole="Projects" />
           <NavigationProperty Name="Tasks" Relationship="Self.TaskReport" FromRole="Reports" ToRole="Tasks" />
         </EntityType>
-        <EntityType Name="sysdiagram">
+        <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
@@ -795,34 +698,60 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="Task">
+        <EntityType Name="Tasks">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="FinalDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Coordinator" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="ProjectId" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="CustomerId" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="Project" Relationship="Self.FK_Tasks_Projects" FromRole="Tasks" ToRole="Projects" />
-          <NavigationProperty Name="Departments" Relationship="Self.TaskDepartment" FromRole="Tasks" ToRole="Departments" />
+          <NavigationProperty Name="Customers" Relationship="Self.FK_Tasks_Customers" FromRole="Tasks" ToRole="Customers" />
+          <NavigationProperty Name="Departments" Relationship="Self.FK_Tasks_Departments" FromRole="Tasks" ToRole="Departments" />
+          <NavigationProperty Name="Projects" Relationship="Self.FK_Tasks_Projects" FromRole="Tasks" ToRole="Projects" />
           <NavigationProperty Name="Reports" Relationship="Self.TaskReport" FromRole="Tasks" ToRole="Reports" />
+          <Property Name="Done" Type="Boolean" />
         </EntityType>
-        <EntityType Name="User">
+        <EntityType Name="Users">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Departments" Relationship="Self.FK_Departments_Users" FromRole="Users" ToRole="Departments" />
         </EntityType>
+        <Association Name="FK_Customers_Departments">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="0..1" />
+          <End Role="Customers" Type="Self.Customers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Customers">
+              <PropertyRef Name="Department" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tasks_Customers">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Departments_Users">
-          <End Role="Users" Type="Self.User" Multiplicity="1" />
-          <End Role="Departments" Type="Self.Department" Multiplicity="*" />
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Departments" Type="Self.Departments" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="Id" />
@@ -832,9 +761,33 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Projects_Departments">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+          <End Role="Projects" Type="Self.Projects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Projects">
+              <PropertyRef Name="Responsible" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tasks_Departments">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="Coordinator" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Tasks_Projects">
-          <End Role="Projects" Type="Self.Project" Multiplicity="0..1" />
-          <End Role="Tasks" Type="Self.Task" Multiplicity="*" />
+          <End Role="Projects" Type="Self.Projects" Multiplicity="0..1" />
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Projects">
               <PropertyRef Name="Id" />
@@ -845,70 +798,70 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="CategoryDepartment">
-          <End Role="Categories" Type="Self.Category" Multiplicity="*" />
-          <End Role="Departments" Type="Self.Department" Multiplicity="*" />
+          <End Role="Categories" Type="Self.Categories" Multiplicity="*" />
+          <End Role="Departments" Type="Self.Departments" Multiplicity="*" />
         </Association>
         <Association Name="CategoryProject">
-          <End Role="Categories" Type="Self.Category" Multiplicity="*" />
-          <End Role="Projects" Type="Self.Project" Multiplicity="*" />
+          <End Role="Categories" Type="Self.Categories" Multiplicity="*" />
+          <End Role="Projects" Type="Self.Projects" Multiplicity="*" />
         </Association>
         <Association Name="CategoryReport">
-          <End Role="Categories" Type="Self.Category" Multiplicity="*" />
-          <End Role="Reports" Type="Self.Report" Multiplicity="*" />
+          <End Role="Categories" Type="Self.Categories" Multiplicity="*" />
+          <End Role="Reports" Type="Self.Reports" Multiplicity="*" />
         </Association>
         <Association Name="CustomerCategory">
-          <End Role="Categories" Type="Self.Category" Multiplicity="*" />
-          <End Role="Customers" Type="Self.Customer" Multiplicity="*" />
-        </Association>
-        <Association Name="CustomerDepartment">
-          <End Role="Departments" Type="Self.Department" Multiplicity="*" />
-          <End Role="Customers" Type="Self.Customer" Multiplicity="*" />
-        </Association>
-        <Association Name="CustomerDistribution">
-          <End Role="Customers" Type="Self.Customer" Multiplicity="*" />
-          <End Role="Distribution" Type="Self.Distribution" Multiplicity="*" />
+          <End Role="Categories" Type="Self.Categories" Multiplicity="*" />
+          <End Role="Customers" Type="Self.Customers" Multiplicity="*" />
         </Association>
         <Association Name="CustomerProject">
-          <End Role="Customers" Type="Self.Customer" Multiplicity="*" />
-          <End Role="Projects" Type="Self.Project" Multiplicity="*" />
+          <End Role="Customers" Type="Self.Customers" Multiplicity="*" />
+          <End Role="Projects" Type="Self.Projects" Multiplicity="*" />
         </Association>
         <Association Name="CustomerReport">
-          <End Role="Customers" Type="Self.Customer" Multiplicity="*" />
-          <End Role="Reports" Type="Self.Report" Multiplicity="*" />
-        </Association>
-        <Association Name="DepartmentProject">
-          <End Role="Departments" Type="Self.Department" Multiplicity="*" />
-          <End Role="Projects" Type="Self.Project" Multiplicity="*" />
+          <End Role="Customers" Type="Self.Customers" Multiplicity="*" />
+          <End Role="Reports" Type="Self.Reports" Multiplicity="*" />
         </Association>
         <Association Name="DepartmentReport">
-          <End Role="Departments" Type="Self.Department" Multiplicity="*" />
-          <End Role="Reports" Type="Self.Report" Multiplicity="*" />
+          <End Role="Departments" Type="Self.Departments" Multiplicity="*" />
+          <End Role="Reports" Type="Self.Reports" Multiplicity="*" />
         </Association>
         <Association Name="ProjectReport">
-          <End Role="Projects" Type="Self.Project" Multiplicity="*" />
-          <End Role="Reports" Type="Self.Report" Multiplicity="*" />
-        </Association>
-        <Association Name="TaskDepartment">
-          <End Role="Departments" Type="Self.Department" Multiplicity="*" />
-          <End Role="Tasks" Type="Self.Task" Multiplicity="*" />
+          <End Role="Projects" Type="Self.Projects" Multiplicity="*" />
+          <End Role="Reports" Type="Self.Reports" Multiplicity="*" />
         </Association>
         <Association Name="TaskReport">
-          <End Role="Reports" Type="Self.Report" Multiplicity="*" />
-          <End Role="Tasks" Type="Self.Task" Multiplicity="*" />
+          <End Role="Reports" Type="Self.Reports" Multiplicity="*" />
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="dEntities" annotation:LazyLoadingEnabled="false">
-          <EntitySet Name="Categories" EntityType="Self.Category" />
-          <EntitySet Name="Customers" EntityType="Self.Customer" />
-          <EntitySet Name="Departments" EntityType="Self.Department" />
-          <EntitySet Name="Distributions" EntityType="Self.Distribution" />
-          <EntitySet Name="Projects" EntityType="Self.Project" />
-          <EntitySet Name="Reports" EntityType="Self.Report" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <EntitySet Name="Tasks" EntityType="Self.Task" />
-          <EntitySet Name="Users" EntityType="Self.User" />
+        <EntityContainer Name="dbEntities" annotation:LazyLoadingEnabled="false">
+          <EntitySet Name="Categories" EntityType="Self.Categories" />
+          <EntitySet Name="CustomerDistribution" EntityType="Self.CustomerDistribution" />
+          <EntitySet Name="Customers" EntityType="Self.Customers" />
+          <EntitySet Name="Departments" EntityType="Self.Departments" />
+          <EntitySet Name="Projects" EntityType="Self.Projects" />
+          <EntitySet Name="Reports" EntityType="Self.Reports" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Tasks" EntityType="Self.Tasks" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK_Customers_Departments" Association="Self.FK_Customers_Departments">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Customers" EntitySet="Customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tasks_Customers" Association="Self.FK_Tasks_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
           <AssociationSet Name="FK_Departments_Users" Association="Self.FK_Departments_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Departments" EntitySet="Departments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Projects_Departments" Association="Self.FK_Projects_Departments">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Projects" EntitySet="Projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tasks_Departments" Association="Self.FK_Tasks_Departments">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Tasks" EntitySet="Tasks" />
           </AssociationSet>
           <AssociationSet Name="FK_Tasks_Projects" Association="Self.FK_Tasks_Projects">
             <End Role="Projects" EntitySet="Projects" />
@@ -930,14 +883,6 @@
             <End Role="Categories" EntitySet="Categories" />
             <End Role="Customers" EntitySet="Customers" />
           </AssociationSet>
-          <AssociationSet Name="CustomerDepartment" Association="Self.CustomerDepartment">
-            <End Role="Departments" EntitySet="Departments" />
-            <End Role="Customers" EntitySet="Customers" />
-          </AssociationSet>
-          <AssociationSet Name="CustomerDistribution" Association="Self.CustomerDistribution">
-            <End Role="Customers" EntitySet="Customers" />
-            <End Role="Distribution" EntitySet="Distributions" />
-          </AssociationSet>
           <AssociationSet Name="CustomerProject" Association="Self.CustomerProject">
             <End Role="Customers" EntitySet="Customers" />
             <End Role="Projects" EntitySet="Projects" />
@@ -946,10 +891,6 @@
             <End Role="Customers" EntitySet="Customers" />
             <End Role="Reports" EntitySet="Reports" />
           </AssociationSet>
-          <AssociationSet Name="DepartmentProject" Association="Self.DepartmentProject">
-            <End Role="Departments" EntitySet="Departments" />
-            <End Role="Projects" EntitySet="Projects" />
-          </AssociationSet>
           <AssociationSet Name="DepartmentReport" Association="Self.DepartmentReport">
             <End Role="Departments" EntitySet="Departments" />
             <End Role="Reports" EntitySet="Reports" />
@@ -957,10 +898,6 @@
           <AssociationSet Name="ProjectReport" Association="Self.ProjectReport">
             <End Role="Projects" EntitySet="Projects" />
             <End Role="Reports" EntitySet="Reports" />
-          </AssociationSet>
-          <AssociationSet Name="TaskDepartment" Association="Self.TaskDepartment">
-            <End Role="Departments" EntitySet="Departments" />
-            <End Role="Tasks" EntitySet="Tasks" />
           </AssociationSet>
           <AssociationSet Name="TaskReport" Association="Self.TaskReport">
             <End Role="Reports" EntitySet="Reports" />
@@ -972,17 +909,25 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="MerkazModelStoreContainer" CdmEntityContainer="dEntities">
+        <EntityContainerMapping StorageEntityContainer="MerkazModelStoreContainer" CdmEntityContainer="dbEntities">
           <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="MerkazModel.Category">
+            <EntityTypeMapping TypeName="MerkazModel.Categories">
               <MappingFragment StoreEntitySet="Categories">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="CustomerDistribution">
+            <EntityTypeMapping TypeName="MerkazModel.CustomerDistribution">
+              <MappingFragment StoreEntitySet="CustomerDistribution">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="distributionId" ColumnName="distributionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Customers">
-            <EntityTypeMapping TypeName="MerkazModel.Customer">
+            <EntityTypeMapping TypeName="MerkazModel.Customers">
               <MappingFragment StoreEntitySet="Customers">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
@@ -1005,11 +950,12 @@
                 <ScalarProperty Name="WorkStatus" ColumnName="WorkStatus" />
                 <ScalarProperty Name="Directions" ColumnName="Directions" />
                 <ScalarProperty Name="Summary" ColumnName="Summary" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Departments">
-            <EntityTypeMapping TypeName="MerkazModel.Department">
+            <EntityTypeMapping TypeName="MerkazModel.Departments">
               <MappingFragment StoreEntitySet="Departments">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1017,16 +963,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Distributions">
-            <EntityTypeMapping TypeName="MerkazModel.Distribution">
-              <MappingFragment StoreEntitySet="Distribution">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Projects">
-            <EntityTypeMapping TypeName="MerkazModel.Project">
+            <EntityTypeMapping TypeName="MerkazModel.Projects">
               <MappingFragment StoreEntitySet="Projects">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
@@ -1043,7 +981,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Reports">
-            <EntityTypeMapping TypeName="MerkazModel.Report">
+            <EntityTypeMapping TypeName="MerkazModel.Reports">
               <MappingFragment StoreEntitySet="Reports">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
@@ -1051,7 +989,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="MerkazModel.sysdiagram">
+            <EntityTypeMapping TypeName="MerkazModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -1062,8 +1000,9 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tasks">
-            <EntityTypeMapping TypeName="MerkazModel.Task">
+            <EntityTypeMapping TypeName="MerkazModel.Tasks">
               <MappingFragment StoreEntitySet="Tasks">
+                <ScalarProperty Name="Done" ColumnName="Done" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1076,7 +1015,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="MerkazModel.User">
+            <EntityTypeMapping TypeName="MerkazModel.Users">
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
@@ -1116,22 +1055,6 @@
               <ScalarProperty Name="Id" ColumnName="CustomerID" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="CustomerDepartment" TypeName="MerkazModel.CustomerDepartment" StoreEntitySet="CustomerDepartment">
-            <EndProperty Name="Departments">
-              <ScalarProperty Name="Id" ColumnName="DepartmentID" />
-            </EndProperty>
-            <EndProperty Name="Customers">
-              <ScalarProperty Name="Id" ColumnName="CustomerID" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="CustomerDistribution" TypeName="MerkazModel.CustomerDistribution" StoreEntitySet="CustomerDistribution">
-            <EndProperty Name="Customers">
-              <ScalarProperty Name="Id" ColumnName="CustomerId" />
-            </EndProperty>
-            <EndProperty Name="Distribution">
-              <ScalarProperty Name="Id" ColumnName="distributionId" />
-            </EndProperty>
-          </AssociationSetMapping>
           <AssociationSetMapping Name="CustomerProject" TypeName="MerkazModel.CustomerProject" StoreEntitySet="CustomerProject">
             <EndProperty Name="Customers">
               <ScalarProperty Name="Id" ColumnName="CustomerId" />
@@ -1148,14 +1071,6 @@
               <ScalarProperty Name="Id" ColumnName="ReportId" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="DepartmentProject" TypeName="MerkazModel.DepartmentProject" StoreEntitySet="DepartmentProject">
-            <EndProperty Name="Departments">
-              <ScalarProperty Name="Id" ColumnName="DepartmentId" />
-            </EndProperty>
-            <EndProperty Name="Projects">
-              <ScalarProperty Name="Id" ColumnName="ProjectId" />
-            </EndProperty>
-          </AssociationSetMapping>
           <AssociationSetMapping Name="DepartmentReport" TypeName="MerkazModel.DepartmentReport" StoreEntitySet="DepartmentReport">
             <EndProperty Name="Departments">
               <ScalarProperty Name="Id" ColumnName="DepartmentID" />
@@ -1170,14 +1085,6 @@
             </EndProperty>
             <EndProperty Name="Reports">
               <ScalarProperty Name="Id" ColumnName="ReportId" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="TaskDepartment" TypeName="MerkazModel.TaskDepartment" StoreEntitySet="TaskDepartment">
-            <EndProperty Name="Departments">
-              <ScalarProperty Name="Id" ColumnName="DepartmentId" />
-            </EndProperty>
-            <EndProperty Name="Tasks">
-              <ScalarProperty Name="Id" ColumnName="TaskId" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="TaskReport" TypeName="MerkazModel.TaskReport" StoreEntitySet="TaskReport">
@@ -1202,7 +1109,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

@@ -15,11 +15,12 @@ app.controller("MainCtrl", function ($scope, $window) {
                 $scope.newtask = false;
                 $scope.newcust = false;
                 $scope.newproj = false;
-                $scope.projlist = false;
+                $scope.finprojlist = false;
                 $scope.include = 'views/Main.aspx';
                 $scope.mainview = 'views/Charts.aspx';
                 $scope.custlist = false;
                 $scope.tasklist = false;
+                $scope.notfinprojlist = false;
                 break;
 
 
@@ -29,10 +30,11 @@ app.controller("MainCtrl", function ($scope, $window) {
                 $scope.reports = true;
                 $scope.newcust = false;
                 $scope.newproj = false;
-                $scope.projlist = false;
+                $scope.finprojlist = false;
                 $scope.include = 'views/ReportForm.aspx';
                 $scope.custlist = false;
                 $scope.tasklist = false;
+                $scope.notfinprojlist = false;
 
 
                 break;
@@ -42,9 +44,10 @@ app.controller("MainCtrl", function ($scope, $window) {
                 $scope.reports = false;
                 $scope.newcust = false;
                 $scope.newproj = false;
-                $scope.projlist = false;
+                $scope.finprojlist = false;
                 $scope.include = 'views/TaskForm.aspx';
                 $scope.custlist = false;
+                $scope.notfinprojlist = false;
                 $scope.tasklist = false;
                 break;
 
@@ -54,10 +57,11 @@ app.controller("MainCtrl", function ($scope, $window) {
                 $scope.reports = false;
                 $scope.newcust = true;
                 $scope.newproj = false;
-                $scope.projlist = false;
+                $scope.finprojlist = false;
                 $scope.include = 'views/CustForm.aspx';
                 $scope.custlist = false;
                 $scope.tasklist = false;
+                $scope.notfinprojlist = false;
                 break;
 
             case '5':
@@ -67,8 +71,9 @@ app.controller("MainCtrl", function ($scope, $window) {
                 $scope.newcust = false;
                 $scope.include = 'views/ProjForm.aspx';
                 $scope.newproj = true;
-                $scope.projlist = false;
+                $scope.finprojlist = false;
                 $scope.custlist = false;
+                $scope.notfinprojlist = false;
                 $scope.tasklist = false;
 
                 break;
@@ -78,11 +83,12 @@ app.controller("MainCtrl", function ($scope, $window) {
                 $scope.main = false;
                 $scope.reports = false;
                 $scope.newcust = false;
-                $scope.include = 'views/ProjList.aspx';
+                $scope.include = 'views/FinProjList.aspx';
                 $scope.newproj = false;
-                $scope.projlist = true;
+                $scope.finprojlist = true;
                 $scope.custlist = false;
                 $scope.tasklist = false;
+                $scope.notfinprojlist = false;
 
                 break;
 
@@ -93,9 +99,10 @@ app.controller("MainCtrl", function ($scope, $window) {
                 $scope.newcust = false;
                 $scope.include = 'views/TaskList.aspx';
                 $scope.newproj = false;
-                $scope.projlist = false;
+                $scope.finprojlist = false;
                 $scope.custlist = false;
                 $scope.tasklist = true;
+                $scope.notfinprojlist = false;
 
                 break;
 
@@ -106,9 +113,24 @@ app.controller("MainCtrl", function ($scope, $window) {
                 $scope.newcust = false;
                 $scope.include = 'views/CustList.aspx';
                 $scope.newproj = false;
-                $scope.projlist = false;
+                $scope.finprojlist = false;
                 $scope.custlist = true;
                 $scope.tasklist = false;
+                $scope.notfinprojlist = false;
+
+                break;
+
+            case '9':
+                $scope.newtask = false;
+                $scope.main = false;
+                $scope.reports = false;
+                $scope.newcust = false;
+                $scope.include = 'views/NotFinProjList.aspx';
+                $scope.newproj = false;
+                $scope.finprojlist = false;
+                $scope.custlist = false;
+                $scope.tasklist = false;
+                $scope.notfinprojlist = true;
 
                 break;
 
@@ -159,7 +181,7 @@ app.controller('projctrl', function ($scope, $http) {
 
 });
 
-app.controller('getprojctrl', function ($scope, $http) {
+app.controller('getfinprojctrl', function ($scope, $http) {
 
     $scope.sortType = 'Name'; // set the default sort type
     $scope.sortReverse = false;  // set the default sort order
@@ -167,7 +189,25 @@ app.controller('getprojctrl', function ($scope, $http) {
 
     GetAllProjects();
     function GetAllProjects() {
-        $http.get("WebService.asmx/GetAllProjects")
+        $http.get("WebService.asmx/GetFinAllProjects")
+            .then(function (response) {
+
+                var jsondata = response.data;
+
+                $scope.projects = jsondata;
+            });
+    }
+});
+
+app.controller('getnotfinprojctrl', function ($scope, $http) {
+
+    $scope.sortType = 'Name'; // set the default sort type
+    $scope.sortReverse = false;  // set the default sort order
+
+
+    GetAllProjects();
+    function GetAllProjects() {
+        $http.get("WebService.asmx/GetNotFinAllProjects")
             .then(function (response) {
 
                 var jsondata = response.data;
@@ -202,7 +242,7 @@ app.controller('gettaskctrl', function ($scope, $http) {
         $http.get("WebService.asmx/GetAllTasks")
             .then(function (response) {
                 var jsondata = response.data;
-                $scope.customers = jsondata;
+                $scope.tasks = jsondata;
             });
     }
 });

@@ -31,11 +31,24 @@ namespace NPcrmProj
 
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public void GetAllProjects()
+        public void GetFinAllProjects()
         {
-            dEntities db = new dEntities();
+            dbEntities db = new dbEntities();
 
-            System.Data.Entity.DbSet<Project> projects = db.Projects;
+            List<Projects> projects = db.Projects.SqlQuery("select Projects.Id, Projects.CreateDate, Projects.Name, Projects.Description, Projects.StartDate, Projects.Time, Projects.FinalTime, Projects.Participant, Projects.Responsible, Projects.ProjectCost, Projects.ActualParticipant from Projects where Projects.StartDate < @date", new SqlParameter("@date", DateTime.Now)).ToList();
+            string json = JsonConvert.SerializeObject(projects);
+
+
+            Context.Response.Write(json);
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public void GetNotFinAllProjects()
+        {
+            dbEntities db = new dbEntities();
+
+            List<Projects> projects = db.Projects.SqlQuery("select Projects.Id, Projects.CreateDate, Projects.Name, Projects.Description, Projects.StartDate, Projects.Time, Projects.FinalTime, Projects.Participant, Projects.Responsible, Projects.ProjectCost, Projects.ActualParticipant from Projects where Projects.StartDate >= @date", new SqlParameter("@date", DateTime.Now)).ToList();
             string json = JsonConvert.SerializeObject(projects);
 
 
@@ -46,10 +59,10 @@ namespace NPcrmProj
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public void GetAllCustomers()
         {
-            dEntities db = new dEntities();
+            dbEntities db = new dbEntities();
 
-            System.Data.Entity.DbSet<Customer> projects = db.Customers;
-            string json = JsonConvert.SerializeObject(projects);
+            System.Data.Entity.DbSet<Customers> customers = db.Customers;
+            string json = JsonConvert.SerializeObject(customers);
 
 
             Context.Response.Write(json);
@@ -59,9 +72,9 @@ namespace NPcrmProj
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public void GetAllTasks()
         {
-            dEntities db = new dEntities();
+            dbEntities db = new dbEntities();
 
-            System.Data.Entity.DbSet<Task> tasks = db.Tasks;
+            System.Data.Entity.DbSet<Tasks> tasks = db.Tasks;
             string json = JsonConvert.SerializeObject(tasks);
 
 

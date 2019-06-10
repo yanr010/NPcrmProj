@@ -38,9 +38,9 @@
 
         <tbody id="myTable">
             <tr class="text-center" ng-repeat="task in tasks | orderBy:sortType:sortReverse">
-                <td>{{project.Name}}</td>
-                <td>{{project.Description}}</td>
-                <td>{{project.FinalDate | date:'shortDate'}}</td>
+                <td>{{task.Name}}</td>
+                <td>{{task.Description}}</td>
+                <td>{{task.FinalDate | date:'shortDate'}}</td>
                 <td><a class="far fa-edit fa-2x" href="#"></a></td>
                 <td><a class="far fa-trash-alt fa-2x" href="#"></a></td>
 
