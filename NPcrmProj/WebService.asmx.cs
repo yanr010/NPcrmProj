@@ -35,7 +35,7 @@ namespace NPcrmProj
         {
             dbEntities db = new dbEntities();
 
-            List<Projects> projects = db.Projects.SqlQuery("select Projects.Id, Projects.CreateDate, Projects.Name, Projects.Description, Projects.StartDate, Projects.Time, Projects.FinalTime, Projects.Participant, Projects.Responsible, Projects.ProjectCost, Projects.ActualParticipant from Projects where Projects.StartDate < @date", new SqlParameter("@date", DateTime.Now)).ToList();
+            List<Projects> projects = db.Projects.SqlQuery("select * from Projects where Projects.StartDate < @date", new SqlParameter("@date", DateTime.Now)).ToList();
             string json = JsonConvert.SerializeObject(projects);
 
 
@@ -48,7 +48,7 @@ namespace NPcrmProj
         {
             dbEntities db = new dbEntities();
 
-            List<Projects> projects = db.Projects.SqlQuery("select Projects.Id, Projects.CreateDate, Projects.Name, Projects.Description, Projects.StartDate, Projects.Time, Projects.FinalTime, Projects.Participant, Projects.Responsible, Projects.ProjectCost, Projects.ActualParticipant from Projects where Projects.StartDate >= @date", new SqlParameter("@date", DateTime.Now)).ToList();
+            List<Projects> projects = db.Projects.SqlQuery("select * from Projects where Projects.StartDate >= @date", new SqlParameter("@date", DateTime.Now)).ToList();
             string json = JsonConvert.SerializeObject(projects);
 
 
