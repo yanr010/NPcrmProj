@@ -165,11 +165,10 @@ app.controller('projctrl', function ($scope, $http) {
     $scope.submitproj = function () {
         var dat = $scope.data;
         var json = angular.toJson(dat);
-        data: { proj }
         var str = JSON.stringify(json);
 
 
-        $http.get("WebService.asmx/GetProj", str)
+        $http.post("WebService.asmx/SetProj", json ,null)
             .then(function (response) {
                 console.log(response);
             });

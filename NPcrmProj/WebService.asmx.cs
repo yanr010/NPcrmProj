@@ -7,6 +7,7 @@ using System.Web.Script.Services;
 using System.Web.Script.Serialization;
 using Newtonsoft.Json;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace NPcrmProj
 {
@@ -15,6 +16,7 @@ namespace NPcrmProj
     /// </summary>
     [WebService(Namespace = "http://tempuri.org/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+    [ScriptService]
     [System.ComponentModel.ToolboxItem(false)]
     // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
     // [System.Web.Script.Services.ScriptService]
@@ -24,9 +26,17 @@ namespace NPcrmProj
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
 
-        public string GetProj()
+        public void SetProj()
         {
-            return "Hello World";
+            
+            
+                var request = HttpContext.Current.Request;
+           
+                
+                Context.Response.Write(request);
+            
+
+            
         }
 
         [WebMethod]
