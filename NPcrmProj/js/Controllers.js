@@ -163,13 +163,13 @@ app.controller('projctrl', function ($scope, $http) {
 
 
     $scope.submitproj = function () {
-        var dat = $scope.data;
+        var dat = { data: $scope.data };
         var json = angular.toJson(dat);
-        data: { proj }
+        //data: { proj }
         var str = JSON.stringify(json);
+        
 
-
-        $http.get("WebService.asmx/GetProj", str)
+        $http.post("WebService.asmx/SetProj", dat,null)
             .then(function (response) {
                 console.log(response);
             });
@@ -213,6 +213,21 @@ app.controller('getnotfinprojctrl', function ($scope, $http) {
                 var jsondata = response.data;
 
                 $scope.projects = jsondata;
+            });
+    }
+
+    $scope.editproj = function (project) {
+        console.log(project);
+    }
+
+    $scope.delproj = function (project) {
+        var data = {
+            params: { Name: project.Name }
+        }
+        $http.get("WebService.asmx/DeleteProj",data)
+            .then(function (response) {
+                console.log(response);
+                
             });
     }
 });

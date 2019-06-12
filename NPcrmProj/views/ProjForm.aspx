@@ -92,6 +92,40 @@
             </div>
 
 
+              <div class="form-group text-right">
+                                 <label for="Services" class="col-sm-right-2 col-form-label">שירותים רלוונטים<span style="color:red">   *</span></label>
+                                    <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="Services1" name="Services1">
+                                     <label class="custom-control-label" for="Services1">מציאת עבודה </label>
+                                    </div>
+                               <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="Services2" name="Services2">
+                                     <label class="custom-control-label" for="Services2">כספים</label>
+                                    </div>
+                                 <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="Services3" name="Services3">
+                                    <label class="custom-control-label" for="Services3">מלגות לימודים</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="Services4" name="Services4">
+                                    <label class="custom-control-label" for="Services4"> לימודים</label>
+                                </div>
+                                 <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="Services5" name="5">
+                                    <label class="custom-control-label" for="Services5">זכויות של חיילים משוחררים</label>
+        
+                                </div>
+                                 <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="Services6" name="Services6">
+                                     <label class="custom-control-label" for="Services6">קורסי פסיכומטרי </label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="Services7" name="Services7">
+                                     <label class="custom-control-label" for="Services7">משפחה והורות </label>
+                                    </div>
+                  </div>
+            
+
 
 
             <br>

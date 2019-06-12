@@ -50,8 +50,8 @@
                 <td>{{project.Time}}</td>
                 <td>{{project.FinalTime}}</td>
                 <td>{{project.Responsible}}</td>
-                <td><a class="far fa-edit fa-2x" href="#"></a></td>
-                <td><a class="far fa-trash-alt fa-2x" href="#"></a></td>
+                <td><button type="button" class="far fa-edit fa-2x" href="#" ng-click="editproj(project)"></button></td>
+                <td><button type="button" class="far fa-trash-alt fa-2x" href="#" ng-click="delproj(project)"></button></td>
 
             </tr>
         </tbody>

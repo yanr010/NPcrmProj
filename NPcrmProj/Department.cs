@@ -12,32 +12,25 @@ namespace NPcrmProj
     using System;
     using System.Collections.Generic;
     
-    public partial class Departments
+    public partial class Department
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Departments()
+        public Department()
         {
-            this.Customers = new HashSet<Customers>();
-            this.Projects = new HashSet<Projects>();
-            this.Tasks = new HashSet<Tasks>();
-            this.Categories = new HashSet<Categories>();
-            this.Reports = new HashSet<Reports>();
+            this.Customers = new HashSet<Customer>();
+            this.Tasks = new HashSet<Task>();
+            this.Reports = new HashSet<Report>();
         }
     
-        public string Id { get; set; }
         public string Name { get; set; }
         public string Coordinator { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Customers> Customers { get; set; }
-        public virtual Users Users { get; set; }
+        public virtual ICollection<Customer> Customers { get; set; }
+        public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Projects> Projects { get; set; }
+        public virtual ICollection<Task> Tasks { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tasks> Tasks { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Categories> Categories { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Reports> Reports { get; set; }
+        public virtual ICollection<Report> Reports { get; set; }
     }
 }
