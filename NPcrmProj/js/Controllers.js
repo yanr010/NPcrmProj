@@ -2,7 +2,7 @@
 
 
 
-app.controller("MainCtrl", function ($scope, $window) {
+app.controller("MainCtrl", function ($scope, $window, $http) {
 
     $scope.include = 'views/Main.aspx';
     $scope.mainview = 'views/Charts.aspx';
@@ -10,127 +10,131 @@ app.controller("MainCtrl", function ($scope, $window) {
     $scope.mainclc = function (value) {
         switch (value) {
             case '1':
-                $scope.main = true;
-                $scope.reports = false;
-                $scope.newtask = false;
-                $scope.newcust = false;
-                $scope.newproj = false;
-                $scope.finprojlist = false;
+                //$scope.main = true;
+                //$scope.reports = false;
+                //$scope.newtask = false;
+                //$scope.newcust = false;
+                //$scope.newproj = false;
+                //$scope.finprojlist = false;
                 $scope.include = 'views/Main.aspx';
                 $scope.mainview = 'views/Charts.aspx';
-                $scope.custlist = false;
-                $scope.tasklist = false;
-                $scope.notfinprojlist = false;
+                //$scope.custlist = false;
+                //$scope.tasklist = false;
+                //$scope.notfinprojlist = false;
                 break;
 
 
             case '2':
-                $scope.main = false;
-                $scope.newtask = false;
-                $scope.reports = true;
-                $scope.newcust = false;
-                $scope.newproj = false;
-                $scope.finprojlist = false;
+                //$scope.main = false;
+                //$scope.newtask = false;
+                //$scope.reports = true;
+                //$scope.newcust = false;
+                //$scope.newproj = false;
+                //$scope.finprojlist = false;
                 $scope.include = 'views/ReportForm.aspx';
-                $scope.custlist = false;
-                $scope.tasklist = false;
-                $scope.notfinprojlist = false;
+                //$scope.custlist = false;
+                //$scope.tasklist = false;
+                //$scope.notfinprojlist = false;
 
 
                 break;
             case '3':
-                $scope.newtask = true;
-                $scope.main = false;
-                $scope.reports = false;
-                $scope.newcust = false;
-                $scope.newproj = false;
-                $scope.finprojlist = false;
+                //$scope.newtask = true;
+                //$scope.main = false;
+                //$scope.reports = false;
+                //$scope.newcust = false;
+                //$scope.newproj = false;
+                //$scope.finprojlist = false;
                 $scope.include = 'views/TaskForm.aspx';
-                $scope.custlist = false;
-                $scope.notfinprojlist = false;
-                $scope.tasklist = false;
+                //$scope.custlist = false;
+                //$scope.notfinprojlist = false;
+                //$scope.tasklist = false;
                 break;
 
             case '4':
-                $scope.newtask = false;
-                $scope.main = false;
-                $scope.reports = false;
-                $scope.newcust = true;
-                $scope.newproj = false;
-                $scope.finprojlist = false;
+                //$scope.newtask = false;
+                //$scope.main = false;
+                //$scope.reports = false;
+                //$scope.newcust = true;
+                //$scope.newproj = false;
+                //$scope.finprojlist = false;
                 $scope.include = 'views/CustForm.aspx';
-                $scope.custlist = false;
-                $scope.tasklist = false;
-                $scope.notfinprojlist = false;
+                //$scope.custlist = false;
+                //$scope.tasklist = false;
+                //$scope.notfinprojlist = false;
                 break;
 
             case '5':
-                $scope.newtask = false;
-                $scope.main = false;
-                $scope.reports = false;
-                $scope.newcust = false;
+                //$scope.newtask = false;
+                //$scope.main = false;
+                //$scope.reports = false;
+                //$scope.newcust = false;
                 $scope.include = 'views/ProjForm.aspx';
-                $scope.newproj = true;
-                $scope.finprojlist = false;
-                $scope.custlist = false;
-                $scope.notfinprojlist = false;
-                $scope.tasklist = false;
+                //$scope.newproj = true;
+                //$scope.finprojlist = false;
+                //$scope.custlist = false;
+                //$scope.notfinprojlist = false;
+                //$scope.tasklist = false;
 
                 break;
 
             case '6':
-                $scope.newtask = false;
-                $scope.main = false;
-                $scope.reports = false;
-                $scope.newcust = false;
+                //$scope.newtask = false;
+                //$scope.main = false;
+                //$scope.reports = false;
+                //$scope.newcust = false;
                 $scope.include = 'views/FinProjList.aspx';
-                $scope.newproj = false;
-                $scope.finprojlist = true;
-                $scope.custlist = false;
-                $scope.tasklist = false;
-                $scope.notfinprojlist = false;
+                GetFinAllProjects();
+                //$scope.newproj = false;
+                //$scope.finprojlist = true;
+                //$scope.custlist = false;
+                //$scope.tasklist = false;
+                //$scope.notfinprojlist = false;
 
                 break;
 
             case '7':
-                $scope.newtask = false;
-                $scope.main = false;
-                $scope.reports = false;
-                $scope.newcust = false;
+                //$scope.newtask = false;
+                //$scope.main = false;
+                //$scope.reports = false;
+                //$scope.newcust = false;
                 $scope.include = 'views/TaskList.aspx';
-                $scope.newproj = false;
-                $scope.finprojlist = false;
-                $scope.custlist = false;
-                $scope.tasklist = true;
-                $scope.notfinprojlist = false;
+                GetAllTasks();
+                //$scope.newproj = false;
+                //$scope.finprojlist = false;
+                //$scope.custlist = false;
+                //$scope.tasklist = true;
+                //$scope.notfinprojlist = false;
 
                 break;
 
             case '8':
-                $scope.newtask = false;
-                $scope.main = false;
-                $scope.reports = false;
-                $scope.newcust = false;
+                //$scope.newtask = false;
+                //$scope.main = false;
+                //$scope.reports = false;
+                //$scope.newcust = false;
                 $scope.include = 'views/CustList.aspx';
-                $scope.newproj = false;
-                $scope.finprojlist = false;
-                $scope.custlist = true;
-                $scope.tasklist = false;
-                $scope.notfinprojlist = false;
+                GetAllCustomers();
+                //$scope.newproj = false;
+                //$scope.finprojlist = false;
+                //$scope.custlist = true;
+                //$scope.tasklist = false;
+                //$scope.notfinprojlist = false;
 
                 break;
 
             case '9':
-                $scope.newtask = false;
-                $scope.main = false;
-                $scope.reports = false;
-                $scope.newcust = false;
+                //$scope.newtask = false;
+                //$scope.main = false;
+                //$scope.reports = false;
+                //$scope.newcust = false;
                 $scope.include = 'views/NotFinProjList.aspx';
-                $scope.newproj = false;
-                $scope.finprojlist = false;
-                $scope.custlist = false;
-                $scope.tasklist = false;
-                $scope.notfinprojlist = true;
+                GetNotFinAllProjects();
+                //$scope.newproj = false;
+                //$scope.finprojlist = false;
+                //$scope.custlist = false;
+                //$scope.tasklist = false;
+                //$scope.notfinprojlist = true;
 
                 break;
 
@@ -152,24 +156,21 @@ app.controller("MainCtrl", function ($scope, $window) {
     }
 
 
+    
 
-
-});
-
-app.controller('projctrl', function ($scope, $http) {
 
     $scope.data = {};
-
-
-
     $scope.submitproj = function () {
-        var dat = { data: $scope.data };
-        var json = angular.toJson(dat);
-        //data: { proj }
-        var str = JSON.stringify(json);
         
+        $scope.data.startDate = $scope.data.startDate.toDateString();
+        $scope.data.time = $scope.data.time.toTimeString();
+        if ($scope.data.finaltime!=null)
+        $scope.data.finaltime = $scope.data.finaltime.toTimeString();
+        var dat = { data: $scope.data };
 
-        $http.post("WebService.asmx/SetProj", dat,null)
+
+
+        $http.post("WebService.asmx/SetProj", dat, null)
             .then(function (response) {
                 if (response.data.d == false) {
                     alert("פרוייקט בשם זה כבר קיים במערכת, אנא בחר שם אחר");
@@ -177,67 +178,15 @@ app.controller('projctrl', function ($scope, $http) {
                 else {
                     alert("פרוייקט חדש נוסף בהצלחה");
                     $scope.include = "views/NotFinProjList.aspx";
-                    GetAllProjects();
+                    GetNotFinAllProjects();
                 }
             });
     };
 
-    function GetAllProjects() {
-        $http.get("WebService.asmx/GetFinAllProjects")
-            .then(function (response) {
 
-                var jsondata = response.data;
-
-                $scope.projects = jsondata;
-            });
-    }
-
-    $scope.editproj = function (project) {
-        $scope.include = "views/EditProj.aspx";
-        console.log(project);
-    }
-
-
-    $scope.delproj = function (project) {
-        var data = {
-            params: { Name: project.Name }
-        }
-        $http.get("WebService.asmx/DeleteProj", data)
-            .then(function (response) {
-                GetAllProjects();
-
-            });
-    }
-});
-
-app.controller('getfinprojctrl', function ($scope, $http) {
-
-    $scope.sortType = 'Name'; // set the default sort type
-    $scope.sortReverse = false;  // set the default sort order
-
-
-    GetAllProjects();
-    function GetAllProjects() {
-        $http.get("WebService.asmx/GetFinAllProjects")
-            .then(function (response) {
-
-                var jsondata = response.data;
-
-                $scope.projects = jsondata;
-            });
-    }
-
-
-});
-
-app.controller('getnotfinprojctrl', function ($scope, $http) {
-
-    $scope.sortType = 'Name'; // set the default sort type
-    $scope.sortReverse = false;  // set the default sort order
-
-
-    GetAllProjects();
-    function GetAllProjects() {
+    function GetNotFinAllProjects() {
+        $scope.sortType = 'Name'; // set the default sort type
+        $scope.sortReverse = false;  // set the default sort order
         $http.get("WebService.asmx/GetNotFinAllProjects")
             .then(function (response) {
 
@@ -259,12 +208,13 @@ app.controller('getnotfinprojctrl', function ($scope, $http) {
         $scope.responsible = project.Responsible;
         $scope.projectCost = project.ProjectCost;
         $scope.include = "views/EditProj.aspx";
-        
+
     }
+
 
     $scope.submitedit = function () {
         var editdata = {
-            params: { Name: this.projname, Description: this.description, Participant: this.participant, ProjectCost: this.projectCost}
+            params: { Name: this.projname, Description: this.description, Participant: this.participant, ProjectCost: this.projectCost }
         }
         $http.get("WebService.asmx/EditProj", editdata)
             .then(function (response) {
@@ -274,54 +224,69 @@ app.controller('getnotfinprojctrl', function ($scope, $http) {
                 else {
                     alert("הפרטים נשמרו")
                     $scope.include = "views/NotFinProjList.aspx";
-                    GetAllProjects();
+                    GetNotFinAllProjects();
                 }
             });
     }
-
-
 
     $scope.delproj = function (project) {
         var data = {
             params: { Name: project.Name }
         }
-        $http.get("WebService.asmx/DeleteProj",data)
+        $http.get("WebService.asmx/DeleteProj", data)
             .then(function (response) {
-                GetAllProjects();
-                
+                GetNotFinAllProjects();
+
             });
     }
-});
 
-app.controller('getcustctrl', function ($scope, $http) {
+    
 
-    $scope.sortType = 'FirstName'; // set the default sort type
-    $scope.sortReverse = false;  // set the default sort order
 
-    GetAllCustomers();
+    
+    function GetFinAllProjects() {
+        $scope.sortType = 'Name'; // set the default sort type
+        $scope.sortReverse = false;  // set the default sort order
+        $http.get("WebService.asmx/GetFinAllProjects")
+            .then(function (response) {
+
+                var jsondata = response.data;
+
+                $scope.projects = jsondata;
+            });
+    }
+
+
+
+
+
+
     function GetAllCustomers() {
+        $scope.sortType = 'FirstName'; // set the default sort type
+        $scope.sortReverse = false;  // set the default sort order
         $http.get("WebService.asmx/GetAllCustomers")
             .then(function (response) {
                 var jsondata = response.data;
                 $scope.customers = jsondata;
             });
     }
-});
 
-app.controller('gettaskctrl', function ($scope, $http) {
-
-    $scope.sortType = 'Name'; // set the default sort type
-    $scope.sortReverse = false;  // set the default sort order
+ 
 
     GetAllTasks();
     function GetAllTasks() {
+        $scope.sortType = 'Name'; // set the default sort type
+        $scope.sortReverse = false;  // set the default sort order
         $http.get("WebService.asmx/GetAllTasks")
             .then(function (response) {
                 var jsondata = response.data;
                 $scope.tasks = jsondata;
             });
     }
+
 });
+
+
 
 
 
@@ -358,5 +323,214 @@ app.controller("charts", function ($scope) {
         [28, 48, 40, 19, 86, 27, 90]
     ];
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//app.controller('projctrl', function ($scope, $http) {
+
+//    $scope.data = {};
+
+
+
+//    $scope.submitproj = function () {
+//        $scope.data.startDate = $scope.data.startDate.toDateString();
+//        var dat = { data: $scope.data };
+
+        
+
+//        $http.post("WebService.asmx/SetProj", dat,null)
+//            .then(function (response) {
+//                if (response.data.d == false) {
+//                    alert("פרוייקט בשם זה כבר קיים במערכת, אנא בחר שם אחר");
+//                }
+//                else {
+//                    alert("פרוייקט חדש נוסף בהצלחה");
+//                    $scope.include = "views/NotFinProjList.aspx";
+//                    GetAllProjects();
+//                }
+//            });
+//    };
+
+//    function GetAllProjects() {
+//        $http.get("WebService.asmx/GetNotFinAllProjects")
+//            .then(function (response) {
+
+//                var jsondata = response.data;
+
+//                $scope.projects = jsondata;
+//            });
+//    }
+
+//    $scope.editproj = function (project) {
+//        $scope.projname = project.Name;
+//        $scope.description = project.Description;
+//        $scope.startDate = project.StartDate.split("T", 1);
+//        var time = project.Time.split(":");
+//        $scope.time = time[0] + ":" + time[1];
+//        var finaltime = project.FinalTime.split(":");
+//        $scope.finaltime = finaltime[0] + ":" + finaltime[1];
+//        $scope.participant = project.Participant;
+//        $scope.responsible = project.Responsible;
+//        $scope.projectCost = project.ProjectCost;
+//        $scope.include = "views/EditProj.aspx";
+
+//    }
+
+//    $scope.submitedit = function () {
+//        var editdata = {
+//            params: { Name: this.projname, Description: this.description, Participant: this.participant, ProjectCost: this.projectCost }
+//        }
+//        $http.get("WebService.asmx/EditProj", editdata)
+//            .then(function (response) {
+//                if (response == false) {
+//                    alert("תקלה בעריכת פרויקט");
+//                }
+//                else {
+//                    alert("הפרטים נשמרו")
+//                    $scope.include = "views/NotFinProjList.aspx";
+//                    GetAllProjects();
+//                }
+//            });
+//    }
+
+
+//    $scope.delproj = function (project) {
+//        var data = {
+//            params: { Name: project.Name }
+//        }
+//        $http.get("WebService.asmx/DeleteProj", data)
+//            .then(function (response) {
+//                GetAllProjects();
+
+//            });
+//    }
+//});
+
+//app.controller('getfinprojctrl', function ($scope, $http) {
+
+//    $scope.sortType = 'Name'; // set the default sort type
+//    $scope.sortReverse = false;  // set the default sort order
+
+
+//    GetAllProjects();
+//    function GetAllProjects() {
+//        $http.get("WebService.asmx/GetFinAllProjects")
+//            .then(function (response) {
+
+//                var jsondata = response.data;
+
+//                $scope.projects = jsondata;
+//            });
+//    }
+
+
+//});
+
+//app.controller('getnotfinprojctrl', function ($scope, $http) {
+
+//    $scope.sortType = 'Name'; // set the default sort type
+//    $scope.sortReverse = false;  // set the default sort order
+
+
+//    GetAllProjects();
+//    function GetAllProjects() {
+//        $http.get("WebService.asmx/GetNotFinAllProjects")
+//            .then(function (response) {
+
+//                var jsondata = response.data;
+
+//                $scope.projects = jsondata;
+//            });
+//    }
+
+//    $scope.editproj = function (project) {
+//        $scope.projname = project.Name;
+//        $scope.description = project.Description;
+//        $scope.startDate = project.StartDate.split("T", 1);
+//        var time = project.Time.split(":");
+//        $scope.time = time[0] + ":" + time[1];
+//        var finaltime = project.FinalTime.split(":");
+//        $scope.finaltime = finaltime[0] + ":" + finaltime[1];
+//        $scope.participant = project.Participant;
+//        $scope.responsible = project.Responsible;
+//        $scope.projectCost = project.ProjectCost;
+//        $scope.include = "views/EditProj.aspx";
+        
+//    }
+
+//    $scope.submitedit = function () {
+//        var editdata = {
+//            params: { Name: this.projname, Description: this.description, Participant: this.participant, ProjectCost: this.projectCost}
+//        }
+//        $http.get("WebService.asmx/EditProj", editdata)
+//            .then(function (response) {
+//                if (response == false) {
+//                    alert("תקלה בעריכת פרויקט");
+//                }
+//                else {
+//                    alert("הפרטים נשמרו")
+//                    $scope.include = "views/NotFinProjList.aspx";
+//                    GetAllProjects();
+//                }
+//            });
+//    }
+
+
+
+//    $scope.delproj = function (project) {
+//        var data = {
+//            params: { Name: project.Name }
+//        }
+//        $http.get("WebService.asmx/DeleteProj",data)
+//            .then(function (response) {
+//                GetAllProjects();
+                
+//            });
+//    }
+//});
+
+//app.controller('getcustctrl', function ($scope, $http) {
+
+//    $scope.sortType = 'FirstName'; // set the default sort type
+//    $scope.sortReverse = false;  // set the default sort order
+
+//    GetAllCustomers();
+//    function GetAllCustomers() {
+//        $http.get("WebService.asmx/GetAllCustomers")
+//            .then(function (response) {
+//                var jsondata = response.data;
+//                $scope.customers = jsondata;
+//            });
+//    }
+//});
+
+//app.controller('gettaskctrl', function ($scope, $http) {
+
+//    $scope.sortType = 'Name'; // set the default sort type
+//    $scope.sortReverse = false;  // set the default sort order
+
+//    GetAllTasks();
+//    function GetAllTasks() {
+//        $http.get("WebService.asmx/GetAllTasks")
+//            .then(function (response) {
+//                var jsondata = response.data;
+//                $scope.tasks = jsondata;
+//            });
+//    }
+//});
+
 
 

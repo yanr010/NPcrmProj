@@ -87,7 +87,12 @@
             </div>
 
 
-            
+            <div class="loading-spiner-holder text-center p-5" data-loading>
+        <button class="btn btn-primary">
+            <span class="spinner-border spinner-border-sm"></span>
+           שומר שינויים...
+        </button>
+    </div>
 
 
 

@@ -56,7 +56,7 @@
 
     <%---------------------------- NavBar ----------------------------%>
 
-    <div id="navbar" ng-init="main=true" ng-controller="MainCtrl">
+    <div id="navbar" ng-controller="MainCtrl">
 
 
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -134,9 +134,12 @@
 
 
 
-        <%---------------------------- Pages ----------------------------%>
+        <%---------------------------- Dynamic Pages ----------------------------%>
 
-        <div class="float-center" ng-controller="projctrl" ng-if="newproj">
+        <div class="float-center" ng-include="include"></div>
+
+
+<%--        <div class="float-center" ng-controller="projctrl" ng-if="newproj">
             <div ng-include="include"></div>
         </div>
 
@@ -171,7 +174,7 @@
 
         <div class="float-center" ng-if="reports">
             <div ng-include="include"></div>
-        </div>
+        </div>--%>
 
 
 
