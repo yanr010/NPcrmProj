@@ -50,8 +50,7 @@
                 <td>{{project.Time}}</td>
                 <td>{{project.FinalTime}}</td>
                 <td>{{project.Responsible}}</td>
-                <td><a class="far fa-edit fa-2x" href="#"></a></td>
-                <td><a class="far fa-trash-alt fa-2x" href="#"></a></td>
+
 
             </tr>
         </tbody>

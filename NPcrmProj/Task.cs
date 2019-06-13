@@ -14,26 +14,18 @@ namespace NPcrmProj
     
     public partial class Task
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Task()
-        {
-            this.Reports = new HashSet<Report>();
-        }
-    
-        public string Id { get; set; }
+        public int Id { get; set; }
         public System.DateTime CreateDate { get; set; }
         public string Name { get; set; }
         public System.DateTime FinalDate { get; set; }
         public string Description { get; set; }
         public string Department { get; set; }
-        public string ProjectId { get; set; }
-        public string CustomerId { get; set; }
+        public Nullable<int> ProjectId { get; set; }
+        public Nullable<int> CustomerId { get; set; }
         public Nullable<bool> Done { get; set; }
     
         public virtual Customer Customer { get; set; }
         public virtual Department Department1 { get; set; }
         public virtual Project Project { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Report> Reports { get; set; }
     }
 }

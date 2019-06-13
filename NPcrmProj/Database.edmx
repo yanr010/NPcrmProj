@@ -9,55 +9,39 @@
           <Key>
             <PropertyRef Name="Name" />
           </Key>
-          <Property Name="Id" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="DepartmentId" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="CategoryProject">
           <Key>
-            <PropertyRef Name="CategoryId" />
+            <PropertyRef Name="CategoryName" />
             <PropertyRef Name="ProjectId" />
           </Key>
-          <Property Name="CategoryId" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ProjectId" Type="nchar" MaxLength="10" Nullable="false" />
-        </EntityType>
-        <EntityType Name="CategoryReport">
-          <Key>
-            <PropertyRef Name="CatrgoryId" />
-            <PropertyRef Name="ReportId" />
-          </Key>
-          <Property Name="CatrgoryId" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ReportId" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProjectId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="CustomerCategory">
           <Key>
             <PropertyRef Name="CustomerID" />
-            <PropertyRef Name="CategoryID" />
+            <PropertyRef Name="CategoryName" />
           </Key>
-          <Property Name="CustomerID" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="CategoryID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CustomerID" Type="int" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="CustomerProject">
           <Key>
             <PropertyRef Name="CustomerId" />
             <PropertyRef Name="ProjectId" />
           </Key>
-          <Property Name="CustomerId" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="ProjectId" Type="nchar" MaxLength="10" Nullable="false" />
-        </EntityType>
-        <EntityType Name="CustomerReport">
-          <Key>
-            <PropertyRef Name="CustomerId" />
-            <PropertyRef Name="ReportId" />
-          </Key>
-          <Property Name="CustomerId" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="ReportId" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="CustomerId" Type="int" Nullable="false" />
+          <Property Name="ProjectId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Customers">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
           <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -80,34 +64,18 @@
           <Property Name="Summary" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Department" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="DepartmentReport">
-          <Key>
-            <PropertyRef Name="ReportID" />
-            <PropertyRef Name="DepartmentID" />
-          </Key>
-          <Property Name="ReportID" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="DepartmentID" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
         <EntityType Name="Departments">
           <Key>
             <PropertyRef Name="Name" />
           </Key>
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Coordinator" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <EntityType Name="ProjectReport">
-          <Key>
-            <PropertyRef Name="ProjectId" />
-            <PropertyRef Name="ReportId" />
-          </Key>
-          <Property Name="ProjectId" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="ReportId" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Coordinator" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Projects">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="CreateDate" Type="datetime" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
@@ -119,13 +87,6 @@
           <Property Name="ProjectCost" Type="int" Nullable="false" />
           <Property Name="ActualParticipant" Type="nchar" MaxLength="10" />
         </EntityType>
-        <EntityType Name="Reports">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="Date" Type="date" Nullable="false" />
-        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -136,50 +97,46 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <EntityType Name="TaskReport">
-          <Key>
-            <PropertyRef Name="TaskId" />
-            <PropertyRef Name="ReportId" />
-          </Key>
-          <Property Name="TaskId" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="ReportId" Type="nchar" MaxLength="10" Nullable="false" />
-        </EntityType>
         <EntityType Name="Tasks">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="FinalDate" Type="datetime" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Department" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ProjectId" Type="nchar" MaxLength="10" />
-          <Property Name="CustomerId" Type="nchar" MaxLength="10" />
+          <Property Name="ProjectId" Type="int" />
+          <Property Name="CustomerId" Type="int" />
           <Property Name="Done" Type="bit" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_CategoryProject_Categories">
-          <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
+          <End Role="Categories" Type="Self.Categories" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="CategoryProject" Type="Self.CategoryProject" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Categories">
               <PropertyRef Name="Name" />
             </Principal>
             <Dependent Role="CategoryProject">
-              <PropertyRef Name="CategoryId" />
+              <PropertyRef Name="CategoryName" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CategoryProject_Projects">
-          <End Role="Projects" Type="Self.Projects" Multiplicity="1" />
+          <End Role="Projects" Type="Self.Projects" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="CategoryProject" Type="Self.CategoryProject" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Projects">
@@ -187,30 +144,6 @@
             </Principal>
             <Dependent Role="CategoryProject">
               <PropertyRef Name="ProjectId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CategoryReport_Categories">
-          <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
-          <End Role="CategoryReport" Type="Self.CategoryReport" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Categories">
-              <PropertyRef Name="Name" />
-            </Principal>
-            <Dependent Role="CategoryReport">
-              <PropertyRef Name="CatrgoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CategoryReport_Reports">
-          <End Role="Reports" Type="Self.Reports" Multiplicity="1" />
-          <End Role="CategoryReport" Type="Self.CategoryReport" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Reports">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CategoryReport">
-              <PropertyRef Name="ReportId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -222,7 +155,7 @@
               <PropertyRef Name="Name" />
             </Principal>
             <Dependent Role="CustomerCategory">
-              <PropertyRef Name="CategoryID" />
+              <PropertyRef Name="CategoryName" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -251,7 +184,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CustomerProject_Projects">
-          <End Role="Projects" Type="Self.Projects" Multiplicity="1" />
+          <End Role="Projects" Type="Self.Projects" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="CustomerProject" Type="Self.CustomerProject" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Projects">
@@ -259,30 +194,6 @@
             </Principal>
             <Dependent Role="CustomerProject">
               <PropertyRef Name="ProjectId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CustomerReport_CustomerReport">
-          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
-          <End Role="CustomerReport" Type="Self.CustomerReport" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CustomerReport">
-              <PropertyRef Name="CustomerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CustomerReport_Reports">
-          <End Role="Reports" Type="Self.Reports" Multiplicity="1" />
-          <End Role="CustomerReport" Type="Self.CustomerReport" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Reports">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CustomerReport">
-              <PropertyRef Name="ReportId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -298,30 +209,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DepartmentReport_Departments">
-          <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
-          <End Role="DepartmentReport" Type="Self.DepartmentReport" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Departments">
-              <PropertyRef Name="Name" />
-            </Principal>
-            <Dependent Role="DepartmentReport">
-              <PropertyRef Name="DepartmentID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_DepartmentReport_Report">
-          <End Role="Reports" Type="Self.Reports" Multiplicity="1" />
-          <End Role="DepartmentReport" Type="Self.DepartmentReport" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Reports">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="DepartmentReport">
-              <PropertyRef Name="ReportID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Departments_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="Departments" Type="Self.Departments" Multiplicity="*" />
@@ -331,54 +218,6 @@
             </Principal>
             <Dependent Role="Departments">
               <PropertyRef Name="Coordinator" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProjectReport_Projects">
-          <End Role="Projects" Type="Self.Projects" Multiplicity="1" />
-          <End Role="ProjectReport" Type="Self.ProjectReport" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Projects">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ProjectReport">
-              <PropertyRef Name="ProjectId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProjectReport_Reports">
-          <End Role="Reports" Type="Self.Reports" Multiplicity="1" />
-          <End Role="ProjectReport" Type="Self.ProjectReport" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Reports">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ProjectReport">
-              <PropertyRef Name="ReportId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TaskReport_Reports">
-          <End Role="Reports" Type="Self.Reports" Multiplicity="1" />
-          <End Role="TaskReport" Type="Self.TaskReport" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Reports">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="TaskReport">
-              <PropertyRef Name="ReportId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TaskReport_Tasks">
-          <End Role="Tasks" Type="Self.Tasks" Multiplicity="1" />
-          <End Role="TaskReport" Type="Self.TaskReport" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tasks">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="TaskReport">
-              <PropertyRef Name="TaskId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -407,7 +246,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Tasks_Projects">
-          <End Role="Projects" Type="Self.Projects" Multiplicity="0..1" />
+          <End Role="Projects" Type="Self.Projects" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Projects">
@@ -421,18 +262,12 @@
         <EntityContainer Name="MerkazModelStoreContainer">
           <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CategoryProject" EntityType="Self.CategoryProject" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CategoryReport" EntityType="Self.CategoryReport" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomerCategory" EntityType="Self.CustomerCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomerProject" EntityType="Self.CustomerProject" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CustomerReport" EntityType="Self.CustomerReport" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DepartmentReport" EntityType="Self.DepartmentReport" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ProjectReport" EntityType="Self.ProjectReport" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Projects" EntityType="Self.Projects" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Reports" EntityType="Self.Reports" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TaskReport" EntityType="Self.TaskReport" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tasks" EntityType="Self.Tasks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_CategoryProject_Categories" Association="Self.FK_CategoryProject_Categories">
@@ -442,14 +277,6 @@
           <AssociationSet Name="FK_CategoryProject_Projects" Association="Self.FK_CategoryProject_Projects">
             <End Role="Projects" EntitySet="Projects" />
             <End Role="CategoryProject" EntitySet="CategoryProject" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CategoryReport_Categories" Association="Self.FK_CategoryReport_Categories">
-            <End Role="Categories" EntitySet="Categories" />
-            <End Role="CategoryReport" EntitySet="CategoryReport" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CategoryReport_Reports" Association="Self.FK_CategoryReport_Reports">
-            <End Role="Reports" EntitySet="Reports" />
-            <End Role="CategoryReport" EntitySet="CategoryReport" />
           </AssociationSet>
           <AssociationSet Name="FK_CustomerCategory_Categories" Association="Self.FK_CustomerCategory_Categories">
             <End Role="Categories" EntitySet="Categories" />
@@ -467,45 +294,13 @@
             <End Role="Projects" EntitySet="Projects" />
             <End Role="CustomerProject" EntitySet="CustomerProject" />
           </AssociationSet>
-          <AssociationSet Name="FK_CustomerReport_CustomerReport" Association="Self.FK_CustomerReport_CustomerReport">
-            <End Role="Customers" EntitySet="Customers" />
-            <End Role="CustomerReport" EntitySet="CustomerReport" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CustomerReport_Reports" Association="Self.FK_CustomerReport_Reports">
-            <End Role="Reports" EntitySet="Reports" />
-            <End Role="CustomerReport" EntitySet="CustomerReport" />
-          </AssociationSet>
           <AssociationSet Name="FK_Customers_Departments" Association="Self.FK_Customers_Departments">
             <End Role="Departments" EntitySet="Departments" />
             <End Role="Customers" EntitySet="Customers" />
           </AssociationSet>
-          <AssociationSet Name="FK_DepartmentReport_Departments" Association="Self.FK_DepartmentReport_Departments">
-            <End Role="Departments" EntitySet="Departments" />
-            <End Role="DepartmentReport" EntitySet="DepartmentReport" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DepartmentReport_Report" Association="Self.FK_DepartmentReport_Report">
-            <End Role="Reports" EntitySet="Reports" />
-            <End Role="DepartmentReport" EntitySet="DepartmentReport" />
-          </AssociationSet>
           <AssociationSet Name="FK_Departments_Users" Association="Self.FK_Departments_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Departments" EntitySet="Departments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProjectReport_Projects" Association="Self.FK_ProjectReport_Projects">
-            <End Role="Projects" EntitySet="Projects" />
-            <End Role="ProjectReport" EntitySet="ProjectReport" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProjectReport_Reports" Association="Self.FK_ProjectReport_Reports">
-            <End Role="Reports" EntitySet="Reports" />
-            <End Role="ProjectReport" EntitySet="ProjectReport" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TaskReport_Reports" Association="Self.FK_TaskReport_Reports">
-            <End Role="Reports" EntitySet="Reports" />
-            <End Role="TaskReport" EntitySet="TaskReport" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TaskReport_Tasks" Association="Self.FK_TaskReport_Tasks">
-            <End Role="Tasks" EntitySet="Tasks" />
-            <End Role="TaskReport" EntitySet="TaskReport" />
           </AssociationSet>
           <AssociationSet Name="FK_Tasks_Customers" Association="Self.FK_Tasks_Customers">
             <End Role="Customers" EntitySet="Customers" />
@@ -529,18 +324,17 @@
           <Key>
             <PropertyRef Name="Name" />
           </Key>
-          <Property Name="Id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DepartmentId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Projects" Relationship="Self.CategoryProject" FromRole="Categories" ToRole="Projects" />
-          <NavigationProperty Name="Reports" Relationship="Self.CategoryReport" FromRole="Categories" ToRole="Reports" />
           <NavigationProperty Name="Customers" Relationship="Self.CustomerCategory" FromRole="Categories" ToRole="Customers" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
@@ -566,24 +360,22 @@
           <NavigationProperty Name="Tasks" Relationship="Self.FK_Tasks_Customers" FromRole="Customers" ToRole="Tasks" />
           <NavigationProperty Name="Categories" Relationship="Self.CustomerCategory" FromRole="Customers" ToRole="Categories" />
           <NavigationProperty Name="Projects" Relationship="Self.CustomerProject" FromRole="Customers" ToRole="Projects" />
-          <NavigationProperty Name="Reports" Relationship="Self.CustomerReport" FromRole="Customers" ToRole="Reports" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
             <PropertyRef Name="Name" />
           </Key>
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Coordinator" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Coordinator" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Customers" Relationship="Self.FK_Customers_Departments" FromRole="Departments" ToRole="Customers" />
           <NavigationProperty Name="User" Relationship="Self.FK_Departments_Users" FromRole="Departments" ToRole="Users" />
           <NavigationProperty Name="Tasks" Relationship="Self.FK_Tasks_Departments" FromRole="Departments" ToRole="Tasks" />
-          <NavigationProperty Name="Reports" Relationship="Self.DepartmentReport" FromRole="Departments" ToRole="Reports" />
         </EntityType>
         <EntityType Name="Project">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="CreateDate" Type="DateTime" Precision="3" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
@@ -597,19 +389,6 @@
           <NavigationProperty Name="Tasks" Relationship="Self.FK_Tasks_Projects" FromRole="Projects" ToRole="Tasks" />
           <NavigationProperty Name="Categories" Relationship="Self.CategoryProject" FromRole="Projects" ToRole="Categories" />
           <NavigationProperty Name="Customers" Relationship="Self.CustomerProject" FromRole="Projects" ToRole="Customers" />
-          <NavigationProperty Name="Reports" Relationship="Self.ProjectReport" FromRole="Projects" ToRole="Reports" />
-        </EntityType>
-        <EntityType Name="Report">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Categories" Relationship="Self.CategoryReport" FromRole="Reports" ToRole="Categories" />
-          <NavigationProperty Name="Customers" Relationship="Self.CustomerReport" FromRole="Reports" ToRole="Customers" />
-          <NavigationProperty Name="Departments" Relationship="Self.DepartmentReport" FromRole="Reports" ToRole="Departments" />
-          <NavigationProperty Name="Projects" Relationship="Self.ProjectReport" FromRole="Reports" ToRole="Projects" />
-          <NavigationProperty Name="Tasks" Relationship="Self.TaskReport" FromRole="Reports" ToRole="Tasks" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -625,25 +404,24 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="FinalDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ProjectId" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="CustomerId" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ProjectId" Type="Int32" />
+          <Property Name="CustomerId" Type="Int32" />
           <Property Name="Done" Type="Boolean" />
           <NavigationProperty Name="Customer" Relationship="Self.FK_Tasks_Customers" FromRole="Tasks" ToRole="Customers" />
           <NavigationProperty Name="Department1" Relationship="Self.FK_Tasks_Departments" FromRole="Tasks" ToRole="Departments" />
           <NavigationProperty Name="Project" Relationship="Self.FK_Tasks_Projects" FromRole="Tasks" ToRole="Projects" />
-          <NavigationProperty Name="Reports" Relationship="Self.TaskReport" FromRole="Tasks" ToRole="Reports" />
         </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Departments" Relationship="Self.FK_Departments_Users" FromRole="Users" ToRole="Departments" />
@@ -697,7 +475,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Tasks_Projects">
-          <End Role="Projects" Type="Self.Project" Multiplicity="0..1" />
+          <End Role="Projects" Type="Self.Project" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Tasks" Type="Self.Task" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Projects">
@@ -712,10 +492,6 @@
           <End Role="Categories" Type="Self.Category" Multiplicity="*" />
           <End Role="Projects" Type="Self.Project" Multiplicity="*" />
         </Association>
-        <Association Name="CategoryReport">
-          <End Role="Categories" Type="Self.Category" Multiplicity="*" />
-          <End Role="Reports" Type="Self.Report" Multiplicity="*" />
-        </Association>
         <Association Name="CustomerCategory">
           <End Role="Categories" Type="Self.Category" Multiplicity="*" />
           <End Role="Customers" Type="Self.Customer" Multiplicity="*" />
@@ -724,28 +500,11 @@
           <End Role="Customers" Type="Self.Customer" Multiplicity="*" />
           <End Role="Projects" Type="Self.Project" Multiplicity="*" />
         </Association>
-        <Association Name="CustomerReport">
-          <End Role="Customers" Type="Self.Customer" Multiplicity="*" />
-          <End Role="Reports" Type="Self.Report" Multiplicity="*" />
-        </Association>
-        <Association Name="DepartmentReport">
-          <End Role="Departments" Type="Self.Department" Multiplicity="*" />
-          <End Role="Reports" Type="Self.Report" Multiplicity="*" />
-        </Association>
-        <Association Name="ProjectReport">
-          <End Role="Projects" Type="Self.Project" Multiplicity="*" />
-          <End Role="Reports" Type="Self.Report" Multiplicity="*" />
-        </Association>
-        <Association Name="TaskReport">
-          <End Role="Reports" Type="Self.Report" Multiplicity="*" />
-          <End Role="Tasks" Type="Self.Task" Multiplicity="*" />
-        </Association>
         <EntityContainer Name="dbEntities" annotation:LazyLoadingEnabled="false">
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="Departments" EntityType="Self.Department" />
           <EntitySet Name="Projects" EntityType="Self.Project" />
-          <EntitySet Name="Reports" EntityType="Self.Report" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Tasks" EntityType="Self.Task" />
           <EntitySet Name="Users" EntityType="Self.User" />
@@ -773,10 +532,6 @@
             <End Role="Categories" EntitySet="Categories" />
             <End Role="Projects" EntitySet="Projects" />
           </AssociationSet>
-          <AssociationSet Name="CategoryReport" Association="Self.CategoryReport">
-            <End Role="Categories" EntitySet="Categories" />
-            <End Role="Reports" EntitySet="Reports" />
-          </AssociationSet>
           <AssociationSet Name="CustomerCategory" Association="Self.CustomerCategory">
             <End Role="Categories" EntitySet="Categories" />
             <End Role="Customers" EntitySet="Customers" />
@@ -784,22 +539,6 @@
           <AssociationSet Name="CustomerProject" Association="Self.CustomerProject">
             <End Role="Customers" EntitySet="Customers" />
             <End Role="Projects" EntitySet="Projects" />
-          </AssociationSet>
-          <AssociationSet Name="CustomerReport" Association="Self.CustomerReport">
-            <End Role="Customers" EntitySet="Customers" />
-            <End Role="Reports" EntitySet="Reports" />
-          </AssociationSet>
-          <AssociationSet Name="DepartmentReport" Association="Self.DepartmentReport">
-            <End Role="Departments" EntitySet="Departments" />
-            <End Role="Reports" EntitySet="Reports" />
-          </AssociationSet>
-          <AssociationSet Name="ProjectReport" Association="Self.ProjectReport">
-            <End Role="Projects" EntitySet="Projects" />
-            <End Role="Reports" EntitySet="Reports" />
-          </AssociationSet>
-          <AssociationSet Name="TaskReport" Association="Self.TaskReport">
-            <End Role="Reports" EntitySet="Reports" />
-            <End Role="Tasks" EntitySet="Tasks" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -870,14 +609,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Reports">
-            <EntityTypeMapping TypeName="MerkazModel.Report">
-              <MappingFragment StoreEntitySet="Reports">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="MerkazModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
@@ -915,23 +646,15 @@
           </EntitySetMapping>
           <AssociationSetMapping Name="CategoryProject" TypeName="MerkazModel.CategoryProject" StoreEntitySet="CategoryProject">
             <EndProperty Name="Categories">
-              <ScalarProperty Name="Name" ColumnName="CategoryId" />
+              <ScalarProperty Name="Name" ColumnName="CategoryName" />
             </EndProperty>
             <EndProperty Name="Projects">
               <ScalarProperty Name="Id" ColumnName="ProjectId" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="CategoryReport" TypeName="MerkazModel.CategoryReport" StoreEntitySet="CategoryReport">
-            <EndProperty Name="Categories">
-              <ScalarProperty Name="Name" ColumnName="CatrgoryId" />
-            </EndProperty>
-            <EndProperty Name="Reports">
-              <ScalarProperty Name="Id" ColumnName="ReportId" />
-            </EndProperty>
-          </AssociationSetMapping>
           <AssociationSetMapping Name="CustomerCategory" TypeName="MerkazModel.CustomerCategory" StoreEntitySet="CustomerCategory">
             <EndProperty Name="Categories">
-              <ScalarProperty Name="Name" ColumnName="CategoryID" />
+              <ScalarProperty Name="Name" ColumnName="CategoryName" />
             </EndProperty>
             <EndProperty Name="Customers">
               <ScalarProperty Name="Id" ColumnName="CustomerID" />
@@ -943,38 +666,6 @@
             </EndProperty>
             <EndProperty Name="Projects">
               <ScalarProperty Name="Id" ColumnName="ProjectId" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="CustomerReport" TypeName="MerkazModel.CustomerReport" StoreEntitySet="CustomerReport">
-            <EndProperty Name="Customers">
-              <ScalarProperty Name="Id" ColumnName="CustomerId" />
-            </EndProperty>
-            <EndProperty Name="Reports">
-              <ScalarProperty Name="Id" ColumnName="ReportId" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="DepartmentReport" TypeName="MerkazModel.DepartmentReport" StoreEntitySet="DepartmentReport">
-            <EndProperty Name="Departments">
-              <ScalarProperty Name="Name" ColumnName="DepartmentID" />
-            </EndProperty>
-            <EndProperty Name="Reports">
-              <ScalarProperty Name="Id" ColumnName="ReportID" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="ProjectReport" TypeName="MerkazModel.ProjectReport" StoreEntitySet="ProjectReport">
-            <EndProperty Name="Projects">
-              <ScalarProperty Name="Id" ColumnName="ProjectId" />
-            </EndProperty>
-            <EndProperty Name="Reports">
-              <ScalarProperty Name="Id" ColumnName="ReportId" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="TaskReport" TypeName="MerkazModel.TaskReport" StoreEntitySet="TaskReport">
-            <EndProperty Name="Reports">
-              <ScalarProperty Name="Id" ColumnName="ReportId" />
-            </EndProperty>
-            <EndProperty Name="Tasks">
-              <ScalarProperty Name="Id" ColumnName="TaskId" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

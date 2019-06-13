@@ -20,7 +20,7 @@ namespace NPcrmProj
             this.Departments = new HashSet<Department>();
         }
     
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
     

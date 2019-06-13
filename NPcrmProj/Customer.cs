@@ -20,10 +20,9 @@ namespace NPcrmProj
             this.Tasks = new HashSet<Task>();
             this.Categories = new HashSet<Category>();
             this.Projects = new HashSet<Project>();
-            this.Reports = new HashSet<Report>();
         }
     
-        public string Id { get; set; }
+        public int Id { get; set; }
         public System.DateTime CreateDate { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -53,7 +52,5 @@ namespace NPcrmProj
         public virtual ICollection<Category> Categories { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Project> Projects { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Report> Reports { get; set; }
     }
 }

@@ -19,18 +19,15 @@ namespace NPcrmProj
         {
             this.Customers = new HashSet<Customer>();
             this.Tasks = new HashSet<Task>();
-            this.Reports = new HashSet<Report>();
         }
     
         public string Name { get; set; }
-        public string Coordinator { get; set; }
+        public int Coordinator { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Customer> Customers { get; set; }
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Task> Tasks { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Report> Reports { get; set; }
     }
 }

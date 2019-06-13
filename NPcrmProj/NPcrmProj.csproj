@@ -177,9 +177,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Report.cs">
-      <DependentUpon>Database.tt</DependentUpon>
-    </Compile>
     <Compile Include="sysdiagram.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>

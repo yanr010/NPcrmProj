@@ -44,11 +44,9 @@ namespace NPcrmProj
                     if (rec == null)
                     {
                         Project newproj = new Project();
-                        string id = db.Projects.Max(i => i.Id);
-                        int idint = int.Parse(id) + 1;
-                        id = String.Format("{0,0}", idint);
+                        int id = db.Projects.Max(i => i.Id)+1;
                         newproj.Id = id;
-                        newproj.CreateDate = Convert.ToDateTime(DateTime.Now);
+                        newproj.CreateDate = DateTime.Now;
                         newproj.Name = Convert.ToString(d["projname"]);
                         newproj.Description = Convert.ToString(d["description"]);
                         newproj.StartDate = Convert.ToDateTime(d["startDate"]);
@@ -66,7 +64,7 @@ namespace NPcrmProj
                     
                     }
 
-                    return "Oh YEAH";
+                    return "Ok";
 
 
                 }
@@ -98,10 +96,9 @@ namespace NPcrmProj
                 string log = "";
                 dbEntities db = new dbEntities();
                 Project proj = db.Projects.FirstOrDefault(i => i.Name == Name);
-                string id = proj.Id;
-                id = id.Trim();
-              //  db.Projects.Remove(proj);
-              db.Entry(proj).State = System.Data.Entity.EntityState.Deleted;
+                int id = proj.Id;
+                db.Projects.Remove(proj);
+              //db.Entry(proj).State = System.Data.Entity.EntityState.Deleted;
               //  db.Projects.SqlQuery("delete from Project where Project.Id = @id", new SqlParameter("@id", id));
                 db.SaveChanges();
                 log += "id= " + id ;
