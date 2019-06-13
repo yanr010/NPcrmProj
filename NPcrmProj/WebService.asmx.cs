@@ -78,6 +78,37 @@ namespace NPcrmProj
 
         }
 
+
+        
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public bool EditProj(string Name, string Description, string Participant, string ProjectCost)
+        {
+            try
+            {
+                string log = "";
+                dbEntities db = new dbEntities();
+                var result = db.Projects.SingleOrDefault(p => p.Name == Name);
+                if (result != null)
+                {
+                    result.Description = Description;
+                    result.Participant = Participant;
+                    result.ProjectCost = int.Parse(ProjectCost);
+                    db.SaveChanges();
+                }
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
+
+        }
+
+
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public void GetFinAllProjects()

@@ -58,7 +58,7 @@
                 <label for="participant" class="col-sm-2 col-form-label">צפי משתתפים</label>
                 <div class="col-md-2 inputGroupContainer">
                     <div class="input-group">
-                        <input ng-model="participant" name="participant" placeholder="צפי משתתפים" class="form-control" required="true" oninvalid="this.setCustomValidity('נא להכניס צפי משתתפים')" oninput="setCustomValidity('')" value="" type="text">
+                        <input ng-model="participant" name="ed.participant" placeholder="צפי משתתפים" class="form-control" required="true" oninvalid="this.setCustomValidity('נא להכניס צפי משתתפים')" oninput="setCustomValidity('')" value="" type="text">
                     </div>
                 </div>
 

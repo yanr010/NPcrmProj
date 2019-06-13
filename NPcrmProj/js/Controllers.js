@@ -262,6 +262,23 @@ app.controller('getnotfinprojctrl', function ($scope, $http) {
         
     }
 
+    $scope.submitedit = function () {
+        var editdata = {
+            params: { Name: this.projname, Description: this.description, Participant: this.participant, ProjectCost: this.projectCost}
+        }
+        $http.get("WebService.asmx/EditProj", editdata)
+            .then(function (response) {
+                if (response == false) {
+                    alert("תקלה בעריכת פרויקט");
+                }
+                else {
+                    alert("הפרטים נשמרו")
+                    $scope.include = "views/NotFinProjList.aspx";
+                    GetAllProjects();
+                }
+            });
+    }
+
 
 
     $scope.delproj = function (project) {
