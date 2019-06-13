@@ -171,14 +171,43 @@ app.controller('projctrl', function ($scope, $http) {
 
         $http.post("WebService.asmx/SetProj", dat,null)
             .then(function (response) {
-                console.log(response);
+                if (response.data.d == false) {
+                    alert("פרוייקט בשם זה כבר קיים במערכת, אנא בחר שם אחר");
+                }
+                else {
+                    alert("פרוייקט חדש נוסף בהצלחה");
+                    $scope.include = "views/NotFinProjList.aspx";
+                    GetAllProjects();
+                }
             });
-
     };
 
+    function GetAllProjects() {
+        $http.get("WebService.asmx/GetFinAllProjects")
+            .then(function (response) {
+
+                var jsondata = response.data;
+
+                $scope.projects = jsondata;
+            });
+    }
+
+    $scope.editproj = function (project) {
+        $scope.include = "views/EditProj.aspx";
+        console.log(project);
+    }
 
 
+    $scope.delproj = function (project) {
+        var data = {
+            params: { Name: project.Name }
+        }
+        $http.get("WebService.asmx/DeleteProj", data)
+            .then(function (response) {
+                GetAllProjects();
 
+            });
+    }
 });
 
 app.controller('getfinprojctrl', function ($scope, $http) {
@@ -197,6 +226,8 @@ app.controller('getfinprojctrl', function ($scope, $http) {
                 $scope.projects = jsondata;
             });
     }
+
+
 });
 
 app.controller('getnotfinprojctrl', function ($scope, $http) {
@@ -217,8 +248,21 @@ app.controller('getnotfinprojctrl', function ($scope, $http) {
     }
 
     $scope.editproj = function (project) {
-        console.log(project);
+        $scope.projname = project.Name;
+        $scope.description = project.Description;
+        $scope.startDate = project.StartDate.split("T", 1);
+        var time = project.Time.split(":");
+        $scope.time = time[0] + ":" + time[1];
+        var finaltime = project.FinalTime.split(":");
+        $scope.finaltime = finaltime[0] + ":" + finaltime[1];
+        $scope.participant = project.Participant;
+        $scope.responsible = project.Responsible;
+        $scope.projectCost = project.ProjectCost;
+        $scope.include = "views/EditProj.aspx";
+        
     }
+
+
 
     $scope.delproj = function (project) {
         var data = {
@@ -226,7 +270,7 @@ app.controller('getnotfinprojctrl', function ($scope, $http) {
         }
         $http.get("WebService.asmx/DeleteProj",data)
             .then(function (response) {
-                console.log(response);
+                GetAllProjects();
                 
             });
     }

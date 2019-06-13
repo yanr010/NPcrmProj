@@ -116,6 +116,7 @@
     <Content Include="views\Charts.aspx" />
     <Content Include="views\CustForm.aspx" />
     <Content Include="views\CustList.aspx" />
+    <Content Include="views\EditProj.aspx" />
     <Content Include="views\Main.aspx" />
     <Content Include="views\NotFinProjList.aspx" />
     <Content Include="views\ProjForm.aspx" />
@@ -206,6 +207,13 @@
     </Compile>
     <Compile Include="views\CustList.aspx.designer.cs">
       <DependentUpon>CustList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="views\EditProj.aspx.cs">
+      <DependentUpon>EditProj.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="views\EditProj.aspx.designer.cs">
+      <DependentUpon>EditProj.aspx</DependentUpon>
     </Compile>
     <Compile Include="views\Main.aspx.cs">
       <DependentUpon>Main.aspx</DependentUpon>

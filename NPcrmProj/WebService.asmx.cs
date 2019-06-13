@@ -25,7 +25,7 @@ namespace NPcrmProj
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
 
-        public string SetProj()
+        public bool SetProj()
         {
             using (var stream = new MemoryStream())
             {
@@ -44,7 +44,7 @@ namespace NPcrmProj
                     if (rec == null)
                     {
                         Project newproj = new Project();
-                        int id = db.Projects.Max(i => i.Id)+1;
+                        int id = db.Projects.Max(i => i.Id) + 1;
                         newproj.Id = id;
                         newproj.CreateDate = DateTime.Now;
                         newproj.Name = Convert.ToString(d["projname"]);
@@ -61,10 +61,14 @@ namespace NPcrmProj
                         newproj.ProjectCost = Convert.ToInt32(d["projectCost"]);
                         db.Projects.Add(newproj);
                         db.SaveChanges();
-                    
+
+                    }
+                    else
+                    {
+                        return false;
                     }
 
-                    return "Ok";
+                    return true;
 
 
                 }
@@ -102,7 +106,7 @@ namespace NPcrmProj
               //  db.Projects.SqlQuery("delete from Project where Project.Id = @id", new SqlParameter("@id", id));
                 db.SaveChanges();
                 log += "id= " + id ;
-
+                
                 return log;
             }
             catch (Exception e)
