@@ -327,8 +327,16 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
     }
 
  
+    $scope.delCust = function (customer) {
+        var data = {
+            params: { Id: customer.Id}
+        }
+        $http.get("WebService.asmx/DeleteCust", data)
+          .then(function (response) {
+              GetAllCustomers();
 
-    
+          });
+    }
     function GetAllTasks() {
         $scope.sortType = 'Name'; // set the default sort type
         $scope.sortReverse = false;  // set the default sort order

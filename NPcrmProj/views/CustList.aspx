@@ -46,7 +46,8 @@
                 <td>{{customer.Mobile}}</td>
                 <td>{{customer.Email}}</td>
                 <td><a class="far fa-edit fa-2x" href="#"></a></td>
-                <td><a class="far fa-trash-alt fa-2x" href="#"></a></td>
+                <td><button type="button" class="far fa-trash-alt fa-2x" href="#" ng-click="delCust(customer)"></button></td>
+
 
             </tr>
         </tbody>

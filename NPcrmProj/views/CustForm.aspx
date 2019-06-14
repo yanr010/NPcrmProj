@@ -95,14 +95,7 @@
                             <fieldset>
                                 <br>
                                 <H5>פרטים נוספים:</H5>
-                                <div class="form-group row">
-                                    <label for="yearsofEducation" class="col-sm-2 col-form-label">מספר שנות לימוד</label>
-                                    <div class="col-md-2 inputGroupContainer">
-                                        <div class="input-group">
-                                            <input ng-model="data.yearsofEducation" placeholder="מספר שנות לימוד" class="form-control" required="false" value="" type="number">
-                                        </div>
-                                    </div>
-                                </div>
+                         
                                  <div class="form-group row">
                                     <label for="Education" class="col-md-2 control-label">בגרות<span style="color:red">   *</span></label>
                                     <div class="col-md-2 inputGroupContainer" >
@@ -124,7 +117,14 @@
                                    
                                 </div>
                                  
-                               
+                                      <div class="form-group row">
+                                    <label for="studyField" class="col-sm-2 col-form-label">תחום לימודים</label>
+                                    <div class="col-md-3 inputGroupContainer">
+                                        <div class="input-group"> 
+                                            <input ng-model="data.studyField" placeholder="תחום לימודים" type="text" class="form-control"  required="false">
+                                      </div>
+                                        </div>
+                                    </div>
                                  <div class="form-group row">
                                     <label for="AcademicDegree" class="col-sm-2 col-form-label">בעל תואר אקדמי במקצוע</label>
                                     <div class="col-md-3 inputGroupContainer">
@@ -133,14 +133,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label for="qualification" class="col-sm-2 col-form-label">בעל הכשרה מקצועית בתחום</label>
-                                    <div class="col-md-3 inputGroupContainer">
-                                        <div class="input-group"> 
-                                            <input ng-model="data.qualification" placeholder="תחום הכשרה" type="text" class="form-control"  required="false">
-                                      </div>
-                                        </div>
-                                    </div>
+                         
           
                                 <div class="form-group row">
                                     <label for="militaryService" class="col-sm-2 col-form-label">סוג שירות<span style="color:red">   *</span></label>
@@ -215,8 +208,22 @@
                                     <input type="checkbox" class="custom-control-input" id="Services7" name="Services7">
                                      <label class="custom-control-label" for="Services7">משפחה והורות </label>
                                     </div>
-                                
+                               <div class="form-group row">
+                                    <label for="department" class="col-sm-2 col-form-label">השתייכות למחלקה<span style="color:red">   *</span></label>
+                                    <div class="col-md-3 inputGroupContainer">
+                                        <div class="form-group">
+                                            <select class="form-control" ng-model="data.department">
+                                                <option>השכלה גבוהה</option>
+                                                 <option>חיילים משוחררים</option>
+                                                <option>פעליות חברתית</option>
+                                                <option>תעסוקה</option>
+                                                 <option>מנהל מרכז צעירים</option>
+                                            </select>
+                                        </div>
+                                        </div>
+                                     </div>
                                 </div>
+                      
                             </fieldset>
                         </form>
         

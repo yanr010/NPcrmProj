@@ -51,16 +51,13 @@
           <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="YearsofEducation" Type="int" />
           <Property Name="Education" Type="bit" Nullable="false" />
           <Property Name="Student" Type="bit" Nullable="false" />
           <Property Name="Studyfield" Type="nvarchar" MaxLength="50" />
           <Property Name="AcademicDegree" Type="nvarchar" MaxLength="50" />
-          <Property Name="Qualification" Type="nvarchar" MaxLength="50" />
           <Property Name="MilitaryService" Type="nchar" MaxLength="10" />
           <Property Name="role" Type="nvarchar" MaxLength="50" />
           <Property Name="WorkStatus" Type="bit" Nullable="false" />
-          <Property Name="Directions" Type="nvarchar" MaxLength="50" />
           <Property Name="Summary" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Department" Type="nvarchar" MaxLength="50" />
         </EntityType>
@@ -335,16 +332,13 @@
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="YearsofEducation" Type="Int32" />
           <Property Name="Education" Type="Boolean" Nullable="false" />
           <Property Name="Student" Type="Boolean" Nullable="false" />
           <Property Name="Studyfield" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="AcademicDegree" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Qualification" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MilitaryService" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="WorkStatus" Type="Boolean" Nullable="false" />
-          <Property Name="Directions" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Department1" Relationship="Self.FK_Customers_Departments" FromRole="Customers" ToRole="Departments" />
@@ -560,16 +554,13 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="YearsofEducation" ColumnName="YearsofEducation" />
                 <ScalarProperty Name="Education" ColumnName="Education" />
                 <ScalarProperty Name="Student" ColumnName="Student" />
                 <ScalarProperty Name="Studyfield" ColumnName="Studyfield" />
                 <ScalarProperty Name="AcademicDegree" ColumnName="AcademicDegree" />
-                <ScalarProperty Name="Qualification" ColumnName="Qualification" />
                 <ScalarProperty Name="MilitaryService" ColumnName="MilitaryService" />
                 <ScalarProperty Name="role" ColumnName="role" />
                 <ScalarProperty Name="WorkStatus" ColumnName="WorkStatus" />
-                <ScalarProperty Name="Directions" ColumnName="Directions" />
                 <ScalarProperty Name="Summary" ColumnName="Summary" />
                 <ScalarProperty Name="Department" ColumnName="Department" />
               </MappingFragment>

@@ -241,14 +241,13 @@ namespace NPcrmProj
                             newCust.Email = Convert.ToString(d["email"]);
                             newCust.Address = Convert.ToString(d["address"]);
                             newCust.City = Convert.ToString(d["city"]);
-                            newCust.YearsofEducation = Convert.ToInt32(d["yearsofEducation"]);
                             newCust.Education = Convert.ToBoolean(d["Education"]);
                             newCust.Student = Convert.ToBoolean(d["student"]);
-                            newCust.AcademicDegree = Convert.ToString(d["AcademicDegree"]);
+                            newCust.Studyfield = Convert.ToString(d["studyFields"]);
                             newCust.MilitaryService = Convert.ToString(d["militaryService"]);
                             newCust.WorkStatus = Convert.ToBoolean(d["work"]);
                             newCust.Summary = Convert.ToString(d["Summary"]);
-
+                            newCust.Department = Convert.ToString(d["department"]);
                             db.Customers.Add(newCust);
                             db.SaveChanges();
                         }
@@ -278,6 +277,27 @@ namespace NPcrmProj
             }
             return true;
             
+
+        }
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public string DeleteCust(int Id)
+        {
+            try
+            {
+                string log = "";
+                dbEntities db = new dbEntities();
+                Customer cust = db.Customers.FirstOrDefault(i => i.Id == Id);
+                db.Customers.Remove(cust);
+                db.SaveChanges();
+
+                return log;
+            }
+            catch (Exception e)
+            {
+                return e.Message.ToString();
+            }
+
 
         }
         [WebMethod]
