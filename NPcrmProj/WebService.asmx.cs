@@ -8,6 +8,7 @@ using System.Web.Script.Serialization;
 using Newtonsoft.Json;
 using System.Data.SqlClient;
 using System.IO;
+using System.Collections.ObjectModel;
 
 namespace NPcrmProj
 {
@@ -67,25 +68,63 @@ namespace NPcrmProj
                         newproj.ProjectCost = Convert.ToInt32(d["projectCost"]);
                         db.Projects.Add(newproj);
                         db.SaveChanges();
-
                     }
                     else
                     {
                         return false;
                     }
-
                     return true;
-
-
                 }
-
             }
-
-
         }
 
 
-        
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+
+        public bool SetCategeryProj()
+        {
+            using (var stream = new MemoryStream())
+            {
+                var request = HttpContext.Current.Request;
+                request.InputStream.Seek(0, SeekOrigin.Begin);
+                request.InputStream.CopyTo(stream);
+                var dataStr = System.Text.Encoding.UTF8.GetString(stream.ToArray());
+                var data = (dynamic)JsonConvert.DeserializeObject(dataStr);
+
+
+                using (dbEntities db = new dbEntities())
+                {
+                    var d = data.data;
+                    string projname = Convert.ToString(d[0]);
+                    var rec = db.Projects.Where(i => i.Name == projname).FirstOrDefault();
+                    if (rec != null)
+                    {
+                        int id = rec.Id;
+                        Collection<string> categories = new Collection<string>();
+                        int cnt = 0;
+                        foreach (var s in d)
+                            if (s.ToString() != "") {
+                                categories.Add(s.ToString());
+                                cnt++;
+                            } 
+
+                        for(int i=1; i < cnt; i++)
+                        {
+                            db.Database.ExecuteSqlCommand("insert into CategoryProject(CategoryName, ProjectId) values (@cat,@id)", new SqlParameter("@cat", categories[i]), new SqlParameter("@id", id));
+                            
+                        }
+                       
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                    return true;
+                }
+            }
+        }
 
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]

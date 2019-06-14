@@ -32,7 +32,7 @@ namespace NPcrmProj
         public string Email { get; set; }
         public string Address { get; set; }
         public string City { get; set; }
-        public int YearsofEducation { get; set; }
+        public Nullable<int> YearsofEducation { get; set; }
         public bool Education { get; set; }
         public bool Student { get; set; }
         public string Studyfield { get; set; }

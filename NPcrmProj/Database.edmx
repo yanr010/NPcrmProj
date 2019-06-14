@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MerkazModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MerkazModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Categories">
           <Key>
             <PropertyRef Name="Name" />
@@ -46,12 +46,12 @@
           <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Gender" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="BirthDate" Type="date" Nullable="false" />
+          <Property Name="BirthDate" Type="datetime" Nullable="false" />
           <Property Name="Mobile" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="YearsofEducation" Type="int" Nullable="false" />
+          <Property Name="YearsofEducation" Type="int" />
           <Property Name="Education" Type="bit" Nullable="false" />
           <Property Name="Student" Type="bit" Nullable="false" />
           <Property Name="Studyfield" Type="nvarchar" MaxLength="50" />
@@ -60,7 +60,7 @@
           <Property Name="MilitaryService" Type="nchar" MaxLength="10" />
           <Property Name="role" Type="nvarchar" MaxLength="50" />
           <Property Name="WorkStatus" Type="bit" Nullable="false" />
-          <Property Name="Directions" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Directions" Type="nvarchar" MaxLength="50" />
           <Property Name="Summary" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Department" Type="nvarchar" MaxLength="50" />
         </EntityType>
@@ -119,20 +119,6 @@
           <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <Association Name="FK_CategoryProject_Categories">
-          <End Role="Categories" Type="Self.Categories" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="CategoryProject" Type="Self.CategoryProject" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Categories">
-              <PropertyRef Name="Name" />
-            </Principal>
-            <Dependent Role="CategoryProject">
-              <PropertyRef Name="CategoryName" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_CategoryProject_Projects">
           <End Role="Projects" Type="Self.Projects" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -148,7 +134,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CustomerCategory_Categories">
-          <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
+          <End Role="Categories" Type="Self.Categories" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="CustomerCategory" Type="Self.CustomerCategory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Categories">
@@ -160,7 +148,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CustomerCategory_Customers">
-          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+          <End Role="Customers" Type="Self.Customers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="CustomerCategory" Type="Self.CustomerCategory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Customers">
@@ -172,7 +162,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CustomerProject_Customers">
-          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+          <End Role="Customers" Type="Self.Customers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="CustomerProject" Type="Self.CustomerProject" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Customers">
@@ -222,7 +214,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Tasks_Customers">
-          <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+          <End Role="Customers" Type="Self.Customers" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Customers">
@@ -234,7 +228,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Tasks_Departments">
-          <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+          <End Role="Departments" Type="Self.Departments" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Departments">
@@ -270,10 +266,6 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tasks" EntityType="Self.Tasks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_CategoryProject_Categories" Association="Self.FK_CategoryProject_Categories">
-            <End Role="Categories" EntitySet="Categories" />
-            <End Role="CategoryProject" EntitySet="CategoryProject" />
-          </AssociationSet>
           <AssociationSet Name="FK_CategoryProject_Projects" Association="Self.FK_CategoryProject_Projects">
             <End Role="Projects" EntitySet="Projects" />
             <End Role="CategoryProject" EntitySet="CategoryProject" />
@@ -315,8 +307,7 @@
             <End Role="Tasks" EntitySet="Tasks" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MerkazModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -339,12 +330,12 @@
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Gender" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="YearsofEducation" Type="Int32" Nullable="false" />
+          <Property Name="YearsofEducation" Type="Int32" />
           <Property Name="Education" Type="Boolean" Nullable="false" />
           <Property Name="Student" Type="Boolean" Nullable="false" />
           <Property Name="Studyfield" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -353,7 +344,7 @@
           <Property Name="MilitaryService" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="WorkStatus" Type="Boolean" Nullable="false" />
-          <Property Name="Directions" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Directions" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Department1" Relationship="Self.FK_Customers_Departments" FromRole="Customers" ToRole="Departments" />
