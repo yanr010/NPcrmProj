@@ -212,9 +212,6 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
                 else {
                     $http.post("WebService.asmx/SetCategeryProj", categories, null)
                         .then(function (response) {
-
-
-
                         });
                     alert("פרוייקט חדש נוסף בהצלחה");
                     $scope.include = "views/NotFinProjList.aspx";
