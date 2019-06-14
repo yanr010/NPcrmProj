@@ -164,8 +164,42 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
         
         $scope.data.startDate = $scope.data.startDate.toDateString();
         $scope.data.time = $scope.data.time.toTimeString();
-        if ($scope.data.finaltime!=null)
-        $scope.data.finaltime = $scope.data.finaltime.toTimeString();
+        if ($scope.data.finaltime != null)
+            $scope.data.finaltime = $scope.data.finaltime.toTimeString();
+        
+        var category = [];
+        category[0] = $scope.data.projname;
+        if ($scope.data.inp1 == true) {
+            category[1] = "מציאת עבודה";
+        }
+
+        if ($scope.data.inp2 == true) {
+            category[2] = "כספים";
+        }
+
+        if ($scope.data.inp3 == true) {
+            category[3] = "מלגות לימודים";
+        }
+
+        if ($scope.data.inp4 == true) {
+            category[4] = "לימודים";
+        }
+
+        if ($scope.data.inp5 == true) {
+            category[5] = "זכויות של חיילים משוחררים";
+        }
+
+        if ($scope.data.inp6 == true) {
+            category[6] = "קורסי פסיכומטרי";
+        }
+
+        if ($scope.data.inp7 == true) {
+            category[7] = "משפחה והורות";
+        }
+
+
+
+        var categories = { data: category };
         var dat = { data: $scope.data };
 
 
@@ -176,6 +210,12 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
                     alert("פרוייקט בשם זה כבר קיים במערכת, אנא בחר שם אחר");
                 }
                 else {
+                    $http.post("WebService.asmx/SetCategeryProj", categories, null)
+                        .then(function (response) {
+
+
+
+                        });
                     alert("פרוייקט חדש נוסף בהצלחה");
                     $scope.include = "views/NotFinProjList.aspx";
                     GetNotFinAllProjects();
@@ -273,12 +313,6 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
                     GetAllCustomers();
                  
                 }
-                ////if (response.data.email == false) {
-                ////    alert("מייל זה כבר קיים במערכת, אנא בחר מייל אחר");
-                ////}
-                ////if (response.data.mobile == false) {
-                ////    alert("מספר פלאפון זה כבר קיים במערכת, אנא בחר מספר אחר");
-                ////}
                 else {
                     alert("לקוח זה כבר קיים במערכת");
                 }
