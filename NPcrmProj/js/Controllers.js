@@ -259,7 +259,31 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
 
 
 
+    $scope.submitCust = function () {
 
+        var dat = { data: $scope.data };
+
+
+        $http.post("WebService.asmx/SetCust", dat, null)
+            .then(function (response) {
+                console.log(response);
+                if (response.data.d == true) {
+                    alert("לקוח חדש נוסף בהצלחה");
+                    $scope.include = "views/CustList.aspx";
+                    GetAllCustomers();
+                 
+                }
+                ////if (response.data.email == false) {
+                ////    alert("מייל זה כבר קיים במערכת, אנא בחר מייל אחר");
+                ////}
+                ////if (response.data.mobile == false) {
+                ////    alert("מספר פלאפון זה כבר קיים במערכת, אנא בחר מספר אחר");
+                ////}
+                else {
+                    alert("לקוח זה כבר קיים במערכת");
+                }
+            });
+    };
 
     function GetAllCustomers() {
         $scope.sortType = 'FirstName'; // set the default sort type
@@ -273,7 +297,7 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
 
  
 
-    GetAllTasks();
+    
     function GetAllTasks() {
         $scope.sortType = 'Name'; // set the default sort type
         $scope.sortReverse = false;  // set the default sort order

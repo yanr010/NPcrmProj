@@ -169,6 +169,80 @@ namespace NPcrmProj
 
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+
+        public bool SetCust()
+        {
+            using (var stream = new MemoryStream())
+            {
+                var request = HttpContext.Current.Request;
+                request.InputStream.Seek(0, SeekOrigin.Begin);
+                request.InputStream.CopyTo(stream);
+                var dataStr = System.Text.Encoding.UTF8.GetString(stream.ToArray());
+                var data = (dynamic)JsonConvert.DeserializeObject(dataStr);
+
+
+                using (dbEntities db = new dbEntities())
+                {
+                    var d = data.data;
+                    int id = Convert.ToInt32(d["id"]);
+                    var rec = db.Customers.Where(i => i.Id==id).FirstOrDefault();
+
+                    try
+                    {
+                        if (rec == null)
+                        {
+                            Customer newCust = new Customer();
+                            newCust.Id = Convert.ToInt32(d["id"]);
+                            newCust.CreateDate = DateTime.Now;
+                            newCust.FirstName = Convert.ToString(d["firstName"]);
+                            newCust.LastName = Convert.ToString(d["lastName"]);
+                            newCust.Gender = Convert.ToString(d["gender"]);
+                            newCust.BirthDate = Convert.ToDateTime(d["birthDate"]);
+                            newCust.Mobile = Convert.ToString(d["mobile"]);
+                            newCust.Email = Convert.ToString(d["email"]);
+                            newCust.Address = Convert.ToString(d["address"]);
+                            newCust.City = Convert.ToString(d["city"]);
+                            newCust.YearsofEducation = Convert.ToInt32(d["yearsofEducation"]);
+                            newCust.Education = Convert.ToBoolean(d["Education"]);
+                            newCust.Student = Convert.ToBoolean(d["student"]);
+                            newCust.AcademicDegree = Convert.ToString(d["AcademicDegree"]);
+                            newCust.MilitaryService = Convert.ToString(d["militaryService"]);
+                            newCust.WorkStatus = Convert.ToBoolean(d["work"]);
+                            newCust.Summary = Convert.ToString(d["Summary"]);
+
+                            db.Customers.Add(newCust);
+                            db.SaveChanges();
+                        }
+                        else return false;
+                    }
+                    catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+                    {
+                        Exception raise = dbEx;
+                        foreach (var validationErrors in dbEx.EntityValidationErrors)
+                        {
+                            foreach (var validationError in validationErrors.ValidationErrors)
+                            {
+                                string message = string.Format("{0}:{1}",
+                                    validationErrors.Entry.Entity.ToString(),
+                                    validationError.ErrorMessage);
+                                // raise a new exception nesting
+                                // the current instance as InnerException
+                                raise = new InvalidOperationException(message, raise);
+                            }
+                        }
+                        throw raise;
+                        
+                    }
+
+                }
+
+            }
+            return true;
+            
+
+        }
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public void GetAllCustomers()
         {
             dbEntities db = new dbEntities();
