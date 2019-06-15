@@ -278,7 +278,46 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
                 }
             });
     };
+    $scope.editCust = function (customer) {
+        $window.scrollTo(0, 0);
+        $scope.firstName = customer.FirstName;
+        $scope.lastName = customer.LastName;
+        $scope.id = customer.Id;
+        $scope.email = customer.Email;
+        $scope.mobile = customer.Mobile;
+        $scope.gender = customer.Gender.trim();
+        $scope.birthDate = customer.BirthDate.split("T",1);
+        $scope.city = customer.City;
+        $scope.address = customer.Address;
+        $scope.Education = customer.Education;
+        $scope.student = customer.Student;
+        $scope.studyField = customer.Studyfield;
+        $scope.AcademicDegree = customer.AcademicDegree;
+        $scope.militaryService = customer.MilitaryService;
+        $scope.work = customer.WorkStatus;
+        $scope.department = customer.Department;
+        $scope.Summary = customer.Summary;
+        $scope.include = "views/EditCust.aspx";
 
+    }
+    $scope.submitEditCustomer = function () {
+        var editdata = {
+            params: {
+                FirstName: this.firstName, LastName: this.lastName, Id: this.id, Mobile: this.mobile, Email: this.email, Gender: this.gender, City: this.city, Address: this.address
+            , Education: this.Education, Student: this.student, StudyField: this.studyField, AcademicDegree: this.AcademicDegree, MilitaryService: this.militaryService, WorkStatus: this.work, Department: this.department, Summary: this.Summary }
+        }
+        $http.get("WebService.asmx/EditCust", editdata)
+            .then(function (response) {
+                if (response == false) {
+                    alert("תקלה בעריכת לקוח");
+                }
+                else {
+                    alert("הפרטים נשמרו")
+                    $scope.include = "views/CustList.aspx";
+                    GetAllCustomers();
+                }
+            });
+    }
     function GetAllCustomers() {
         $scope.sortType = 'FirstName'; // set the default sort type
         $scope.sortReverse = false;  // set the default sort order
