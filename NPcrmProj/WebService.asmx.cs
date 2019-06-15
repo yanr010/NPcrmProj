@@ -347,9 +347,7 @@ namespace NPcrmProj
                             newTask.FinalDate = Convert.ToDateTime(d["finalDate"]);
                             newTask.Description = Convert.ToString(d["description"]);
                             newTask.Department = Convert.ToString(d["department"]);
-                            //newTask.ProjectId = Convert.ToString(d["selectedProj"]);
-                            //newTask.CustomerId = Convert.ToString(d["selectedCustomer"]);
-                            newTask.Done = Convert.ToBoolean(fa);
+                            newTask.Done = Convert.ToBoolean(false);
                             db.Tasks.Add(newTask);
                             db.SaveChanges();
                         }

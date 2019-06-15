@@ -104,8 +104,6 @@
           <Property Name="FinalDate" Type="date" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Department" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ProjectId" Type="int" />
-          <Property Name="CustomerId" Type="int" />
           <Property Name="Done" Type="bit" />
         </EntityType>
         <EntityType Name="Users">
@@ -210,20 +208,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Tasks_Customers">
-          <End Role="Customers" Type="Self.Customers" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Tasks">
-              <PropertyRef Name="CustomerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Tasks_Departments">
           <End Role="Departments" Type="Self.Departments" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -235,20 +219,6 @@
             </Principal>
             <Dependent Role="Tasks">
               <PropertyRef Name="Department" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Tasks_Projects">
-          <End Role="Projects" Type="Self.Projects" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Projects">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Tasks">
-              <PropertyRef Name="ProjectId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -291,16 +261,8 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Departments" EntitySet="Departments" />
           </AssociationSet>
-          <AssociationSet Name="FK_Tasks_Customers" Association="Self.FK_Tasks_Customers">
-            <End Role="Customers" EntitySet="Customers" />
-            <End Role="Tasks" EntitySet="Tasks" />
-          </AssociationSet>
           <AssociationSet Name="FK_Tasks_Departments" Association="Self.FK_Tasks_Departments">
             <End Role="Departments" EntitySet="Departments" />
-            <End Role="Tasks" EntitySet="Tasks" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Tasks_Projects" Association="Self.FK_Tasks_Projects">
-            <End Role="Projects" EntitySet="Projects" />
             <End Role="Tasks" EntitySet="Tasks" />
           </AssociationSet>
         </EntityContainer>
@@ -342,7 +304,6 @@
           <Property Name="Summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Department1" Relationship="Self.FK_Customers_Departments" FromRole="Customers" ToRole="Departments" />
-          <NavigationProperty Name="Tasks" Relationship="Self.FK_Tasks_Customers" FromRole="Customers" ToRole="Tasks" />
           <NavigationProperty Name="Categories" Relationship="Self.CustomerCategory" FromRole="Customers" ToRole="Categories" />
           <NavigationProperty Name="Projects" Relationship="Self.CustomerProject" FromRole="Customers" ToRole="Projects" />
         </EntityType>
@@ -371,7 +332,6 @@
           <Property Name="Responsible" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ProjectCost" Type="Int32" Nullable="false" />
           <Property Name="ActualParticipant" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="Tasks" Relationship="Self.FK_Tasks_Projects" FromRole="Projects" ToRole="Tasks" />
           <NavigationProperty Name="Categories" Relationship="Self.CategoryProject" FromRole="Projects" ToRole="Categories" />
           <NavigationProperty Name="Customers" Relationship="Self.CustomerProject" FromRole="Projects" ToRole="Customers" />
         </EntityType>
@@ -395,12 +355,8 @@
           <Property Name="FinalDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ProjectId" Type="Int32" />
-          <Property Name="CustomerId" Type="Int32" />
           <Property Name="Done" Type="Boolean" />
-          <NavigationProperty Name="Customer" Relationship="Self.FK_Tasks_Customers" FromRole="Tasks" ToRole="Customers" />
           <NavigationProperty Name="Department1" Relationship="Self.FK_Tasks_Departments" FromRole="Tasks" ToRole="Departments" />
-          <NavigationProperty Name="Project" Relationship="Self.FK_Tasks_Projects" FromRole="Tasks" ToRole="Projects" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -420,18 +376,6 @@
             </Principal>
             <Dependent Role="Customers">
               <PropertyRef Name="Department" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Tasks_Customers">
-          <End Role="Customers" Type="Self.Customer" Multiplicity="0..1" />
-          <End Role="Tasks" Type="Self.Task" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Tasks">
-              <PropertyRef Name="CustomerId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -459,20 +403,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Tasks_Projects">
-          <End Role="Projects" Type="Self.Project" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Tasks" Type="Self.Task" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Projects">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Tasks">
-              <PropertyRef Name="ProjectId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="CategoryProject">
           <End Role="Categories" Type="Self.Category" Multiplicity="*" />
           <End Role="Projects" Type="Self.Project" Multiplicity="*" />
@@ -497,20 +427,12 @@
             <End Role="Departments" EntitySet="Departments" />
             <End Role="Customers" EntitySet="Customers" />
           </AssociationSet>
-          <AssociationSet Name="FK_Tasks_Customers" Association="Self.FK_Tasks_Customers">
-            <End Role="Customers" EntitySet="Customers" />
-            <End Role="Tasks" EntitySet="Tasks" />
-          </AssociationSet>
           <AssociationSet Name="FK_Departments_Users" Association="Self.FK_Departments_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Departments" EntitySet="Departments" />
           </AssociationSet>
           <AssociationSet Name="FK_Tasks_Departments" Association="Self.FK_Tasks_Departments">
             <End Role="Departments" EntitySet="Departments" />
-            <End Role="Tasks" EntitySet="Tasks" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Tasks_Projects" Association="Self.FK_Tasks_Projects">
-            <End Role="Projects" EntitySet="Projects" />
             <End Role="Tasks" EntitySet="Tasks" />
           </AssociationSet>
           <AssociationSet Name="CategoryProject" Association="Self.CategoryProject">
@@ -611,8 +533,6 @@
                 <ScalarProperty Name="FinalDate" ColumnName="FinalDate" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Department" ColumnName="Department" />
-                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
-                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="Done" ColumnName="Done" />
               </MappingFragment>
             </EntityTypeMapping>

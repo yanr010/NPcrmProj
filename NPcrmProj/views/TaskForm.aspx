@@ -45,25 +45,6 @@
                                     </div>
                                     
                                 </div>
-
-                                <%--<div class="form-group row">
-                                    <label for="project" class="col-sm-2 col-form-label">פרויקט</label>
-                                    <div class="col-md-3 inputGroupContainer">
-                                        <div class="form-group">
-                                            <select >ng-model="data.selectedProj"  ng-option="x for x in Projects" </select>
-                                         </div>
-                                  </div>
-                                </div>
-                                      <div class="form-group row">
-                                    <label for="customer" class="col-sm-2 col-form-label">לקוח</label>
-                                    <div class="col-md-3 inputGroupContainer">
-                                        <div class="form-group">
-                                            <select  class="form-control" ng-model="data.selectedCustomer" ng-repeat="customer in customers" >
-                                                <option>{{customer.Id}}</option>
-                                            </select>
-                                         </div>
-                                  </div>
-                                </div>--%>
                                 <br>
                                  <div class="col-sm-10 text-left">
                                <button ng-click="submitTask()" class="btn btn-primary btn-lg">אישור</button>
