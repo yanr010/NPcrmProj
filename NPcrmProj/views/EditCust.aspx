@@ -149,9 +149,6 @@
                                    
                                 </div>
   
-                            </fieldset>
-                        </form>
-    </div>
 
                                <div class="form-group row">
                                     <label for="department" class="col-sm-2 col-form-label">השתייכות למחלקה<span style="color:red">   *</span></label>
@@ -167,7 +164,6 @@
                                         </div>
                                         </div>
                                      </div>
-                                </div>
                       
                             </fieldset>
                         </form>
