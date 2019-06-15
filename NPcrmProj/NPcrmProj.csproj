@@ -90,6 +90,7 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="inc\dirPagination.js" />
     <Content Include="inc\webfonts\all.css" />
     <Content Include="inc\angular-chart.min.js" />
     <Content Include="inc\angular.min.js" />
@@ -103,7 +104,6 @@
     <Content Include="inc\webfonts\fa-brands-400.svg" />
     <Content Include="inc\webfonts\fa-regular-400.svg" />
     <Content Include="inc\webfonts\fa-solid-900.svg" />
-    <Content Include="inc\xml2json.min.js" />
     <Content Include="js\Controllers.js" />
     <Content Include="js\DateTime.js" />
     <Content Include="Login.aspx" />

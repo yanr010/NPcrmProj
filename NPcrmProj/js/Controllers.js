@@ -1,4 +1,4 @@
-﻿var app = angular.module("myApp", ["chart.js"]);
+﻿var app = angular.module("myApp", ["chart.js","angularUtils.directives.dirPagination"]);
 
 
 
@@ -84,17 +84,17 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
     }
 
 
-    
+
 
 
     $scope.data = {};
     $scope.submitproj = function () {
-        
+
         $scope.data.startDate = $scope.data.startDate.toDateString();
         $scope.data.time = $scope.data.time.toTimeString();
         if ($scope.data.finaltime != null)
             $scope.data.finaltime = $scope.data.finaltime.toTimeString();
-        
+
         var category = [];
         category[0] = $scope.data.projname;
         if ($scope.data.inp1 == true) {
@@ -205,10 +205,10 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
             });
     }
 
-    
 
 
-    
+
+
     function GetFinAllProjects() {
         $scope.sortType = 'Name'; // set the default sort type
         $scope.sortReverse = false;  // set the default sort order
@@ -266,12 +266,12 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
                 console.log(response);
                 if (response.data.d == true) {
                     $http.post("WebService.asmx/SetCustomerCategory", categories, null)
-                      .then(function (response) {
-                      });
+                        .then(function (response) {
+                        });
                     alert("לקוח חדש נוסף בהצלחה");
                     $scope.include = "views/CustList.aspx";
                     GetAllCustomers();
-                 
+
                 }
                 else {
                     alert("לקוח זה כבר קיים במערכת");
@@ -289,16 +289,16 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
             });
     }
 
- 
+
     $scope.delCust = function (customer) {
         var data = {
-            params: { Id: customer.Id}
+            params: { Id: customer.Id }
         }
         $http.get("WebService.asmx/DeleteCust", data)
-          .then(function (response) {
-              GetAllCustomers();
+            .then(function (response) {
+                GetAllCustomers();
 
-          });
+            });
     }
 
     $scope.submitTask = function () {
@@ -417,7 +417,7 @@ app.controller("charts", function ($scope) {
 //        $scope.data.startDate = $scope.data.startDate.toDateString();
 //        var dat = { data: $scope.data };
 
-        
+
 
 //        $http.post("WebService.asmx/SetProj", dat,null)
 //            .then(function (response) {
@@ -536,7 +536,7 @@ app.controller("charts", function ($scope) {
 //        $scope.responsible = project.Responsible;
 //        $scope.projectCost = project.ProjectCost;
 //        $scope.include = "views/EditProj.aspx";
-        
+
 //    }
 
 //    $scope.submitedit = function () {
@@ -565,7 +565,7 @@ app.controller("charts", function ($scope) {
 //        $http.get("WebService.asmx/DeleteProj",data)
 //            .then(function (response) {
 //                GetAllProjects();
-                
+
 //            });
 //    }
 //});

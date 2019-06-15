@@ -9,14 +9,13 @@
         <div class="form-group">
             <div class="input-group">
                 <div class="input-group-addon"><i class="fas fa-search fa-2x pl-1"></i></div>
-                <input class="form-control" id="myInput" type="text" placeholder="חיפוש...">
+                <input class="form-control" ng-model="searchText" id="myInput" type="text" placeholder="חיפוש...">
             </div>
         </div>
     </form>
 
-
     <br>
-    <table class="table table-bordered">
+    <table ng-table="NotFinProjTable" class="table table-bordered">
         <thead class="thead-light">
             <tr class="text-center">
                 <th><a href="#" ng-click="sortType = 'Name'; sortReverse = !sortReverse">שם פרוייקט
@@ -39,26 +38,29 @@
                         <span ng-show="sortType == 'Responsible' && !sortReverse" class="fas fa-caret-down"></span>
                     <span ng-show="sortType == 'Responsible' && sortReverse" class="fas fa-caret-up"></span>
                 </a></th>
-                
             </tr>
         </thead>
 
         <tbody id="myTable">
-            <tr class="text-center" ng-repeat="project in projects | orderBy:sortType:sortReverse">
+            <tr class="text-center" dir-paginate="project in projects | orderBy:sortType:sortReverse | filter:searchText | itemsPerPage:5">
                 <td>{{project.Name}}</td>
                 <td>{{project.StartDate | date:'shortDate'}}</td>
                 <td>{{project.Time}}</td>
                 <td>{{project.FinalTime}}</td>
                 <td>{{project.Responsible}}</td>
-                <td><button type="button" class="far fa-edit fa-2x" href="#" ng-click="editproj(project)"></button></td>
-                <td><button type="button" class="far fa-trash-alt fa-2x" href="#" ng-click="delproj(project)"></button></td>
-
+                <td>
+                    <button type="button" class="far fa-edit fa-2x" href="#" ng-click="editproj(project)"></button>
+                </td>
+                <td>
+                    <button type="button" class="far fa-trash-alt fa-2x" href="#" ng-click="delproj(project)"></button>
+                </td>
             </tr>
         </tbody>
-
     </table>
 
-
+    <div class="text-center">
+        <dir-pagination-controls id="pagination" max-size="5" direction-links="true" boundary-links="true"></dir-pagination-controls>
+    </div>
 
     <div class="loading-spiner-holder text-center p-5" data-loading>
         <button class="btn btn-primary">
@@ -69,13 +71,3 @@
 
 </div>
 
-<script>
-    $(document).ready(function () {
-        $("#myInput").on("keyup", function () {
-            var value = $(this).val().toLowerCase();
-            $("#myTable tr").filter(function () {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
-    });
-</script>

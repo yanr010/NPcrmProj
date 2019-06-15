@@ -9,7 +9,7 @@
         <div class="form-group">
             <div class="input-group">
                 <div class="input-group-addon"><i class="fas fa-search fa-2x pl-1"></i></div>
-                <input class="form-control" id="myInput" type="text" placeholder="חיפוש...">
+                <input class="form-control" ng-model="searchText" id="myInput" type="text" placeholder="חיפוש...">
             </div>
         </div>
     </form>
@@ -31,13 +31,13 @@
                         <span ng-show="sortType == 'FinalDate' && !sortReverse" class="fas fa-caret-down"></span>
                     <span ng-show="sortType == 'FinalDate' && sortReverse" class="fas fa-caret-up"></span>
                 </a></th>
-                
-                
+
+
             </tr>
         </thead>
 
         <tbody id="myTable">
-            <tr class="text-center" ng-repeat="task in tasks | orderBy:sortType:sortReverse">
+            <tr class="text-center" dir-paginate="task in tasks | orderBy:sortType:sortReverse | filter:searchText | itemsPerPage:5">
                 <td>{{task.Name}}</td>
                 <td>{{task.Description}}</td>
                 <td>{{task.FinalDate | date:'shortDate'}}</td>
@@ -49,7 +49,9 @@
 
     </table>
 
-
+    <div class="text-center">
+        <dir-pagination-controls id="pagination" max-size="5" direction-links="true" boundary-links="true"></dir-pagination-controls>
+    </div>
 
     <div class="loading-spiner-holder text-center p-5" data-loading>
         <button class="btn btn-primary">
@@ -60,13 +62,3 @@
 
 </div>
 
-<script>
-    $(document).ready(function () {
-        $("#myInput").on("keyup", function () {
-            var value = $(this).val().toLowerCase();
-            $("#myTable tr").filter(function () {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
-    });
-</script>

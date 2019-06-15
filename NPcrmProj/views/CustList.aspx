@@ -9,7 +9,7 @@
         <div class="form-group">
             <div class="input-group">
                 <div class="input-group-addon"><i class="fas fa-search fa-2x pl-1"></i></div>
-                <input class="form-control" id="myInput" type="text" placeholder="חיפוש...">
+                <input class="form-control" ng-model="searchText" id="myInput" type="text" placeholder="חיפוש...">
             </div>
         </div>
     </form>
@@ -45,14 +45,16 @@
         </thead>
 
         <tbody id="myTable">
-            <tr class="text-center" ng-repeat="customer in customers | orderBy:sortType:sortReverse">
+            <tr class="text-center" dir-paginate="customer in customers | orderBy:sortType:sortReverse | filter:searchText | itemsPerPage:5">
                 <td>{{customer.Id}}</td>
                 <td>{{customer.FirstName}}</td>
                 <td>{{customer.LastName}}</td>
                 <td>{{customer.Mobile}}</td>
                 <td>{{customer.Email}}</td>
                 <td><a class="far fa-edit fa-2x" href="#"></a></td>
-                <td><button type="button" class="far fa-trash-alt fa-2x" href="#" ng-click="delCust(customer)"></button></td>
+                <td>
+                    <button type="button" class="far fa-trash-alt fa-2x" href="#" ng-click="delCust(customer)"></button>
+                </td>
 
 
             </tr>
@@ -60,7 +62,9 @@
 
     </table>
 
-
+    <div class="text-center">
+        <dir-pagination-controls id="pagination" max-size="5" direction-links="true" boundary-links="true"></dir-pagination-controls>
+    </div>
 
     <div class="loading-spiner-holder text-center p-5" data-loading>
         <button class="btn btn-primary">
@@ -71,13 +75,4 @@
 
 </div>
 
-<script>
-    $(document).ready(function () {
-        $("#myInput").on("keyup", function () {
-            var value = $(this).val().toLowerCase();
-            $("#myTable tr").filter(function () {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
-    });
-</script>
+

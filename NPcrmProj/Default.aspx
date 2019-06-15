@@ -16,7 +16,7 @@
     <script src="inc/moment-with-locales.js"></script>
     <script src="inc/Chart.min.js"></script>
     <script src="inc/angular-chart.min.js"></script>
-    <script src="inc/xml2json.min.js"></script>
+    <script src="inc/dirPagination.js"></script>
 
 
     <%-- Css --%>
@@ -30,7 +30,7 @@
     <script src="js/Controllers.js"></script>
     <script src="js/DateTime.js"></script>
 
-    
+
 
 
 
@@ -45,6 +45,31 @@
         #navpic {
             border-radius: 50%;
         }
+
+        #pagination {
+            display: inline-block;
+
+        }
+
+            #pagination li {
+                color: black;
+                padding: 8px 16px;
+                text-decoration: none;
+                transition: background-color .3s;
+                border: 1px solid #ddd;
+            }
+
+
+
+                #pagination li.active {
+                    background-color: lightgrey;
+                    color: white;
+                    border: 0px solid lightgrey;
+                }
+
+                #pagination li:hover:not(.active) {
+                    background-color: #ddd;
+                }
     </style>
 
 </head>
@@ -81,9 +106,9 @@
                             <a class="dropdown-item" href="#" ng-click="mainclc('8')">רשימת לקוחות</a>
                         </div>
                     </li>
-                
 
-                     <li class="nav-item dropdown ml-auto">
+
+                    <li class="nav-item dropdown ml-auto">
                         <a class="nav-link dropdown-toggle" href="#">משימות</a>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="#" ng-click="mainclc('3')">הוספת משימה</a>
@@ -106,14 +131,14 @@
                         <a class="nav-link" ng-click="mainclc('2')" href="#">דוחות</a>
                     </li>
 
-                    
+
 
 
 
                 </ul>
 
                 <span id="datetime" class="text-white my-2 my-lg-0 mr-auto d-none d-lg-block"></span>
-                
+
 
 
                 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -139,7 +164,7 @@
         <div class="float-center" ng-include="include"></div>
 
 
-<%--        <div class="float-center" ng-controller="projctrl" ng-if="newproj">
+        <%--        <div class="float-center" ng-controller="projctrl" ng-if="newproj">
             <div ng-include="include"></div>
         </div>
 
@@ -175,10 +200,6 @@
         <div class="float-center" ng-if="reports">
             <div ng-include="include"></div>
         </div>--%>
-
-
-
-
     </div>
 
 
