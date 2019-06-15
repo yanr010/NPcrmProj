@@ -117,6 +117,8 @@
     <Content Include="views\CustForm.aspx" />
     <Content Include="views\CustList.aspx" />
     <Content Include="views\EditProj.aspx" />
+    <Content Include="views\LastCust.aspx" />
+    <Content Include="views\LastTask.aspx" />
     <Content Include="views\Main.aspx" />
     <Content Include="views\NotFinProjList.aspx" />
     <Content Include="views\ProjForm.aspx" />
@@ -214,6 +216,20 @@
     </Compile>
     <Compile Include="views\EditProj.aspx.designer.cs">
       <DependentUpon>EditProj.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="views\LastCust.aspx.cs">
+      <DependentUpon>LastCust.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="views\LastCust.aspx.designer.cs">
+      <DependentUpon>LastCust.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="views\LastTask.aspx.cs">
+      <DependentUpon>LastTask.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="views\LastTask.aspx.designer.cs">
+      <DependentUpon>LastTask.aspx</DependentUpon>
     </Compile>
     <Compile Include="views\Main.aspx.cs">
       <DependentUpon>Main.aspx</DependentUpon>

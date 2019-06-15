@@ -5,12 +5,6 @@
     <h2>כרטיס פרויקט</h2>
 </div>
 
-<div class="loading-spiner-holder text-center p-5" data-loading>
-    <button class="btn btn-primary">
-        <span class="spinner-border spinner-border-sm"></span>
-        מוסיף פרוייקט...
-    </button>
-</div>
 
 <div style="background-color: rgb(240, 240, 240)">
     <form class="well form-horizontal">
@@ -19,7 +13,7 @@
                 <label for="projName" class="col-sm-2 col-form-label">שם פרויקט<span style="color: red">   *</span></label>
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
-                        <input type="text" ng-model="data.projname" placeholder="שם פרויקט" class="form-control" required="true" oninvalid="this.setCustomValidity('נא להכניס שם פרויקט')" oninput="setCustomValidity('')">
+                        <input type="text" ng-model="data.projname" class="form-control" required="true" oninvalid="this.setCustomValidity('נא להכניס שם פרויקט')" oninput="setCustomValidity('')">
                     </div>
                 </div>
             </div>
@@ -133,7 +127,12 @@
             </div>
 
 
-
+            <div class="loading-spiner-holder text-center p-5" data-loading>
+                <button class="btn btn-primary">
+                    <span class="spinner-border spinner-border-sm"></span>
+                    מוסיף פרוייקט...
+                </button>
+            </div>
 
             <br>
             <div class="col-sm-10 text-left">

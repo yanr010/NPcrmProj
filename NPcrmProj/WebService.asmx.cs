@@ -58,11 +58,14 @@ namespace NPcrmProj
                         TimeSpan time = timez.TimeOfDay;
                         newproj.Time = time;
                         string ftime = Convert.ToString(d["finaltime"]);
-                        times = ftime.Split(':');
-                        datet = times[0] + ":" + times[1];
-                        timez = Convert.ToDateTime(datet);
-                        time = timez.TimeOfDay;
-                        newproj.FinalTime = time;
+                        if(ftime != null)
+                        {
+                            times = ftime.Split(':');
+                            datet = times[0] + ":" + times[1];
+                            timez = Convert.ToDateTime(datet);
+                            time = timez.TimeOfDay;
+                            newproj.FinalTime = time;
+                        }
                         newproj.Participant = Convert.ToString(d["participant"]);
                         newproj.Responsible = "רכזת תעסוקה"; //Convert.ToString(d["responsible"]);
                         newproj.ProjectCost = Convert.ToInt32(d["projectCost"]);
@@ -104,17 +107,18 @@ namespace NPcrmProj
                         Collection<string> categories = new Collection<string>();
                         int cnt = 0;
                         foreach (var s in d)
-                            if (s.ToString() != "") {
+                            if (s.ToString() != "")
+                            {
                                 categories.Add(s.ToString());
                                 cnt++;
-                            } 
+                            }
 
-                        for(int i=1; i < cnt; i++)
+                        for (int i = 1; i < cnt; i++)
                         {
                             db.Database.ExecuteSqlCommand("insert into CategoryProject(CategoryName, ProjectId) values (@cat,@id)", new SqlParameter("@cat", categories[i]), new SqlParameter("@id", id));
-                            
+
                         }
-                       
+
                         db.SaveChanges();
                     }
                     else
@@ -178,19 +182,19 @@ namespace NPcrmProj
                 Project proj = db.Projects.FirstOrDefault(i => i.Name == Name);
                 int id = proj.Id;
                 db.Projects.Remove(proj);
-              //db.Entry(proj).State = System.Data.Entity.EntityState.Deleted;
-              //  db.Projects.SqlQuery("delete from Project where Project.Id = @id", new SqlParameter("@id", id));
+                //db.Entry(proj).State = System.Data.Entity.EntityState.Deleted;
+                //  db.Projects.SqlQuery("delete from Project where Project.Id = @id", new SqlParameter("@id", id));
                 db.SaveChanges();
-                log += "id= " + id ;
-                
+                log += "id= " + id;
+
                 return log;
             }
             catch (Exception e)
             {
                 return e.Message.ToString();
             }
-            
-            
+
+
         }
 
         [WebMethod]
@@ -224,7 +228,7 @@ namespace NPcrmProj
                 {
                     var d = data.data;
                     int id = Convert.ToInt32(d["id"]);
-                    var rec = db.Customers.Where(i => i.Id==id).FirstOrDefault();
+                    var rec = db.Customers.Where(i => i.Id == id).FirstOrDefault();
 
                     try
                     {
@@ -269,14 +273,14 @@ namespace NPcrmProj
                             }
                         }
                         throw raise;
-                        
+
                     }
 
                 }
 
             }
             return true;
-            
+
 
         }
         [WebMethod]
@@ -328,9 +332,9 @@ namespace NPcrmProj
 
                 using (dbEntities db = new dbEntities())
                 {
-                    
-                  
-                        var d = data.data;
+
+
+                    var d = data.data;
                     string name = Convert.ToString(d["taskName"]);
                     var rec = db.Tasks.Where(i => i.Name == name).FirstOrDefault();
 
@@ -379,6 +383,7 @@ namespace NPcrmProj
 
 
         }
+
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public void GetAllTasks()
@@ -386,6 +391,34 @@ namespace NPcrmProj
             dbEntities db = new dbEntities();
 
             System.Data.Entity.DbSet<Task> tasks = db.Tasks;
+            string json = JsonConvert.SerializeObject(tasks);
+
+
+            Context.Response.Write(json);
+        }
+
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public void GetLastCusts()
+        {
+            dbEntities db = new dbEntities();
+
+            var custs = db.Customers.SqlQuery("select top(5) * from Customers order by CreateDate DESC");
+            string json = JsonConvert.SerializeObject(custs);
+
+
+            Context.Response.Write(json);
+        }
+
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public void GetLastTasks()
+        {
+            dbEntities db = new dbEntities();
+
+            var tasks = db.Tasks.SqlQuery("select top(5) * from Tasks order by CreateDate DESC");
             string json = JsonConvert.SerializeObject(tasks);
 
 
