@@ -331,6 +331,47 @@ namespace NPcrmProj
                 }
             }
         }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public bool EditCust(string FirstName, string LastName, int Id, string Email, string Mobile, string Gender, string City, string Address
+            , string Education, string Student, string StudyField, string AcademicDegree, string  MilitaryService, string WorkStatus, string Department, string Summary)
+        {
+            try
+            {
+                string log = "";
+                dbEntities db = new dbEntities();
+                var result = db.Customers.SingleOrDefault(p => p.Id == Id);
+                if (result != null)
+                {
+                    result.FirstName = FirstName;
+                    result.LastName = LastName;
+                    result.Gender = Gender;
+                    result.Mobile = Mobile;
+                    result.Email = Email;
+                    result.Address = Address;
+                    result.City = City;
+                    result.Education = Boolean.Parse(Education);
+                    result.Student = Boolean.Parse(Student);
+                    result.Studyfield = StudyField;
+                    result.MilitaryService = MilitaryService;
+                    result.WorkStatus = Boolean.Parse(WorkStatus);
+                    result.Summary = Summary;
+                    result.Department = Department;
+                    db.SaveChanges();
+
+                }
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
+
+        }
+
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public string DeleteCust(int Id)
