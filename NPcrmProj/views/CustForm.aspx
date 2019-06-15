@@ -36,7 +36,7 @@
                                     <label for="Email" class="col-sm-2 col-form-label">כתובת דוא"ל<span style="color:red">   *</span></label>
                                     <div class="col-md-3 inputGroupContainer">
                                         <div class="input-group"> 
-                                            <input ng-model="data.email" placeholder="מייל" type="text" class="form-control"  required="true">
+                                            <input ng-model="data.email" placeholder="מייל" type="email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control"  required="true">
                                         </div>
                                         </div>
                                     </div>
@@ -44,7 +44,7 @@
                                     <label for="mobile" class="col-md-2 control-label">טלפון נייד<span style="color:red">   *</span></label>
                                      <div class="col-md-3 inputGroupContainer">
                                         <div class="input-group">
-                                            <input ng-model="data.mobile" placeholder="טלפון נייד" class="form-control" type="number" maxlength="10" name="mobile" required="true"></div>
+                                            <input ng-model="data.mobile" placeholder="טלפון נייד" class="form-control" type="text" maxlength="10" pattern="\d*" name="mobile" required="true"></div>
                                     </div>
                                     
                                 </div>
@@ -177,37 +177,38 @@
                             <fieldset>
                                 <br>
                                 <H5>סיבת הגעה</H5>
-                                 <div class="form-group">
-                                 <label for="Services" class="col-sm-right-2 col-form-label">שירותים רלוונטים<span style="color:red">   *</span></label>
-                                    <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="Services1" name="Services1">
-                                     <label class="custom-control-label" for="Services1">מציאת עבודה </label>
-                                    </div>
-                               <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="Services2" name="Services2">
-                                     <label class="custom-control-label" for="Services2">כספים</label>
-                                    </div>
-                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="Services3" name="Services3">
-                                    <label class="custom-control-label" for="Services3">מלגות לימודים</label>
-                                </div>
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="Services4" name="Services4">
-                                    <label class="custom-control-label" for="Services4"> לימודים</label>
-                                </div>
-                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="Services5" name="5">
-                                    <label class="custom-control-label" for="Services5">זכויות של חיילים משוחררים</label>
-        
-                                </div>
-                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="Services6" name="Services6">
-                                     <label class="custom-control-label" for="Services6">קורסי פסיכומטרי </label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="Services7" name="Services7">
-                                     <label class="custom-control-label" for="Services7">משפחה והורות </label>
-                                    </div>
+                                      <div class="form-group text-right">
+                <label for="Services" class="col-sm-right-2 col-form-label">שירותים רלוונטים<span style="color: red">   *</span></label>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" ng-model="data.inp1" class="custom-control-input" id="Services1" name="Services1">
+                    <label class="custom-control-label" ng-model="data.work" for="Services1">מציאת עבודה </label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" ng-model="data.inp2" class="custom-control-input" id="Services2" name="Services2">
+                    <label class="custom-control-label" ng-model="data.finance" for="Services2">כספים</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" ng-model="data.inp3" class="custom-control-input" id="Services3" name="Services3">
+                    <label class="custom-control-label" ng-model="data.milgotedu" for="Services3">מלגות לימודים</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" ng-model="data.inp4" class="custom-control-input" id="Services4" name="Services4">
+                    <label class="custom-control-label" ng-model="data.edu" for="Services4">לימודים</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" ng-model="data.inp5" class="custom-control-input" id="Services5" name="5">
+                    <label class="custom-control-label" ng-model="data.former" for="Services5">זכויות של חיילים משוחררים</label>
+
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" ng-model="data.inp6" class="custom-control-input" id="Services6" name="Services6">
+                    <label class="custom-control-label" ng-model="data.psycho" for="Services6">קורסי פסיכומטרי </label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" ng-model="data.inp7" class="custom-control-input" id="Services7" name="Services7">
+                    <label class="custom-control-label" ng-model="data.family" for="Services7">משפחה והורות </label>
+                </div>
+            </div>
                                <div class="form-group row">
                                     <label for="department" class="col-sm-2 col-form-label">השתייכות למחלקה<span style="color:red">   *</span></label>
                                     <div class="col-md-3 inputGroupContainer">

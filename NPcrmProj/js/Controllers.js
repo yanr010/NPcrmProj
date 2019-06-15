@@ -297,7 +297,39 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
 
 
     $scope.submitCust = function () {
+        var category = [];
+        category[0] = $scope.data.id;
+        if ($scope.data.inp1 == true) {
+            category[1] = "מציאת עבודה";
+        }
 
+        if ($scope.data.inp2 == true) {
+            category[2] = "כספים";
+        }
+
+        if ($scope.data.inp3 == true) {
+            category[3] = "מלגות לימודים";
+        }
+
+        if ($scope.data.inp4 == true) {
+            category[4] = "לימודים";
+        }
+
+        if ($scope.data.inp5 == true) {
+            category[5] = "זכויות של חיילים משוחררים";
+        }
+
+        if ($scope.data.inp6 == true) {
+            category[6] = "קורסי פסיכומטרי";
+        }
+
+        if ($scope.data.inp7 == true) {
+            category[7] = "משפחה והורות";
+        }
+
+
+
+        var categories = { data: category };
         var dat = { data: $scope.data };
 
 
@@ -305,6 +337,9 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
             .then(function (response) {
                 console.log(response);
                 if (response.data.d == true) {
+                    $http.post("WebService.asmx/SetCustomerCategory", categories, null)
+                      .then(function (response) {
+                      });
                     alert("לקוח חדש נוסף בהצלחה");
                     $scope.include = "views/CustList.aspx";
                     GetAllCustomers();

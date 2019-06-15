@@ -279,6 +279,54 @@ namespace NPcrmProj
             
 
         }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+
+        public bool SetCustomerCategory()
+        {
+            using (var stream = new MemoryStream())
+            {
+                var request = HttpContext.Current.Request;
+                request.InputStream.Seek(0, SeekOrigin.Begin);
+                request.InputStream.CopyTo(stream);
+                var dataStr = System.Text.Encoding.UTF8.GetString(stream.ToArray());
+                var data = (dynamic)JsonConvert.DeserializeObject(dataStr);
+
+
+                using (dbEntities db = new dbEntities())
+                {
+                    var d = data.data;
+                    int tempId = Convert.ToInt32(d[0]);
+                    var rec = db.Customers.Where(i => i.Id == tempId).FirstOrDefault();
+                    if (rec != null)
+                    {
+                        int id = rec.Id;
+                        Collection<string> categories = new Collection<string>();
+                        int cnt = 0;
+                        foreach (var s in d)
+                            if (s.ToString() != "")
+                            {
+                                categories.Add(s.ToString());
+                                cnt++;
+                            }
+
+                        for (int i = 1; i < cnt; i++)
+                        {
+                            db.Database.ExecuteSqlCommand("insert into CustomerCategory(CustomerId, CategoryName) values (@id,@cat)", new SqlParameter("@id", id), new SqlParameter("@cat", categories[i]));
+
+                        }
+
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                    return true;
+                }
+            }
+        }
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public string DeleteCust(int Id)
