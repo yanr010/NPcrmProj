@@ -360,6 +360,65 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
                 }
             });
     };
+    $scope.editTask = function (task) {
+        $window.scrollTo(0, 0);
+        $scope.taskName = task.Name;
+        $scope.description = task.Description;
+        $scope.finalDate = task.FinalDate.split("T", 1);
+        $scope.department = task.Department;
+        $scope.include = "views/EditTask.aspx";
+
+    }
+    $scope.doneTask = function (task) {
+        $window.scrollTo(0, 0);
+        $scope.taskName = task.Name;
+        var editdata = {
+            params: {
+                Name: this.taskName }
+        }
+        $http.get("WebService.asmx/DoneTask", editdata)
+           .then(function (response) {
+               if (response == false) {
+                   alert("תקלה בעריכת משימה");
+               }
+               else {
+                   alert("הפרטים נשמרו")
+                   $scope.include = "views/TaskList.aspx";
+                   GetAllTasks();
+               }
+           }
+           )
+    }
+
+    $scope.submitEditTask = function () {
+        var editdata = {
+            params: {
+                Name: this.taskName, Description: this.description,  Department: this.department
+            }
+        }
+        $http.get("WebService.asmx/EditTask", editdata)
+            .then(function (response) {
+                if (response == false) {
+                    alert("תקלה בעריכת משימה");
+                }
+                else {
+                    alert("הפרטים נשמרו")
+                    $scope.include = "views/TaskList.aspx";
+                    GetAllTasks();
+                }
+            });
+    }
+
+    $scope.delTask = function (task) {
+        var data = {
+            params: { Id: task.Id }
+        }
+        $http.get("WebService.asmx/DeleteTask", data)
+            .then(function (response) {
+                GetAllTasks();
+
+            });
+    }
     function GetAllTasks() {
         $scope.sortType = 'Name'; // set the default sort type
         $scope.sortReverse = false;  // set the default sort order

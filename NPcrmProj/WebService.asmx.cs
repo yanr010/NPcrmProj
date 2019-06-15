@@ -471,8 +471,78 @@ namespace NPcrmProj
             return true;
 
 
-        }
 
+        }
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public bool EditTask(string Name, string Description, string  Department)
+        {
+            try
+            {
+                string log = "";
+                dbEntities db = new dbEntities();
+                var result = db.Tasks.SingleOrDefault(p => p.Name == Name);
+                if (result != null)
+                {
+                    result.Description = Description;
+                    result.Department = Department;
+                    db.SaveChanges();
+                }
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
+
+        }
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public bool DoneTask(string Name)
+        {
+            try
+            {
+                string log = "";
+                dbEntities db = new dbEntities();
+                var result = db.Tasks.SingleOrDefault(p => p.Name == Name);
+                if (result != null)
+                {
+                    result.Done = true;
+                    db.SaveChanges();
+                }
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
+
+        }
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public string DeleteTask(int Id)
+        {
+            try
+            {
+                string log = "";
+                dbEntities db = new dbEntities();
+                Task task = db.Tasks.FirstOrDefault(i => i.Id == Id);
+                db.Tasks.Remove(task);
+                db.SaveChanges();
+
+                return log;
+            }
+            catch (Exception e)
+            {
+                return e.Message.ToString();
+            }
+
+
+        }
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public void GetAllTasks()

@@ -178,6 +178,12 @@
                                      <label for="Summary" class="col-sm-2 col-form-label">  סיכום פגישה<span style="color:red">   *</span></label>
                                      <textarea class="form-control col-sm-8" ng-model="Summary" rows="6"></textarea>
                                 </div>
+                                 <div class="loading-spiner-holder text-center p-5" data-loading>
+                <button class="btn btn-primary">
+                    <span class="spinner-border spinner-border-sm"></span>
+                    מעדכן לקוח...
+                </button>
+            </div>
                                    <br>
                                 <div class="col-sm-10 text-left">
                                <button ng-click="submitEditCustomer()" class="btn btn-primary btn-lg">שמור שינויים</button>

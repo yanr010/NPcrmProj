@@ -31,6 +31,10 @@
                         <span ng-show="sortType == 'FinalDate' && !sortReverse" class="fas fa-caret-down"></span>
                     <span ng-show="sortType == 'FinalDate' && sortReverse" class="fas fa-caret-up"></span>
                 </a></th>
+                <th><a href="#" ng-click="sortType = 'Done'; sortReverse = !sortReverse">בוצע
+                        <span ng-show="sortType == 'Done' && !sortReverse" class="fas fa-caret-down"></span>
+                    <span ng-show="sortType == 'Done' && sortReverse" class="fas fa-caret-up"></span>
+                </a></th>
 
 
             </tr>
@@ -41,9 +45,17 @@
                 <td>{{task.Name}}</td>
                 <td>{{task.Description}}</td>
                 <td>{{task.FinalDate | date:'shortDate'}}</td>
-                <td><a class="far fa-edit fa-2x" href="#"></a></td>
-                <td><a class="far fa-trash-alt fa-2x" href="#"></a></td>
-
+                 <td>{{task.Done}}</td>
+                <td>
+                    <button type="button" class="fa fa-check fa-2x" href="#" ng-click="doneTask(task)"></button>
+                </td>
+             <td>
+                    <button type="button" class="far fa-edit fa-2x" href="#" ng-click="editTask(task)"></button>
+                </td>
+                <td>
+                    <button type="button" class="far fa-trash-alt fa-2x" href="#" ng-click="delTask(task)"></button>
+                </td>
+                
             </tr>
         </tbody>
 
