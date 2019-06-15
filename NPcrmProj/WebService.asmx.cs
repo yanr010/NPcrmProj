@@ -312,7 +312,75 @@ namespace NPcrmProj
 
             Context.Response.Write(json);
         }
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
 
+        public bool SetTask()
+        {
+            using (var stream = new MemoryStream())
+            {
+                var request = HttpContext.Current.Request;
+                request.InputStream.Seek(0, SeekOrigin.Begin);
+                request.InputStream.CopyTo(stream);
+                var dataStr = System.Text.Encoding.UTF8.GetString(stream.ToArray());
+                var data = (dynamic)JsonConvert.DeserializeObject(dataStr);
+
+
+                using (dbEntities db = new dbEntities())
+                {
+                    
+                  
+                        var d = data.data;
+                    string name = Convert.ToString(d["taskName"]);
+                    var rec = db.Tasks.Where(i => i.Name == name).FirstOrDefault();
+
+                    try
+                    {
+                        if (rec == null)
+                        {
+
+                            Task newTask = new Task();
+                            int id = db.Tasks.Max(i => i.Id) + 1;
+                            newTask.Id = id;
+                            newTask.CreateDate = DateTime.Now;
+                            newTask.Name = Convert.ToString(d["taskName"]);
+                            newTask.FinalDate = Convert.ToDateTime(d["finalDate"]);
+                            newTask.Description = Convert.ToString(d["description"]);
+                            newTask.Department = Convert.ToString(d["department"]);
+                            //newTask.ProjectId = Convert.ToString(d["selectedProj"]);
+                            //newTask.CustomerId = Convert.ToString(d["selectedCustomer"]);
+                            newTask.Done = Convert.ToBoolean(fa);
+                            db.Tasks.Add(newTask);
+                            db.SaveChanges();
+                        }
+                        else return false;
+                    }
+                    catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+                    {
+                        Exception raise = dbEx;
+                        foreach (var validationErrors in dbEx.EntityValidationErrors)
+                        {
+                            foreach (var validationError in validationErrors.ValidationErrors)
+                            {
+                                string message = string.Format("{0}:{1}",
+                                    validationErrors.Entry.Entity.ToString(),
+                                    validationError.ErrorMessage);
+                                // raise a new exception nesting
+                                // the current instance as InnerException
+                                raise = new InvalidOperationException(message, raise);
+                            }
+                        }
+                        throw raise;
+
+                    }
+
+                }
+
+            }
+            return true;
+
+
+        }
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public void GetAllTasks()

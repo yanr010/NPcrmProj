@@ -337,6 +337,27 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
 
           });
     }
+
+    $scope.submitTask = function () {
+
+        $scope.data.finalDate = $scope.data.finalDate.toDateString();
+
+        var dat = { data: $scope.data };
+
+
+
+        $http.post("WebService.asmx/SetTask", dat, null)
+            .then(function (response) {
+                if (response.data.d == false) {
+                    alert("משימה בשם זה כבר קיימת במערכת, אנא בחר שם אחר");
+                }
+                else {
+                    alert("משימה חדשה נוספה בהצלחה");
+                    $scope.include = "views/TaskList.aspx";
+                    GetAllTasks();
+                }
+            });
+    };
     function GetAllTasks() {
         $scope.sortType = 'Name'; // set the default sort type
         $scope.sortReverse = false;  // set the default sort order
