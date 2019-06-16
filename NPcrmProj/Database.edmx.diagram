@@ -4,14 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c8acc06ff7f741bfa2b86ff5a14b0f8f" Name="Diagram1" ZoomLevel="86">
-        <EntityTypeShape EntityType="MerkazModel.Category" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MerkazModel.Customer" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MerkazModel.Department" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MerkazModel.Project" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MerkazModel.sysdiagram" Width="1.5" PointX="3.75" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MerkazModel.Task" Width="1.5" PointX="7.5" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="MerkazModel.User" Width="1.5" PointX="1.5" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="c8acc06ff7f741bfa2b86ff5a14b0f8f" Name="Diagram1" ZoomLevel="72">
+        <EntityTypeShape EntityType="MerkazModel.Category" Width="1.5" PointX="7" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MerkazModel.Customer" Width="1.5" PointX="2.875" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MerkazModel.Department" Width="1.5" PointX="0.875" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MerkazModel.Project" Width="1.5" PointX="5" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MerkazModel.sysdiagram" Width="1.5" PointX="7.25" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MerkazModel.Task" Width="1.5" PointX="5" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="MerkazModel.User" Width="1.5" PointX="1.375" PointY="2" IsExpanded="true" />
         <AssociationConnector Association="MerkazModel.FK_Customers_Departments" ManuallyRouted="false" />
         <AssociationConnector Association="MerkazModel.FK_Departments_Users" ManuallyRouted="false" />
         <AssociationConnector Association="MerkazModel.FK_Tasks_Departments" ManuallyRouted="false" />

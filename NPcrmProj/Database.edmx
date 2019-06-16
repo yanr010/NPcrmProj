@@ -113,6 +113,7 @@
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_CategoryProject_Projects">
           <End Role="Projects" Type="Self.Projects" Multiplicity="1">
@@ -366,6 +367,7 @@
           <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Departments" Relationship="Self.FK_Departments_Users" FromRole="Users" ToRole="Departments" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Customers_Departments">
           <End Role="Departments" Type="Self.Department" Multiplicity="0..1" />
@@ -540,6 +542,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="MerkazModel.User">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Password" ColumnName="Password" />

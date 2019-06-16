@@ -577,7 +577,7 @@ namespace NPcrmProj
         {
             dbEntities db = new dbEntities();
 
-            var tasks = db.Tasks.SqlQuery("select top(5) * from Tasks order by CreateDate DESC");
+            var tasks = db.Tasks.SqlQuery("select top(5) * from Tasks order by FinalDate DESC");
             string json = JsonConvert.SerializeObject(tasks);
 
 

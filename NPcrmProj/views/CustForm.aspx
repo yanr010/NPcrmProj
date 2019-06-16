@@ -28,7 +28,8 @@
                                     <label for="id" class="col-sm-2 col-form-label">תעודת זהות<span style="color:red">   *</span></label>
                                     <div class="col-md-3 inputGroupContainer">
                                         <div class="input-group">
-                                            <input ng-model="data.id" placeholder="תעודת זהות" class="form-control" maxlength="10" pattern="[0-9]" required="true" value="" type="text">
+                                            <input ng-model="data.id" placeholder="תעודת זהות" class="form-control" maxlength="9" minlength="9" pattern="[0-9]" required="true" value="" type="text"
+                                                oninvalid="this.setCustomValidity('תעודת זהות לא תקינה')" oninput="setCustomValidity('')">
                                         </div>
                                     </div>
                                 </div>
@@ -36,7 +37,8 @@
                                     <label for="Email" class="col-sm-2 col-form-label">כתובת דוא"ל<span style="color:red">   *</span></label>
                                     <div class="col-md-3 inputGroupContainer">
                                         <div class="input-group"> 
-                                            <input ng-model="data.email" placeholder="מייל" type="email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control"  required="true">
+                                            <input ng-model="data.email" placeholder="מייל" type="email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control"  required="true"
+                                                oninvalid="this.setCustomValidity('מייל לא תקין')" oninput="setCustomValidity('')">
                                         </div>
                                         </div>
                                     </div>
@@ -44,7 +46,8 @@
                                     <label for="mobile" class="col-md-2 control-label">טלפון נייד<span style="color:red">   *</span></label>
                                      <div class="col-md-3 inputGroupContainer">
                                         <div class="input-group">
-                                            <input ng-model="data.mobile" placeholder="טלפון נייד" class="form-control" type="tel" maxlength="10" pattern="[0-9]" name="mobile" required="true"></div>
+                                            <input ng-model="data.mobile" placeholder="טלפון נייד" class="form-control" type="tel" maxlength="10" minlengh="10" pattern="[0-9]" name="mobile" required="true"
+                                                oninvalid="this.setCustomValidity('טלפון לא תקין')" oninput="setCustomValidity('')"></div>
                                     </div>
                                     
                                 </div>
