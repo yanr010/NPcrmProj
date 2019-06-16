@@ -1,6 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TaskList.aspx.cs" Inherits="NPcrmProj.views.TaskList" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ClosedTasks.aspx.cs" Inherits="NPcrmProj.views.ClosedTasks" %>
 
-<h1 class="text-center p-2">משימות פתוחות</h1>
+<h1 class="text-center p-2">משימות סגורות</h1>
 
 
 <div class="container mt-3">
@@ -33,23 +33,16 @@
                 </a></th>
 
 
-
             </tr>
         </thead>
 
         <tbody id="myTable">
-            <tr class="text-center" dir-paginate="optask in optasks | orderBy:sortType:sortReverse | filter:searchText | itemsPerPage:5">
-                <td>{{optask.Name}}</td>
-                <td>{{optask.Description}}</td>
-                <td>{{optask.FinalDate | date:'shortDate'}}</td>
+            <tr class="text-center" dir-paginate="clstask in clstasks | orderBy:sortType:sortReverse | filter:searchText | itemsPerPage:5">
+                <td>{{clstask.Name}}</td>
+                <td>{{clstask.Description}}</td>
+                <td>{{clstask.FinalDate | date:'shortDate'}}</td>
                 <td>
-                    <button type="button" class="fa fa-check fa-2x" href="#" ng-click="doneTask(optask)"></button>
-                </td>
-             <td>
-                    <button type="button" class="far fa-edit fa-2x" href="#" ng-click="editTask(optask)"></button>
-                </td>
-                <td>
-                    <button type="button" class="far fa-trash-alt fa-2x" href="#" ng-click="delTask(optask)"></button>
+                    <button type="button" class="far fa-trash-alt fa-2x" href="#" ng-click="delTask(clstask)"></button>
                 </td>
                 
             </tr>

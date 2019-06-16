@@ -3,21 +3,34 @@
 
 
 
-<div class="container-fluid p-2">
-  
-  <div class="row">
-    <div class="col border">
-        <h2 class="text-center">לקוחות חדשים</h2>
-        <div ng-include="lastcust"></div>
+<div class="container-fluid p-4">
+
+    <div class="row">
+        <div class="col-2 mx-3">
+            <h3 class="text-center">סה"כ במערכת</h3>
+            <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-center">לקוחות
+    <span class="badge badge-primary badge-pill">{{custcount}}</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">פרוייקטים
+    <span class="badge badge-primary badge-pill" ng-value="projcount"></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">משימות
+    <span class="badge badge-primary badge-pill" ng-value="taskcount"></span>
+                </li>
+            </ul>
+        </div>
+        <div class="col border mx-3">Column</div>
+        <div class="w-100 p-5"></div>
+        <div class="col border mx-3">
+            <h2 class="text-center">לקוחות חדשים</h2>
+            <div ng-include="lastcust"></div>
+        </div>
+        <div class="col border mx-3">
+            <h2 class="text-center">משימות חדשות</h2>
+            <div ng-include="lasttask"></div>
+        </div>
     </div>
-    <div class="col border">
-        <h2 class="text-center">משימות חדשות</h2>
-        <div ng-include="lasttask"></div>
-    </div>
-    <div class="w-100"></div>
-    <div class="col border">Column</div>
-    <div class="col border">Column</div>
-  </div>
 </div>
 
 

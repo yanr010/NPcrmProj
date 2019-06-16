@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CustForm.aspx.cs" Inherits="NPcrmProj.views.CustForm" %>
 
 <div class="text-center p-3">
-        <h2>טופס אינטק - שאלון הכרות</h2>
+        <h2>הוספת לקוח חדש</h2>
     </div>
     
   <div style="background-color:rgb(240, 240, 240)">
@@ -9,7 +9,7 @@
                             <fieldset>
                                 <H5>פרטים אישיים:</H5>
                                 <div class="form-group row">
-                                <label for="firstName" class="col-sm-2 col-form-label">שם פרטי<span style="color:red">   *</span></label>
+                                <label class="col-sm-2 col-form-label">שם פרטי<span style="color:red">   *</span></label>
                                     <div class="col-md-3 inputGroupContainer">
                                         <div class="input-group">
                                             <input ng-model="data.firstName" placeholder="שם פרטי" class="form-control" required="true" value="" type="text">
@@ -17,7 +17,7 @@
                                     </div>
                                 </div>
                                  <div class="form-group row">
-                                    <label for="lastName" class="col-sm-2 col-form-label">שם משפחה<span style="color:red">   *</span></label>
+                                    <label class="col-sm-2 col-form-label">שם משפחה<span style="color:red">   *</span></label>
                                     <div class="col-md-3 inputGroupContainer">
                                         <div class="input-group">
                                             <input ng-model="data.lastName" placeholder="שם משפחה" class="form-control" required="true" value="" type="text">
@@ -25,10 +25,10 @@
                                     </div>
                                 </div>
                                  <div class="form-group row">
-                                    <label for="id" class="col-sm-2 col-form-label">תעודת זהות<span style="color:red">   *</span></label>
+                                    <label class="col-sm-2 col-form-label">תעודת זהות<span style="color:red">   *</span></label>
                                     <div class="col-md-3 inputGroupContainer">
                                         <div class="input-group">
-                                            <input ng-model="data.id" placeholder="תעודת זהות" class="form-control" maxlength="9" minlength="9" pattern="[0-9]" required="true" value="" type="text"
+                                            <input ng-model="data.id" placeholder="תעודת זהות" class="form-control" required="true" value="" type="text"
                                                 oninvalid="this.setCustomValidity('תעודת זהות לא תקינה')" oninput="setCustomValidity('')">
                                         </div>
                                     </div>
@@ -37,7 +37,7 @@
                                     <label for="Email" class="col-sm-2 col-form-label">כתובת דוא"ל<span style="color:red">   *</span></label>
                                     <div class="col-md-3 inputGroupContainer">
                                         <div class="input-group"> 
-                                            <input ng-model="data.email" placeholder="מייל" type="email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control"  required="true"
+                                            <input ng-model="data.email" placeholder="מייל" type="email" class="form-control"  required="true"
                                                 oninvalid="this.setCustomValidity('מייל לא תקין')" oninput="setCustomValidity('')">
                                         </div>
                                         </div>
@@ -184,32 +184,32 @@
                 <label for="Services" class="col-sm-right-2 col-form-label">שירותים רלוונטים<span style="color: red">   *</span></label>
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" ng-model="data.inp1" class="custom-control-input" id="Services1" name="Services1">
-                    <label class="custom-control-label" ng-model="data.work" for="Services1">מציאת עבודה </label>
+                    <label class="custom-control-label" for="Services1">מציאת עבודה </label>
                 </div>
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" ng-model="data.inp2" class="custom-control-input" id="Services2" name="Services2">
-                    <label class="custom-control-label" ng-model="data.finance" for="Services2">כספים</label>
+                    <label class="custom-control-label" for="Services2">כספים</label>
                 </div>
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" ng-model="data.inp3" class="custom-control-input" id="Services3" name="Services3">
-                    <label class="custom-control-label" ng-model="data.milgotedu" for="Services3">מלגות לימודים</label>
+                    <label class="custom-control-label" for="Services3">מלגות לימודים</label>
                 </div>
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" ng-model="data.inp4" class="custom-control-input" id="Services4" name="Services4">
-                    <label class="custom-control-label" ng-model="data.edu" for="Services4">לימודים</label>
+                    <label class="custom-control-label" for="Services4">לימודים</label>
                 </div>
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" ng-model="data.inp5" class="custom-control-input" id="Services5" name="5">
-                    <label class="custom-control-label" ng-model="data.former" for="Services5">זכויות של חיילים משוחררים</label>
+                    <label class="custom-control-label" for="Services5">זכויות של חיילים משוחררים</label>
 
                 </div>
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" ng-model="data.inp6" class="custom-control-input" id="Services6" name="Services6">
-                    <label class="custom-control-label" ng-model="data.psycho" for="Services6">קורסי פסיכומטרי </label>
+                    <label class="custom-control-label" for="Services6">קורסי פסיכומטרי </label>
                 </div>
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" ng-model="data.inp7" class="custom-control-input" id="Services7" name="Services7">
-                    <label class="custom-control-label" ng-model="data.family" for="Services7">משפחה והורות </label>
+                    <label class="custom-control-label" for="Services7">משפחה והורות </label>
                 </div>
             </div>
                                <div class="form-group row">

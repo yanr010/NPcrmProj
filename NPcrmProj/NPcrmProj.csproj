@@ -114,6 +114,7 @@
     <Content Include="pics\merkaz_btf_icon.ico" />
     <Content Include="styles\Login.css" />
     <Content Include="views\Charts.aspx" />
+    <Content Include="views\ClosedTasks.aspx" />
     <Content Include="views\CustForm.aspx" />
     <Content Include="views\CustList.aspx" />
     <Content Include="views\EditCust.aspx" />
@@ -197,6 +198,13 @@
     </Compile>
     <Compile Include="views\Charts.aspx.designer.cs">
       <DependentUpon>Charts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="views\ClosedTasks.aspx.cs">
+      <DependentUpon>ClosedTasks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="views\ClosedTasks.aspx.designer.cs">
+      <DependentUpon>ClosedTasks.aspx</DependentUpon>
     </Compile>
     <Compile Include="views\CustForm.aspx.cs">
       <DependentUpon>CustForm.aspx</DependentUpon>

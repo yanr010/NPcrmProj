@@ -113,7 +113,9 @@
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="#" ng-click="mainclc('3')">הוספת משימה</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" ng-click="mainclc('7')">רשימת משימות</a>
+                            <a class="dropdown-item" href="#" ng-click="mainclc('7')">משימות פעילות</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" ng-click="mainclc('10')">משימות סגורות</a>
                         </div>
                     </li>
 

@@ -58,7 +58,7 @@ namespace NPcrmProj
                         TimeSpan time = timez.TimeOfDay;
                         newproj.Time = time;
                         string ftime = Convert.ToString(d["finaltime"]);
-                        if(ftime != null)
+                        if (ftime != null)
                         {
                             times = ftime.Split(':');
                             datet = times[0] + ":" + times[1];
@@ -213,7 +213,7 @@ namespace NPcrmProj
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
 
-        public bool SetCust()
+        public string SetCust()
         {
             using (var stream = new MemoryStream())
             {
@@ -228,60 +228,76 @@ namespace NPcrmProj
                 {
                     var d = data.data;
                     int id = Convert.ToInt32(d["id"]);
+                    string email = Convert.ToString(d["email"]);
+                    string mobile = Convert.ToString(d["mobile"]);
+
                     var rec = db.Customers.Where(i => i.Id == id).FirstOrDefault();
-
-                    try
+                    if (rec != null && rec.Id == id)
                     {
-                        if (rec == null)
-                        {
-                            Customer newCust = new Customer();
-                            newCust.Id = Convert.ToInt32(d["id"]);
-                            newCust.CreateDate = DateTime.Now;
-                            newCust.FirstName = Convert.ToString(d["firstName"]);
-                            newCust.LastName = Convert.ToString(d["lastName"]);
-                            newCust.Gender = Convert.ToString(d["gender"]);
-                            newCust.BirthDate = Convert.ToDateTime(d["birthDate"]);
-                            newCust.Mobile = Convert.ToString(d["mobile"]);
-                            newCust.Email = Convert.ToString(d["email"]);
-                            newCust.Address = Convert.ToString(d["address"]);
-                            newCust.City = Convert.ToString(d["city"]);
-                            newCust.Education = Convert.ToBoolean(d["Education"]);
-                            newCust.Student = Convert.ToBoolean(d["student"]);
-                            newCust.Studyfield = Convert.ToString(d["studyFields"]);
-                            newCust.MilitaryService = Convert.ToString(d["militaryService"]);
-                            newCust.WorkStatus = Convert.ToBoolean(d["work"]);
-                            newCust.Summary = Convert.ToString(d["Summary"]);
-                            newCust.Department = Convert.ToString(d["department"]);
-                            db.Customers.Add(newCust);
-                            db.SaveChanges();
-                        }
-                        else return false;
+                        return "id";
                     }
-                    catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+
+                    rec = db.Customers.Where(i => i.Email == email).FirstOrDefault();
+                    if (rec != null && rec.Email == email)
                     {
-                        Exception raise = dbEx;
-                        foreach (var validationErrors in dbEx.EntityValidationErrors)
-                        {
-                            foreach (var validationError in validationErrors.ValidationErrors)
-                            {
-                                string message = string.Format("{0}:{1}",
-                                    validationErrors.Entry.Entity.ToString(),
-                                    validationError.ErrorMessage);
-                                // raise a new exception nesting
-                                // the current instance as InnerException
-                                raise = new InvalidOperationException(message, raise);
-                            }
-                        }
-                        throw raise;
+                        return "mail";
+                    }
+
+                    rec = db.Customers.Where(i => i.Mobile == mobile).FirstOrDefault();
+                    if (rec != null && rec.Mobile == mobile)
+                    {
+                        return "mobile";
+                    }
+
+                    if (rec == null)
+                    {
+                        Customer newCust = new Customer();
+                        newCust.Id = Convert.ToInt32(d["id"]);
+                        newCust.CreateDate = DateTime.Now;
+                        newCust.FirstName = Convert.ToString(d["firstName"]);
+                        newCust.LastName = Convert.ToString(d["lastName"]);
+                        newCust.Gender = Convert.ToString(d["gender"]);
+                        newCust.BirthDate = Convert.ToDateTime(d["birthDate"]);
+                        newCust.Mobile = Convert.ToString(d["mobile"]);
+                        newCust.Email = Convert.ToString(d["email"]);
+                        newCust.Address = Convert.ToString(d["address"]);
+                        newCust.City = Convert.ToString(d["city"]);
+                        newCust.Education = Convert.ToBoolean(d["Education"]);
+                        newCust.Student = Convert.ToBoolean(d["student"]);
+                        newCust.Studyfield = Convert.ToString(d["studyFields"]);
+                        newCust.MilitaryService = Convert.ToString(d["militaryService"]);
+                        newCust.WorkStatus = Convert.ToBoolean(d["work"]);
+                        newCust.Summary = Convert.ToString(d["Summary"]);
+                        newCust.Department = Convert.ToString(d["department"]);
+                        db.Customers.Add(newCust);
+                        db.SaveChanges();
 
                     }
+
+
+
+                    //catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+                    //{
+                    //    Exception raise = dbEx;
+                    //    foreach (var validationErrors in dbEx.EntityValidationErrors)
+                    //    {
+                    //        foreach (var validationError in validationErrors.ValidationErrors)
+                    //        {
+                    //            string message = string.Format("{0}:{1}",
+                    //                validationErrors.Entry.Entity.ToString(),
+                    //                validationError.ErrorMessage);
+                    //            // raise a new exception nesting
+                    //            // the current instance as InnerException
+                    //            raise = new InvalidOperationException(message, raise);
+                    //        }
+                    //    }
+                    //    throw raise;
+
+                    //}
 
                 }
-
             }
-            return true;
-
-
+            return "ok";
         }
 
         [WebMethod]
@@ -335,7 +351,7 @@ namespace NPcrmProj
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public bool EditCust(string FirstName, string LastName, int Id, string Email, string Mobile, string Gender, string City, string Address
-            , string Education, string Student, string StudyField, string AcademicDegree, string  MilitaryService, string WorkStatus, string Department, string Summary)
+            , string Education, string Student, string StudyField, string AcademicDegree, string MilitaryService, string WorkStatus, string Department, string Summary)
         {
             try
             {
@@ -475,7 +491,7 @@ namespace NPcrmProj
         }
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public bool EditTask(string Name, string Description, string  Department)
+        public bool EditTask(string Name, string Description, string Department)
         {
             try
             {
@@ -545,11 +561,25 @@ namespace NPcrmProj
         }
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public void GetAllTasks()
+        public void GetAllOpenTasks()
         {
             dbEntities db = new dbEntities();
 
-            System.Data.Entity.DbSet<Task> tasks = db.Tasks;
+            var tasks = db.Tasks.SqlQuery("select * from Tasks where done = 'true'");
+            string json = JsonConvert.SerializeObject(tasks);
+
+
+            Context.Response.Write(json);
+        }
+
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public void GetClosedTasks()
+        {
+            dbEntities db = new dbEntities();
+
+            var tasks = db.Tasks.SqlQuery("select * from Tasks where done = 'false'");
             string json = JsonConvert.SerializeObject(tasks);
 
 
@@ -587,11 +617,18 @@ namespace NPcrmProj
 
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-
-        public string AddProject(dynamic obj)
+        public void GetCustCount()
         {
-            return "Hello World";
+            dbEntities db = new dbEntities();
+
+            var custs = db.Database.ExecuteSqlCommand("SELECT COUNT(*) FROM Customers");
+            string json = JsonConvert.SerializeObject(custs);
+
+
+            Context.Response.Write(json);
         }
+
+
     }
 }
 

@@ -1,4 +1,4 @@
-﻿var app = angular.module("myApp", ["chart.js","angularUtils.directives.dirPagination"]);
+﻿var app = angular.module("myApp", ["chart.js", "angularUtils.directives.dirPagination"]);
 
 
 
@@ -9,6 +9,9 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
     $scope.lasttask = 'views/LastTask.aspx';
     GetLastCusts();
     GetLastTasks();
+    GetCustCount();
+
+    
 
     $scope.mainclc = function (value) {
         switch (value) {
@@ -17,7 +20,9 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
                 $scope.lastcust = 'views/LastCust.aspx';
                 $scope.mainview = 'views/LastTask.aspx';
                 GetLastCusts();
-                GetLastTasks()
+                GetLastTasks();
+                GetCustCount();
+
 
                 break;
 
@@ -50,7 +55,7 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
 
             case '7':
                 $scope.include = 'views/TaskList.aspx';
-                GetAllTasks();
+                GetAllOpenTasks();
 
                 break;
 
@@ -63,6 +68,12 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
             case '9':
                 $scope.include = 'views/NotFinProjList.aspx';
                 GetNotFinAllProjects();
+
+                break;
+
+            case '10':
+                $scope.include = 'views/ClosedTasks.aspx';
+                GetClosedTasks();
 
                 break;
 
@@ -161,6 +172,18 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
             });
     }
 
+
+    function GetCustCount() {
+        $http.get("WebService.asmx/GetCustCount")
+            .then(function (response) {
+                console.log(response);
+                $scope.custcount = response.data;
+            });
+    }
+
+
+
+
     $scope.editproj = function (project) {
         $scope.projname = project.Name;
         $scope.description = project.Description;
@@ -195,14 +218,21 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
     }
 
     $scope.delproj = function (project) {
-        var data = {
-            params: { Name: project.Name }
+        if (confirm("האם אתה בטוח שברצונך למחוק פרויקט?")) {
+            con = true;
+        } else {
+            con = false;
         }
-        $http.get("WebService.asmx/DeleteProj", data)
-            .then(function (response) {
-                GetNotFinAllProjects();
+        if (con == true) {
+            var data = {
+                params: { Name: project.Name }
+            }
+            $http.get("WebService.asmx/DeleteProj", data)
+                .then(function (response) {
+                    GetNotFinAllProjects();
 
-            });
+                });
+        }
     }
 
 
@@ -263,8 +293,16 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
 
         $http.post("WebService.asmx/SetCust", dat, null)
             .then(function (response) {
-                console.log(response);
-                if (response.data.d == true) {
+                if (response.data.d == "id") {
+                    alert("מספר תעודת זהות קיים במערכת");
+                }
+                if (response.data.d == "mail") {
+                    alert("אימייל קיים במערכת");
+                }
+                if (response.data.d == "mobile") {
+                    alert("מספר טלפון נייד קיים במערכת");
+                }
+                if (response.data.d == ok) {
                     $http.post("WebService.asmx/SetCustomerCategory", categories, null)
                         .then(function (response) {
                         });
@@ -273,11 +311,11 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
                     GetAllCustomers();
 
                 }
-                else {
-                    alert("לקוח זה כבר קיים במערכת");
-                }
             });
     };
+
+
+
     $scope.editCust = function (customer) {
         $window.scrollTo(0, 0);
         $scope.firstName = customer.FirstName;
@@ -286,7 +324,7 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
         $scope.email = customer.Email;
         $scope.mobile = customer.Mobile;
         $scope.gender = customer.Gender.trim();
-        $scope.birthDate = customer.BirthDate.split("T",1);
+        $scope.birthDate = customer.BirthDate.split("T", 1);
         $scope.city = customer.City;
         $scope.address = customer.Address;
         $scope.Education = customer.Education;
@@ -300,11 +338,17 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
         $scope.include = "views/EditCust.aspx";
 
     }
+
+
+
+
+
     $scope.submitEditCustomer = function () {
         var editdata = {
             params: {
                 FirstName: this.firstName, LastName: this.lastName, Id: this.id, Mobile: this.mobile, Email: this.email, Gender: this.gender, City: this.city, Address: this.address
-            , Education: this.Education, Student: this.student, StudyField: this.studyField, AcademicDegree: this.AcademicDegree, MilitaryService: this.militaryService, WorkStatus: this.work, Department: this.department, Summary: this.Summary }
+                , Education: this.Education, Student: this.student, StudyField: this.studyField, AcademicDegree: this.AcademicDegree, MilitaryService: this.militaryService, WorkStatus: this.work, Department: this.department, Summary: this.Summary
+            }
         }
         $http.get("WebService.asmx/EditCust", editdata)
             .then(function (response) {
@@ -330,14 +374,21 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
 
 
     $scope.delCust = function (customer) {
-        var data = {
-            params: { Id: customer.Id }
+        if (confirm("האם אתה בטוח שברצונך למחוק לקוח?")) {
+            con = true;
+        } else {
+            con = false;
         }
-        $http.get("WebService.asmx/DeleteCust", data)
-            .then(function (response) {
-                GetAllCustomers();
+        if (con == true) {
+            var data = {
+                params: { Id: customer.Id }
+            }
+            $http.get("WebService.asmx/DeleteCust", data)
+                .then(function (response) {
+                    GetAllCustomers();
 
-            });
+                });
+        }
     }
 
     $scope.submitTask = function () {
@@ -356,7 +407,7 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
                 else {
                     alert("משימה חדשה נוספה בהצלחה");
                     $scope.include = "views/TaskList.aspx";
-                    GetAllTasks();
+                    GetAllOpenTasks();
                 }
             });
     };
@@ -370,30 +421,39 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
 
     }
     $scope.doneTask = function (task) {
-        $window.scrollTo(0, 0);
-        $scope.taskName = task.Name;
-        var editdata = {
-            params: {
-                Name: this.taskName }
+        let con;
+        if (confirm("האם אתה בטוח שברצונך לסיים משימה?")) {
+            con = true;
+        } else {
+            con = false;
         }
-        $http.get("WebService.asmx/DoneTask", editdata)
-           .then(function (response) {
-               if (response == false) {
-                   alert("תקלה בעריכת משימה");
-               }
-               else {
-                   alert("הפרטים נשמרו")
-                   $scope.include = "views/TaskList.aspx";
-                   GetAllTasks();
-               }
-           }
-           )
+        if (con == true) {
+
+            $window.scrollTo(0, 0);
+            $scope.taskName = task.Name;
+            var editdata = {
+                params: {
+                    Name: this.taskName
+                }
+            }
+            $http.get("WebService.asmx/DoneTask", editdata)
+                .then(function (response) {
+                    if (response == false) {
+                        alert("תקלה בסגירת משימה");
+                    }
+                    else {
+                        alert("משימה הסתיימה")
+                        $scope.include = "views/TaskList.aspx";
+                        GetAllOpenTasks();
+                    }
+                })
+        }
     }
 
     $scope.submitEditTask = function () {
         var editdata = {
             params: {
-                Name: this.taskName, Description: this.description,  Department: this.department
+                Name: this.taskName, Description: this.description, Department: this.department
             }
         }
         $http.get("WebService.asmx/EditTask", editdata)
@@ -404,28 +464,45 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
                 else {
                     alert("הפרטים נשמרו")
                     $scope.include = "views/TaskList.aspx";
-                    GetAllTasks();
+                    GetAllOpenTasks();
                 }
             });
     }
 
     $scope.delTask = function (task) {
-        var data = {
-            params: { Id: task.Id }
+        if (confirm("האם אתה בטוח שברצונך למחוק משימה?")) {
+            con = true;
+        } else {
+            con = false;
         }
-        $http.get("WebService.asmx/DeleteTask", data)
-            .then(function (response) {
-                GetAllTasks();
+        if (con == true) {
+            var data = {
+                params: { Id: task.Id }
+            }
+            $http.get("WebService.asmx/DeleteTask", data)
+                .then(function (response) {
+                    GetAllOpenTasks();
 
-            });
+                });
+        }
     }
-    function GetAllTasks() {
+
+
+    function GetAllOpenTasks() {
         $scope.sortType = 'Name'; // set the default sort type
         $scope.sortReverse = false;  // set the default sort order
-        $http.get("WebService.asmx/GetAllTasks")
+        $http.get("WebService.asmx/GetAllOpenTasks")
             .then(function (response) {
-                var jsondata = response.data;
-                $scope.tasks = jsondata;
+                $scope.optasks = response.data;
+            });
+    }
+
+    function GetClosedTasks() {
+        $scope.sortType = 'Name'; // set the default sort type
+        $scope.sortReverse = false;  // set the default sort order
+        $http.get("WebService.asmx/GetClosedTasks")
+            .then(function (response) {
+                $scope.clstasks = response.data;
             });
     }
 
