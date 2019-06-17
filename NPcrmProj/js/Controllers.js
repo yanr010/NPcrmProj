@@ -219,7 +219,20 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
         $scope.include = "views/EditProj.aspx";
 
     }
+    $scope.addParticipant = function (project) {
+        $scope.projname = project.Name;
+        $scope.description = project.Description;
+        $scope.startDate = project.StartDate.split("T", 1);
+        var time = project.Time.split(":");
+        $scope.time = time[0] + ":" + time[1];
+        var finaltime = project.FinalTime.split(":");
+        $scope.finaltime = finaltime[0] + ":" + finaltime[1];
+        $scope.participant = project.Participant;
+        $scope.responsible = project.Responsible;
+        $scope.projectCost = project.ProjectCost;
+        $scope.include = "views/EditFinProj.aspx";
 
+    }
 
     $scope.submitedit = function () {
         var editdata = {
@@ -238,6 +251,36 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
             });
     }
 
+    $scope.addParticipant = function (project) {
+        $scope.projname = project.Name;
+        $scope.description = project.Description;
+        $scope.startDate = project.StartDate.split("T", 1);
+        var time = project.Time.split(":");
+        $scope.time = time[0] + ":" + time[1];
+        var finaltime = project.FinalTime.split(":");
+        $scope.finaltime = finaltime[0] + ":" + finaltime[1];
+        $scope.participant = project.Participant;
+        $scope.responsible = project.Responsible;
+        $scope.projectCost = project.ProjectCost;
+        $scope.include = "views/EditFinProj.aspx";
+
+    }
+    $scope.ParticipantProj = function () {
+        var editdata = {
+            params: { Name: this.projname, ActualParticipant: this.ActualParticipant }
+        }
+        $http.get("WebService.asmx/EditParticipant", editdata)
+            .then(function (response) {
+                if (response == false) {
+                    alert("תקלה בעריכת פרויקט");
+                }
+                else {
+                    alert("הפרטים נשמרו")
+                    $scope.include = "views/FinProjList.aspx";
+                    GetFinAllProjects();
+                }
+            });
+    }
     $scope.delproj = function (project) {
         if (confirm("האם אתה בטוח שברצונך למחוק פרויקט?")) {
             con = true;

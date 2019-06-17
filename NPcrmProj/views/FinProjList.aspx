@@ -28,13 +28,13 @@
                         <span ng-show="sortType == 'StartDate' && !sortReverse" class="fas fa-caret-down"></span>
                     <span ng-show="sortType == 'StartDate' && sortReverse" class="fas fa-caret-up"></span>
                 </a></th>
-                <th><a href="#" ng-click="sortType = 'Time'; sortReverse = !sortReverse">זמן התחלה
-                        <span ng-show="sortType == 'Time' && !sortReverse" class="fas fa-caret-down"></span>
-                    <span ng-show="sortType == 'Time' && sortReverse" class="fas fa-caret-up"></span>
+                <th><a href="#" ng-click="sortType = 'Participant'; sortReverse = !sortReverse">צפי משתתפים
+                        <span ng-show="sortType == 'Participant' && !sortReverse" class="fas fa-caret-down"></span>
+                    <span ng-show="sortType == 'Participant' && sortReverse" class="fas fa-caret-up"></span>
                 </a></th>
-                <th><a href="#" ng-click="sortType = 'FinalTime'; sortReverse = !sortReverse">זמן סיום
-                        <span ng-show="sortType == 'FinalTime' && !sortReverse" class="fas fa-caret-down"></span>
-                    <span ng-show="sortType == 'FinalTime' && sortReverse" class="fas fa-caret-up"></span>
+                <th><a href="#" ng-click="sortType = 'ActualParticipant'; sortReverse = !sortReverse">כמות משתתפים
+                        <span ng-show="sortType == 'ActualParticipant' && !sortReverse" class="fas fa-caret-down"></span>
+                    <span ng-show="sortType == 'ActualParticipant' && sortReverse" class="fas fa-caret-up"></span>
                 </a></th>
                 <th><a href="#" ng-click="sortType = 'Responsible'; sortReverse = !sortReverse">אחריות
                         <span ng-show="sortType == 'Responsible' && !sortReverse" class="fas fa-caret-down"></span>
@@ -48,10 +48,12 @@
             <tr class="text-center" dir-paginate="project in projects | orderBy:sortType:sortReverse | filter:searchText | itemsPerPage:5">
                 <td>{{project.Name}}</td>
                 <td>{{project.StartDate | date:'shortDate'}}</td>
-                <td>{{project.Time}}</td>
-                <td>{{project.FinalTime}}</td>
+                <td>{{project.Participant}}</td>
+                <td>{{project.ActualParticipant}}</td>
                 <td>{{project.Responsible}}</td>
-
+                <td>
+                    <button type="button" class="far fa-edit fa-2x" href="#" ng-click="addParticipant(project)"></button>
+                </td>
 
             </tr>
         </tbody>
