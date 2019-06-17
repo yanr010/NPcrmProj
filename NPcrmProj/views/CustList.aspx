@@ -1,6 +1,9 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CustList.aspx.cs" Inherits="NPcrmProj.views.CustList" %>
 
-<h1 class="text-center p-2">רשימת לקוחות</h1>
+<div class="text-center p-2">
+    <i class="fas fa-users fa-2x">&nbsp&nbsp<span">רשימת לקוחות</span></i>
+</div>
+
 
 
 <div class="container mt-3">

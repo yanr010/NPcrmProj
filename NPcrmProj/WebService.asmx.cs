@@ -621,13 +621,41 @@ namespace NPcrmProj
         {
             dbEntities db = new dbEntities();
 
-            var custs = db.Database.ExecuteSqlCommand("SELECT COUNT(*) FROM Customers");
-            string json = JsonConvert.SerializeObject(custs);
+            var custs = db.Customers;
+            var count = custs.Count();
+            string json = JsonConvert.SerializeObject(count);
 
 
             Context.Response.Write(json);
         }
 
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public void GetProjCount()
+        {
+            dbEntities db = new dbEntities();
+
+            var projs = db.Projects;
+            var count = projs.Count();
+            string json = JsonConvert.SerializeObject(count);
+
+
+            Context.Response.Write(json);
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public void GetTaskCount()
+        {
+            dbEntities db = new dbEntities();
+
+            var tasks = db.Tasks;
+            var count = tasks.Count();
+            string json = JsonConvert.SerializeObject(count);
+
+
+            Context.Response.Write(json);
+        }
 
     }
 }

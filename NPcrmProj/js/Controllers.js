@@ -10,6 +10,8 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
     GetLastCusts();
     GetLastTasks();
     GetCustCount();
+    GetProjCount();
+    GetTaskCount();
 
     
 
@@ -22,6 +24,8 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
                 GetLastCusts();
                 GetLastTasks();
                 GetCustCount();
+                GetProjCount();
+                GetTaskCount();
 
 
                 break;
@@ -180,6 +184,23 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
                 $scope.custcount = response.data;
             });
     }
+
+    function GetProjCount() {
+        $http.get("WebService.asmx/GetProjCount")
+            .then(function (response) {
+                console.log(response);
+                $scope.projcount = response.data;
+            });
+    }
+
+    function GetTaskCount() {
+        $http.get("WebService.asmx/GetTaskCount")
+            .then(function (response) {
+                console.log(response);
+                $scope.taskcount = response.data;
+            });
+    }
+
 
 
 

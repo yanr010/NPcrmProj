@@ -1,7 +1,9 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="NotFinProjList.aspx.cs" Inherits="NPcrmProj.views.NotFinProjList" %>
 
-<h1 class="text-center p-2">פרוייקטים עתידיים</h1>
 
+<div class="text-center p-2">
+    <i class="fas fa-project-diagram fa-2x">&nbsp&nbsp<span">פרוייקטים עתידיים</span></i>
+</div>
 
 <div class="container mt-3">
 

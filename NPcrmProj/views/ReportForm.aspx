@@ -2,9 +2,12 @@
 
 <div align="right">
         
-          <div class="text-center">
-              <h2>דו"חות</h2>
-        </div>
+    <div class="text-center p-2">
+    <i class="fas fa-chart-pie fa-2x">&nbsp&nbsp<span">דוחות</span></i>
+</div>
+          
+
+
                         <form class="well form-horizontal" style="background-color:rgb(240, 240, 240)">
                             <fieldset>
                                 <div class="form-group row">

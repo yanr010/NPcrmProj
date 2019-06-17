@@ -1,8 +1,10 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CustForm.aspx.cs" Inherits="NPcrmProj.views.CustForm" %>
 
-<div class="text-center p-3">
-        <h2>טופס אינטק - שאלון הכרות</h2>
-    </div>
+
+
+<div class="text-center p-2">
+    <i class="fas fa-user-edit fa-2x">&nbsp&nbsp<span">עריכת לקוח</span></i>
+</div>
     
   <div style="background-color:rgb(240, 240, 240)">
                         <form class="well form-horizontal text-right border">

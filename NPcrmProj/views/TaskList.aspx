@@ -1,7 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TaskList.aspx.cs" Inherits="NPcrmProj.views.TaskList" %>
 
-<h1 class="text-center p-2">משימות פתוחות</h1>
-
+<div class="text-center p-2">
+    <i class="fas fa-tasks fa-2x">&nbsp&nbsp<span">משימות פתוחות</span></i>
+</div>
 
 <div class="container mt-3">
 

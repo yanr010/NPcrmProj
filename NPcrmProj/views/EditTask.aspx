@@ -1,5 +1,10 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TaskForm.aspx.cs" Inherits="NPcrmProj.views.TaskForm" %>
 
+<div class="text-center p-2">
+    <i class="fas fa-edit fa-2x">&nbsp&nbsp<span">עריכת משימה</span></i>
+</div>
+
+
 <div align="right" style="background-color: rgb(240, 240, 240)">
     <form class="well form-horizontal">
         <fieldset>

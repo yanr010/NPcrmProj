@@ -13,10 +13,10 @@
     <span class="badge badge-primary badge-pill">{{custcount}}</span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center">פרוייקטים
-    <span class="badge badge-primary badge-pill" ng-value="projcount"></span>
+    <span class="badge badge-primary badge-pill">{{projcount}}</span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center">משימות
-    <span class="badge badge-primary badge-pill" ng-value="taskcount"></span>
+    <span class="badge badge-primary badge-pill">{{taskcount}}</span>
                 </li>
             </ul>
         </div>

@@ -1,7 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ClosedTasks.aspx.cs" Inherits="NPcrmProj.views.ClosedTasks" %>
 
-<h1 class="text-center p-2">משימות סגורות</h1>
-
+<div class="text-center p-2">
+    <i class="fas fa-tasks fa-2x">&nbsp&nbsp<span">משימות סגורות</span></i>
+</div>
 
 <div class="container mt-3">
 

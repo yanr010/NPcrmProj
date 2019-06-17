@@ -1,7 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EditProj.aspx.cs" Inherits="NPcrmProj.views.EditProj" %>
 
-<div class="text-center p-3">
-    <h2>כרטיס פרויקט</h2>
+
+<div class="text-center p-2">
+    <i class="fas fa-edit fa-2x">&nbsp&nbsp<span">עריכת פרויקט</span></i>
 </div>
 
 <div style="background-color:rgb(240, 240, 240)">
