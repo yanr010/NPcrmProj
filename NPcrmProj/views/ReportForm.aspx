@@ -14,26 +14,54 @@
                                     <label for="reportType" class="col-sm-2 col-form-label">סוג דו"ח<span style="color:red">   *</span></label>
                                     <div class="col-md-3 inputGroupContainer">
                                         <div class="form-group">
-                                            <select class="form-control" id="reportType" required="true">
-                                                <option>לקוחות</option>
-                                                <option>פרויקטים</option>
-                                                <option>רכזות</option>
-                                                <option>משימות</option>
+                                            <select class="form-control" ng-model="data.ReportType"  required="true">
+                                                <option value="customer">לקוחות</option>
+                                                <option value="project">פרויקטים</option>
+                                                <option value="task">משימות</option>
                                             </select>
 
                                         </div>
                                     </div>
                                 </div>
-                                    
-                               <div class="form-group row">
+                                 <div class="form-group row">
+                                    <label for="reportType" class="col-sm-2 col-form-label">לפי<span style="color:red">   *</span></label>
+                                    <div class="col-md-3 inputGroupContainer">
+                                        <div class="form-group" ng-model="data.option">
+                                       <div ng-switch="data.ReportType">
+                                      <div ng-switch-when="customer">
+                                        <select class="form-control" required="true">
+                                                <option>מחלקות</option>
+                                                <option>קטגוריות</option>
+                                            </select>
+                                      </div>
+                                        </div>
+                                         <div ng-switch="data.ReportType">
+                                      <div ng-switch-when="project">
+                                        <select class="form-control" required="true">
+                                                <option>מחלקות</option>
+                                                <option>קטגוריות</option>
+                                            <option>משתתפים בפרויקט</option>
+                                            </select>
+                                      </div>
+                                             </div>
+                                              <div ng-switch="data.ReportType">
+                                      <div ng-switch-when="task">
+                                        <select class="form-control" required="true">
+                                                <option>מחלקות</option>
+                                            </select>
+                                      </div>
+                                          </div>
+                                                
+                                             </div>
+                                        </div>
+                                     </div>
+                                        <div class="form-group row">
                                     <label for="period" class="col-sm-2 col-form-label">תקופה</label>
                                     <div class="col-md-3 inputGroupContainer">
                                         <div class="form-group">
-                                            <select class="form-control" id="period" required="true">
-                                                <option></option>
-                                                <option>שבועי</option>
+                                            <select class="form-control" ng-model="data.period" required="true">
                                                 <option>חודשי</option>
-                                                <option>רבעון</option>
+                                                <option>רבעוני</option>
                                                 <option>שנתי</option>
                                             </select>
                                             
@@ -41,13 +69,6 @@
                                     </div>
                                     </div>
                                     
-                                   <div class="form-group row">
-                                       <label class="col-sm-2 col-form-label">מתאריך</label>
-                                       <div class="input-group col-md-2 inputGroupContainer"><input id="startDate" name="startDate" placeholder="תאריך התחלתי" class="form-control" value="" type="date"></div>
-                                       <label class="col-sm-2 col-form-label">עד תאריך</label>
-                                       <div class="input-group col-md-2 inputGroupContainer"><input id="finalDate" name="finalDate" placeholder="תאריך סופי" class="form-control" value="" type="date"></div>
-                                  </div>
-                                
                        
                                  <div class="col-sm-10 text-left">
                                      <button ng-click="showReport()" class="btn btn-primary btn-lg">הצגת דו"ח</button>

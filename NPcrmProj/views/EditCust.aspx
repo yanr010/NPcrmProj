@@ -103,7 +103,7 @@
                                     <label for="studyField" class="col-sm-2 col-form-label">תחום לימודים</label>
                                     <div class="col-md-3 inputGroupContainer">
                                         <div class="input-group"> 
-                                            <input ng-model="studyField" type="text" class="form-control"  required="false">
+                                            <input ng-model="studyField" type="text" class="form-control"  required="true">
                                       </div>
                                         </div>
                                     </div>
@@ -111,7 +111,7 @@
                                     <label for="AcademicDegree" class="col-sm-2 col-form-label">בעל תואר אקדמי במקצוע</label>
                                     <div class="col-md-3 inputGroupContainer">
                                         <div class="input-group">
-                                            <input ng-model="AcademicDegree" class="form-control" required="false" value="" type="text">
+                                            <input ng-model="AcademicDegree" class="form-control" required="true" value="" type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -121,7 +121,7 @@
                                     <label for="militaryService" class="col-sm-2 col-form-label">סוג שירות<span style="color:red">   *</span></label>
                                     <div class="col-md-3 inputGroupContainer">
                                         <div class="form-group">
-                                            <select class="form-control" ng-model="militaryService">
+                                            <select class="form-control" ng-model="militaryService" required="true">
                                                 <option>צבאי</option>
                                                  <option>לאומי</option>
                                                  <option>אזרחי</option>
@@ -133,7 +133,7 @@
                                     <label for="role" class="col-sm-2 col-form-label">תפקיד</label>
                                     <div class="col-md-3 inputGroupContainer">
                                         <div class="input-group">
-                                            <input ng-model="role"  class="form-control" required="false" value="" type="text">
+                                            <input ng-model="role"  class="form-control" required="true" value="" type="text">
                                         </div>
                                     </div>
                                 </div>
