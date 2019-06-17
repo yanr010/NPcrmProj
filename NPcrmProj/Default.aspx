@@ -48,7 +48,6 @@
 
         #pagination {
             display: inline-block;
-
         }
 
             #pagination li {
@@ -70,6 +69,10 @@
                 #pagination li:hover:not(.active) {
                     background-color: #ddd;
                 }
+
+        .idred {
+            border: solid 1px red;
+        }
     </style>
 
 </head>

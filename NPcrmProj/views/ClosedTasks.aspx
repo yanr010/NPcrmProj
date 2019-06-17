@@ -38,7 +38,7 @@
         </thead>
 
         <tbody id="myTable">
-            <tr class="text-center" dir-paginate="clstask in clstasks | orderBy:sortType:sortReverse | filter:searchText | itemsPerPage:5">
+            <tr class="text-center" dir-paginate="clstask in clstasks | orderBy:sortType:sortReverse | filter:searchText | itemsPerPage:7">
                 <td>{{clstask.Name}}</td>
                 <td>{{clstask.Description}}</td>
                 <td>{{clstask.FinalDate | date:'shortDate'}}</td>

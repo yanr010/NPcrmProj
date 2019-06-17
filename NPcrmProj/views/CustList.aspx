@@ -48,7 +48,7 @@
         </thead>
 
         <tbody id="myTable">
-            <tr class="text-center" dir-paginate="customer in customers | orderBy:sortType:sortReverse | filter:searchText | itemsPerPage:5">
+            <tr class="text-center" dir-paginate="customer in customers | orderBy:sortType:sortReverse | filter:searchText | itemsPerPage:7">
                 <td>{{customer.Id}}</td>
                 <td>{{customer.FirstName}}</td>
                 <td>{{customer.LastName}}</td>

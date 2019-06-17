@@ -588,7 +588,7 @@ namespace NPcrmProj
         {
             dbEntities db = new dbEntities();
 
-            var tasks = db.Tasks.SqlQuery("select * from Tasks where done = 'true'");
+            var tasks = db.Tasks.SqlQuery("select * from Tasks where done = 'false'");
             string json = JsonConvert.SerializeObject(tasks);
 
 
@@ -602,7 +602,7 @@ namespace NPcrmProj
         {
             dbEntities db = new dbEntities();
 
-            var tasks = db.Tasks.SqlQuery("select * from Tasks where done = 'false'");
+            var tasks = db.Tasks.SqlQuery("select * from Tasks where done = 'true'");
             string json = JsonConvert.SerializeObject(tasks);
 
 
@@ -658,8 +658,8 @@ namespace NPcrmProj
         {
             dbEntities db = new dbEntities();
 
-            var projs = db.Projects;
-            var count = projs.Count();
+            List<Project> projects = db.Projects.SqlQuery("select * from Projects where Projects.StartDate >= @date", new SqlParameter("@date", DateTime.Now)).ToList();
+            var count = projects.Count();
             string json = JsonConvert.SerializeObject(count);
 
 
@@ -672,13 +672,43 @@ namespace NPcrmProj
         {
             dbEntities db = new dbEntities();
 
-            var tasks = db.Tasks;
+            var tasks = db.Tasks.Where(t => t.Done == false);
             var count = tasks.Count();
             string json = JsonConvert.SerializeObject(count);
 
 
             Context.Response.Write(json);
         }
+
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public void IdValidation(int Id)
+        {
+            dbEntities db = new dbEntities();
+            
+            var val = db.Customers.FirstOrDefault(i => i.Id == Id);
+
+            if (val == null) Context.Response.Write(true);
+            else Context.Response.Write(false);
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public void EmailValidation(string email)
+        {
+            dbEntities db = new dbEntities();
+
+            var val = db.Customers.FirstOrDefault(i => i.Email == email);
+
+            if (val == null) Context.Response.Write(true);
+            else Context.Response.Write(false);
+        }
+
+
+
+        
+
 
     }
 }

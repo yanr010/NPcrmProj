@@ -165,38 +165,36 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
 
 
     function GetNotFinAllProjects() {
+        $scope.projects = null;
         $scope.sortType = 'Name'; // set the default sort type
         $scope.sortReverse = false;  // set the default sort order
         $http.get("WebService.asmx/GetNotFinAllProjects")
             .then(function (response) {
-
-                var jsondata = response.data;
-
-                $scope.projects = jsondata;
+                $scope.projects = response.data;
             });
     }
 
 
     function GetCustCount() {
+        $scope.custcount = null;
         $http.get("WebService.asmx/GetCustCount")
             .then(function (response) {
-                console.log(response);
                 $scope.custcount = response.data;
             });
     }
 
     function GetProjCount() {
+        $scope.projcount = null;
         $http.get("WebService.asmx/GetProjCount")
             .then(function (response) {
-                console.log(response);
                 $scope.projcount = response.data;
             });
     }
 
     function GetTaskCount() {
+        $scope.taskcount = null;
         $http.get("WebService.asmx/GetTaskCount")
             .then(function (response) {
-                console.log(response);
                 $scope.taskcount = response.data;
             });
     }
@@ -206,6 +204,15 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
 
 
     $scope.editproj = function (project) {
+        $scope.projname = null;
+        $scope.description = null;
+        $scope.startDate = null;
+        $scope.time = null;
+        $scope.finaltime = null;
+        $scope.participant = null;
+        $scope.responsible = null;
+        $scope.projectCost = null;
+
         $scope.projname = project.Name;
         $scope.description = project.Description;
         $scope.startDate = project.StartDate.split("T", 1);
@@ -220,6 +227,15 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
 
     }
     $scope.addParticipant = function (project) {
+        $scope.projname = null;
+        $scope.description = null;
+        $scope.startDate = null;
+        $scope.time = null;
+        $scope.finaltime = null;
+        $scope.participant = null;
+        $scope.responsible = null;
+        $scope.projectCost = null;
+
         $scope.projname = project.Name;
         $scope.description = project.Description;
         $scope.startDate = project.StartDate.split("T", 1);
@@ -251,20 +267,7 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
             });
     }
 
-    $scope.addParticipant = function (project) {
-        $scope.projname = project.Name;
-        $scope.description = project.Description;
-        $scope.startDate = project.StartDate.split("T", 1);
-        var time = project.Time.split(":");
-        $scope.time = time[0] + ":" + time[1];
-        var finaltime = project.FinalTime.split(":");
-        $scope.finaltime = finaltime[0] + ":" + finaltime[1];
-        $scope.participant = project.Participant;
-        $scope.responsible = project.Responsible;
-        $scope.projectCost = project.ProjectCost;
-        $scope.include = "views/EditFinProj.aspx";
 
-    }
     $scope.ParticipantProj = function () {
         var editdata = {
             params: { Name: this.projname, ActualParticipant: this.ActualParticipant }
@@ -281,6 +284,8 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
                 }
             });
     }
+
+
     $scope.delproj = function (project) {
         if (confirm("האם אתה בטוח שברצונך למחוק פרויקט?")) {
             con = true;
@@ -294,7 +299,6 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
             $http.get("WebService.asmx/DeleteProj", data)
                 .then(function (response) {
                     GetNotFinAllProjects();
-
                 });
         }
     }
@@ -304,14 +308,12 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
 
 
     function GetFinAllProjects() {
+        $scope.projects = null;
         $scope.sortType = 'Name'; // set the default sort type
         $scope.sortReverse = false;  // set the default sort order
         $http.get("WebService.asmx/GetFinAllProjects")
             .then(function (response) {
-
-                var jsondata = response.data;
-
-                $scope.projects = jsondata;
+                $scope.projects = response.data;
             });
     }
 
@@ -382,6 +384,25 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
 
     $scope.editCust = function (customer) {
         $window.scrollTo(0, 0);
+
+        $scope.firstName = null;
+        $scope.lastName = null;
+        $scope.id = null;
+        $scope.email = null;
+        $scope.mobile = null;
+        $scope.gender = null;
+        $scope.birthDate = null;
+        $scope.city = null;
+        $scope.address = null;
+        $scope.Education = null;
+        $scope.student = null;
+        $scope.studyField = null;
+        $scope.AcademicDegree = null;
+        $scope.militaryService = null;
+        $scope.work = null;
+        $scope.department = null;
+        $scope.Summary = null;
+
         $scope.firstName = customer.FirstName;
         $scope.lastName = customer.LastName;
         $scope.id = customer.Id;
@@ -426,13 +447,14 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
                 }
             });
     }
+
     function GetAllCustomers() {
+        $scope.customers = null;
         $scope.sortType = 'FirstName'; // set the default sort type
         $scope.sortReverse = false;  // set the default sort order
         $http.get("WebService.asmx/GetAllCustomers")
             .then(function (response) {
-                var jsondata = response.data;
-                $scope.customers = jsondata;
+                $scope.customers = response.data;
             });
     }
 
@@ -450,13 +472,11 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
             $http.get("WebService.asmx/DeleteCust", data)
                 .then(function (response) {
                     GetAllCustomers();
-
                 });
         }
     }
 
     $scope.submitTask = function () {
-
         $scope.data.finalDate = $scope.data.finalDate.toDateString();
 
         var dat = { data: $scope.data };
@@ -477,6 +497,11 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
     };
     $scope.editTask = function (task) {
         $window.scrollTo(0, 0);
+        $scope.taskName = null;
+        $scope.description = null;
+        $scope.finalDate = null;
+        $scope.department = null;
+
         $scope.taskName = task.Name;
         $scope.description = task.Description;
         $scope.finalDate = task.FinalDate.split("T", 1);
@@ -553,6 +578,7 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
 
 
     function GetAllOpenTasks() {
+        $scope.optasks = null;
         $scope.sortType = 'Name'; // set the default sort type
         $scope.sortReverse = false;  // set the default sort order
         $http.get("WebService.asmx/GetAllOpenTasks")
@@ -562,6 +588,7 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
     }
 
     function GetClosedTasks() {
+        $scope.clstasks = null;
         $scope.sortType = 'Name'; // set the default sort type
         $scope.sortReverse = false;  // set the default sort order
         $http.get("WebService.asmx/GetClosedTasks")
@@ -572,24 +599,63 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
 
 
     function GetLastCusts() {
+        $scope.customers = null;
         $scope.sortType = 'FirstName'; // set the default sort type
         $scope.sortReverse = false;  // set the default sort order
         $http.get("WebService.asmx/GetLastCusts")
             .then(function (response) {
-                var jsondata = response.data;
-                $scope.customers = jsondata;
+                $scope.customers = response.data;
             });
     }
 
     function GetLastTasks() {
+        $scope.tasks = null;
         $scope.sortType = 'Name'; // set the default sort type
         $scope.sortReverse = false;  // set the default sort order
         $http.get("WebService.asmx/GetLastTasks")
             .then(function (response) {
-                var jsondata = response.data;
-                $scope.tasks = jsondata;
+                $scope.tasks = response.data;
             });
     }
+
+    $scope.IdValidation = function (data) {
+        var data = {
+            params: { Id: data.id }
+        }
+        
+        $http.get("WebService.asmx/IdValidation", data)
+            .then(function (response) {
+                if (response.data == "False") {
+                    $scope.idval = { "border": "solid 2px red" };
+                    $scope.idred = true;
+                }
+                else {
+                    $scope.idval = { "border": "solid 2px green" };
+                    $scope.idred = false;
+                }
+            });
+    }
+
+    $scope.EmailValidation = function (data) {
+        var data = {
+            params: { Email: data.email }
+        }
+
+        $http.get("WebService.asmx/EmailValidation", data)
+            .then(function (response) {
+                if (response.data == "False") {
+                    $scope.emailval = { "border": "solid 2px red" };
+                    $scope.emailred = true;
+                }
+                else {
+                    $scope.emailval = { "border": "solid 2px green" };
+                    $scope.emailred = false;
+                }
+            });
+    }
+
+
+    
 
 });
 
@@ -628,214 +694,4 @@ app.controller("charts", function ($scope) {
         [28, 48, 40, 19, 86, 27, 90]
     ];
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//app.controller('projctrl', function ($scope, $http) {
-
-//    $scope.data = {};
-
-
-
-//    $scope.submitproj = function () {
-//        $scope.data.startDate = $scope.data.startDate.toDateString();
-//        var dat = { data: $scope.data };
-
-
-
-//        $http.post("WebService.asmx/SetProj", dat,null)
-//            .then(function (response) {
-//                if (response.data.d == false) {
-//                    alert("פרוייקט בשם זה כבר קיים במערכת, אנא בחר שם אחר");
-//                }
-//                else {
-//                    alert("פרוייקט חדש נוסף בהצלחה");
-//                    $scope.include = "views/NotFinProjList.aspx";
-//                    GetAllProjects();
-//                }
-//            });
-//    };
-
-//    function GetAllProjects() {
-//        $http.get("WebService.asmx/GetNotFinAllProjects")
-//            .then(function (response) {
-
-//                var jsondata = response.data;
-
-//                $scope.projects = jsondata;
-//            });
-//    }
-
-//    $scope.editproj = function (project) {
-//        $scope.projname = project.Name;
-//        $scope.description = project.Description;
-//        $scope.startDate = project.StartDate.split("T", 1);
-//        var time = project.Time.split(":");
-//        $scope.time = time[0] + ":" + time[1];
-//        var finaltime = project.FinalTime.split(":");
-//        $scope.finaltime = finaltime[0] + ":" + finaltime[1];
-//        $scope.participant = project.Participant;
-//        $scope.responsible = project.Responsible;
-//        $scope.projectCost = project.ProjectCost;
-//        $scope.include = "views/EditProj.aspx";
-
-//    }
-
-//    $scope.submitedit = function () {
-//        var editdata = {
-//            params: { Name: this.projname, Description: this.description, Participant: this.participant, ProjectCost: this.projectCost }
-//        }
-//        $http.get("WebService.asmx/EditProj", editdata)
-//            .then(function (response) {
-//                if (response == false) {
-//                    alert("תקלה בעריכת פרויקט");
-//                }
-//                else {
-//                    alert("הפרטים נשמרו")
-//                    $scope.include = "views/NotFinProjList.aspx";
-//                    GetAllProjects();
-//                }
-//            });
-//    }
-
-
-//    $scope.delproj = function (project) {
-//        var data = {
-//            params: { Name: project.Name }
-//        }
-//        $http.get("WebService.asmx/DeleteProj", data)
-//            .then(function (response) {
-//                GetAllProjects();
-
-//            });
-//    }
-//});
-
-//app.controller('getfinprojctrl', function ($scope, $http) {
-
-//    $scope.sortType = 'Name'; // set the default sort type
-//    $scope.sortReverse = false;  // set the default sort order
-
-
-//    GetAllProjects();
-//    function GetAllProjects() {
-//        $http.get("WebService.asmx/GetFinAllProjects")
-//            .then(function (response) {
-
-//                var jsondata = response.data;
-
-//                $scope.projects = jsondata;
-//            });
-//    }
-
-
-//});
-
-//app.controller('getnotfinprojctrl', function ($scope, $http) {
-
-//    $scope.sortType = 'Name'; // set the default sort type
-//    $scope.sortReverse = false;  // set the default sort order
-
-
-//    GetAllProjects();
-//    function GetAllProjects() {
-//        $http.get("WebService.asmx/GetNotFinAllProjects")
-//            .then(function (response) {
-
-//                var jsondata = response.data;
-
-//                $scope.projects = jsondata;
-//            });
-//    }
-
-//    $scope.editproj = function (project) {
-//        $scope.projname = project.Name;
-//        $scope.description = project.Description;
-//        $scope.startDate = project.StartDate.split("T", 1);
-//        var time = project.Time.split(":");
-//        $scope.time = time[0] + ":" + time[1];
-//        var finaltime = project.FinalTime.split(":");
-//        $scope.finaltime = finaltime[0] + ":" + finaltime[1];
-//        $scope.participant = project.Participant;
-//        $scope.responsible = project.Responsible;
-//        $scope.projectCost = project.ProjectCost;
-//        $scope.include = "views/EditProj.aspx";
-
-//    }
-
-//    $scope.submitedit = function () {
-//        var editdata = {
-//            params: { Name: this.projname, Description: this.description, Participant: this.participant, ProjectCost: this.projectCost}
-//        }
-//        $http.get("WebService.asmx/EditProj", editdata)
-//            .then(function (response) {
-//                if (response == false) {
-//                    alert("תקלה בעריכת פרויקט");
-//                }
-//                else {
-//                    alert("הפרטים נשמרו")
-//                    $scope.include = "views/NotFinProjList.aspx";
-//                    GetAllProjects();
-//                }
-//            });
-//    }
-
-
-
-//    $scope.delproj = function (project) {
-//        var data = {
-//            params: { Name: project.Name }
-//        }
-//        $http.get("WebService.asmx/DeleteProj",data)
-//            .then(function (response) {
-//                GetAllProjects();
-
-//            });
-//    }
-//});
-
-//app.controller('getcustctrl', function ($scope, $http) {
-
-//    $scope.sortType = 'FirstName'; // set the default sort type
-//    $scope.sortReverse = false;  // set the default sort order
-
-//    GetAllCustomers();
-//    function GetAllCustomers() {
-//        $http.get("WebService.asmx/GetAllCustomers")
-//            .then(function (response) {
-//                var jsondata = response.data;
-//                $scope.customers = jsondata;
-//            });
-//    }
-//});
-
-//app.controller('gettaskctrl', function ($scope, $http) {
-
-//    $scope.sortType = 'Name'; // set the default sort type
-//    $scope.sortReverse = false;  // set the default sort order
-
-//    GetAllTasks();
-//    function GetAllTasks() {
-//        $http.get("WebService.asmx/GetAllTasks")
-//            .then(function (response) {
-//                var jsondata = response.data;
-//                $scope.tasks = jsondata;
-//            });
-//    }
-//});
-
-
 

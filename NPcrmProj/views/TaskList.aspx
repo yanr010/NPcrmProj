@@ -39,7 +39,7 @@
         </thead>
 
         <tbody id="myTable">
-            <tr class="text-center" dir-paginate="optask in optasks | orderBy:sortType:sortReverse | filter:searchText | itemsPerPage:5">
+            <tr class="text-center" dir-paginate="optask in optasks | orderBy:sortType:sortReverse | filter:searchText | itemsPerPage:7">
                 <td>{{optask.Name}}</td>
                 <td>{{optask.Description}}</td>
                 <td>{{optask.FinalDate | date:'shortDate'}}</td>

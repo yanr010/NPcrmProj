@@ -12,10 +12,10 @@
                 <li class="list-group-item d-flex justify-content-between align-items-center">לקוחות
     <span class="badge badge-primary badge-pill">{{custcount}}</span>
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">פרוייקטים
+                <li class="list-group-item d-flex justify-content-between align-items-center">פרוייקטים עתידיים
     <span class="badge badge-primary badge-pill">{{projcount}}</span>
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">משימות
+                <li class="list-group-item d-flex justify-content-between align-items-center">משימות פתוחות
     <span class="badge badge-primary badge-pill">{{taskcount}}</span>
                 </li>
             </ul>

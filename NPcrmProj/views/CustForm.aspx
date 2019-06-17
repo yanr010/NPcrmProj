@@ -12,7 +12,7 @@
                                 <label class="col-sm-2 col-form-label">שם פרטי<span style="color:red">   *</span></label>
                                     <div class="col-md-3 inputGroupContainer">
                                         <div class="input-group">
-                                            <input ng-model="data.firstName" placeholder="שם פרטי" class="form-control" required="true" value="" type="text">
+                                            <input ng-model="data.firstName" placeholder="שם פרטי" class="form-control" required value="" type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -20,7 +20,7 @@
                                     <label class="col-sm-2 col-form-label">שם משפחה<span style="color:red">   *</span></label>
                                     <div class="col-md-3 inputGroupContainer">
                                         <div class="input-group">
-                                            <input ng-model="data.lastName" placeholder="שם משפחה" class="form-control" required="true" value="" type="text">
+                                            <input ng-model="data.lastName" placeholder="שם משפחה" class="form-control" required value="" type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -28,8 +28,9 @@
                                     <label class="col-sm-2 col-form-label">תעודת זהות<span style="color:red">   *</span></label>
                                     <div class="col-md-3 inputGroupContainer">
                                         <div class="input-group">
-                                            <input ng-model="data.id" placeholder="תעודת זהות" class="form-control" required="true" value="" type="text"
+                                            <input ng-model="data.id" ng-style="idval" ng-change="IdValidation(data)" placeholder="תעודת זהות" class="form-control" required value="" type="text"
                                                 oninvalid="this.setCustomValidity('תעודת זהות לא תקינה')" oninput="setCustomValidity('')">
+                                            &nbsp&nbsp<span ng-show="idred"><p class="text-danger">תעודת זהות קיימת במערכת</p></span>
                                         </div>
                                     </div>
                                 </div>
@@ -37,8 +38,9 @@
                                     <label for="Email" class="col-sm-2 col-form-label">כתובת דוא"ל<span style="color:red">   *</span></label>
                                     <div class="col-md-3 inputGroupContainer">
                                         <div class="input-group"> 
-                                            <input ng-model="data.email" placeholder="מייל" type="email" class="form-control"  required="true"
+                                            <input ng-model="data.email" ng-style="emailval" ng-change="EmailValidation(data)" placeholder="מייל" type="text" class="form-control"  required
                                                 oninvalid="this.setCustomValidity('מייל לא תקין')" oninput="setCustomValidity('')">
+                                            &nbsp&nbsp<span ng-show="emailred"><p class="text-danger">אימייל זה קיים במערכת</p></span>
                                         </div>
                                         </div>
                                     </div>
@@ -46,14 +48,14 @@
                                     <label for="mobile" class="col-md-2 control-label">טלפון נייד<span style="color:red">   *</span></label>
                                      <div class="col-md-3 inputGroupContainer">
                                         <div class="input-group">
-                                            <input ng-model="data.mobile" placeholder="טלפון נייד" class="form-control" type="tel" maxlength="10" minlengh="10" pattern="[0-9]" name="mobile" required="true"
+                                            <input ng-model="data.mobile" placeholder="טלפון נייד" class="form-control" type="tel" maxlength="10" minlengh="10" pattern="[0-9]" name="mobile" required
                                                 oninvalid="this.setCustomValidity('טלפון לא תקין')" oninput="setCustomValidity('')"></div>
                                     </div>
                                     
                                 </div>
                                 <div class="form-group row">
                                     <label for="gender" class="col-md-2 control-label">מין<span style="color:red">   *</span></label>
-                                    <div class="col-md-2 inputGroupContainer" required="true">
+                                    <div class="col-md-2 inputGroupContainer" required>
                                       
                                           <input  ng-model="data.gender" type="radio" value="male"> זכר
                                         <input  ng-model="data.gender" type="radio" value="female"> נקבה
@@ -67,7 +69,7 @@
                                      <div class="col-md-3 inputGroupContainer">
                                         <div class="input-group">
                                             <input ng-model="data.birthDate" placeholder="תאריך לידה" class="form-control" type="date" name="birthDate" min="1000-01-01"
-                                        max="3000-12-31" class="form-control"  required="true"></div>
+                                        max="3000-12-31" class="form-control"  required></div>
                                     </div>
                                     
                                 </div>
@@ -77,14 +79,14 @@
                                     <label for="city" class="col-sm-2 col-form-label">עיר<span style="color:red">   *</span></label>
                                     <div class="col-md-3 inputGroupContainer">
                                         <div class="input-group">
-                                            <input ng-model="data.city" placeholder="עיר" class="form-control" required="true" value="" type="text">
+                                            <input ng-model="data.city" placeholder="עיר" class="form-control" required value="" type="text">
                                         </div>
                                     </div>
                                 </div>
                                      <div class="form-group row">
                                     <label for="address" class="col-sm-2 col-form-label">כתובת<span style="color:red">   *</span></label>
                                     <div class="col-md-3 inputGroupContainer">
-                                        <div class="input-group"><input ng-model="data.address" placeholder="כתובת" class="form-control" required="true" value="" type="text">
+                                        <div class="input-group"><input ng-model="data.address" placeholder="כתובת" class="form-control" required value="" type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -124,7 +126,7 @@
                                     <label for="studyField" class="col-sm-2 col-form-label">תחום לימודים</label>
                                     <div class="col-md-3 inputGroupContainer">
                                         <div class="input-group"> 
-                                            <input ng-model="data.studyField" placeholder="תחום לימודים" type="text" class="form-control"  required="false">
+                                            <input ng-model="data.studyField" placeholder="תחום לימודים" type="text" class="form-control"  required>
                                       </div>
                                         </div>
                                     </div>
@@ -132,7 +134,7 @@
                                     <label for="AcademicDegree" class="col-sm-2 col-form-label">בעל תואר אקדמי במקצוע</label>
                                     <div class="col-md-3 inputGroupContainer">
                                         <div class="input-group">
-                                            <input ng-model="data.AcademicDegree" placeholder="תואר אקדמי" class="form-control" required="false" value="" type="text">
+                                            <input ng-model="data.AcademicDegree" placeholder="תואר אקדמי" class="form-control" required value="" type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -154,7 +156,7 @@
                                     <label for="role" class="col-sm-2 col-form-label">תפקיד</label>
                                     <div class="col-md-3 inputGroupContainer">
                                         <div class="input-group">
-                                            <input ng-model="data.role" placeholder="תפקיד" class="form-control" required="false" value="" type="text">
+                                            <input ng-model="data.role" placeholder="תפקיד" class="form-control" required value="" type="text">
                                         </div>
                                     </div>
                                 </div>

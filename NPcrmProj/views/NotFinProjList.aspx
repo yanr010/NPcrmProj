@@ -44,7 +44,7 @@
         </thead>
 
         <tbody id="myTable">
-            <tr class="text-center" dir-paginate="project in projects | orderBy:sortType:sortReverse | filter:searchText | itemsPerPage:5">
+            <tr class="text-center" dir-paginate="project in projects | orderBy:sortType:sortReverse | filter:searchText | itemsPerPage:7">
                 <td>{{project.Name}}</td>
                 <td>{{project.StartDate | date:'shortDate'}}</td>
                 <td>{{project.Time}}</td>
