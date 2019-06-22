@@ -20,6 +20,11 @@
                 </li>
             </ul>
         </div>
+        <div class="col border mx-3">
+            <div ng-include="custbycord">
+
+            </div>
+        </div>
         <div class="col border mx-3">Column</div>
         <div class="w-100 p-5"></div>
         <div class="col border mx-3">

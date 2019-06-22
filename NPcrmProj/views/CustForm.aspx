@@ -48,7 +48,7 @@
                                     <label for="mobile" class="col-md-2 control-label">טלפון נייד<span style="color:red">   *</span></label>
                                      <div class="col-md-3 inputGroupContainer">
                                         <div class="input-group">
-                                            <input ng-model="data.mobile" placeholder="טלפון נייד" class="form-control" type="tel" maxlength="10" minlengh="10" pattern="[0-9]" name="mobile" required
+                                            <input ng-model="data.mobile" placeholder="טלפון נייד" class="form-control" type="tel" name="mobile" required
                                                 oninvalid="this.setCustomValidity('טלפון לא תקין')" oninput="setCustomValidity('')"></div>
                                     </div>
                                     
@@ -219,11 +219,11 @@
                                     <div class="col-md-3 inputGroupContainer">
                                         <div class="form-group">
                                             <select class="form-control" ng-model="data.department">
-                                                <option>השכלה גבוהה</option>
-                                                 <option>חיילים משוחררים</option>
-                                                <option>פעליות חברתית</option>
-                                                <option>תעסוקה</option>
-                                                 <option>מנהל מרכז צעירים</option>
+                                                <option value="5">השכלה גבוהה</option>
+                                                 <option value="2">חיילים משוחררים</option>
+                                                <option value="4">פעילות חברתית</option>
+                                                <option value="6">תעסוקה</option>
+                                                 <option value="3">מנהל מרכז צעירים</option>
                                             </select>
                                         </div>
                                         </div>

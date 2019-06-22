@@ -113,7 +113,8 @@
     <Content Include="pics\merkaz.jpg" />
     <Content Include="pics\merkaz_btf_icon.ico" />
     <Content Include="styles\Login.css" />
-    <Content Include="views\Charts.aspx" />
+    <Content Include="views\charts\CustByCord.aspx" />
+    <Content Include="views\charts\MonthBarChart.aspx" />
     <Content Include="views\ClosedTasks.aspx" />
     <Content Include="views\CustForm.aspx" />
     <Content Include="views\CustList.aspx" />
@@ -193,12 +194,19 @@
     <Compile Include="User.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
-    <Compile Include="views\Charts.aspx.cs">
-      <DependentUpon>Charts.aspx</DependentUpon>
+    <Compile Include="views\charts\CustByCord.aspx.cs">
+      <DependentUpon>CustByCord.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="views\Charts.aspx.designer.cs">
-      <DependentUpon>Charts.aspx</DependentUpon>
+    <Compile Include="views\charts\CustByCord.aspx.designer.cs">
+      <DependentUpon>CustByCord.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="views\charts\MonthBarChart.aspx.cs">
+      <DependentUpon>MonthBarChart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="views\charts\MonthBarChart.aspx.designer.cs">
+      <DependentUpon>MonthBarChart.aspx</DependentUpon>
     </Compile>
     <Compile Include="views\ClosedTasks.aspx.cs">
       <DependentUpon>ClosedTasks.aspx</DependentUpon>

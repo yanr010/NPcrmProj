@@ -167,7 +167,7 @@ namespace NPcrmProj
                 dbEntities db = new dbEntities();
                 var result = db.Projects.SingleOrDefault(p => p.Name == Name);
                 if (result != null)
-                { 
+                {
                     result.ActualParticipant = ActualParticipant;
                     db.SaveChanges();
                 }
@@ -271,7 +271,8 @@ namespace NPcrmProj
                     {
                         return "mobile";
                     }
-
+                    //try
+                    //{
                     if (rec == null)
                     {
                         Customer newCust = new Customer();
@@ -296,7 +297,7 @@ namespace NPcrmProj
                         db.SaveChanges();
 
                     }
-
+                    //}
 
 
                     //catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
@@ -470,9 +471,10 @@ namespace NPcrmProj
                     {
                         if (rec == null)
                         {
-
+                            int id = 0;
                             Task newTask = new Task();
-                            int id = db.Tasks.Max(i => i.Id) + 1;
+                            if (db.Tasks.FirstOrDefault(i => i.Id == 1) == null) id = 1;
+                            else id = db.Tasks.Max(i => i.Id) + 1;
                             newTask.Id = id;
                             newTask.CreateDate = DateTime.Now;
                             newTask.Name = Convert.ToString(d["taskName"]);
@@ -686,7 +688,7 @@ namespace NPcrmProj
         public void IdValidation(int Id)
         {
             dbEntities db = new dbEntities();
-            
+
             var val = db.Customers.FirstOrDefault(i => i.Id == Id);
 
             if (val == null) Context.Response.Write(true);
@@ -706,10 +708,73 @@ namespace NPcrmProj
         }
 
 
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public int[] CustDepMon()
+        {
+            using (var stream = new MemoryStream())
+            {
+                var request = HttpContext.Current.Request;
+                request.InputStream.Seek(0, SeekOrigin.Begin);
+                request.InputStream.CopyTo(stream);
+                var dataStr = System.Text.Encoding.UTF8.GetString(stream.ToArray());
+                var data = (dynamic)JsonConvert.DeserializeObject(dataStr);
 
-        
+                using (dbEntities db = new dbEntities())
+                {
+                    string dep = Convert.ToString(data["dep"]);
+                    int[] arr = new int[12];
+                    for (int i = 0; i < 12; i++)
+                    {
+                        arr[i] = db.Customers.SqlQuery("select * from Customers where MONTH(CreateDate) = @i and Department = @dep", new SqlParameter("@i", i + 1), new SqlParameter("@dep", dep)).Count();
+                    }
+                    return arr;
+                }
+            }
+        }
 
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public int[] CustDepQua()
+        {
+            using (var stream = new MemoryStream())
+            {
+                var request = HttpContext.Current.Request;
+                request.InputStream.Seek(0, SeekOrigin.Begin);
+                request.InputStream.CopyTo(stream);
+                var dataStr = System.Text.Encoding.UTF8.GetString(stream.ToArray());
+                var data = (dynamic)JsonConvert.DeserializeObject(dataStr);
 
+                using (dbEntities db = new dbEntities())
+                {
+                    string dep = Convert.ToString(data["dep"]);
+                    int[] arr = new int[4];
+                    for (int i = 0; i < 4; i++)
+                    {
+                        arr[i] = db.Customers.SqlQuery("select * from Customers where DATEPART(quarter, CreateDate)=@i and Department = @dep", new SqlParameter("@i", i + 1), new SqlParameter("@dep", dep)).Count();
+                    }
+                    return arr;
+                }
+            }
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public int[] CustByCord()
+        {
+            using (dbEntities db = new dbEntities())
+            {
+                int[] arr = new int[5];
+                for (int i = 0; i < 5; i++)
+                {
+                    arr[i] = db.Customers.SqlQuery("select * from Customers where Department=@i", new SqlParameter("@i", i + 2)).Count();
+                }
+                return arr;
+            }
+        }
     }
+
+
 }
+
 

@@ -14,7 +14,7 @@
                                     <label for="reportType" class="col-sm-2 col-form-label">סוג דו"ח<span style="color:red">   *</span></label>
                                     <div class="col-md-3 inputGroupContainer">
                                         <div class="form-group">
-                                            <select class="form-control" ng-model="data.ReportType"  required="true">
+                                            <select class="form-control" ng-model="data.ReportType"  required>
                                                 <option value="customer">לקוחות</option>
                                                 <option value="project">פרויקטים</option>
                                                 <option value="task">משימות</option>
@@ -26,28 +26,28 @@
                                  <div class="form-group row">
                                     <label for="reportType" class="col-sm-2 col-form-label">לפי<span style="color:red">   *</span></label>
                                     <div class="col-md-3 inputGroupContainer">
-                                        <div class="form-group" ng-model="data.option">
+                                        <div class="form-group">
                                        <div ng-switch="data.ReportType">
-                                      <div ng-switch-when="customer">
-                                        <select class="form-control" required="true">
-                                                <option>מחלקות</option>
-                                                <option>קטגוריות</option>
+                                      <div ng-switch-when="customer" >
+                                        <select class="form-control" required="true" ng-model="data.option">
+                                                <option value="department">מחלקות</option>
+                                                <option value="category">קטגוריות</option>
                                             </select>
                                       </div>
                                         </div>
                                          <div ng-switch="data.ReportType">
                                       <div ng-switch-when="project">
-                                        <select class="form-control" required="true">
-                                                <option>מחלקות</option>
-                                                <option>קטגוריות</option>
-                                            <option>משתתפים בפרויקט</option>
+                                        <select class="form-control" required="true" ng-model="data.option">
+                                                <option value="department">מחלקות</option>
+                                                <option value="category">קטגוריות</option>
+                                            <option value="projparticipants">משתתפים בפרויקט</option>
                                             </select>
                                       </div>
                                              </div>
                                               <div ng-switch="data.ReportType">
                                       <div ng-switch-when="task">
-                                        <select class="form-control" required="true">
-                                                <option>מחלקות</option>
+                                        <select class="form-control" required="true" ng-model="data.option">
+                                                <option value="department">מחלקות</option>
                                             </select>
                                       </div>
                                           </div>
@@ -55,19 +55,19 @@
                                              </div>
                                         </div>
                                      </div>
-                                        <div class="form-group row">
+<%--                                        <div class="form-group row">
                                     <label for="period" class="col-sm-2 col-form-label">תקופה</label>
                                     <div class="col-md-3 inputGroupContainer">
                                         <div class="form-group">
                                             <select class="form-control" ng-model="data.period" required="true">
-                                                <option>חודשי</option>
-                                                <option>רבעוני</option>
-                                                <option>שנתי</option>
+                                                <option value="month">חודשי</option>
+                                                <option value="quarter">רבעוני</option>
+                                                <option value="year">שנתי</option>
                                             </select>
                                             
                                         </div>
                                     </div>
-                                    </div>
+                                    </div>--%>
                                     
                        
                                  <div class="col-sm-10 text-left">

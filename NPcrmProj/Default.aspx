@@ -73,6 +73,8 @@
         .idred {
             border: solid 1px red;
         }
+
+
     </style>
 
 </head>
@@ -116,7 +118,7 @@
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="#" ng-click="mainclc('3')">הוספת משימה</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" ng-click="mainclc('7')">משימות פעילות</a>
+                            <a class="dropdown-item" href="#" ng-click="mainclc('7')">משימות פתוחות</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" ng-click="mainclc('10')">משימות סגורות</a>
                         </div>
