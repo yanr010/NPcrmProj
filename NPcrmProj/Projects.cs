@@ -17,8 +17,7 @@ namespace NPcrmProj
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Projects()
         {
-            this.Tasks = new HashSet<Tasks>();
-            this.Customers = new HashSet<Customers>();
+            this.Categories = new HashSet<Categories>();
         }
     
         public int Id { get; set; }
@@ -33,9 +32,8 @@ namespace NPcrmProj
         public int ProjectCost { get; set; }
         public string ActualParticipant { get; set; }
     
+        public virtual Departments Departments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tasks> Tasks { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Customers> Customers { get; set; }
+        public virtual ICollection<Categories> Categories { get; set; }
     }
 }

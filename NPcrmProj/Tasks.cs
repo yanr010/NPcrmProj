@@ -20,12 +20,8 @@ namespace NPcrmProj
         public System.DateTime FinalDate { get; set; }
         public string Description { get; set; }
         public string Department { get; set; }
-        public Nullable<int> ProjectId { get; set; }
-        public Nullable<int> CustomerId { get; set; }
         public Nullable<bool> Done { get; set; }
     
-        public virtual Customers Customers { get; set; }
         public virtual Departments Departments { get; set; }
-        public virtual Projects Projects { get; set; }
     }
 }

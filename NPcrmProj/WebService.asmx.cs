@@ -44,7 +44,7 @@ namespace NPcrmProj
                     var rec = db.Projects.Where(i => i.Name == projname).FirstOrDefault();
                     if (rec == null)
                     {
-                        Project newproj = new Project();
+                        Projects newproj = new Projects();
                         int id = db.Projects.Max(i => i.Id) + 1;
                         newproj.Id = id;
                         newproj.CreateDate = DateTime.Now;
@@ -187,7 +187,7 @@ namespace NPcrmProj
         {
             dbEntities db = new dbEntities();
 
-            List<Project> projects = db.Projects.SqlQuery("select * from Projects where Projects.StartDate < @date", new SqlParameter("@date", DateTime.Now)).ToList();
+            List<Projects> projects = db.Projects.SqlQuery("select * from Projects where Projects.StartDate < @date", new SqlParameter("@date", DateTime.Now)).ToList();
             string json = JsonConvert.SerializeObject(projects);
 
 
@@ -202,7 +202,7 @@ namespace NPcrmProj
             {
                 string log = "";
                 dbEntities db = new dbEntities();
-                Project proj = db.Projects.FirstOrDefault(i => i.Name == Name);
+                Projects proj = db.Projects.FirstOrDefault(i => i.Name == Name);
                 int id = proj.Id;
                 db.Projects.Remove(proj);
                 //db.Entry(proj).State = System.Data.Entity.EntityState.Deleted;
@@ -226,7 +226,7 @@ namespace NPcrmProj
         {
             dbEntities db = new dbEntities();
 
-            List<Project> projects = db.Projects.SqlQuery("select * from Projects where Projects.StartDate >= @date", new SqlParameter("@date", DateTime.Now)).ToList();
+            List<Projects> projects = db.Projects.SqlQuery("select * from Projects where Projects.StartDate >= @date", new SqlParameter("@date", DateTime.Now)).ToList();
             string json = JsonConvert.SerializeObject(projects);
 
 
@@ -275,7 +275,7 @@ namespace NPcrmProj
                     //{
                     if (rec == null)
                     {
-                        Customer newCust = new Customer();
+                        Customers newCust = new Customers();
                         newCust.Id = Convert.ToInt32(d["id"]);
                         newCust.CreateDate = DateTime.Now;
                         newCust.FirstName = Convert.ToString(d["firstName"]);
@@ -420,7 +420,7 @@ namespace NPcrmProj
             {
                 string log = "";
                 dbEntities db = new dbEntities();
-                Customer cust = db.Customers.FirstOrDefault(i => i.Id == Id);
+                Customers cust = db.Customers.FirstOrDefault(i => i.Id == Id);
                 db.Customers.Remove(cust);
                 db.SaveChanges();
 
@@ -439,7 +439,7 @@ namespace NPcrmProj
         {
             dbEntities db = new dbEntities();
 
-            System.Data.Entity.DbSet<Customer> customers = db.Customers;
+            System.Data.Entity.DbSet<Customers> customers = db.Customers;
             string json = JsonConvert.SerializeObject(customers);
 
 
@@ -472,7 +472,7 @@ namespace NPcrmProj
                         if (rec == null)
                         {
                             int id = 0;
-                            Task newTask = new Task();
+                            Tasks newTask = new Tasks();
                             if (db.Tasks.FirstOrDefault(i => i.Id == 1) == null) id = 1;
                             else id = db.Tasks.Max(i => i.Id) + 1;
                             newTask.Id = id;
@@ -571,7 +571,7 @@ namespace NPcrmProj
             {
                 string log = "";
                 dbEntities db = new dbEntities();
-                Task task = db.Tasks.FirstOrDefault(i => i.Id == Id);
+                Tasks task = db.Tasks.FirstOrDefault(i => i.Id == Id);
                 db.Tasks.Remove(task);
                 db.SaveChanges();
 
@@ -660,7 +660,7 @@ namespace NPcrmProj
         {
             dbEntities db = new dbEntities();
 
-            List<Project> projects = db.Projects.SqlQuery("select * from Projects where Projects.StartDate >= @date", new SqlParameter("@date", DateTime.Now)).ToList();
+            List<Projects> projects = db.Projects.SqlQuery("select * from Projects where Projects.StartDate >= @date", new SqlParameter("@date", DateTime.Now)).ToList();
             var count = projects.Count();
             string json = JsonConvert.SerializeObject(count);
 

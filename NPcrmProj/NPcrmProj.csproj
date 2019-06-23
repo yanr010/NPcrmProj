@@ -135,10 +135,10 @@
     <Content Include="WebService.asmx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Category.cs">
+    <Compile Include="Categories.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
-    <Compile Include="Customer.cs">
+    <Compile Include="Customers.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
     <Compile Include="Database.Context.cs">
@@ -163,7 +163,7 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Department.cs">
+    <Compile Include="Departments.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
@@ -176,7 +176,7 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Project.cs">
+    <Compile Include="Projects.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -185,13 +185,13 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="sysdiagram.cs">
+    <Compile Include="sysdiagrams.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
-    <Compile Include="Task.cs">
+    <Compile Include="Tasks.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
-    <Compile Include="User.cs">
+    <Compile Include="Users.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
     <Compile Include="views\charts\CustByCord.aspx.cs">
