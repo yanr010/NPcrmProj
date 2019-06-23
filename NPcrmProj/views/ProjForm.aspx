@@ -70,12 +70,11 @@
                 <div class="col-md-3 inputGroupContainer">
                     <div class="form-group">
                         <select class="form-control" ng-model="data.responsible">
-                            <option>מנהל מרכז צעירים</option>
-                            <option>רכזת מעורבות חברתית</option>
-                            <option>רכזת חיילים משוחררים</option>
-                            <option>רכזת תעסוקה</option>
-                            <option>רכזת להשכלה גבוהה</option>
-                            <option>אחר</option>
+                              <option value="5">השכלה גבוהה</option>
+                              <option value="2">חיילים משוחררים</option>
+                              <option value="4">פעילות חברתית</option>
+                              <option value="6">תעסוקה</option>
+                              <option value="3">מנהל מרכז צעירים</option>
                         </select>
                     </div>
                 </div>
