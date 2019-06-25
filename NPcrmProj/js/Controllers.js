@@ -744,7 +744,7 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
             PostTaskDepMon();
             PostTaskDepQua();
         }
-
+       
     }
 
     function PostCustDepMon() {
