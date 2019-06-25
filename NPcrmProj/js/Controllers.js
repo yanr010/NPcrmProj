@@ -699,7 +699,7 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
 
             $scope.quarterchart = true;
 
-            $scope.include = 'views/charts/CustByCat.aspx';
+            $scope.include = 'views/charts/GenericChart.aspx';
             PostCustCat();
 
         }
@@ -719,20 +719,31 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
             PostProjDepQua();
 
         }
-        if (reporttype == "customer" && option == "category") {
+        if (reporttype == "Project" && option == "category") {
 
             $scope.labels = ['לימודים', 'מלגות לימודים', 'מציאת עבודה', 'כספים', 'זכויות לחיילים משוחררים', 'פסיכומטרי', 'משפחה והורות'];
 
-            $scope.quarterchart = true;
-
-            $scope.include = 'views/charts/CustByCat.aspx';
+            $scope.include = 'views/charts/GenericChart.aspx';
             PostProjCat();
 
         }
         if (reporttype == "project" && option == "projparticipants") {
 
         }
+        if (reporttype == "task" && option == "department") {
+            $scope.monbarlabels = ['ינואר', 'פברואר', 'מרץ', 'אפריל', 'מאי', 'יוני', 'יולי', 'אוגוסט', 'ספטמבר', 'אוקטובר', 'נובמבר', 'דצמבר'];
+            $scope.monbarseries = ['השכלה גבוהה', 'חיילים משוחררים', 'מנהל מרכז צעירים', 'פעיליות חברתית', 'תעסוקה'];
 
+            $scope.monqualabels = ['ראשון', 'שני', 'שלישי', 'רביעי'];
+            $scope.monquaseries = ['השכלה גבוהה', 'חיילים משוחררים', 'מנהל מרכז צעירים', 'פעילות חברתית', 'תעסוקה'];
+
+            $scope.quarterchart = true;
+            $scope.monthchart = false;
+
+            $scope.include = 'views/charts/MonthBarChart.aspx';
+            PostTaskDepMon();
+            PostTaskDepQua();
+        }
 
     }
 
@@ -881,25 +892,6 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
             });
     }
 
-
-    function PostCustCat() {
-        $http.post("WebService.asmx/CustCat", null, null)
-            .then(function (response) {
-                var label1 = response.data.d[0];
-                var label2 = response.data.d[1];
-                var label3 = response.data.d[2];
-                var label4 = response.data.d[3];
-                var label5 = response.data.d[4];
-                var label6 = response.data.d[5];
-                var label7 = response.data.d[6];
-              
-               
-                       $scope.custbyCatdata = [
-                                [label1, label2, label3, label4, label5, label6, label7]
-                       ];                                              
-                                                            
-                  })
-                }
     function PostProjDepMon() {
 
         var dat = { dep: "5" };
@@ -1023,6 +1015,151 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
                                         var fou4 = response.data.d[3];
                                         dat = { dep: "3" };
                                         $http.post("WebService.asmx/ProjDepQua", dat, null)
+                                            .then(function (response) {
+                                                var fir5 = response.data.d[0];
+                                                var sec5 = response.data.d[1];
+                                                var thi5 = response.data.d[2];
+                                                var fou5 = response.data.d[3];
+
+                                                $scope.monquachartdata = [
+                                                    [fir1, sec1, thi1, fou1],
+                                                    [fir2, sec2, thi2, fou2],
+                                                    [fir3, sec3, thi3, fou3],
+                                                    [fir4, sec4, thi4, fou4],
+                                                    [fir5, sec5, thi5, fou5]
+                                                ];
+                                            })
+                                    })
+                            })
+                    })
+            });
+    }
+    
+    function PostTaskDepMon() {
+
+        var dat = { dep: "5" };
+        $http.post("WebService.asmx/TaskDepMon", dat, null)
+            .then(function (response) {
+                var jan1 = response.data.d[0];
+                var feb1 = response.data.d[1];
+                var mer1 = response.data.d[2];
+                var apr1 = response.data.d[3];
+                var may1 = response.data.d[4];
+                var jun1 = response.data.d[5];
+                var jul1 = response.data.d[6];
+                var aug1 = response.data.d[7];
+                var sep1 = response.data.d[8];
+                var oct1 = response.data.d[9];
+                var nov1 = response.data.d[10];
+                var dec1 = response.data.d[11];
+                dat = { dep: "2" };
+                $http.post("WebService.asmx/TaskDepMon", dat, null)
+                    .then(function (response) {
+                        var jan2 = response.data.d[0];
+                        var feb2 = response.data.d[1];
+                        var mer2 = response.data.d[2];
+                        var apr2 = response.data.d[3];
+                        var may2 = response.data.d[4];
+                        var jun2 = response.data.d[5];
+                        var jul2 = response.data.d[6];
+                        var aug2 = response.data.d[7];
+                        var sep2 = response.data.d[8];
+                        var oct2 = response.data.d[9];
+                        var nov2 = response.data.d[10];
+                        var dec2 = response.data.d[11];
+                        dat = { dep: "4" };
+                        $http.post("WebService.asmx/TaskDepMon", dat, null)
+                            .then(function (response) {
+                                var jan3 = response.data.d[0];
+                                var feb3 = response.data.d[1];
+                                var mer3 = response.data.d[2];
+                                var apr3 = response.data.d[3];
+                                var may3 = response.data.d[4];
+                                var jun3 = response.data.d[5];
+                                var jul3 = response.data.d[6];
+                                var aug3 = response.data.d[7];
+                                var sep3 = response.data.d[8];
+                                var oct3 = response.data.d[9];
+                                var nov3 = response.data.d[10];
+                                var dec3 = response.data.d[11];
+                                dat = { dep: "6" };
+                                $http.post("WebService.asmx/TaskDepMon", dat, null)
+                                    .then(function (response) {
+                                        var jan4 = response.data.d[0];
+                                        var feb4 = response.data.d[1];
+                                        var mer4 = response.data.d[2];
+                                        var apr4 = response.data.d[3];
+                                        var may4 = response.data.d[4];
+                                        var jun4 = response.data.d[5];
+                                        var jul4 = response.data.d[6];
+                                        var aug4 = response.data.d[7];
+                                        var sep4 = response.data.d[8];
+                                        var oct4 = response.data.d[9];
+                                        var nov4 = response.data.d[10];
+                                        var dec4 = response.data.d[11];
+                                        dat = { dep: "3" };
+                                        $http.post("WebService.asmx/TaskDepMon", dat, null)
+                                            .then(function (response) {
+                                                var jan5 = response.data.d[0];
+                                                var feb5 = response.data.d[1];
+                                                var mer5 = response.data.d[2];
+                                                var apr5 = response.data.d[3];
+                                                var may5 = response.data.d[4];
+                                                var jun5 = response.data.d[5];
+                                                var jul5 = response.data.d[6];
+                                                var aug5 = response.data.d[7];
+                                                var sep5 = response.data.d[8];
+                                                var oct5 = response.data.d[9];
+                                                var nov5 = response.data.d[10];
+                                                var dec5 = response.data.d[11];
+
+                                                $scope.monbarchartdata = [
+                                                    [jan1, feb1, mer1, apr1, may1, jun1, jul1, aug1, sep1, oct1, nov1, dec1],
+                                                    [jan2, feb2, mer2, apr2, may2, jun2, jul2, aug2, sep2, oct2, nov2, dec2],
+                                                    [jan3, feb3, mer3, apr3, may3, jun3, jul3, aug3, sep3, oct3, nov3, dec3],
+                                                    [jan4, feb4, mer4, apr4, may4, jun4, jul4, aug4, sep4, oct4, nov4, dec4],
+                                                    [jan5, feb5, mer5, apr5, may5, jun5, jul5, aug5, sep5, oct5, nov5, dec5]
+                                                ];
+                                            })
+                                    })
+                            })
+                    })
+            });
+    }
+
+
+    function PostTaskDepQua() {
+        var dat = { dep: "5" };
+        $http.post("WebService.asmx/TaskDepQua", dat, null)
+            .then(function (response) {
+                var fir1 = response.data.d[0];
+                var sec1 = response.data.d[1];
+                var thi1 = response.data.d[2];
+                var fou1 = response.data.d[3];
+
+                dat = { dep: "2" };
+                $http.post("WebService.asmx/TaskDepQua", dat, null)
+                    .then(function (response) {
+                        var fir2 = response.data.d[0];
+                        var sec2 = response.data.d[1];
+                        var thi2 = response.data.d[2];
+                        var fou2 = response.data.d[3];
+                        dat = { dep: "4" };
+                        $http.post("WebService.asmx/TaskDepQua", dat, null)
+                            .then(function (response) {
+                                var fir3 = response.data.d[0];
+                                var sec3 = response.data.d[1];
+                                var thi3 = response.data.d[2];
+                                var fou3 = response.data.d[3];
+                                dat = { dep: "6" };
+                                $http.post("WebService.asmx/TaskDepQua", dat, null)
+                                    .then(function (response) {
+                                        var fir4 = response.data.d[0];
+                                        var sec4 = response.data.d[1];
+                                        var thi4 = response.data.d[2];
+                                        var fou4 = response.data.d[3];
+                                        dat = { dep: "3" };
+                                        $http.post("WebService.asmx/TaskDepQua", dat, null)
                                             .then(function (response) {
                                                 var fir5 = response.data.d[0];
                                                 var sec5 = response.data.d[1];

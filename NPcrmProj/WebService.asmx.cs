@@ -772,22 +772,7 @@ namespace NPcrmProj
                 return arr;
             }
         }
-        [WebMethod]
-        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public int[] CustCat()
-        {
-                  
-                using (dbEntities db = new dbEntities())
-                {
-                    int[] arr = new int[7];
-                    for (int i = 0; i < 7; i++)
-                    {
-
-                    //arr[i] = db.Customers.SqlQuery("select * from Customers where Department=@i", new SqlParameter("@i", i + 2)).Count();
-                }
-                    return arr;
-                }
-            }
+        
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public int[] ProjDepMon()
@@ -831,6 +816,54 @@ namespace NPcrmProj
                     for (int i = 0; i < 4; i++)
                     {
                         arr[i] = db.Projects.SqlQuery("select * from Projects where DATEPART(quarter, StartDate)=@i and Responsible = @dep", new SqlParameter("@i", i + 1), new SqlParameter("@dep", dep)).Count();
+                    }
+                    return arr;
+                }
+            }
+        }
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public int[] TaskDepMon()
+        {
+            using (var stream = new MemoryStream())
+            {
+                var request = HttpContext.Current.Request;
+                request.InputStream.Seek(0, SeekOrigin.Begin);
+                request.InputStream.CopyTo(stream);
+                var dataStr = System.Text.Encoding.UTF8.GetString(stream.ToArray());
+                var data = (dynamic)JsonConvert.DeserializeObject(dataStr);
+
+                using (dbEntities db = new dbEntities())
+                {
+                    string dep = Convert.ToString(data["dep"]);
+                    int[] arr = new int[12];
+                    for (int i = 0; i < 12; i++)
+                    {
+                        arr[i] = db.Tasks.SqlQuery("select * from Tasks where Month(FinalDate) = @i and Department = @dep", new SqlParameter("@i", i + 1), new SqlParameter("@dep", dep)).Count();
+                    }
+                    return arr;
+                }
+            }
+        }
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public int[] TaskDepQua()
+        {
+            using (var stream = new MemoryStream())
+            {
+                var request = HttpContext.Current.Request;
+                request.InputStream.Seek(0, SeekOrigin.Begin);
+                request.InputStream.CopyTo(stream);
+                var dataStr = System.Text.Encoding.UTF8.GetString(stream.ToArray());
+                var data = (dynamic)JsonConvert.DeserializeObject(dataStr);
+
+                using (dbEntities db = new dbEntities())
+                {
+                    string dep = Convert.ToString(data["dep"]);
+                    int[] arr = new int[4];
+                    for (int i = 0; i < 4; i++)
+                    {
+                        arr[i] = db.Tasks.SqlQuery("select * from Tasks where DATEPART(quarter, FinalDate)=@i and Department = @dep", new SqlParameter("@i", i + 1), new SqlParameter("@dep", dep)).Count();
                     }
                     return arr;
                 }
