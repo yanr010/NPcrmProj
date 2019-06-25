@@ -7,7 +7,8 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
     $scope.include = 'views/Main.aspx';
     $scope.lastcust = 'views/LastCust.aspx';
     $scope.lasttask = 'views/LastTask.aspx';
-    $scope.custbycord = 'views/charts/CustByCord.aspx'
+    $scope.custbycord = 'views/charts/CustByCord.aspx';
+    $scope.mailinc = 'views/Email.aspx';
     GetLastCusts();
     GetLastTasks();
     GetCustCount();
@@ -61,38 +62,35 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
 
             case '6':
                 $scope.include = 'views/FinProjList.aspx';
-                $scope.data = null;
                 GetFinAllProjects();
 
                 break;
 
             case '7':
                 $scope.include = 'views/TaskList.aspx';
-                $scope.data = null;
                 GetAllOpenTasks();
 
                 break;
 
             case '8':
                 $scope.include = 'views/CustList.aspx';
-                $scope.data = null;
                 GetAllCustomers();
 
                 break;
 
             case '9':
                 $scope.include = 'views/NotFinProjList.aspx';
-                $scope.data = null;
                 GetNotFinAllProjects();
 
                 break;
 
             case '10':
                 $scope.include = 'views/ClosedTasks.aspx';
-                $scope.data = null;
                 GetClosedTasks();
 
                 break;
+
+
 
             default:
 
@@ -673,8 +671,8 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
 
 
 
-        var reporttype = $scope.data.ReportType;
-        var option = $scope.data.option;
+        let reporttype = $scope.data.ReportType;
+        let option = $scope.data.option;
 
 
         if (reporttype == "customer" && option == "department") {
@@ -1195,6 +1193,9 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
                                 [fir, sec, thi, fou, fiv]
                             ];
                         })
+
+
+
                 }
 
 

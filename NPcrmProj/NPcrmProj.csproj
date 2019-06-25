@@ -110,6 +110,7 @@
     <Content Include="pics\login.jpg" />
     <Content Include="pics\logo.JPG" />
     <Content Include="pics\maalot.jpg" />
+    <Content Include="pics\mail.svg" />
     <Content Include="pics\merkaz.jpg" />
     <Content Include="pics\merkaz_btf_icon.ico" />
     <Content Include="styles\Login.css" />
@@ -122,6 +123,7 @@
     <Content Include="views\EditFinProj.aspx" />
     <Content Include="views\EditProj.aspx" />
     <Content Include="views\EditTask.aspx" />
+    <Content Include="views\Email.aspx" />
     <Content Include="views\LastCust.aspx" />
     <Content Include="views\LastTask.aspx" />
     <Content Include="views\Main.aspx" />
@@ -256,6 +258,13 @@
     </Compile>
     <Compile Include="views\EditTask.aspx.designer.cs">
       <DependentUpon>EditTask.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="views\Email.aspx.cs">
+      <DependentUpon>Email.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="views\Email.aspx.designer.cs">
+      <DependentUpon>Email.aspx</DependentUpon>
     </Compile>
     <Compile Include="views\LastCust.aspx.cs">
       <DependentUpon>LastCust.aspx</DependentUpon>

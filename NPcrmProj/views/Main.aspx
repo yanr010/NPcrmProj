@@ -9,24 +9,31 @@
         <div class="col-2 mx-3">
             <h3 class="text-center">סה"כ במערכת</h3>
             <ul class="list-group">
-                <li class="list-group-item d-flex justify-content-between align-items-center">לקוחות
+                <li class="list-group-item d-flex justify-content-between align-items-right">לקוחות
     <span class="badge badge-primary badge-pill">{{custcount}}</span>
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">פרוייקטים עתידיים
+                <li class="list-group-item d-flex justify-content-between align-items-right">פרוייקטים עתידיים
     <span class="badge badge-primary badge-pill">{{projcount}}</span>
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">משימות פתוחות
+                <li class="list-group-item d-flex justify-content-between align-items-right">משימות פתוחות
     <span class="badge badge-primary badge-pill">{{taskcount}}</span>
                 </li>
             </ul>
         </div>
-        <div class="col border mx-3">
-            <div ng-include="custbycord">
 
+
+        <div class="col border mx-3" style="padding: 5px;">
+            <h2 class="text-center">לקוחות לפי רכז</h2>
+            <div ng-include="custbycord">
             </div>
         </div>
-        <div class="col border mx-3">Column</div>
-        <div class="w-100 p-5"></div>
+
+        <div class="col border mx-3">
+            <div ng-include="mailinc">
+            </div>
+        </div>
+
+        <div class="w-100 p-2"></div>
         <div class="col border mx-3">
             <h2 class="text-center">לקוחות חדשים</h2>
             <div ng-include="lastcust"></div>
