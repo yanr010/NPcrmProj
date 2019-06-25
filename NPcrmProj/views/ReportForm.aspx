@@ -48,6 +48,7 @@
                                       <div ng-switch-when="task">
                                         <select class="form-control" required="true" ng-model="data.option">
                                                 <option value="department">מחלקות</option>
+                                            <option value="unfinished">פתוחות</option>
                                             </select>
                                       </div>
                                           </div>

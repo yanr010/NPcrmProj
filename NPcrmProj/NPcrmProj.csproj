@@ -113,6 +113,7 @@
     <Content Include="pics\merkaz.jpg" />
     <Content Include="pics\merkaz_btf_icon.ico" />
     <Content Include="styles\Login.css" />
+    <Content Include="views\charts\CustByCat.aspx" />
     <Content Include="views\charts\CustByCord.aspx" />
     <Content Include="views\charts\MonthBarChart.aspx" />
     <Content Include="views\ClosedTasks.aspx" />
@@ -193,6 +194,13 @@
     </Compile>
     <Compile Include="Users.cs">
       <DependentUpon>Database.tt</DependentUpon>
+    </Compile>
+    <Compile Include="views\charts\CustByCat.aspx.cs">
+      <DependentUpon>CustByCat.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="views\charts\CustByCat.aspx.designer.cs">
+      <DependentUpon>CustByCat.aspx</DependentUpon>
     </Compile>
     <Compile Include="views\charts\CustByCord.aspx.cs">
       <DependentUpon>CustByCord.aspx</DependentUpon>
