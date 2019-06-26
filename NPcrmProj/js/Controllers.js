@@ -694,9 +694,8 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
         if (reporttype == "customer" && option == "category") {
 
             $scope.labels =['לימודים', 'מלגות לימודים', 'מציאת עבודה', 'כספים', 'זכויות לחיילים משוחררים', 'פסיכומטרי', 'משפחה והורות'];
-
-            $scope.quarterchart = true;
-
+            $scope.CustomerCategory = true;
+            $scope.ProjectCategory = false;
             $scope.include = 'views/charts/GenericChart.aspx';
             PostCustCat();
 
@@ -717,15 +716,18 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
             PostProjDepQua();
 
         }
-        if (reporttype == "Project" && option == "category") {
+        if (reporttype == "project" && option == "category") {
 
             $scope.labels = ['לימודים', 'מלגות לימודים', 'מציאת עבודה', 'כספים', 'זכויות לחיילים משוחררים', 'פסיכומטרי', 'משפחה והורות'];
-
+            $scope.CustomerCategory = false;
+            $scope.ProjectCategory = true;
+           
             $scope.include = 'views/charts/GenericChart.aspx';
             PostProjCat();
 
         }
         if (reporttype == "project" && option == "projparticipants") {
+
 
         }
         if (reporttype == "task" && option == "department") {
@@ -889,7 +891,30 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
                     })
             });
     }
+    function PostCustCat() {
+        $scope.labels = ['לימודים', 'מלגות לימודים', 'מציאת עבודה', 'כספים', 'זכויות לחיילים משוחררים', 'פסיכומטרי', 'משפחה והורות'];
+        $scope.yAxis = {
+            scaleSteps: 1,
+            beginAtZero: true
+        };
+        $http.post("WebService.asmx/CustByCat", null, null)
+            .then(function (response) {
+                var Cat1 = response.data.d[0];
+                var Cat2 = response.data.d[1];
+                var Cat3 = response.data.d[2];
+                var Cat4 = response.data.d[3];
+                var Cat5 = response.data.d[4];
+                var Cat6 = response.data.d[3];
+                var Cat7 = response.data.d[4];
 
+                $scope.chartdata = [
+                    [Cat1, Cat2, Cat3, Cat4, Cat5, Cat6, Cat7]
+                ];
+            })
+
+
+
+    }
     function PostProjDepMon() {
 
         var dat = { dep: "5" };
@@ -1032,7 +1057,26 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
                     })
             });
     }
-    
+    function PostProjCat() {
+        $scope.labels = ['לימודים', 'מלגות לימודים', 'מציאת עבודה', 'כספים', 'זכויות לחיילים משוחררים', 'פסיכומטרי', 'משפחה והורות'];
+        $http.post("WebService.asmx/ProjByCat", null, null)
+       .then(function (response) {
+           var Cat1 = response.data.d[0];
+           var Cat2 = response.data.d[1];
+           var Cat3 = response.data.d[2];
+           var Cat4 = response.data.d[3];
+           var Cat5 = response.data.d[4];
+           var Cat6 = response.data.d[3];
+           var Cat7 = response.data.d[4];
+
+           $scope.chartdata = [
+               [Cat1, Cat2, Cat3, Cat4, Cat5, Cat6, Cat7]
+           ];
+       })
+
+
+
+    }
     function PostTaskDepMon() {
 
         var dat = { dep: "5" };

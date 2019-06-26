@@ -726,7 +726,7 @@ namespace NPcrmProj
                     int[] arr = new int[12];
                     for (int i = 0; i < 12; i++)
                     {
-                        arr[i] = db.Customers.SqlQuery("select * from Customers where MONTH(CreateDate) = @i and Department = @dep", new SqlParameter("@i", i + 1), new SqlParameter("@dep", dep)).Count();
+                        arr[i] = db.Customers.SqlQuery("select * from Customers where MONTH(CreateDate) = @i and Year(CreateDate)=Year(@date) and Department = @dep", new SqlParameter("@i", i + 1), new SqlParameter("@date", DateTime.Now), new SqlParameter("@dep", dep)).Count();
                     }
                     return arr;
                 }
@@ -751,7 +751,7 @@ namespace NPcrmProj
                     int[] arr = new int[4];
                     for (int i = 0; i < 4; i++)
                     {
-                        arr[i] = db.Customers.SqlQuery("select * from Customers where DATEPART(quarter, CreateDate)=@i and Department = @dep", new SqlParameter("@i", i + 1), new SqlParameter("@dep", dep)).Count();
+                        arr[i] = db.Customers.SqlQuery("select * from Customers where DATEPART(quarter, CreateDate)=@i and Year(CreateDate)=Year(@date) and Department = @dep", new SqlParameter("@i", i + 1), new SqlParameter("@date", DateTime.Now), new SqlParameter("@dep", dep)).Count();
                     }
                     return arr;
                 }
@@ -791,12 +791,27 @@ namespace NPcrmProj
                     int[] arr = new int[12];
                     for (int i = 0; i < 12; i++)
                     {
-                        arr[i] = db.Projects.SqlQuery("select * from Projects where Month(StartDate) = @i and Responsible = @dep", new SqlParameter("@i", i + 1), new SqlParameter("@dep", dep)).Count();
+                        arr[i] = db.Projects.SqlQuery("select * from Projects where Month(StartDate) = @i and Year(StartDate)=Year(@date) and Responsible = @dep", new SqlParameter("@i", i + 1), new SqlParameter("@date", DateTime.Now), new SqlParameter("@dep", dep)).Count();
                     }
                     return arr;
                 }
             }
         }
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public int[] CustByCat()
+        {
+            using (dbEntities db = new dbEntities())
+            {
+                int[] arr = new int[7];
+                for (int i = 0; i < 7; i++)
+                {
+                    arr[i] = db.Customers.SqlQuery("select * from Customers, CustomerCategory where Id=CustomerID and CategoryID=@i", new SqlParameter("@i", i + 1)).Count();
+                }
+                return arr;
+            }
+        }
+
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public int[] ProjDepQua()
@@ -815,10 +830,24 @@ namespace NPcrmProj
                     int[] arr = new int[4];
                     for (int i = 0; i < 4; i++)
                     {
-                        arr[i] = db.Projects.SqlQuery("select * from Projects where DATEPART(quarter, StartDate)=@i and Responsible = @dep", new SqlParameter("@i", i + 1), new SqlParameter("@dep", dep)).Count();
+                        arr[i] = db.Projects.SqlQuery("select * from Projects where DATEPART(quarter, StartDate)=@i and Year(StartDate)=Year(@date) and Responsible = @dep", new SqlParameter("@i", i + 1), new SqlParameter("@date", DateTime.Now), new SqlParameter("@dep", dep)).Count();
                     }
                     return arr;
                 }
+            }
+        }
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public int[] ProjByCat()
+        {
+            using (dbEntities db = new dbEntities())
+            {
+                int[] arr = new int[7];
+                for (int i = 0; i < 7; i++)
+                {
+                    arr[i] = db.Projects.SqlQuery("select * from Projects, CategoryProject where Id=ProjectId and CategoryId=@i", new SqlParameter("@i", i + 1)).Count();
+                }
+                return arr;
             }
         }
         [WebMethod]
