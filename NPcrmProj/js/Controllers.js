@@ -693,7 +693,7 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
 
         if (reporttype == "customer" && option == "category") {
 
-            $scope.labels =['לימודים', 'מלגות לימודים', 'מציאת עבודה', 'כספים', 'זכויות לחיילים משוחררים', 'פסיכומטרי', 'משפחה והורות'];
+            $scope.labels = ['לימודים', 'מלגות לימודים', 'מציאת עבודה', 'כספים', 'זכויות לחיילים משוחררים', 'פסיכומטרי', 'משפחה והורות'];
             $scope.CustomerCategory = true;
             $scope.ProjectCategory = false;
             $scope.include = 'views/charts/GenericChart.aspx';
@@ -721,7 +721,7 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
             $scope.labels = ['לימודים', 'מלגות לימודים', 'מציאת עבודה', 'כספים', 'זכויות לחיילים משוחררים', 'פסיכומטרי', 'משפחה והורות'];
             $scope.CustomerCategory = false;
             $scope.ProjectCategory = true;
-           
+
             $scope.include = 'views/charts/GenericChart.aspx';
             PostProjCat();
 
@@ -744,7 +744,7 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
             PostTaskDepMon();
             PostTaskDepQua();
         }
-       
+
     }
 
     function PostCustDepMon() {
@@ -1060,19 +1060,19 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
     function PostProjCat() {
         $scope.labels = ['לימודים', 'מלגות לימודים', 'מציאת עבודה', 'כספים', 'זכויות לחיילים משוחררים', 'פסיכומטרי', 'משפחה והורות'];
         $http.post("WebService.asmx/ProjByCat", null, null)
-       .then(function (response) {
-           var Cat1 = response.data.d[0];
-           var Cat2 = response.data.d[1];
-           var Cat3 = response.data.d[2];
-           var Cat4 = response.data.d[3];
-           var Cat5 = response.data.d[4];
-           var Cat6 = response.data.d[3];
-           var Cat7 = response.data.d[4];
+            .then(function (response) {
+                var Cat1 = response.data.d[0];
+                var Cat2 = response.data.d[1];
+                var Cat3 = response.data.d[2];
+                var Cat4 = response.data.d[3];
+                var Cat5 = response.data.d[4];
+                var Cat6 = response.data.d[3];
+                var Cat7 = response.data.d[4];
 
-           $scope.chartdata = [
-               [Cat1, Cat2, Cat3, Cat4, Cat5, Cat6, Cat7]
-           ];
-       })
+                $scope.chartdata = [
+                    [Cat1, Cat2, Cat3, Cat4, Cat5, Cat6, Cat7]
+                ];
+            })
 
 
 
@@ -1222,78 +1222,86 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
             });
     }
 
-                function custbycord() {
-                    $scope.custbycordlables = ['חיילים משוחררים', 'תעסוקה', 'מנהל מרכז צעירים', 'השכלה גבוהה', 'פעילות חברתית'];
-                    $scope.custpiecolors = [{ backgroundColor: ['#8B82AC', '#4092AA', '#109984', '#56964F', '#938A27'] }] ;
-                    $http.post("WebService.asmx/CustByCord", null, null)
-                        .then(function (response) {
-                            var fir = response.data.d[0];
-                            var sec = response.data.d[1];
-                            var thi = response.data.d[2];
-                            var fou = response.data.d[3];
-                            var fiv = response.data.d[4];
+    function custbycord() {
+        $scope.custbycordlables = ['חיילים משוחררים', 'תעסוקה', 'מנהל מרכז צעירים', 'השכלה גבוהה', 'פעילות חברתית'];
+        $scope.custpiecolors = [{ backgroundColor: ['#8B82AC', '#4092AA', '#109984', '#56964F', '#938A27'] }];
+        $http.post("WebService.asmx/CustByCord", null, null)
+            .then(function (response) {
+                var fir = response.data.d[0];
+                var sec = response.data.d[1];
+                var thi = response.data.d[2];
+                var fou = response.data.d[3];
+                var fiv = response.data.d[4];
 
-                            $scope.custbycorddata = [
-                                [fir, sec, thi, fou, fiv]
-                            ];
-                        })
-
-
-
-                }
+                $scope.custbycorddata = [
+                    [fir, sec, thi, fou, fiv]
+                ];
+            })
 
 
+
+    }
 
 
 
 
 
-                $scope.chartswitch = function (value) {
-
-                    if (value == "quarter") {
-                        $scope.quarterchart = true;
-                        $scope.monthchart = false;
-                    }
-
-                    if (value == "month") {
-                        $scope.quarterchart = false;
-                        $scope.monthchart = true;
-                    }
-
-                    if (value == "year") {
-                        $scope.quarterchart = false;
-                        $scope.monthchart = false;
-                    }
-                }
 
 
+    $scope.chartswitch = function (value) {
+
+        if (value == "quarter") {
+            $scope.quarterchart = true;
+            $scope.monthchart = false;
+        }
+
+        if (value == "month") {
+            $scope.quarterchart = false;
+            $scope.monthchart = true;
+        }
+
+        if (value == "year") {
+            $scope.quarterchart = false;
+            $scope.monthchart = false;
+        }
+    }
 
 
-            });
+    $scope.sendmail = function (mail) {
+        var dat = { data: mail };
+        $http.post("WebService.asmx/sendmail", dat, null)
+            .then(function (response) {
+
+            })
+    }
+
+
+
+});
 
 
 
 
 
-        app.directive('loading', ['$http', function ($http) {
-            return {
-                restrict: 'A',
-                link: function (scope, elm, attrs) {
-                    scope.isLoading = function () {
-                        return $http.pendingRequests.length > 0;
-                    };
-
-                    scope.$watch(scope.isLoading, function (v) {
-                        if (v) {
-                            elm.show();
-                        } else {
-                            elm.hide();
-                        }
-                    });
-                }
+app.directive('loading', ['$http', function ($http) {
+    return {
+        restrict: 'A',
+        link: function (scope, elm, attrs) {
+            scope.isLoading = function () {
+                return $http.pendingRequests.length > 0;
             };
 
-        }]);
+            scope.$watch(scope.isLoading, function (v) {
+                if (v) {
+                    elm.show();
+                } else {
+                    elm.hide();
+                }
+            });
+        }
+    };
+
+}]);
 
 
 

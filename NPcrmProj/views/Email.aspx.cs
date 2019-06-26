@@ -13,26 +13,15 @@ namespace NPcrmProj.views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-
-
-
+            if (!IsPostBack)
+            {
+            }
+            else
+            {
+                // בצע את שאר הפעולות
+            }
         }
 
-        protected void SendMail(object sender, EventArgs e)
-        {
-            SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
-            client.EnableSsl = true;
-            client.DeliveryMethod = SmtpDeliveryMethod.Network;
-            client.UseDefaultCredentials = false;
-            client.Credentials = new NetworkCredential("npcrmproject@gmail.com", "crmproj987");
-            MailMessage msgobj = new MailMessage();
-            msgobj.To.Add("yanr010@gmail.com ");
-            msgobj.From = new MailAddress("npcrmproject@gmail.com");
-            msgobj.Subject = "את יודעת למה לא מעניין אותי כלום?";
-            msgobj.Body = "כי המייל הזה הגיע דרך הקוד וזה עובד :D";
-            client.Send(msgobj);
 
-        }
     }
 }

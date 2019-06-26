@@ -9,6 +9,8 @@ using Newtonsoft.Json;
 using System.Data.SqlClient;
 using System.IO;
 using System.Collections.ObjectModel;
+using System.Net.Mail;
+using System.Net;
 
 namespace NPcrmProj
 {
@@ -898,6 +900,44 @@ namespace NPcrmProj
                 }
             }
         }
+
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public void sendmail()
+        {
+            using (var stream = new MemoryStream())
+            {
+                var request = HttpContext.Current.Request;
+                request.InputStream.Seek(0, SeekOrigin.Begin);
+                request.InputStream.CopyTo(stream);
+                var dataStr = System.Text.Encoding.UTF8.GetString(stream.ToArray());
+                var data = (dynamic)JsonConvert.DeserializeObject(dataStr);
+
+                using (dbEntities db = new dbEntities())
+                {
+                    string category = Convert.ToString(data.data["cat"]);
+                    string msubject = Convert.ToString(data.data["subject"]);
+                    string mbody = Convert.ToString(data.data["body"]);
+
+                    var emails = db.Database.ExecuteSqlCommand("Select Email from Customers, CustomerCategoty where Id=CustomerID and categoryID=@cat", new SqlParameter("@cat", category));
+
+                    SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
+                    client.EnableSsl = true;
+                    client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                    client.UseDefaultCredentials = false;
+                    client.Credentials = new NetworkCredential("npcrmproject@gmail.com", "crmproj987");
+                    MailMessage msgobj = new MailMessage();
+                    msgobj.To.Add("yanr010@gmail.com");
+                    msgobj.From = new MailAddress("npcrmproject@gmail.com");
+                    msgobj.Subject = msubject;
+                    msgobj.Body = mbody;
+                    client.Send(msgobj);
+                }
+            }
+        }
+
+        
 
     }
 

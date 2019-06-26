@@ -8,14 +8,14 @@
     <div class="row">
         <div class="col-2 mx-3">
             <h3 class="text-center">סה"כ במערכת</h3>
-            <ul class="list-group">
+            <ul class="list-group" style="width: 200px;">
                 <li class="list-group-item d-flex justify-content-between align-items-right">לקוחות
     <span class="badge badge-primary badge-pill">{{custcount}}</span>
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-right">פרוייקטים עתידיים
+                <li class="list-group-item d-flex justify-content-between align-items-right">פרוייקטים
     <span class="badge badge-primary badge-pill">{{projcount}}</span>
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-right">משימות פתוחות
+                <li class="list-group-item d-flex justify-content-between align-items-right">משימות
     <span class="badge badge-primary badge-pill">{{taskcount}}</span>
                 </li>
             </ul>
