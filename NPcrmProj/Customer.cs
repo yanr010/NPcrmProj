@@ -12,12 +12,12 @@ namespace NPcrmProj
     using System;
     using System.Collections.Generic;
     
-    public partial class Customers
+    public partial class Customer
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Customers()
+        public Customer()
         {
-            this.Categories = new HashSet<Categories>();
+            this.Categories = new HashSet<Category>();
         }
     
         public int Id { get; set; }
@@ -40,8 +40,8 @@ namespace NPcrmProj
         public string Summary { get; set; }
         public string Department { get; set; }
     
-        public virtual Departments Departments { get; set; }
+        public virtual Department Department1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Categories> Categories { get; set; }
+        public virtual ICollection<Category> Categories { get; set; }
     }
 }

@@ -12,16 +12,12 @@ namespace NPcrmProj
     using System;
     using System.Collections.Generic;
     
-    public partial class Tasks
+    public partial class sysdiagram
     {
-        public int Id { get; set; }
-        public System.DateTime CreateDate { get; set; }
-        public string Name { get; set; }
-        public System.DateTime FinalDate { get; set; }
-        public string Description { get; set; }
-        public string Department { get; set; }
-        public Nullable<bool> Done { get; set; }
-    
-        public virtual Departments Departments { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

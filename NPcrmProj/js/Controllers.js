@@ -727,7 +727,10 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
 
         }
         if (reporttype == "project" && option == "projparticipants") {
-
+            $scope.labels = ['השכלה גבוהה', 'חיילים משוחררים', 'מנהל מרכז צעירים', 'פעילות חברתית', 'תעסוקה'];
+           
+            $scope.include = 'views/charts/CustByCord.aspx';
+            PostProjParticipants();
 
         }
         if (reporttype == "task" && option == "department") {
@@ -1077,6 +1080,26 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
 
 
     }
+    function PostProjParticipants() {
+        $scope.custbycordlables = ['חיילים משוחררים', 'תעסוקה', 'מנהל מרכז צעירים', 'השכלה גבוהה', 'פעילות חברתית'];
+        $scope.custpiecolors = [{ backgroundColor: ['#8B82AC', '#4092AA', '#109984', '#56964F', '#938A27'] }];
+        $http.post("WebService.asmx/ProjParticipants", null, null)
+            .then(function (response) {
+                var fir = response.data.d[0];
+                var sec = response.data.d[1];
+                var thi = response.data.d[2];
+                var fou = response.data.d[3];
+                var fiv = response.data.d[4];
+
+                $scope.custbycorddata = [
+                    [fir, sec, thi, fou, fiv]
+                ];
+            })
+
+
+
+    }
+
     function PostTaskDepMon() {
 
         var dat = { dep: "5" };

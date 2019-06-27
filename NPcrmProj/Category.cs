@@ -12,29 +12,23 @@ namespace NPcrmProj
     using System;
     using System.Collections.Generic;
     
-    public partial class Departments
+    public partial class Category
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Departments()
+        public Category()
         {
-            this.Categories = new HashSet<Categories>();
-            this.Customers = new HashSet<Customers>();
-            this.Projects = new HashSet<Projects>();
-            this.Tasks = new HashSet<Tasks>();
+            this.Projects = new HashSet<Project>();
+            this.Customers = new HashSet<Customer>();
         }
     
-        public string id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
-        public int Coordinator { get; set; }
+        public string DepartmentId { get; set; }
     
+        public virtual Department Department { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Categories> Categories { get; set; }
+        public virtual ICollection<Project> Projects { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Customers> Customers { get; set; }
-        public virtual Users Users { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Projects> Projects { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tasks> Tasks { get; set; }
+        public virtual ICollection<Customer> Customers { get; set; }
     }
 }
