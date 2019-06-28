@@ -21,7 +21,7 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
     $scope.mainclc = function (value) {
         switch (value) {
             case '1':
-                $scope.data = null;
+                
                 $scope.include = 'views/Main.aspx';
                 $scope.lastcust = 'views/LastCust.aspx';
                 $scope.lasttask = 'views/LastTask.aspx';
@@ -116,45 +116,45 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
     $scope.data = {};
     $scope.submitproj = function () {
 
-        $scope.data.startDate = $scope.data.startDate.toDateString();
-        $scope.data.time = $scope.data.time.toTimeString();
+        $scope.data.startDate = data.startDate.toDateString();
+        $scope.data.time = data.time.toTimeString();
         if ($scope.data.finaltime != null)
-            $scope.data.finaltime = $scope.data.finaltime.toTimeString();
+            $scope.data.finaltime = data.finaltime.toTimeString();
 
         var category = [];
-        category[0] = $scope.data.projname;
-        if ($scope.data.inp1 == true) {
-            category[1] = "מציאת עבודה";
+        category[0] = data.projname;
+        if (data.inp1 == true) {
+            category[1] = "1";
         }
 
-        if ($scope.data.inp2 == true) {
-            category[2] = "כספים";
+        if (data.inp2 == true) {
+            category[2] = "2";
         }
 
-        if ($scope.data.inp3 == true) {
-            category[3] = "מלגות לימודים";
+        if (data.inp3 == true) {
+            category[3] = "3";
         }
 
-        if ($scope.data.inp4 == true) {
-            category[4] = "לימודים";
+        if (data.inp4 == true) {
+            category[4] = "4";
         }
 
-        if ($scope.data.inp5 == true) {
-            category[5] = "זכויות של חיילים משוחררים";
+        if (data.inp5 == true) {
+            category[5] = "5";
         }
 
-        if ($scope.data.inp6 == true) {
-            category[6] = "קורסי פסיכומטרי";
+        if (data.inp6 == true) {
+            category[6] = "6";
         }
 
-        if ($scope.data.inp7 == true) {
-            category[7] = "משפחה והורות";
+        if (data.inp7 == true) {
+            category[7] = "7";
         }
 
 
 
         var categories = { data: category };
-        var dat = { data: $scope.data };
+        var dat = { data: data };
 
 
 
@@ -331,41 +331,41 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
 
 
 
-    $scope.submitCust = function () {
+    $scope.submitCust = function (data) {
         var category = [];
-        category[0] = $scope.data.id;
-        if ($scope.data.inp1 == true) {
-            category[1] = "מציאת עבודה";
+        category[0] = data.id;
+        if (data.inp1 == true) {
+            category[1] = "1";
         }
 
-        if ($scope.data.inp2 == true) {
-            category[2] = "כספים";
+        if (data.inp2 == true) {
+            category[2] = "2";
         }
 
-        if ($scope.data.inp3 == true) {
-            category[3] = "מלגות לימודים";
+        if (data.inp3 == true) {
+            category[3] = "3";
         }
 
-        if ($scope.data.inp4 == true) {
-            category[4] = "לימודים";
+        if (data.inp4 == true) {
+            category[4] = "4";
         }
 
-        if ($scope.data.inp5 == true) {
-            category[5] = "זכויות של חיילים משוחררים";
+        if (data.inp5 == true) {
+            category[5] = "5";
         }
 
-        if ($scope.data.inp6 == true) {
-            category[6] = "קורסי פסיכומטרי";
+        if (data.inp6 == true) {
+            category[6] = "6";
         }
 
-        if ($scope.data.inp7 == true) {
-            category[7] = "משפחה והורות";
+        if (data.inp7 == true) {
+            category[7] = "7";
         }
 
 
 
         var categories = { data: category };
-        var dat = { data: $scope.data };
+        var dat = { data: data };
 
 
         $http.post("WebService.asmx/SetCust", dat, null)
@@ -1294,12 +1294,14 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
         var dat = { data: mail };
         $http.post("WebService.asmx/sendmail", dat, null)
             .then(function (response) {
-
+                if (response.data.d == "ok") {
+                    alert("המסרים הועברו בהצלחה!")
+                }
+                else {
+                    alert(response.data);
+                }
             })
     }
-
-
-
 });
 
 

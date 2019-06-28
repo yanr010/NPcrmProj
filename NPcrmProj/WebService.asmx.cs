@@ -1012,26 +1012,28 @@ namespace NPcrmProj
                 return arr;
             }
         }
-//        [WebMethod]
-//        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-//        public double[] ProjParticipants()
-//        {
-//#pragma warning disable CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-//#pragma warning disable CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-//            using (dbEntities db = new dbEntities())
-//#pragma warning restore CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-//#pragma warning restore CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-//            {
-//                double[] arr = new double[5];
-//                for (int i = 0; i < 5; i++)
-//                {
-//                    int part= db.Projects.SqlQuery("select Participant from Projects where responsible=@i", new SqlParameter("@i", i + 1)).sum();
-//                    int Actual = db.Projects.SqlQuery("select ActualParticipant from Projects where responsible=@i", new SqlParameter("@i", i + 1)).Count();
-//                    arr[i] = Actual/ part;
-//                }
-//                return arr;
-//            }
-//        }
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public double[] ProjParticipants()
+        {
+
+            using (dbEntities db = new dbEntities())
+
+            {
+                double[] arr = new double[5];
+                for (int i = 0; i < 5; i++)
+                {
+                    var part = db.Database.SqlQuery<int>("select Participant from Projects where responsible=@i", new SqlParameter("@i", i + 1)).Sum();
+                    var Actual = db.Database.SqlQuery<int>("select ActualParticipant from Projects where responsible=@i", new SqlParameter("@i", i + 1)).Sum();
+                    if(Actual!=0 && part!=0)
+                    arr[i] = Actual / part;
+                }
+                return arr;
+            }
+        }
+
+
+
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public int[] TaskDepMon()
@@ -1044,11 +1046,9 @@ namespace NPcrmProj
                 var dataStr = System.Text.Encoding.UTF8.GetString(stream.ToArray());
                 var data = (dynamic)JsonConvert.DeserializeObject(dataStr);
 
-#pragma warning disable CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning disable CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
+
                 using (dbEntities db = new dbEntities())
-#pragma warning restore CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning restore CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
+
                 {
                     string dep = Convert.ToString(data["dep"]);
                     int[] arr = new int[12];
@@ -1072,11 +1072,9 @@ namespace NPcrmProj
                 var dataStr = System.Text.Encoding.UTF8.GetString(stream.ToArray());
                 var data = (dynamic)JsonConvert.DeserializeObject(dataStr);
 
-#pragma warning disable CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning disable CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
+
                 using (dbEntities db = new dbEntities())
-#pragma warning restore CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning restore CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
+
                 {
                     string dep = Convert.ToString(data["dep"]);
                     int[] arr = new int[4];
@@ -1092,7 +1090,7 @@ namespace NPcrmProj
 
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public void sendmail()
+        public string sendmail()
         {
             using (var stream = new MemoryStream())
             {
@@ -1102,17 +1100,13 @@ namespace NPcrmProj
                 var dataStr = System.Text.Encoding.UTF8.GetString(stream.ToArray());
                 var data = (dynamic)JsonConvert.DeserializeObject(dataStr);
 
-#pragma warning disable CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning disable CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
+
                 using (dbEntities db = new dbEntities())
-#pragma warning restore CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning restore CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
+
                 {
                     string category = Convert.ToString(data.data["cat"]);
                     string msubject = Convert.ToString(data.data["subject"]);
                     string mbody = Convert.ToString(data.data["body"]);
-
-                    var emails = db.Database.ExecuteSqlCommand("Select Email from Customers, CustomerCategoty where Id=CustomerID and categoryID=@cat", new SqlParameter("@cat", category));
 
                     SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
                     client.EnableSsl = true;
@@ -1120,11 +1114,24 @@ namespace NPcrmProj
                     client.UseDefaultCredentials = false;
                     client.Credentials = new NetworkCredential("npcrmproject@gmail.com", "crmproj987");
                     MailMessage msgobj = new MailMessage();
-                    msgobj.To.Add("yanr010@gmail.com");
-                    msgobj.From = new MailAddress("npcrmproject@gmail.com");
-                    msgobj.Subject = msubject;
-                    msgobj.Body = mbody;
-                    client.Send(msgobj);
+
+                    var emails = db.Database.SqlQuery<string>("Select distinct Email from Customers, CustomerCategory where Id=CustomerID and categoryID=@cat", new SqlParameter("@cat", category)).ToList();
+                    try
+                    {
+                        for (var i = 0; i < emails.Count(); i++)
+                        {
+                            msgobj.To.Add(emails[i]);
+                            msgobj.From = new MailAddress("npcrmproject@gmail.com");
+                            msgobj.Subject = msubject;
+                            msgobj.Body = mbody;
+                            client.Send(msgobj);
+                        }
+                    }
+                    catch(Exception e)
+                    {
+                        return e.Message;
+                    }
+                    return "ok";
                 }
             }
         }

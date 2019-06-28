@@ -135,7 +135,7 @@
 
             <br>
             <div class="col-sm-10 text-left">
-                <button ng-click="submitproj()" class="btn btn-primary btn-lg">אישור</button>
+                <button ng-click="submitproj(data)" class="btn btn-primary btn-lg">אישור</button>
             </div>
 
         </fieldset>
