@@ -77,7 +77,7 @@ namespace NPcrmProj
                             newproj.FinalTime = time;
                         }
                         newproj.Participant = Convert.ToString(d["participant"]);
-                        newproj.Responsible = "רכזת תעסוקה"; //Convert.ToString(d["responsible"]);
+                        newproj.Responsible = Convert.ToString(d["responsible"]);
                         newproj.ProjectCost = Convert.ToInt32(d["projectCost"]);
                         db.Projects.Add(newproj);
                         db.SaveChanges();

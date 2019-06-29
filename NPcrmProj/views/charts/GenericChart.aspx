@@ -2,6 +2,7 @@
 <fieldset>
     
    <span class="far fa-arrow-alt-circle-right fa-2x" href="#" ng-click="mainclc('2')" style="float: right; cursor: pointer; padding: 29px;"></span>
+    <span class="fas fa-print fa-2x" href="#" ng-click="SavePDF" style="float: left; cursor: pointer; padding: 29px;"></span>
    <div class="container p-4">
 
         <div class="text-center" ng-if="CustomerCategory">
