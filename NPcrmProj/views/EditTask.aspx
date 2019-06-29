@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TaskForm.aspx.cs" Inherits="NPcrmProj.views.TaskForm" %>
 
+<span class="far fa-arrow-alt-circle-right fa-2x" href="#" ng-click="mainclc('7')" style="float: right; cursor: pointer; padding: 8px;"></span>
 <div class="text-center p-2">
     <i class="fas fa-edit fa-2x">&nbsp&nbsp<span">עריכת משימה</span></i>
 </div>

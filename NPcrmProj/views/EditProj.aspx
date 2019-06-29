@@ -1,7 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EditProj.aspx.cs" Inherits="NPcrmProj.views.EditProj" %>
 
-
-<div class="text-center p-2">
+<span class="far fa-arrow-alt-circle-right fa-2x" href="#" ng-click="mainclc('9')" style="float: right; cursor: pointer; padding: 8px;"></span><div class="text-center p-2">
     <i class="fas fa-edit fa-2x">&nbsp&nbsp<span">עריכת פרויקט</span></i>
 </div>
 

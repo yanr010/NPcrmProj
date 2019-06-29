@@ -115,9 +115,6 @@ app.controller("MainCtrl", function ($scope, $window, $http, CONFIG) {
 
 
 
-
-
-
     $scope.exit = function () {
         $window.location.href = 'Login.aspx';
 
