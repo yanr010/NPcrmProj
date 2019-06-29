@@ -7,8 +7,8 @@
     <div class="form-group">
         <img src="pics/mail.svg" style="width: 20%; float: left;">
 
-        <label for="exampleFormControlSelect1" class="text-right" >קטגוריית לקוחות</label>
-        <select class="form-control col-sm-2 col-form-label" ng-model="mail.cat" style="width: 200px;">
+        <label for="exampleFormControlSelect1" class="text-right" >קטגוריית לקוחות            </label>
+        <select class="form-control col-md-2 col-form-label" ng-model="mail.cat" style="width: 200px;">
             <option value="1">לימודים</option>
             <option value="2">מלגות לימודים</option>
             <option value="3">מציאת עבודה</option>
