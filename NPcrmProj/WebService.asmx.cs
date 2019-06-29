@@ -41,11 +41,7 @@ namespace NPcrmProj
                 var data = (dynamic)JsonConvert.DeserializeObject(dataStr);
 
 
-#pragma warning disable CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning disable CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
                 using (dbEntities db = new dbEntities())
-#pragma warning restore CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning restore CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
                 {
                     var d = data.data;
                     string projname = Convert.ToString(d["projname"]);
@@ -53,8 +49,6 @@ namespace NPcrmProj
                     if (rec == null)
                     {
                         Project newproj = new Project();
-#pragma warning restore CS0246 // The type or namespace name 'Projects' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning restore CS0246 // The type or namespace name 'Projects' could not be found (are you missing a using directive or an assembly reference?)
                         int id = db.Projects.Max(i => i.Id) + 1;
                         newproj.Id = id;
                         newproj.CreateDate = DateTime.Now;
@@ -150,14 +144,8 @@ namespace NPcrmProj
         {
             try
             {
-#pragma warning disable CS0219 // The variable 'log' is assigned but its value is never used
                 string log = "";
-#pragma warning restore CS0219 // The variable 'log' is assigned but its value is never used
-#pragma warning disable CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning disable CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
                 dbEntities db = new dbEntities();
-#pragma warning restore CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning restore CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
                 var result = db.Projects.SingleOrDefault(p => p.Name == Name);
                 if (result != null)
                 {
@@ -169,9 +157,7 @@ namespace NPcrmProj
 
                 return true;
             }
-#pragma warning disable CS0168 // The variable 'e' is declared but never used
             catch (Exception e)
-#pragma warning restore CS0168 // The variable 'e' is declared but never used
             {
                 return false;
             }
@@ -1107,7 +1093,73 @@ namespace NPcrmProj
 
             Context.Response.Write(json);
         }
+
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public void GetUserInfo(string User)
+        {
+            dbEntities db = new dbEntities();
+
+            var user = db.Users.FirstOrDefault(u => u.Username == User);
+            string json = JsonConvert.SerializeObject(user);
+
+
+            Context.Response.Write(json);
+        }
+
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public void GetDepName(string User)
+        {
+            dbEntities db = new dbEntities();
+
+            var us = db.Departments.FirstOrDefault(u => u.id == User);
+            string json = JsonConvert.SerializeObject(us);
+
+
+            Context.Response.Write(json);
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public void checkOldPass(string oldpass, string username)
+        {
+            dbEntities db = new dbEntities();
+
+            var us = db.Users.FirstOrDefault(u => u.Password == oldpass && u.Username == username);
+
+            if (us == null) Context.Response.Write(false);
+            else Context.Response.Write(true);
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public void ChangeNewPassword(string newpass, string username)
+        {
+            dbEntities db = new dbEntities();
+
+            var us = db.Users.FirstOrDefault(u => u.Username == username);
+
+            if (us != null)
+            {
+                us.Password = newpass;
+                db.SaveChanges();
+                Context.Response.Write(true);
+            }
+            else
+            Context.Response.Write(false);
+
+
+        }
+
         
+
+
+
+
+
     }
 
 

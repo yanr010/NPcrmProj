@@ -15,10 +15,12 @@
     <form id="login" runat="server">
         <div class="container">
 
-            <label><b>יש להזין פרטים של המשתמש שסיסמתו נשכחה</b></label>
+            
             <div class="imgcontainer">
             <img src="pics/forgot.jpg" alt="Avatar" class="avatar">
         </div>
+
+            <label>יש להזין פרטים של המשתמש שסיסמתו נשכחה</label>
             
 
             <label><b>שם משתמש</b></label>
