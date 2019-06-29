@@ -9,7 +9,7 @@ app.controller("MainCtrl", function ($scope, $window, $http, CONFIG) {
     $scope.lasttask = 'views/LastTask.aspx';
     $scope.custbycord = 'views/charts/CustByCord.aspx';
     $scope.mailinc = 'views/Email.aspx';
-    $scope.profile = false;
+    $scope.profile = true;
     GetLastCusts();
     GetLastTasks();
     GetCustCount();
