@@ -13,6 +13,7 @@ using System.Net.Mail;
 using System.Net;
 using NPcrmProj;
 
+
 namespace NPcrmProj
 {
     /// <summary>
@@ -184,14 +185,8 @@ namespace NPcrmProj
         {
             try
             {
-#pragma warning disable CS0219 // The variable 'log' is assigned but its value is never used
                 string log = "";
-#pragma warning restore CS0219 // The variable 'log' is assigned but its value is never used
-#pragma warning disable CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning disable CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
                 dbEntities db = new dbEntities();
-#pragma warning restore CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning restore CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
                 var result = db.Projects.SingleOrDefault(p => p.Name == Name);
                 if (result != null)
                 {
@@ -201,9 +196,7 @@ namespace NPcrmProj
 
                 return true;
             }
-#pragma warning disable CS0168 // The variable 'e' is declared but never used
             catch (Exception e)
-#pragma warning restore CS0168 // The variable 'e' is declared but never used
             {
                 return false;
             }
@@ -214,15 +207,9 @@ namespace NPcrmProj
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public void GetFinAllProjects()
         {
-#pragma warning disable CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning disable CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
             dbEntities db = new dbEntities();
-#pragma warning restore CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning restore CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
 
-#pragma warning disable CS0246 // The type or namespace name 'Projects' could not be found (are you missing a using directive or an assembly reference?)
             List<Project> projects = db.Projects.SqlQuery("select * from Projects where Projects.StartDate < @date", new SqlParameter("@date", DateTime.Now)).ToList();
-#pragma warning restore CS0246 // The type or namespace name 'Projects' could not be found (are you missing a using directive or an assembly reference?)
             string json = JsonConvert.SerializeObject(projects);
 
 
@@ -794,11 +781,7 @@ namespace NPcrmProj
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public void GetTaskCount()
         {
-#pragma warning disable CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning disable CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
             dbEntities db = new dbEntities();
-#pragma warning restore CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning restore CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
 
             var tasks = db.Tasks.Where(t => t.Done == false);
             var count = tasks.Count();
@@ -813,11 +796,7 @@ namespace NPcrmProj
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public void IdValidation(int Id)
         {
-#pragma warning disable CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning disable CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
             dbEntities db = new dbEntities();
-#pragma warning restore CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning restore CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
 
             var val = db.Customers.FirstOrDefault(i => i.Id == Id);
 
@@ -829,11 +808,7 @@ namespace NPcrmProj
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public void EmailValidation(string email)
         {
-#pragma warning disable CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning disable CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
             dbEntities db = new dbEntities();
-#pragma warning restore CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning restore CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
 
             var val = db.Customers.FirstOrDefault(i => i.Email == email);
 
@@ -854,11 +829,7 @@ namespace NPcrmProj
                 var dataStr = System.Text.Encoding.UTF8.GetString(stream.ToArray());
                 var data = (dynamic)JsonConvert.DeserializeObject(dataStr);
 
-#pragma warning disable CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning disable CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
                 using (dbEntities db = new dbEntities())
-#pragma warning restore CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning restore CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
                 {
                     string dep = Convert.ToString(data["dep"]);
                     int[] arr = new int[12];
@@ -883,11 +854,7 @@ namespace NPcrmProj
                 var dataStr = System.Text.Encoding.UTF8.GetString(stream.ToArray());
                 var data = (dynamic)JsonConvert.DeserializeObject(dataStr);
 
-#pragma warning disable CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning disable CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
                 using (dbEntities db = new dbEntities())
-#pragma warning restore CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning restore CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
                 {
                     string dep = Convert.ToString(data["dep"]);
                     int[] arr = new int[4];
@@ -904,11 +871,7 @@ namespace NPcrmProj
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public int[] CustByCord()
         {
-#pragma warning disable CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning disable CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
             using (dbEntities db = new dbEntities())
-#pragma warning restore CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning restore CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
             {
                 int[] arr = new int[5];
                 for (int i = 0; i < 5; i++)
@@ -931,11 +894,7 @@ namespace NPcrmProj
                 var dataStr = System.Text.Encoding.UTF8.GetString(stream.ToArray());
                 var data = (dynamic)JsonConvert.DeserializeObject(dataStr);
 
-#pragma warning disable CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning disable CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
                 using (dbEntities db = new dbEntities())
-#pragma warning restore CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning restore CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
                 {
                     string dep = Convert.ToString(data["dep"]);
                     int[] arr = new int[12];
@@ -951,11 +910,7 @@ namespace NPcrmProj
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public int[] CustByCat()
         {
-#pragma warning disable CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning disable CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
             using (dbEntities db = new dbEntities())
-#pragma warning restore CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning restore CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
             {
                 int[] arr = new int[7];
                 for (int i = 0; i < 7; i++)
@@ -978,11 +933,7 @@ namespace NPcrmProj
                 var dataStr = System.Text.Encoding.UTF8.GetString(stream.ToArray());
                 var data = (dynamic)JsonConvert.DeserializeObject(dataStr);
 
-#pragma warning disable CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning disable CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
                 using (dbEntities db = new dbEntities())
-#pragma warning restore CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning restore CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
                 {
                     string dep = Convert.ToString(data["dep"]);
                     int[] arr = new int[5];
@@ -998,11 +949,7 @@ namespace NPcrmProj
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public int[] ProjByCat()
         {
-#pragma warning disable CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning disable CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
             using (dbEntities db = new dbEntities())
-#pragma warning restore CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning restore CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
             {
                 int[] arr = new int[7];
                 for (int i = 0; i < 7; i++)
@@ -1123,6 +1070,7 @@ namespace NPcrmProj
                     client.UseDefaultCredentials = false;
                     client.Credentials = new NetworkCredential("npcrmproject@gmail.com", "crmproj987");
                     MailMessage msgobj = new MailMessage();
+                    string signature = "בברכה, מרכז צעירים מעלות";
 
                     var emails = db.Database.SqlQuery<string>("Select distinct Email from Customers, CustomerCategory where Id=CustomerID and categoryID=@cat", new SqlParameter("@cat", category)).ToList();
                     try
@@ -1132,7 +1080,7 @@ namespace NPcrmProj
                             msgobj.To.Add(emails[i]);
                             msgobj.From = new MailAddress("npcrmproject@gmail.com");
                             msgobj.Subject = msubject;
-                            msgobj.Body = mbody;
+                            msgobj.Body = mbody + Environment.NewLine + Environment.NewLine + Environment.NewLine + Environment.NewLine + signature;
                             client.Send(msgobj);
                         }
                     }
@@ -1145,11 +1093,27 @@ namespace NPcrmProj
             }
         }
 
-        
 
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public void GetUserPermissions(string userdata)
+        {
+            dbEntities db = new dbEntities();
+
+            var user = db.Users.FirstOrDefault(u => u.Username == userdata);
+            var auth = user.Type;
+            string json = JsonConvert.SerializeObject(auth);
+
+
+            Context.Response.Write(json);
+        }
+        
     }
 
 
 }
+
+
+
 
 

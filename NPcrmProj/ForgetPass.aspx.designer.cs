@@ -7,10 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NPcrmProj {
+namespace NPcrmProj.views {
     
     
-    public partial class login {
+    public partial class ForgetPass {
+        
+        /// <summary>
+        /// login control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm login;
         
         /// <summary>
         /// uname control.
@@ -22,13 +31,13 @@ namespace NPcrmProj {
         protected global::System.Web.UI.HtmlControls.HtmlInputText uname;
         
         /// <summary>
-        /// psw control.
+        /// email control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputPassword psw;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText email;
         
         /// <summary>
         /// button control.
@@ -40,24 +49,6 @@ namespace NPcrmProj {
         protected global::System.Web.UI.WebControls.Button button;
         
         /// <summary>
-        /// rememberme control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox rememberme;
-        
-        /// <summary>
-        /// forg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button forg;
-        
-        /// <summary>
         /// logfail control.
         /// </summary>
         /// <remarks>
@@ -65,5 +56,23 @@ namespace NPcrmProj {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl logfail;
+        
+        /// <summary>
+        /// ressuc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ressuc;
+        
+        /// <summary>
+        /// redir control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink redir;
     }
 }

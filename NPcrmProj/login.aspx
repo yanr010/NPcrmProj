@@ -13,16 +13,11 @@
 </head>
 <body>
     <form id="login" runat="server">
+        <div class="container">
 
         <div class="imgcontainer">
             <img src="pics/login.jpg" alt="Avatar" class="avatar">
         </div>
-
-
-
-        <div class="container">
-
-
 
 
             <label><b>שם משתמש</b></label>
@@ -38,6 +33,12 @@
                 <input runat="server" id="rememberme" type="checkbox" name="remember">
                 זכור אותי
             </label>
+            <br />
+
+            <div>
+                <asp:Button ID="forg" UseSubmitBehavior="false" runat="server" OnClick="Forget" Text="שכחתי סיסמא" />
+            </div>
+            
 
 
 

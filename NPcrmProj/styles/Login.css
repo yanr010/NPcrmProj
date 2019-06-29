@@ -13,7 +13,16 @@ input[type=text], input[type=password] {
 
 }
 
-/* Set a style for all buttons */
+#forg {
+    background-color: indianred;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+}
+
 #button {
     background-color: #4CAF50;
     color: white;
@@ -22,7 +31,6 @@ input[type=text], input[type=password] {
     border: none;
     cursor: pointer;
     width: 100%;
-    
 }
 
     /* Add a hover effect for buttons */
@@ -41,13 +49,13 @@ input[type=text], input[type=password] {
 
 /* Avatar image */
 img.avatar {
-    width: 20%;
+    width: 100%;
     border-radius: 20%;
 }
 
 /* Add padding to containers */
 .container {
-    padding: 16px;
+    border-color: darkgray;
     width: 350px;
     text-align: right;
 }

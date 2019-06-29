@@ -1,8 +1,8 @@
-﻿var app = angular.module("myApp", ["chart.js", "angularUtils.directives.dirPagination"]);
+﻿var app = angular.module("myApp", ["chart.js", "angularUtils.directives.dirPagination", "myApp.config"]);
 
 
 
-app.controller("MainCtrl", function ($scope, $window, $http) {
+app.controller("MainCtrl", function ($scope, $window, $http, CONFIG) {
 
     $scope.include = 'views/Main.aspx';
     $scope.lastcust = 'views/LastCust.aspx';
@@ -16,6 +16,19 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
     GetTaskCount();
     custbycord();
 
+
+    var userdata = {
+        params: { userdata: CONFIG.user.description }
+    }
+
+    $http.get("WebService.asmx/GetUserPermissions",userdata)
+        .then(function (response) {
+            
+            //alert(response.data.split('"').join(''));
+            if (response.data.split('"').join('') == "admin")
+                $scope.profile = false;
+            else $scope.profile = true;
+        });
 
 
     $scope.mainclc = function (value) {

@@ -107,6 +107,7 @@
     <Content Include="js\Controllers.js" />
     <Content Include="js\DateTime.js" />
     <Content Include="Login.aspx" />
+    <Content Include="pics\forgot.jpg" />
     <Content Include="pics\login.jpg" />
     <Content Include="pics\logo.JPG" />
     <Content Include="pics\maalot.jpg" />
@@ -125,6 +126,7 @@
     <Content Include="views\EditProj.aspx" />
     <Content Include="views\EditTask.aspx" />
     <Content Include="views\Email.aspx" />
+    <Content Include="ForgetPass.aspx" />
     <Content Include="views\LastCust.aspx" />
     <Content Include="views\LastTask.aspx" />
     <Content Include="views\Main.aspx" />
@@ -273,6 +275,13 @@
     </Compile>
     <Compile Include="views\Email.aspx.designer.cs">
       <DependentUpon>Email.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ForgetPass.aspx.cs">
+      <DependentUpon>ForgetPass.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ForgetPass.aspx.designer.cs">
+      <DependentUpon>ForgetPass.aspx</DependentUpon>
     </Compile>
     <Compile Include="views\LastCust.aspx.cs">
       <DependentUpon>LastCust.aspx</DependentUpon>

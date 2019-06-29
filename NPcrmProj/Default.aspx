@@ -73,8 +73,6 @@
         .idred {
             border: solid 1px red;
         }
-
-
     </style>
 
 </head>
@@ -87,6 +85,19 @@
     <%---------------------------- NavBar ----------------------------%>
 
     <div id="navbar" ng-controller="MainCtrl">
+
+        <script>
+            (function(){
+              'use strict';
+              angular.module('myApp.config',[])
+                .constant('CONFIG', {
+                  user: {
+                        description: '<%= userauth %>'
+                    }
+                });
+            })();
+        </script>
+
 
 
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -106,8 +117,8 @@
 
                         <a class="nav-link dropdown-toggle" href="#">לקוחות</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#" ng-click="mainclc('4')">הוספת לקוח חדש</a>
-                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" ng-if="profile" href="#" ng-click="mainclc('4')">הוספת לקוח חדש</a>
+                            <div class="dropdown-divider" ng-if="profile"></div>
                             <a class="dropdown-item" href="#" ng-click="mainclc('8')">רשימת לקוחות</a>
                         </div>
                     </li>
@@ -116,8 +127,8 @@
                     <li class="nav-item dropdown ml-auto">
                         <a class="nav-link dropdown-toggle" href="#">משימות</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#" ng-click="mainclc('3')">הוספת משימה</a>
-                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" ng-click="mainclc('3')" ng-if="profile">הוספת משימה</a>
+                            <div class="dropdown-divider" ng-if="profile"></div>
                             <a class="dropdown-item" href="#" ng-click="mainclc('7')">משימות פתוחות</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" ng-click="mainclc('10')">משימות סגורות</a>
@@ -127,18 +138,18 @@
                     <li class="nav-item dropdown ml-auto">
                         <a class="nav-link dropdown-toggle" href="#">פרוייקטים</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#" ng-click="mainclc('5')">הוספת פרוייקט</a>
-                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" ng-click="mainclc('5')" ng-if="profile">הוספת פרוייקט</a>
+                            <div class="dropdown-divider" ng-if="profile"></div>
                             <a class="dropdown-item" href="#" ng-click="mainclc('9')">פרוייקטים עתידיים</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" ng-click="mainclc('6')">פרוייקטים שהסתיימו</a>
                         </div>
                     </li>
                     <li class="nav-item ml-auto">
-                        <a class="nav-link" ng-click="mainclc('2')" href="#">דוחות</a>
+                        <a class="nav-link" ng-click="mainclc('2')" href="#" ng-if="!profile">דוחות</a>
                     </li>
 
-  
+
 
 
 
