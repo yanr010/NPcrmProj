@@ -5,12 +5,12 @@
         <div class="text-center" ng-if="CustomerCategory">
             <h2>לקוחות לפי קטגוריות</h2>
             <canvas id="bar1" class="chart chart-bar" 
-                chart-data="chartdata" chart-labels="labels" chart-data-yAxis="yAxis"></canvas>
+                chart-data="chartdata" chart-labels="labels" chart-options="options" ></canvas>
         </div>
        <div class="text-center" ng-if="ProjectCategory">
             <h2>פרוייקטים לפי קטגוריות</h2>
             <canvas id="bar2" class="chart chart-bar"
-                chart-data="chartdata" chart-labels="labels" chart-dataset-override="yAxis"</canvas>
+                chart-data="chartdata" chart-labels="labels" chart-options="options"</canvas>
         </div>
        </div>
       

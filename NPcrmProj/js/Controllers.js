@@ -1062,6 +1062,16 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
     }
     function PostProjCat() {
         $scope.labels = ['לימודים', 'מלגות לימודים', 'מציאת עבודה', 'כספים', 'זכויות לחיילים משוחררים', 'פסיכומטרי', 'משפחה והורות'];
+        $scope.options = {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        stepSize: 1
+                    }
+                }]
+            }
+        }
         $http.post("WebService.asmx/ProjByCat", null, null)
             .then(function (response) {
                 var Cat1 = response.data.d[0];
@@ -1298,7 +1308,7 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
                     alert("המסרים הועברו בהצלחה!")
                 }
                 else {
-                    alert(response.data);
+                    alert(response.data.d);
                 }
             })
     }

@@ -1026,7 +1026,7 @@ namespace NPcrmProj
                     var part = db.Database.SqlQuery<int>("select Participant from Projects where responsible=@i", new SqlParameter("@i", i + 1)).Sum();
                     var Actual = db.Database.SqlQuery<int>("select ActualParticipant from Projects where responsible=@i", new SqlParameter("@i", i + 1)).Sum();
                     if(Actual!=0 && part!=0)
-                    arr[i] = Actual / part;
+                    arr[i] = (double)Actual / (double)part;
                 }
                 return arr;
             }
