@@ -4,8 +4,7 @@
     <div class="btn-group float-right p-5" role="group" aria-label="Basic example">
         <button type="button" class="btn btn-secondary" ng-click="chartswitch('quarter')">רבעוני</button>
         <button type="button" class="btn btn-secondary" ng-click="chartswitch('month')">חודשי</button>
-        <button type="button" class="btn btn-secondary" ng-click="chartswitch('year')">שנתי</button>
-    </div>
+         </div>
 
 
 
@@ -14,14 +13,14 @@
         <div class="text-center" ng-if="quarterchart">
             <h2>רבעוני</h2>
             <canvas id="bar2" class="chart chart-bar"
-                chart-data="monquachartdata" chart-labels="monqualabels" chart-series="monquaseries"></canvas>
+                chart-data="monquachartdata" chart-labels="monqualabels" chart-series="monquaseries" chart-options="options"></canvas>
         </div>
 
 
         <div class="text-center" ng-if="monthchart">
             <h2>חודשי</h2>
             <canvas id="bar1" class="chart chart-bar"
-                chart-data="monbarchartdata" chart-labels="monbarlabels" chart-series="monbarseries"></canvas>
+                chart-data="monbarchartdata" chart-labels="monbarlabels" chart-series="monbarseries" chart-options="options"></canvas>
         </div>
 
 

@@ -751,7 +751,16 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
     }
 
     function PostCustDepMon() {
-
+        $scope.options = {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        stepSize: 1
+                    }
+                }]
+            }
+        }
         var dat = { dep: "5" };
         $http.post("WebService.asmx/CustDepMon", dat, null)
             .then(function (response) {
@@ -844,6 +853,16 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
 
 
     function PostCustDepQua() {
+        $scope.options = {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        stepSize: 1
+                    }
+                }]
+            }
+        }
         var dat = { dep: "5" };
         $http.post("WebService.asmx/CustDepQua", dat, null)
             .then(function (response) {
@@ -896,10 +915,16 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
     }
     function PostCustCat() {
         $scope.labels = ['לימודים', 'מלגות לימודים', 'מציאת עבודה', 'כספים', 'זכויות לחיילים משוחררים', 'פסיכומטרי', 'משפחה והורות'];
-        $scope.yAxis = {
-            scaleSteps: 1,
-            beginAtZero: true
-        };
+        $scope.options = {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        stepSize: 1
+                    }
+                }]
+            }
+        }
         $http.post("WebService.asmx/CustByCat", null, null)
             .then(function (response) {
                 var Cat1 = response.data.d[0];
@@ -919,7 +944,16 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
 
     }
     function PostProjDepMon() {
-
+        $scope.options = {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        stepSize: 1
+                    }
+                }]
+            }
+        }
         var dat = { dep: "5" };
         $http.post("WebService.asmx/ProjDepMon", dat, null)
             .then(function (response) {
@@ -1010,6 +1044,16 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
             });
     }
     function PostProjDepQua() {
+        $scope.options = {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        stepSize: 1
+                    }
+                }]
+            }
+        }
         var dat = { dep: "5" };
         $http.post("WebService.asmx/ProjDepQua", dat, null)
             .then(function (response) {
@@ -1111,7 +1155,16 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
     }
 
     function PostTaskDepMon() {
-
+        $scope.options = {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        stepSize: 1
+                    }
+                }]
+            }
+        }
         var dat = { dep: "5" };
         $http.post("WebService.asmx/TaskDepMon", dat, null)
             .then(function (response) {
@@ -1204,6 +1257,16 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
 
 
     function PostTaskDepQua() {
+        $scope.options = {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        stepSize: 1
+                    }
+                }]
+            }
+        }
         var dat = { dep: "5" };
         $http.post("WebService.asmx/TaskDepQua", dat, null)
             .then(function (response) {
