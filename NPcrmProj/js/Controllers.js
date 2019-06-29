@@ -31,6 +31,10 @@ app.controller("MainCtrl", function ($scope, $window, $http, CONFIG) {
             else $scope.profile = true;
         });
 
+    $scope.UserSettings = function() {
+        $scope.include = "views/settings.aspx";
+    }
+
 
     $scope.mainclc = function (value) {
         switch (value) {

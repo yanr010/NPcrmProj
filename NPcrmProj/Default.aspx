@@ -87,14 +87,14 @@
     <div id="navbar" ng-controller="MainCtrl">
 
         <script>
-            (function(){
-              'use strict';
-              angular.module('myApp.config',[])
-                .constant('CONFIG', {
-                  user: {
-                        description: '<%= userauth %>'
-                    }
-                });
+            (function () {
+                'use strict';
+                angular.module('myApp.config', [])
+                    .constant('CONFIG', {
+                        user: {
+                            description: '<%= userauth %>'
+                        }
+                    });
             })();
         </script>
 
@@ -163,7 +163,11 @@
 
                 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
                     <ul class="navbar-nav">
+                        <li class="nav-item ml-auto">
 
+                            <a class="nav-link fas fa-user-cog" style="padding-top: 12px;"
+                                ng-click="UserSettings()" href="#"></a>
+                        </li>
                         <li class="nav-item ml-auto">
                             <a class="nav-link" ng-click="exit()" href="#">התנתק</a>
                         </li>
