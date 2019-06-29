@@ -49,7 +49,7 @@
                 <td>{{project.StartDate | date:'shortDate'}}</td>
                 <td>{{project.Time}}</td>
                 <td>{{project.FinalTime}}</td>
-                <td>{{project.Responsible}}</td>
+                <%--<td>{{project.Responsible}}</td>--%>
                 <td>
                     <button type="button" class="far fa-edit fa-2x" href="#" ng-click="editproj(project)"></button>
                 </td>

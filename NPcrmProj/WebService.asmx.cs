@@ -30,7 +30,7 @@ namespace NPcrmProj
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
 
-        public bool SetProj()
+        public string SetProj()
         {
             using (var stream = new MemoryStream())
             {
@@ -46,42 +46,52 @@ namespace NPcrmProj
                     var d = data.data;
                     string projname = Convert.ToString(d["projname"]);
                     var rec = db.Projects.Where(i => i.Name == projname).FirstOrDefault();
-                    if (rec == null)
+                    try
                     {
-                        Project newproj = new Project();
-                        int id = db.Projects.Max(i => i.Id) + 1;
-                        newproj.Id = id;
-                        newproj.CreateDate = DateTime.Now;
-                        newproj.Name = Convert.ToString(d["projname"]);
-                        newproj.Description = Convert.ToString(d["description"]);
-                        newproj.StartDate = Convert.ToDateTime(d["startDate"]);
-                        string datet = Convert.ToString(d["time"]);
-                        string[] times = datet.Split(':');
-                        datet = times[0] + ":" + times[1];
-                        DateTime timez = Convert.ToDateTime(datet);
-                        TimeSpan time = timez.TimeOfDay;
-                        newproj.Time = time;
-                        string ftime = Convert.ToString(d["finaltime"]);
-                        if (ftime != null)
+                        if (rec == null)
                         {
-                            times = ftime.Split(':');
+                            Project newproj = new Project();
+                            int id = db.Projects.Max(i => i.Id) + 1;
+                            newproj.Id = id;
+                            newproj.CreateDate = DateTime.Now;
+                            newproj.Name = Convert.ToString(d["projname"]);
+                            newproj.Description = Convert.ToString(d["description"]);
+                            newproj.StartDate = Convert.ToDateTime(d["startDate"]);
+                            string datet = Convert.ToString(d["time"]);
+                            string[] times = datet.Split(':');
                             datet = times[0] + ":" + times[1];
-                            timez = Convert.ToDateTime(datet);
-                            time = timez.TimeOfDay;
-                            newproj.FinalTime = time;
+                            DateTime timez = Convert.ToDateTime(datet);
+                            TimeSpan time = timez.TimeOfDay;
+                            newproj.Time = time;
+                            string ftime = Convert.ToString(d["finaltime"]);
+                            if (ftime != null)
+                            {
+                                times = ftime.Split(':');
+                                datet = times[0] + ":" + times[1];
+                                timez = Convert.ToDateTime(datet);
+                                time = timez.TimeOfDay;
+                                newproj.FinalTime = time;
+                            }
+                            newproj.Participant = Convert.ToInt32(d["participant"]);
+                            newproj.Responsible = Convert.ToString(d["responsible"]);
+                            newproj.ProjectCost = Convert.ToInt32(d["projectCost"]);
+                            db.Projects.Add(newproj);
+                            db.SaveChanges();
                         }
-                        newproj.Participant = Convert.ToString(d["participant"]);
-                        newproj.Responsible = "רכזת תעסוקה"; //Convert.ToString(d["responsible"]);
-                        newproj.ProjectCost = Convert.ToInt32(d["projectCost"]);
-                        db.Projects.Add(newproj);
-                        db.SaveChanges();
+                        else
+                        {
+                            return "exist";
+                        }
                     }
-                    else
+                    catch (Exception e)
                     {
-                        return false;
+                        return "error";
                     }
-                    return true;
-                }
+                    
+                       
+                        return "ok";
+                    }
+
             }
         }
 
@@ -264,11 +274,7 @@ namespace NPcrmProj
                 var data = (dynamic)JsonConvert.DeserializeObject(dataStr);
 
 
-#pragma warning disable CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning disable CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
                 using (dbEntities db = new dbEntities())
-#pragma warning restore CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning restore CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
                 {
                     var d = data.data;
                     int id = Convert.ToInt32(d["id"]);
@@ -292,55 +298,40 @@ namespace NPcrmProj
                     {
                         return "mobile";
                     }
-                    //try
-                    //{
-                    if (rec == null)
+                    try
                     {
-                        Customer newCust = new Customer();
-#pragma warning restore CS0246 // The type or namespace name 'Customers' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning restore CS0246 // The type or namespace name 'Customers' could not be found (are you missing a using directive or an assembly reference?)
-                        newCust.Id = Convert.ToInt32(d["id"]);
-                        newCust.CreateDate = DateTime.Now;
-                        newCust.FirstName = Convert.ToString(d["firstName"]);
-                        newCust.LastName = Convert.ToString(d["lastName"]);
-                        newCust.Gender = Convert.ToString(d["gender"]);
-                        newCust.BirthDate = Convert.ToDateTime(d["birthDate"]);
-                        newCust.Mobile = Convert.ToString(d["mobile"]);
-                        newCust.Email = Convert.ToString(d["email"]);
-                        newCust.Address = Convert.ToString(d["address"]);
-                        newCust.City = Convert.ToString(d["city"]);
-                        newCust.Education = Convert.ToBoolean(d["Education"]);
-                        newCust.Student = Convert.ToBoolean(d["student"]);
-                        newCust.Studyfield = Convert.ToString(d["studyFields"]);
-                        newCust.MilitaryService = Convert.ToString(d["militaryService"]);
-                        newCust.WorkStatus = Convert.ToBoolean(d["work"]);
-                        newCust.Summary = Convert.ToString(d["Summary"]);
-                        newCust.Department = Convert.ToString(d["department"]);
-                        db.Customers.Add(newCust);
-                        db.SaveChanges();
+                        if (rec == null)
+                        {
+                            Customer newCust = new Customer();
+                            newCust.Id = Convert.ToInt32(d["id"]);
+                            newCust.CreateDate = DateTime.Now;
+                            newCust.FirstName = Convert.ToString(d["firstName"]);
+                            newCust.LastName = Convert.ToString(d["lastName"]);
+                            newCust.Gender = Convert.ToString(d["gender"]);
+                            newCust.BirthDate = Convert.ToDateTime(d["birthDate"]);
+                            newCust.Mobile = Convert.ToString(d["mobile"]);
+                            newCust.Email = Convert.ToString(d["email"]);
+                            newCust.Address = Convert.ToString(d["address"]);
+                            newCust.City = Convert.ToString(d["city"]);
+                            newCust.Education = Convert.ToBoolean(d["Education"]);
+                            newCust.Student = Convert.ToBoolean(d["student"]);
+                            newCust.Studyfield = Convert.ToString(d["studyFields"]);
+                            newCust.MilitaryService = Convert.ToString(d["militaryService"]);
+                            newCust.WorkStatus = Convert.ToBoolean(d["work"]);
+                            newCust.Summary = Convert.ToString(d["Summary"]);
+                            newCust.Department = Convert.ToString(d["department"]);
+                            db.Customers.Add(newCust);
+                            db.SaveChanges();
+
+                        }
+                    }
+
+
+                    catch (Exception e)
+                    {
+                        return e.ToString();
 
                     }
-                    //}
-
-
-                    //catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
-                    //{
-                    //    Exception raise = dbEx;
-                    //    foreach (var validationErrors in dbEx.EntityValidationErrors)
-                    //    {
-                    //        foreach (var validationError in validationErrors.ValidationErrors)
-                    //        {
-                    //            string message = string.Format("{0}:{1}",
-                    //                validationErrors.Entry.Entity.ToString(),
-                    //                validationError.ErrorMessage);
-                    //            // raise a new exception nesting
-                    //            // the current instance as InnerException
-                    //            raise = new InvalidOperationException(message, raise);
-                    //        }
-                    //    }
-                    //    throw raise;
-
-                    //}
 
                 }
             }
@@ -408,7 +399,7 @@ namespace NPcrmProj
             {
 
                 string log = "";
-                    dbEntities db = new dbEntities();
+                dbEntities db = new dbEntities();
 
                 var result = db.Customers.SingleOrDefault(p => p.Id == Id);
                 if (result != null)
@@ -433,9 +424,7 @@ namespace NPcrmProj
 
                 return true;
             }
-#pragma warning disable CS0168 // The variable 'e' is declared but never used
             catch (Exception e)
-#pragma warning restore CS0168 // The variable 'e' is declared but never used
             {
                 return false;
             }
@@ -863,7 +852,7 @@ namespace NPcrmProj
                 return arr;
             }
         }
-        
+
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public int[] ProjDepMon()
@@ -958,18 +947,18 @@ namespace NPcrmProj
                 {
                     string temp = Convert.ToString(data["dep"]);
                     int[] arr = new int[2];
-               
-                      
-                            arr[0] = db.Database.SqlQuery<int>("select Participant from Projects where responsible=@i", new SqlParameter("@i",temp)).Sum();
-                            arr[1] = db.Database.SqlQuery<int>("select ActualParticipant from Projects where responsible=@i", new SqlParameter("@i", temp)).Sum();
-                  
-                        return arr;
-                    }
-                  
-                    }
 
+
+                    arr[0] = db.Database.SqlQuery<int>("select Participant from Projects where responsible=@i", new SqlParameter("@i", temp)).Sum();
+                    arr[1] = db.Database.SqlQuery<int>("select ActualParticipant from Projects where responsible=@i", new SqlParameter("@i", temp)).Sum();
+
+                    return arr;
                 }
-                    
+
+            }
+
+        }
+
 
 
         [WebMethod]
@@ -1066,7 +1055,7 @@ namespace NPcrmProj
                             client.Send(msgobj);
                         }
                     }
-                    catch(Exception e)
+                    catch (Exception e)
                     {
                         return e.Message;
                     }
@@ -1145,12 +1134,12 @@ namespace NPcrmProj
                 Context.Response.Write(true);
             }
             else
-            Context.Response.Write(false);
+                Context.Response.Write(false);
 
 
         }
 
-        
+
 
 
 

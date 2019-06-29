@@ -50,7 +50,7 @@
                 <td>{{project.StartDate | date:'shortDate'}}</td>
                 <td>{{project.Participant}}</td>
                 <td>{{project.ActualParticipant}}</td>
-                <td>{{project.Responsible}}</td>
+                <%--<td>{{project.Responsible}}</td>--%>
                 <td>
                     <button type="button" class="far fa-edit fa-2x" href="#" ng-click="addParticipant(project)"></button>
                 </td>

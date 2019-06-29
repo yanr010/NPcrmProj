@@ -198,7 +198,7 @@ app.controller("MainCtrl", function ($scope, $window, $http, CONFIG) {
 
 
     $scope.data = {};
-$scope.submitproj = function () {
+$scope.submitproj = function (data) {
 
     $scope.data.startDate = data.startDate.toDateString();
     $scope.data.time = data.time.toTimeString();
@@ -244,10 +244,10 @@ $scope.submitproj = function () {
 
     $http.post("WebService.asmx/SetProj", dat, null)
         .then(function (response) {
-            if (response.data.d == false) {
+            if (response.data.d == "exist") {
                 alert("פרויקט בשם זה כבר קיים במערכת, אנא בחר שם אחר");
             }
-            else {
+            if (response.data.d == "ok") {
                 $http.post("WebService.asmx/SetCategeryProj", categories, null)
                     .then(function (response) {
                     });
@@ -255,6 +255,7 @@ $scope.submitproj = function () {
                 $scope.include = "views/NotFinProjList.aspx";
                 GetNotFinAllProjects();
             }
+            if (response.data.d == "error") alert("תקלה בהכנסת נתונים, אנא בדוק את הנתונים");
         });
 };
 
@@ -470,6 +471,9 @@ $scope.submitCust = function (data) {
                         $scope.include = "views/CustList.aspx";
                         GetAllCustomers();
                     });
+            }
+            else {
+                alert("נתונים לא תקינים/חסרים, אנא בדוק את הנתונים שהכנסת");
             }
         });
 };

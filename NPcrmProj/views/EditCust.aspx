@@ -100,7 +100,7 @@
                                 </div>
                                  
                                       <div class="form-group row">
-                                    <label for="studyField" class="col-sm-2 col-form-label">תחום לימודים</label>
+                                    <label class="col-sm-2 col-form-label">תחום לימודים</label>
                                     <div class="col-md-3 inputGroupContainer">
                                         <div class="input-group"> 
                                             <input ng-model="studyField" type="text" class="form-control" >

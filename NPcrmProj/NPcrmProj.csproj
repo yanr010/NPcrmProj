@@ -417,6 +417,8 @@
     </Content>
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\NPcrmProj1 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\NPcrmProje - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\NPcrmProject - Web Deploy.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
