@@ -156,7 +156,7 @@
                                     <label for="role" class="col-sm-2 col-form-label">תפקיד</label>
                                     <div class="col-md-3 inputGroupContainer">
                                         <div class="input-group">
-                                            <input ng-model="data.role" placeholder="תפקיד" class="form-control" required value="" type="text">
+                                            <input ng-model="data.role" placeholder="תפקיד" class="form-control" value="" type="text">
                                         </div>
                                     </div>
                                 </div>

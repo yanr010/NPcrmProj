@@ -406,14 +406,10 @@ namespace NPcrmProj
         {
             try
             {
-#pragma warning disable CS0219 // The variable 'log' is assigned but its value is never used
+
                 string log = "";
-#pragma warning restore CS0219 // The variable 'log' is assigned but its value is never used
-#pragma warning disable CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning disable CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-                dbEntities db = new dbEntities();
-#pragma warning restore CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning restore CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
+                    dbEntities db = new dbEntities();
+
                 var result = db.Customers.SingleOrDefault(p => p.Id == Id);
                 if (result != null)
                 {

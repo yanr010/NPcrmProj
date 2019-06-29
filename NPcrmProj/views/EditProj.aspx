@@ -11,7 +11,7 @@
                 <label for="projName" class="col-sm-2 col-form-label">שם פרויקט</label>
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
-                        <input type="text" ng-model="projname" placeholder="שם פרויקט" class="form-control" required="true" oninvalid="this.setCustomValidity('נא להכניס שם פרויקט')" oninput="setCustomValidity('')" disabled>
+                        <input type="text" ng-model="projname" placeholder="שם פרויקט" class="form-control" required oninvalid="this.setCustomValidity('נא להכניס שם פרויקט')" oninput="setCustomValidity('')" disabled>
                     </div>
                 </div>
             </div>
@@ -26,7 +26,7 @@
                 <label for="startDate" class="col-sm-2 col-form-label">תאריך האירוע</label>
                 <div class="col-md-2 inputGroupContainer">
                     <div class="input-group">
-                        <input ng-model="startDate" name="startDate" placeholder="תאריך האירוע" class="form-control" required="true" oninvalid="this.setCustomValidity('נא לבחור תאריך האירוע')" oninput="setCustomValidity('')" value="" type="text" disabled>
+                        <input ng-model="startDate" name="startDate" placeholder="תאריך האירוע" class="form-control" oninvalid="this.setCustomValidity('נא לבחור תאריך האירוע')" oninput="setCustomValidity('')" value="" type="text" disabled>
                     </div>
                 </div>
             </div>
@@ -40,7 +40,7 @@
                 <label for="time" class="col-sm-2 col-form-label">שעת התחלה</label>
                 <div class="col-md-2 inputGroupContainer">
                     <div class="input-group">
-                        <input ng-model="time" name="time" placeholder="שעת התחלה" class="form-control" required="true" oninvalid="this.setCustomValidity('נא להכניס שעת התחלה')" oninput="setCustomValidity('')" value="" type="text" disabled>
+                        <input ng-model="time" name="time" placeholder="שעת התחלה" class="form-control" oninvalid="this.setCustomValidity('נא להכניס שעת התחלה')" oninput="setCustomValidity('')" value="" type="text" disabled>
                     </div>
                 </div>
             </div>
@@ -69,7 +69,7 @@
                 <label for="participant" class="col-sm-2 col-form-label">אחריות</label>
                 <div class="col-md-2 inputGroupContainer">
                     <div class="input-group">
-                        <input ng-model="responsible" name="responsible" placeholder="צפי משתתפים" class="form-control" required="true" oninvalid="this.setCustomValidity('נא להכניס צפי משתתפים')" oninput="setCustomValidity('')" value="" type="text" disabled>
+                        <input ng-model="responsible" name="responsible" placeholder="מחלקה" class="form-control" oninvalid="this.setCustomValidity('נא להכניס צפי משתתפים')" oninput="setCustomValidity('')" value="" type="text" disabled>
                     </div>
                 </div>
 
