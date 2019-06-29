@@ -27,6 +27,9 @@
             <label><b>סיסמא</b></label>
             <input runat="server" type="password" id="psw" required="" oninvalid="this.setCustomValidity('נא להכניס סיסמא')" oninput="setCustomValidity('')">
 
+            <div runat="server" id="logfail" class="alert alert-danger">
+                שם משתמש או סיסמא שגויים
+            </div>
 
             <asp:Button ID="button" runat="server" OnClick="enterclc" Text="כניסה" />
             <label>
@@ -43,9 +46,7 @@
 
 
 
-            <div runat="server" id="logfail" class="alert alert-danger">
-                שם משתמש או סיסמא שגויים
-            </div>
+            
 
 
         </div>

@@ -12,7 +12,7 @@
                 <li class="list-group-item d-flex justify-content-between align-items-right">לקוחות
     <span class="badge badge-primary badge-pill">{{custcount}}</span>
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-right">פרוייקטים
+                <li class="list-group-item d-flex justify-content-between align-items-right">פרויקטים
     <span class="badge badge-primary badge-pill">{{projcount}}</span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-right">משימות

@@ -2,7 +2,6 @@
 
 <fieldset>
       <span class="far fa-arrow-alt-circle-right fa-2x" href="#" ng-click="mainclc('2')" style="float: right; cursor: pointer; padding: 29px;"></span>
-    <span class="fas fa-print fa-2x" href="#" ng-click="SavePDF" style="float: left; cursor: pointer; padding: 29px;"></span>
     <div class="btn-group float-right p-5" role="group" aria-label="Basic example">
         <button type="button" class="btn btn-secondary" ng-click="chartswitch('quarter')">רבעוני</button>
         <button type="button" class="btn btn-secondary" ng-click="chartswitch('month')">חודשי</button>

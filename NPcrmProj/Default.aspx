@@ -87,14 +87,14 @@
     <div id="navbar" ng-controller="MainCtrl">
 
         <script>
-            (function(){
-              'use strict';
-              angular.module('myApp.config',[])
-                .constant('CONFIG', {
-                  user: {
-                        description: '<%= userauth %>'
-                    }
-                });
+            (function () {
+                'use strict';
+                angular.module('myApp.config', [])
+                    .constant('CONFIG', {
+                        user: {
+                            description: '<%= userauth %>'
+                        }
+                    });
             })();
         </script>
 
@@ -136,13 +136,13 @@
                     </li>
 
                     <li class="nav-item dropdown ml-auto">
-                        <a class="nav-link dropdown-toggle" href="#">פרוייקטים</a>
+                        <a class="nav-link dropdown-toggle" href="#">פרויקטים</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#" ng-click="mainclc('5')" ng-if="profile">הוספת פרוייקט</a>
+                            <a class="dropdown-item" href="#" ng-click="mainclc('5')" ng-if="profile">הוספת פרויקט</a>
                             <div class="dropdown-divider" ng-if="profile"></div>
-                            <a class="dropdown-item" href="#" ng-click="mainclc('9')">פרוייקטים עתידיים</a>
+                            <a class="dropdown-item" href="#" ng-click="mainclc('9')">פרויקטים עתידיים</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" ng-click="mainclc('6')">פרוייקטים שהסתיימו</a>
+                            <a class="dropdown-item" href="#" ng-click="mainclc('6')">פרויקטים שהסתיימו</a>
                         </div>
                     </li>
                     <li class="nav-item ml-auto">
@@ -163,7 +163,11 @@
 
                 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
                     <ul class="navbar-nav">
+                        <li class="nav-item ml-auto">
 
+                            <a class="nav-link fas fa-user-cog" style="padding-top: 12px;"
+                                ng-click="UserSettings()" href="#"></a>
+                        </li>
                         <li class="nav-item ml-auto">
                             <a class="nav-link" ng-click="exit()" href="#">התנתק</a>
                         </li>

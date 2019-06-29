@@ -2,7 +2,7 @@
 
 
 <div class="text-center p-2">
-    <i class="fas fa-project-diagram fa-2x">&nbsp&nbsp<span">פרוייקטים עתידיים</span></i>
+    <i class="fas fa-project-diagram fa-2x">&nbsp&nbsp<span">פרויקטים עתידיים</span></i>
 </div>
 
 <div class="container mt-3">
@@ -20,7 +20,7 @@
     <table ng-table="NotFinProjTable" class="table table-bordered">
         <thead class="thead-light">
             <tr class="text-center">
-                <th><a href="#" ng-click="sortType = 'Name'; sortReverse = !sortReverse">שם פרוייקט
+                <th><a href="#" ng-click="sortType = 'Name'; sortReverse = !sortReverse">שם פרויקט
                         <span ng-show="sortType == 'Name' && !sortReverse" class="fas fa-caret-down"></span>
                     <span ng-show="sortType == 'Name' && sortReverse" class="fas fa-caret-up"></span>
                 </a></th>

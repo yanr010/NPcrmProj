@@ -2,7 +2,6 @@
 <fieldset>
     
    <span class="far fa-arrow-alt-circle-right fa-2x" href="#" ng-click="mainclc('2')" style="float: right; cursor: pointer; padding: 29px;"></span>
-    <span class="fas fa-print fa-2x" href="#" ng-click="SavePDF" style="float: left; cursor: pointer; padding: 29px;"></span>
    <div class="container p-4">
 
         <div class="text-center" ng-if="CustomerCategory">
@@ -11,7 +10,7 @@
                 chart-data="chartdata" chart-labels="labels" chart-options="options" chart-colors="color"></canvas>
         </div>
        <div class="text-center" ng-if="ProjectCategory">
-            <h2>פרוייקטים לפי קטגוריות</h2>
+            <h2>פרויקטים לפי קטגוריות</h2>
             <canvas id="bar2" class="chart chart-bar" style="height: 300px; width: 100%;"
                 chart-data="chartdata" chart-labels="labels" chart-options="options" chart-colors="color"</canvas>
         </div>
@@ -19,7 +18,7 @@
 
        <div class="text-center" ng-if="PartProj">
          
-            <h2>אחוזי הצלחה בפרוייקט</h2>
+            <h2>אחוזי הצלחה בפרויקט</h2>
            <canvas id="bar1" class="chart chart-bar" style="height: 300px; width: 100%;"
                 chart-data="chartdata" chart-labels="labels" chart-series="barseries" chart-options="options" chart-colors="color"></canvas>
         </div>
