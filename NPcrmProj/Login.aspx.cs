@@ -17,8 +17,6 @@ namespace NPcrmProj
 
                 logfail.Visible = false;
 
-
-
                 if (Request.Cookies["userid"] != null)
 
                     uname.Value = Request.Cookies["userid"].Value;
@@ -38,12 +36,7 @@ namespace NPcrmProj
         protected void enterclc(object sender, EventArgs e)
         {
 
-#pragma warning disable CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning disable CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
             dbEntities DB = new dbEntities();
-#pragma warning restore CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning restore CS0246 // The type or namespace name 'dbEntities' could not be found (are you missing a using directive or an assembly reference?)
-
 
 
 
@@ -79,6 +72,11 @@ namespace NPcrmProj
                 Response.Redirect("Default.aspx");
             }
 
+        }
+
+        protected void Forget(object sender, EventArgs e)
+        {
+            Response.Redirect("ForgetPass.aspx");
         }
     }
 }

@@ -9,13 +9,23 @@ namespace NPcrmProj
 {
     public partial class Default : System.Web.UI.Page
     {
+        public string userauth;
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (Session["login"] == null)
-            //{
-            //    Session.Clear();
-            //    Response.Redirect("Login.aspx");
-            //}
+
+            if (Session["login"] == null)
+            {
+                Session.Clear();
+                Response.Redirect("Login.aspx");
+            }
+            else
+            {
+
+                this.userauth = (string)Session["login"];
+                
+            }
+
+
 
 
         }
