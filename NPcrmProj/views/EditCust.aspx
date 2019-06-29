@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CustForm.aspx.cs" Inherits="NPcrmProj.views.CustForm" %>
 
 
-
+<span class="far fa-arrow-alt-circle-right fa-2x" href="#" ng-click="mainclc('8')" style="float: right; cursor: pointer; padding: 8px;"></span>
 <div class="text-center p-2">
     <i class="fas fa-user-edit fa-2x">&nbsp&nbsp<span">עריכת לקוח</span></i>
 </div>

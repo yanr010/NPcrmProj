@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MonthBarChart.aspx.cs" Inherits="NPcrmProj.views.Charts" %>
 
 <fieldset>
+      <span class="far fa-arrow-alt-circle-right fa-2x" href="#" ng-click="mainclc('2')" style="float: right; cursor: pointer; padding: 29px;"></span>
     <div class="btn-group float-right p-5" role="group" aria-label="Basic example">
         <button type="button" class="btn btn-secondary" ng-click="chartswitch('quarter')">רבעוני</button>
         <button type="button" class="btn btn-secondary" ng-click="chartswitch('month')">חודשי</button>

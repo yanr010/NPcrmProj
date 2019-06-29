@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="GenericChart.aspx.cs" Inherits="NPcrmProj.views.charts.GenericChart" %>
 <fieldset>
+    
+   <span class="far fa-arrow-alt-circle-right fa-2x" href="#" ng-click="mainclc('2')" style="float: right; cursor: pointer; padding: 29px;"></span>
    <div class="container p-4">
 
         <div class="text-center" ng-if="CustomerCategory">
@@ -12,7 +14,10 @@
             <canvas id="bar2" class="chart chart-bar" style="height: 300px; width: 100%;"
                 chart-data="chartdata" chart-labels="labels" chart-options="options" chart-colors="color"</canvas>
         </div>
+         
+
        <div class="text-center" ng-if="PartProj">
+         
             <h2>אחוזי הצלחה בפרוייקט</h2>
            <canvas id="bar1" class="chart chart-bar" style="height: 300px; width: 100%;"
                 chart-data="chartdata" chart-labels="labels" chart-series="barseries" chart-options="options" chart-colors="color"></canvas>
