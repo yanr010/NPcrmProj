@@ -4,13 +4,18 @@
 
         <div class="text-center" ng-if="CustomerCategory">
             <h2>לקוחות לפי קטגוריות</h2>
-            <canvas id="bar1" class="chart chart-bar" 
-                chart-data="chartdata" chart-labels="labels" chart-options="options" ></canvas>
+            <canvas id="bar1" class="chart chart-bar" style="height: 300px; width: 100%;"
+                chart-data="chartdata" chart-labels="labels" chart-options="options" chart-colors="color"></canvas>
         </div>
        <div class="text-center" ng-if="ProjectCategory">
             <h2>פרוייקטים לפי קטגוריות</h2>
-            <canvas id="bar2" class="chart chart-bar"
-                chart-data="chartdata" chart-labels="labels" chart-options="options"</canvas>
+            <canvas id="bar2" class="chart chart-bar" style="height: 300px; width: 100%;"
+                chart-data="chartdata" chart-labels="labels" chart-options="options" chart-colors="color"</canvas>
+        </div>
+       <div class="text-center" ng-if="PartProj">
+            <h2>אחוזי הצלחה בפרוייקט</h2>
+           <canvas id="bar1" class="chart chart-bar" style="height: 300px; width: 100%;"
+                chart-data="chartdata" chart-labels="labels" chart-series="barseries" chart-options="options" chart-colors="color"></canvas>
         </div>
        </div>
       

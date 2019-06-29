@@ -686,7 +686,10 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
             $scope.quarterchart = true;
             $scope.monthchart = false;
 
+            $scope.monquachartdata = null;
+            $scope.monbarchartdata = null;
             $scope.include = 'views/charts/MonthBarChart.aspx';
+          
             PostCustDepMon();
             PostCustDepQua();
         }
@@ -696,6 +699,8 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
             $scope.labels = ['לימודים', 'מלגות לימודים', 'מציאת עבודה', 'כספים', 'זכויות לחיילים משוחררים', 'פסיכומטרי', 'משפחה והורות'];
             $scope.CustomerCategory = true;
             $scope.ProjectCategory = false;
+            $scope.PartProj = false;
+            $scope.chartdata = null;
             $scope.include = 'views/charts/GenericChart.aspx';
             PostCustCat();
 
@@ -711,6 +716,8 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
             $scope.quarterchart = true;
             $scope.monthchart = false;
 
+            $scope.monquachartdata = null;
+            $scope.monbarchartdata = null;
             $scope.include = 'views/charts/MonthBarChart.aspx';
             PostProjDepMon();
             PostProjDepQua();
@@ -719,17 +726,24 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
         if (reporttype == "project" && option == "category") {
 
             $scope.labels = ['לימודים', 'מלגות לימודים', 'מציאת עבודה', 'כספים', 'זכויות לחיילים משוחררים', 'פסיכומטרי', 'משפחה והורות'];
+
             $scope.CustomerCategory = false;
             $scope.ProjectCategory = true;
-
+            $scope.PartProj = false;
+            $scope.chartdata = null;
             $scope.include = 'views/charts/GenericChart.aspx';
             PostProjCat();
 
         }
         if (reporttype == "project" && option == "projparticipants") {
             $scope.labels = ['השכלה גבוהה', 'חיילים משוחררים', 'מנהל מרכז צעירים', 'פעילות חברתית', 'תעסוקה'];
-           
-            $scope.include = 'views/charts/CustByCord.aspx';
+            $scope.barseries = ['participant', 'actual'];
+
+            $scope.CustomerCategory = false;
+            $scope.ProjectCategory = false;
+            $scope.PartProj = true;
+            $scope.chartdata = null;
+            $scope.include = 'views/charts/GenericChart.aspx';
             PostProjParticipants();
 
         }
@@ -742,6 +756,9 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
 
             $scope.quarterchart = true;
             $scope.monthchart = false;
+
+            $scope.monquachartdata = null;
+            $scope.monbarchartdata = null;
 
             $scope.include = 'views/charts/MonthBarChart.aspx';
             PostTaskDepMon();
@@ -925,6 +942,9 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
                 }]
             }
         }
+        $scope.color = [{
+            backgroundColor: [' rgba(0,0,255,0.3)', ' rgba(0,0,255,0.3)', ' rgba(0,0,255,0.3)', ' rgba(0,0,255,0.3)', 'rgba(0,0,255,0.3)', ' rgba(0,0,255,0.3)', ' rgba(0,0,255,0.3)']
+        }]
         $http.post("WebService.asmx/CustByCat", null, null)
             .then(function (response) {
                 var Cat1 = response.data.d[0];
@@ -1044,6 +1064,7 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
             });
     }
     function PostProjDepQua() {
+
         $scope.options = {
             scales: {
                 yAxes: [{
@@ -1116,6 +1137,9 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
                 }]
             }
         }
+        $scope.color = [{
+            backgroundColor: [' rgba(0,0,255,0.3)', ' rgba(0,0,255,0.3)', ' rgba(0,0,255,0.3)', ' rgba(0,0,255,0.3)', 'rgba(0,0,255,0.3)', ' rgba(0,0,255,0.3)', ' rgba(0,0,255,0.3)']
+        }]
         $http.post("WebService.asmx/ProjByCat", null, null)
             .then(function (response) {
                 var Cat1 = response.data.d[0];
@@ -1135,24 +1159,75 @@ app.controller("MainCtrl", function ($scope, $window, $http) {
 
     }
     function PostProjParticipants() {
-        $scope.custbycordlables = ['חיילים משוחררים', 'תעסוקה', 'מנהל מרכז צעירים', 'השכלה גבוהה', 'פעילות חברתית'];
-        $scope.custpiecolors = [{ backgroundColor: ['#8B82AC', '#4092AA', '#109984', '#56964F', '#938A27'] }];
-        $http.post("WebService.asmx/ProjParticipants", null, null)
-            .then(function (response) {
-                var fir = response.data.d[0];
-                var sec = response.data.d[1];
-                var thi = response.data.d[2];
-                var fou = response.data.d[3];
-                var fiv = response.data.d[4];
+        $scope.labels = ['חיילים משוחררים', 'תעסוקה', 'מנהל מרכז צעירים', 'השכלה גבוהה', 'פעילות חברתית'];
+        $scope.barseries = ['Participants', 'Actual'];
+        $scope.options= {
+            yAxes: [{
+            
+                beginAtZero: true
+            }]
+        }
+        $scope.color = [{ //first dataset colors, for each bar
+            backgroundColor: [
+              'rgba(255, 0, 0, 0.8)',
+              'rgba(255, 0, 0, 0.8)',
+              'rgba(255, 0, 0, 0.8)',
+              'rgba(255, 0, 0, 0.8)',
+              'rgba(255, 0, 0, 0.8)',
+                          ]
+        },
+    { //second dataset colors, for each bar
+        backgroundColor: [
+          'rgba(0, 0, 255, 0.8)',
+          'rgba(0, 0, 255, 0.8)',
+          'rgba(0, 0, 255, 0.8)',
+          'rgba(0, 0, 255, 0.8)',
+          'rgba(0, 0, 255, 0.8)',
+        ]
+    }];
+    var dat = { dep: "2" };
+    $http.post("WebService.asmx/ProjParticipants", dat, null)
+        .then(function (response) {
+            var fir1 = response.data.d[0];
+            var sec1 = response.data.d[1];
+     
+            dat = { dep: "6" };
+            $http.post("WebService.asmx/ProjParticipants", dat, null)
+                .then(function (response) {
+                    var fir2 = response.data.d[0];
+                    var sec2 = response.data.d[1];
 
-                $scope.custbycorddata = [
-                    [fir, sec, thi, fou, fiv]
-                ];
-            })
+                    dat = { dep: "3" };
+                    $http.post("WebService.asmx/ProjParticipants", dat, null)
+                        .then(function (response) {
+                            var fir3 = response.data.d[0];
+                            var sec3 = response.data.d[1];
+                         
+                            dat = { dep: "5" };
+                            $http.post("WebService.asmx/ProjParticipants", dat, null)
+                                .then(function (response) {
+                                    var fir4 = response.data.d[0];
+                                    var sec4 = response.data.d[1];
+                                
+                                    dat = { dep: "4" };
+                                    $http.post("WebService.asmx/ProjParticipants", dat, null)
+                                        .then(function (response) {
+                                            var fir5 = response.data.d[0];
+                                            var sec5 = response.data.d[1];
+                                        
 
+                                            $scope.chartdata = [
+                                                [fir1, fir2, fir3, fir4, fir5],
+                                                [sec1, sec2, sec3, sec4, sec5]
+                                            
+                                            ];
+                                        })
+                                })
+                        })
+                })
 
-
-    }
+        })
+}
 
     function PostTaskDepMon() {
         $scope.options = {

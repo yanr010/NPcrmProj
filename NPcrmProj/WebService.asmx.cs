@@ -1014,24 +1014,33 @@ namespace NPcrmProj
         }
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public double[] ProjParticipants()
+        public int[] ProjParticipants()
         {
-
-            using (dbEntities db = new dbEntities())
-
+            using (var stream = new MemoryStream())
             {
-                double[] arr = new double[5];
-                for (int i = 0; i < 5; i++)
-                {
-                    var part = db.Database.SqlQuery<int>("select Participant from Projects where responsible=@i", new SqlParameter("@i", i + 1)).Sum();
-                    var Actual = db.Database.SqlQuery<int>("select ActualParticipant from Projects where responsible=@i", new SqlParameter("@i", i + 1)).Sum();
-                    if(Actual!=0 && part!=0)
-                    arr[i] = (double)Actual / (double)part;
-                }
-                return arr;
-            }
-        }
+                var request = HttpContext.Current.Request;
+                request.InputStream.Seek(0, SeekOrigin.Begin);
+                request.InputStream.CopyTo(stream);
+                var dataStr = System.Text.Encoding.UTF8.GetString(stream.ToArray());
+                var data = (dynamic)JsonConvert.DeserializeObject(dataStr);
 
+                using (dbEntities db = new dbEntities())
+
+                {
+                    string temp = Convert.ToString(data["dep"]);
+                    int[] arr = new int[2];
+               
+                      
+                            arr[0] = db.Database.SqlQuery<int>("select Participant from Projects where responsible=@i", new SqlParameter("@i",temp)).Sum();
+                            arr[1] = db.Database.SqlQuery<int>("select ActualParticipant from Projects where responsible=@i", new SqlParameter("@i", temp)).Sum();
+                  
+                        return arr;
+                    }
+                  
+                    }
+
+                }
+                    
 
 
         [WebMethod]

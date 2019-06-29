@@ -12,19 +12,18 @@
 
         <div class="text-center" ng-if="quarterchart">
             <h2>רבעוני</h2>
-            <canvas id="bar2" class="chart chart-bar"
-                chart-data="monquachartdata" chart-labels="monqualabels" chart-series="monquaseries" chart-options="options"></canvas>
+            <canvas id="bar2" class="chart chart-bar" style="height: 300px; width: 100%;"
+                chart-data="monquachartdata" chart-labels="monqualabels" chart-series="monquaseries" chart-options="options" chart-colors="color"></canvas>
         </div>
 
 
         <div class="text-center" ng-if="monthchart">
             <h2>חודשי</h2>
-            <canvas id="bar1" class="chart chart-bar"
-                chart-data="monbarchartdata" chart-labels="monbarlabels" chart-series="monbarseries" chart-options="options"></canvas>
+            <canvas id="bar1" class="chart chart-bar" style="height: 300px; width: 100%;"
+                chart-data="monbarchartdata" chart-labels="monbarlabels" chart-series="monbarseries" chart-options="options" chart-colors="color"></canvas>
         </div>
 
-
-    </div>
+        </div>
 
 </fieldset>
 
