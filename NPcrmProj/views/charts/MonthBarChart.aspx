@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MonthBarChart.aspx.cs" Inherits="NPcrmProj.views.Charts" %>
+       <span class="fas fa-print fa-2x" href="#" ng-click="print()" style="float: left; cursor: pointer; padding: 29px;"></span>
 
 <fieldset>
       <span class="far fa-arrow-alt-circle-right fa-2x" href="#" ng-click="mainclc('2')" style="float: right; cursor: pointer; padding: 29px;"></span>
@@ -13,14 +14,14 @@
 
         <div class="text-center" ng-if="quarterchart">
             <h2>רבעוני</h2>
-            <canvas id="bar2" class="chart chart-bar" style="height: 300px; width: 100%;"
+            <canvas id="bar2" class="chart chart-bar" style="height: 300px !important; width: 100% !important;"
                 chart-data="monquachartdata" chart-labels="monqualabels" chart-series="monquaseries" chart-options="options" chart-colors="color"></canvas>
         </div>
 
 
         <div class="text-center" ng-if="monthchart">
             <h2>חודשי</h2>
-            <canvas id="bar1" class="chart chart-bar" style="height: 300px; width: 100%;"
+            <canvas id="bar1" class="chart chart-bar" style="height: 300px !important; width: 100% !important;"
                 chart-data="monbarchartdata" chart-labels="monbarlabels" chart-series="monbarseries" chart-options="options" chart-colors="color"></canvas>
         </div>
 

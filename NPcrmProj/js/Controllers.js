@@ -1533,7 +1533,13 @@ $scope.sendmail = function (mail) {
                 alert(response.data.d);
             }
         })
-}
+    }
+
+
+
+    $scope.print = function () {
+        $window.print();
+    }
 });
 
 
