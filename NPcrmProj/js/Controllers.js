@@ -825,7 +825,7 @@ $scope.showReport = function () {
     }
     if (reporttype == "project" && option == "projparticipants") {
         $scope.labels = ['השכלה גבוהה', 'חיילים משוחררים', 'מנהל מרכז צעירים', 'פעילות חברתית', 'תעסוקה'];
-        $scope.barseries = ['Expected', 'Actual'];
+        $scope.barseries = ['צפי', 'בפועל'];
 
         $scope.CustomerCategory = false;
         $scope.ProjectCategory = false;
@@ -1248,7 +1248,7 @@ function PostProjCat() {
 }
 function PostProjParticipants() {
     $scope.labels = ['חיילים משוחררים', 'תעסוקה', 'מנהל מרכז צעירים', 'השכלה גבוהה', 'פעילות חברתית'];
-    $scope.barseries = ['Expected', 'Actual'];
+    $scope.barseries = ['צפי', 'בפועל'];
     $scope.options = {
         yAxes: [{
 

@@ -950,7 +950,8 @@ namespace NPcrmProj
 
 
                     arr[0] = db.Database.SqlQuery<int>("select Participant from Projects where responsible=@i", new SqlParameter("@i", temp)).Sum();
-                    arr[1] = db.Database.SqlQuery<int>("select ActualParticipant from Projects where responsible=@i", new SqlParameter("@i", temp)).Sum();
+                    arr[1] = db.Database.SqlQuery<int>("select ActualParticipant from Projects where responsible=@i and ActualParticipant IS NOT NULL", new SqlParameter("@i", temp)).Sum();
+
 
                     return arr;
                 }
