@@ -36,10 +36,10 @@
                         <span ng-show="sortType == 'ActualParticipant' && !sortReverse" class="fas fa-caret-down"></span>
                     <span ng-show="sortType == 'ActualParticipant' && sortReverse" class="fas fa-caret-up"></span>
                 </a></th>
-                <th><a href="#" ng-click="sortType = 'Responsible'; sortReverse = !sortReverse">אחריות
+                <%--<th><a href="#" ng-click="sortType = 'Responsible'; sortReverse = !sortReverse">אחריות
                         <span ng-show="sortType == 'Responsible' && !sortReverse" class="fas fa-caret-down"></span>
                     <span ng-show="sortType == 'Responsible' && sortReverse" class="fas fa-caret-up"></span>
-                </a></th>
+                </a></th>--%>
                 
             </tr>
         </thead>
