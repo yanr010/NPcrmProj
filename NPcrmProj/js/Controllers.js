@@ -124,7 +124,7 @@ app.controller("MainCtrl", function ($scope, $window, $http, CONFIG) {
 
 
             case '2':
-
+                
                 $scope.include = 'views/ReportForm.aspx';
 
                 break;
@@ -199,11 +199,11 @@ app.controller("MainCtrl", function ($scope, $window, $http, CONFIG) {
 
     $scope.data = {};
 $scope.submitproj = function (data) {
-
-    $scope.data.startDate = data.startDate.toDateString();
-    $scope.data.time = data.time.toTimeString();
-    if ($scope.data.finaltime != null)
-        $scope.data.finaltime = data.finaltime.toTimeString();
+    
+    data.startDate = data.startDate.toDateString();
+    data.time = data.time.toTimeString();
+    if (data.finaltime != null)
+        data.finaltime = data.finaltime.toTimeString();
 
     var category = [];
     category[0] = data.projname;
@@ -257,6 +257,10 @@ $scope.submitproj = function (data) {
             }
             if (response.data.d == "error") alert("תקלה בהכנסת נתונים, אנא בדוק את הנתונים");
         });
+    setTimeout(function () {
+        $scope.data = null;
+    }, 2000);
+    
 };
 
 

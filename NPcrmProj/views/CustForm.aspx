@@ -3,16 +3,17 @@
 <div class="text-center p-3">
         <h2>הוספת לקוח חדש</h2>
     </div>
-    
-  <div style="background-color:rgb(240, 240, 240)">
-                        <form class="well form-horizontal text-right border">
+    <div>
+        <form class="well form-horizontal text-right border">
                             <fieldset>
+  <div style="background-color:rgb(240, 240, 240)">
+                        
                                 <H5>פרטים אישיים:</H5>
                                 <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">שם פרטי<span style="color:red">   *</span></label>
                                     <div class="col-md-3 inputGroupContainer">
                                         <div class="input-group">
-                                            <input ng-model="data.firstName" placeholder="שם פרטי" class="form-control" required value="" type="text">
+                                            <input ng-model="data.firstName" placeholder="שם פרטי" class="form-control" required="true" value="" type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -20,7 +21,7 @@
                                     <label class="col-sm-2 col-form-label">שם משפחה<span style="color:red">   *</span></label>
                                     <div class="col-md-3 inputGroupContainer">
                                         <div class="input-group">
-                                            <input ng-model="data.lastName" placeholder="שם משפחה" class="form-control" required value="" type="text">
+                                            <input ng-model="data.lastName" placeholder="שם משפחה" class="form-control" required="true" value="" type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -92,12 +93,10 @@
                                 </div>
                          
                                 
-                            </fieldset>
-                        </form>
+                            
     </div>
     <div style="background-color:rgb(245, 245, 245")>
-                        <form class="well form-horizontal text-right border">
-                            <fieldset>
+                        
                                 <br>
                                 <H5>פרטים נוספים:</H5>
                          
@@ -174,12 +173,10 @@
                                    
                                 </div>
   
-                            </fieldset>
-                        </form>
+                            
     </div>
     <div style="background-color:rgb(240, 240, 240)">
-                        <form class="well form-horizontal text-right border">
-                            <fieldset>
+                        
                                 <br>
                                 <H5>סיבת הגעה</H5>
                                       <div class="form-group text-right">
@@ -229,14 +226,12 @@
                                         </div>
                                      </div>
                                 </div>
-                      
-                            </fieldset>
-                        </form>
         
-    </div>
+                      
+                            
+        
     <div style="background-color:rgb(245, 245, 245)">
-                        <form class="well form-horizontal text-right border">
-                            <fieldset>
+                        
                                 <br>
                                   <H5>מסקנות:</H5>
                                  <div class="form-group row">
@@ -247,8 +242,10 @@
                                 <div class="col-sm-10 text-left">
                                <button ng-click="submitCust(data)" class="btn btn-primary btn-lg">אישור</button>
                                 </div>
-                            </fieldset>
-                        </form>
+                           
     </div>
+        </fieldset>
+                        </form>
+</div>
      
 
