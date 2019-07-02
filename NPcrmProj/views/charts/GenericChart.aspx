@@ -7,21 +7,21 @@
 
         <div class="text-center" ng-if="CustomerCategory">
             <h2>לקוחות לפי קטגוריות</h2>
-            <canvas id="bar1" class="chart chart-bar" style="height: 300px !important; width: 100% !important;"
-                chart-data="chartdata" chart-labels="labels" chart-options="options" chart-colors="color"></canvas>
+            <canvas id="bar1" class="chart chart-bar"
+                chart-data="chartdata" chart-labels="labels" chart-options="options" chart-colors="color" legend="true"></canvas>
         </div>
        <div class="text-center" ng-if="ProjectCategory">
             <h2>פרויקטים לפי קטגוריות</h2>
-            <canvas id="bar2" class="chart chart-bar" style="height: 300px !important; width: 100% !important;"
-                chart-data="chartdata" chart-labels="labels" chart-options="options" chart-colors="color"</canvas>
+            <canvas id="bar2" class="chart chart-bar"
+                chart-data="chartdata" chart-labels="labels" chart-options="options" chart-colors="color" legend="true"</canvas>
         </div>
          
 
        <div class="text-center" ng-if="PartProj">
          
             <h2>אחוזי הצלחה בפרויקט</h2>
-           <canvas id="bar1" class="chart chart-bar" style="height: 300px !important; width: 100% !important;"
-                chart-data="chartdata" chart-labels="labels" chart-series="barseries" chart-options="options" chart-colors="color"></canvas>
+           <canvas id="bar1" class="chart chart-bar"
+                chart-data="chartdata" chart-labels="labels" chart-series="barseries" chart-options="options" chart-colors="color" legend="true"></canvas>
         </div>
        </div>
       

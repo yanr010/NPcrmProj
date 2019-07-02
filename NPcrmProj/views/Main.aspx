@@ -23,7 +23,7 @@
 
 
         <div class="col border mx-3" style="padding: 5px;">
-            <h2 class="text-center">לקוחות לפי רכז</h2>
+            <h2 class="text-center">לקוחות לפי מחלקה</h2>
             <div ng-include="custbycord">
             </div>
         </div>

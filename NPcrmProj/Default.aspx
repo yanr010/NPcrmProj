@@ -100,7 +100,7 @@
 
 
 
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="font-weight: bold;">
             <span class="navbar-brand d-none d-lg-block">
                 <img id="navpic" src="pics/merkaz_btf_icon.ico">
             </span>
@@ -127,8 +127,8 @@
                     <li class="nav-item dropdown ml-auto">
                         <a class="nav-link dropdown-toggle" href="#">משימות</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#" ng-click="mainclc('3')" ng-if="profile">הוספת משימה</a>
-                            <div class="dropdown-divider" ng-if="profile"></div>
+                            <a class="dropdown-item" href="#" ng-click="mainclc('3')">הוספת משימה</a>
+                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" ng-click="mainclc('7')">משימות פתוחות</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" ng-click="mainclc('10')">משימות סגורות</a>

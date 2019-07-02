@@ -3,7 +3,7 @@
 <div class="text-center">
 
     <canvas id="custpie" class="chart chart-pie"
-        chart-data="custbycorddata" chart-labels="custbycordlables" chart-dataset-override="custpiecolors"></canvas>
+        chart-data="custbycorddata" chart-labels="custbycordlables" chart-options="custoptions" chart-dataset-override="custpiecolors"></canvas>
 </div>
 
 

@@ -4,6 +4,7 @@
 
 app.controller("MainCtrl", function ($scope, $window, $http, CONFIG) {
 
+    
     $scope.include = 'views/Main.aspx';
     $scope.lastcust = 'views/LastCust.aspx';
     $scope.lasttask = 'views/LastTask.aspx';
@@ -869,6 +870,7 @@ function PostCustDepMon() {
                 }
             }]
         }
+          
     }
     var dat = { dep: "5" };
     $http.post("WebService.asmx/CustDepMon", dat, null)
@@ -970,6 +972,9 @@ function PostCustDepQua() {
                     stepSize: 1
                 }
             }]
+        },
+        legend: {
+            display: true
         }
     }
     var dat = { dep: "5" };
@@ -1064,6 +1069,9 @@ function PostProjDepMon() {
                     stepSize: 1
                 }
             }]
+        },
+        legend: {
+            display: true
         }
     }
     var dat = { dep: "5" };
@@ -1165,6 +1173,9 @@ function PostProjDepQua() {
                     stepSize: 1
                 }
             }]
+        },
+        legend: {
+            display: true
         }
     }
     var dat = { dep: "5" };
@@ -1257,7 +1268,10 @@ function PostProjParticipants() {
         yAxes: [{
 
             beginAtZero: true
-        }]
+        }],
+        legend: {
+            display: true
+        }
     }
     $scope.color = [{ //first dataset colors, for each bar
         backgroundColor: [
@@ -1330,6 +1344,9 @@ function PostTaskDepMon() {
                     stepSize: 1
                 }
             }]
+        },
+        legend: {
+            display: true
         }
     }
     var dat = { dep: "5" };
@@ -1432,6 +1449,9 @@ function PostTaskDepQua() {
                     stepSize: 1
                 }
             }]
+        },
+        legend: {
+            display: true
         }
     }
     var dat = { dep: "5" };
@@ -1488,6 +1508,11 @@ function PostTaskDepQua() {
 function custbycord() {
     $scope.custbycordlables = ['חיילים משוחררים', 'תעסוקה', 'מנהל מרכז צעירים', 'השכלה גבוהה', 'פעילות חברתית'];
     $scope.custpiecolors = [{ backgroundColor: ['#8B82AC', '#4092AA', '#109984', '#56964F', '#938A27'] }];
+    $scope.custoptions = {
+        legend: { display: true },
+       
+    };
+
     $http.post("WebService.asmx/CustByCord", null, null)
         .then(function (response) {
             var fir = response.data.d[0];
