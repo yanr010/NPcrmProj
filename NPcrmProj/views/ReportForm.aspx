@@ -51,10 +51,33 @@
                                             </select>
                                       </div>
                                           </div>
+
+                                      
                                                 
                                              </div>
                                         </div>
                                      </div>
+
+                                <div class="form-group row">
+                                    <label for="reportType" class="col-sm-2 col-form-label">שנה<span style="color:red">   *</span></label>
+                                    <div class="col-md-3 inputGroupContainer">
+                                        <div class="form-group">
+                                               <div ng-switch="data.option">
+                                      <div ng-switch-when="department">
+                                        <select class="form-control" ng-model="data.year">
+                                           <option value="2016">2016</option>
+                                           <option value="2017">2017</option>
+                                           <option value="2018">2018</option>
+                                           <option value="2019">2019</option>
+                                       </select>
+                                      </div>
+                                          </div>
+                                                
+                                             </div>
+                                        </div>
+                                     </div>
+
+                                
 <%--                                        <div class="form-group row">
                                     <label for="period" class="col-sm-2 col-form-label">תקופה</label>
                                     <div class="col-md-3 inputGroupContainer">

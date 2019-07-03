@@ -803,10 +803,11 @@ namespace NPcrmProj
                 using (dbEntities db = new dbEntities())
                 {
                     string dep = Convert.ToString(data["dep"]);
+                    var year = Convert.ToInt32(data["year"]);
                     int[] arr = new int[12];
                     for (int i = 0; i < 12; i++)
                     {
-                        arr[i] = db.Customers.SqlQuery("select * from Customers where MONTH(CreateDate) = @i and Year(CreateDate)=Year(@date) and Department = @dep", new SqlParameter("@i", i + 1), new SqlParameter("@date", DateTime.Now), new SqlParameter("@dep", dep)).Count();
+                        arr[i] = db.Customers.SqlQuery("select * from Customers where MONTH(CreateDate) = @i and Year(CreateDate)=@year and Department = @dep", new SqlParameter("@i", i + 1), new SqlParameter("@year", year), new SqlParameter("@dep", dep)).Count();
                     }
                     return arr;
                 }
@@ -828,10 +829,11 @@ namespace NPcrmProj
                 using (dbEntities db = new dbEntities())
                 {
                     string dep = Convert.ToString(data["dep"]);
+                    var year = Convert.ToInt32(data["year"]);
                     int[] arr = new int[4];
                     for (int i = 0; i < 4; i++)
                     {
-                        arr[i] = db.Customers.SqlQuery("select * from Customers where DATEPART(quarter, CreateDate)=@i and Year(CreateDate)=Year(@date) and Department = @dep", new SqlParameter("@i", i + 1), new SqlParameter("@date", DateTime.Now), new SqlParameter("@dep", dep)).Count();
+                        arr[i] = db.Customers.SqlQuery("select * from Customers where DATEPART(quarter, CreateDate)=@i and Year(CreateDate)=@year and Department = @dep", new SqlParameter("@i", i + 1), new SqlParameter("@year", year), new SqlParameter("@dep", dep)).Count();
                     }
                     return arr;
                 }
@@ -868,10 +870,11 @@ namespace NPcrmProj
                 using (dbEntities db = new dbEntities())
                 {
                     string dep = Convert.ToString(data["dep"]);
+                    var year = Convert.ToInt32(data["year"]);
                     int[] arr = new int[12];
                     for (int i = 0; i < 12; i++)
                     {
-                        arr[i] = db.Projects.SqlQuery("select * from Projects where Month(StartDate) = @i and Year(StartDate)=Year(@date) and Responsible = @dep", new SqlParameter("@i", i + 1), new SqlParameter("@date", DateTime.Now), new SqlParameter("@dep", dep)).Count();
+                        arr[i] = db.Projects.SqlQuery("select * from Projects where Month(StartDate) = @i and Year(StartDate)=@year and Responsible = @dep", new SqlParameter("@i", i + 1), new SqlParameter("@year", year), new SqlParameter("@dep", dep)).Count();
                     }
                     return arr;
                 }
@@ -907,10 +910,11 @@ namespace NPcrmProj
                 using (dbEntities db = new dbEntities())
                 {
                     string dep = Convert.ToString(data["dep"]);
+                    var year = Convert.ToInt32(data["year"]);
                     int[] arr = new int[5];
                     for (int i = 0; i < 5; i++)
                     {
-                        arr[i] = db.Projects.SqlQuery("select * from Projects where DATEPART(quarter, StartDate)=@i and Year(StartDate)=Year(@date) and Responsible = @dep", new SqlParameter("@i", i + 1), new SqlParameter("@date", DateTime.Now), new SqlParameter("@dep", dep)).Count();
+                        arr[i] = db.Projects.SqlQuery("select * from Projects where DATEPART(quarter, StartDate)=@i and Year(StartDate)=@year and Responsible = @dep", new SqlParameter("@i", i + 1), new SqlParameter("@year", year), new SqlParameter("@dep", dep)).Count();
                     }
                     return arr;
                 }
@@ -979,10 +983,11 @@ namespace NPcrmProj
 
                 {
                     string dep = Convert.ToString(data["dep"]);
+                    var year = Convert.ToInt32(data["year"]);
                     int[] arr = new int[12];
                     for (int i = 0; i < 12; i++)
                     {
-                        arr[i] = db.Tasks.SqlQuery("select * from Tasks where Month(FinalDate) = @i and Department = @dep", new SqlParameter("@i", i + 1), new SqlParameter("@dep", dep)).Count();
+                        arr[i] = db.Tasks.SqlQuery("select * from Tasks where Month(FinalDate) = @i and Year(FinalDate)=@year and Department = @dep", new SqlParameter("@i", i + 1), new SqlParameter("@dep", dep), new SqlParameter("@year", year)).Count();
                     }
                     return arr;
                 }
@@ -1005,10 +1010,11 @@ namespace NPcrmProj
 
                 {
                     string dep = Convert.ToString(data["dep"]);
+                    var year = Convert.ToInt32(data["year"]);
                     int[] arr = new int[4];
                     for (int i = 0; i < 4; i++)
                     {
-                        arr[i] = db.Tasks.SqlQuery("select * from Tasks where DATEPART(quarter, FinalDate)=@i and Department = @dep", new SqlParameter("@i", i + 1), new SqlParameter("@dep", dep)).Count();
+                        arr[i] = db.Tasks.SqlQuery("select * from Tasks where DATEPART(quarter, FinalDate)=@i and Year(FinalDate)=@year and Department = @dep", new SqlParameter("@i", i + 1), new SqlParameter("@dep", dep), new SqlParameter("@year", year)).Count();
                     }
                     return arr;
                 }

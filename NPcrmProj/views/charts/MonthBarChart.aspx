@@ -13,14 +13,18 @@
     <div class="container p-4">
 
         <div class="text-center" ng-if="quarterchart">
-            <h2>רבעוני</h2>
+            <div ng-if="custindepartment"><h1>לקוחות במחלקות</h1></div>
+            <div ng-if="projindepartment"><h1>פרוייקטים במחלקות</h1></div>
+            <h2>רבעוני ({{year}})</h2>
             <canvas id="bar2" class="chart chart-bar" style="height: 300px !important; width: 100% !important;"
                 chart-data="monquachartdata" chart-labels="monqualabels" chart-series="monquaseries" chart-options="options" chart-colors="color"></canvas>
         </div>
 
 
         <div class="text-center" ng-if="monthchart">
-            <h2>חודשי</h2>
+            <div ng-if="custindepartment"><h1>לקוחות במחלקות</h1></div>
+            <div ng-if="projindepartment"><h1>פרוייקטים במחלקות</h1></div>
+            <h2>חודשי ({{year}})</h2>
             <canvas id="bar1" class="chart chart-bar" style="height: 300px !important; width: 100% !important;"
                 chart-data="monbarchartdata" chart-labels="monbarlabels" chart-series="monbarseries" chart-options="options" chart-colors="color"></canvas>
         </div>

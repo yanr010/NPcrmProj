@@ -73,6 +73,10 @@
         .idred {
             border: solid 1px red;
         }
+
+        .navbar-dark .navbar-nav .nav-link {
+            color: white !important;
+        }
     </style>
 
 </head>

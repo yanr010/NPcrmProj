@@ -766,6 +766,7 @@ $scope.showReport = function () {
 
     let reporttype = $scope.data.ReportType;
     let option = $scope.data.option;
+    var year = $scope.data.year;
 
 
     if (reporttype == "customer" && option == "department") {
@@ -779,12 +780,15 @@ $scope.showReport = function () {
         $scope.quarterchart = true;
         $scope.monthchart = false;
 
+        $scope.custindepartment = true;
+        $scope.projindepartment = false;
+
         $scope.monquachartdata = null;
         $scope.monbarchartdata = null;
         $scope.include = 'views/charts/MonthBarChart.aspx';
 
-        PostCustDepMon();
-        PostCustDepQua();
+        PostCustDepMon(year);
+        PostCustDepQua(year);
     }
 
     if (reporttype == "customer" && option == "category") {
@@ -809,11 +813,14 @@ $scope.showReport = function () {
         $scope.quarterchart = true;
         $scope.monthchart = false;
 
+        $scope.custindepartment = false;
+        $scope.projindepartment = true;
+
         $scope.monquachartdata = null;
         $scope.monbarchartdata = null;
         $scope.include = 'views/charts/MonthBarChart.aspx';
-        PostProjDepMon();
-        PostProjDepQua();
+        PostProjDepMon(year);
+        PostProjDepQua(year);
 
     }
     if (reporttype == "project" && option == "category") {
@@ -837,7 +844,7 @@ $scope.showReport = function () {
         $scope.PartProj = true;
         $scope.chartdata = null;
         $scope.include = 'views/charts/GenericChart.aspx';
-        PostProjParticipants();
+        PostProjParticipants(year);
 
     }
     if (reporttype == "task" && option == "department") {
@@ -854,13 +861,14 @@ $scope.showReport = function () {
         $scope.monbarchartdata = null;
 
         $scope.include = 'views/charts/MonthBarChart.aspx';
-        PostTaskDepMon();
-        PostTaskDepQua();
+        PostTaskDepMon(year);
+        PostTaskDepQua(year);
     }
 
 }
 
-function PostCustDepMon() {
+    function PostCustDepMon(year) {
+        $scope.year = year;
     $scope.options = {
         scales: {
             yAxes: [{
@@ -871,8 +879,10 @@ function PostCustDepMon() {
             }]
         }
           
-    }
-    var dat = { dep: "5" };
+        }
+
+        var dat = { dep: "5" , year: year};
+        
     $http.post("WebService.asmx/CustDepMon", dat, null)
         .then(function (response) {
             var jan1 = response.data.d[0];
@@ -887,7 +897,7 @@ function PostCustDepMon() {
             var oct1 = response.data.d[9];
             var nov1 = response.data.d[10];
             var dec1 = response.data.d[11];
-            dat = { dep: "2" };
+            dat = { dep: "2", year: year};
             $http.post("WebService.asmx/CustDepMon", dat, null)
                 .then(function (response) {
                     var jan2 = response.data.d[0];
@@ -902,7 +912,7 @@ function PostCustDepMon() {
                     var oct2 = response.data.d[9];
                     var nov2 = response.data.d[10];
                     var dec2 = response.data.d[11];
-                    dat = { dep: "4" };
+                    dat = { dep: "4", year: year};
                     $http.post("WebService.asmx/CustDepMon", dat, null)
                         .then(function (response) {
                             var jan3 = response.data.d[0];
@@ -917,7 +927,7 @@ function PostCustDepMon() {
                             var oct3 = response.data.d[9];
                             var nov3 = response.data.d[10];
                             var dec3 = response.data.d[11];
-                            dat = { dep: "6" };
+                            dat = { dep: "6", year: year};
                             $http.post("WebService.asmx/CustDepMon", dat, null)
                                 .then(function (response) {
                                     var jan4 = response.data.d[0];
@@ -932,7 +942,7 @@ function PostCustDepMon() {
                                     var oct4 = response.data.d[9];
                                     var nov4 = response.data.d[10];
                                     var dec4 = response.data.d[11];
-                                    dat = { dep: "3" };
+                                    dat = { dep: "3", year: year};
                                     $http.post("WebService.asmx/CustDepMon", dat, null)
                                         .then(function (response) {
                                             var jan5 = response.data.d[0];
@@ -963,7 +973,8 @@ function PostCustDepMon() {
 }
 
 
-function PostCustDepQua() {
+    function PostCustDepQua(year) {
+        $scope.year = year;
     $scope.options = {
         scales: {
             yAxes: [{
@@ -977,7 +988,7 @@ function PostCustDepQua() {
             display: true
         }
     }
-    var dat = { dep: "5" };
+        var dat = { dep: "5", year: year};
     $http.post("WebService.asmx/CustDepQua", dat, null)
         .then(function (response) {
             var fir1 = response.data.d[0];
@@ -985,28 +996,28 @@ function PostCustDepQua() {
             var thi1 = response.data.d[2];
             var fou1 = response.data.d[3];
 
-            dat = { dep: "2" };
+            dat = { dep: "2", year: year};
             $http.post("WebService.asmx/CustDepQua", dat, null)
                 .then(function (response) {
                     var fir2 = response.data.d[0];
                     var sec2 = response.data.d[1];
                     var thi2 = response.data.d[2];
                     var fou2 = response.data.d[3];
-                    dat = { dep: "4" };
+                    dat = { dep: "4", year: year};
                     $http.post("WebService.asmx/CustDepQua", dat, null)
                         .then(function (response) {
                             var fir3 = response.data.d[0];
                             var sec3 = response.data.d[1];
                             var thi3 = response.data.d[2];
                             var fou3 = response.data.d[3];
-                            dat = { dep: "6" };
+                            dat = { dep: "6", year: year};
                             $http.post("WebService.asmx/CustDepQua", dat, null)
                                 .then(function (response) {
                                     var fir4 = response.data.d[0];
                                     var sec4 = response.data.d[1];
                                     var thi4 = response.data.d[2];
                                     var fou4 = response.data.d[3];
-                                    dat = { dep: "3" };
+                                    dat = { dep: "3", year: year};
                                     $http.post("WebService.asmx/CustDepQua", dat, null)
                                         .then(function (response) {
                                             var fir5 = response.data.d[0];
@@ -1027,7 +1038,7 @@ function PostCustDepQua() {
                 })
         });
 }
-function PostCustCat() {
+    function PostCustCat() {
     $scope.labels = ['לימודים', 'מלגות לימודים', 'מציאת עבודה', 'כספים', 'זכויות לחיילים משוחררים', 'פסיכומטרי', 'משפחה והורות'];
     $scope.options = {
         scales: {
@@ -1060,7 +1071,8 @@ function PostCustCat() {
 
 
 }
-function PostProjDepMon() {
+    function PostProjDepMon(year) {
+        $scope.year = year;
     $scope.options = {
         scales: {
             yAxes: [{
@@ -1074,7 +1086,7 @@ function PostProjDepMon() {
             display: true
         }
     }
-    var dat = { dep: "5" };
+        var dat = { dep: "5", year: year};
     $http.post("WebService.asmx/ProjDepMon", dat, null)
         .then(function (response) {
             var jan1 = response.data.d[0];
@@ -1089,7 +1101,7 @@ function PostProjDepMon() {
             var oct1 = response.data.d[9];
             var nov1 = response.data.d[10];
             var dec1 = response.data.d[11];
-            dat = { dep: "2" };
+            dat = { dep: "2", year: year};
             $http.post("WebService.asmx/ProjDepMon", dat, null)
                 .then(function (response) {
                     var jan2 = response.data.d[0];
@@ -1104,7 +1116,7 @@ function PostProjDepMon() {
                     var oct2 = response.data.d[9];
                     var nov2 = response.data.d[10];
                     var dec2 = response.data.d[11];
-                    dat = { dep: "4" };
+                    dat = { dep: "4", year: year};
                     $http.post("WebService.asmx/ProjDepMon", dat, null)
                         .then(function (response) {
                             var jan3 = response.data.d[0];
@@ -1119,7 +1131,7 @@ function PostProjDepMon() {
                             var oct3 = response.data.d[9];
                             var nov3 = response.data.d[10];
                             var dec3 = response.data.d[11];
-                            dat = { dep: "6" };
+                            dat = { dep: "6", year: year};
                             $http.post("WebService.asmx/ProjDepMon", dat, null)
                                 .then(function (response) {
                                     var jan4 = response.data.d[0];
@@ -1134,7 +1146,7 @@ function PostProjDepMon() {
                                     var oct4 = response.data.d[9];
                                     var nov4 = response.data.d[10];
                                     var dec4 = response.data.d[11];
-                                    dat = { dep: "3" };
+                                    dat = { dep: "3", year: year};
                                     $http.post("WebService.asmx/ProjDepMon", dat, null)
                                         .then(function (response) {
                                             var jan5 = response.data.d[0];
@@ -1163,7 +1175,8 @@ function PostProjDepMon() {
                 })
         });
 }
-function PostProjDepQua() {
+    function PostProjDepQua(year) {
+        $scope.year = year;
 
     $scope.options = {
         scales: {
@@ -1178,7 +1191,7 @@ function PostProjDepQua() {
             display: true
         }
     }
-    var dat = { dep: "5" };
+        var dat = { dep: "5", year: year};
     $http.post("WebService.asmx/ProjDepQua", dat, null)
         .then(function (response) {
             var fir1 = response.data.d[0];
@@ -1186,28 +1199,28 @@ function PostProjDepQua() {
             var thi1 = response.data.d[2];
             var fou1 = response.data.d[3];
 
-            dat = { dep: "2" };
+            dat = { dep: "2", year: year};
             $http.post("WebService.asmx/ProjDepQua", dat, null)
                 .then(function (response) {
                     var fir2 = response.data.d[0];
                     var sec2 = response.data.d[1];
                     var thi2 = response.data.d[2];
                     var fou2 = response.data.d[3];
-                    dat = { dep: "4" };
+                    dat = { dep: "4", year: year};
                     $http.post("WebService.asmx/ProjDepQua", dat, null)
                         .then(function (response) {
                             var fir3 = response.data.d[0];
                             var sec3 = response.data.d[1];
                             var thi3 = response.data.d[2];
                             var fou3 = response.data.d[3];
-                            dat = { dep: "6" };
+                            dat = { dep: "6", year: year};
                             $http.post("WebService.asmx/ProjDepQua", dat, null)
                                 .then(function (response) {
                                     var fir4 = response.data.d[0];
                                     var sec4 = response.data.d[1];
                                     var thi4 = response.data.d[2];
                                     var fou4 = response.data.d[3];
-                                    dat = { dep: "3" };
+                                    dat = { dep: "3", year: year};
                                     $http.post("WebService.asmx/ProjDepQua", dat, null)
                                         .then(function (response) {
                                             var fir5 = response.data.d[0];
@@ -1228,7 +1241,7 @@ function PostProjDepQua() {
                 })
         });
 }
-function PostProjCat() {
+    function PostProjCat() {
     $scope.labels = ['לימודים', 'מלגות לימודים', 'מציאת עבודה', 'כספים', 'זכויות לחיילים משוחררים', 'פסיכומטרי', 'משפחה והורות'];
     $scope.options = {
         scales: {
@@ -1261,7 +1274,7 @@ function PostProjCat() {
 
 
 }
-function PostProjParticipants() {
+    function PostProjParticipants() {
     $scope.labels = ['חיילים משוחררים', 'תעסוקה', 'מנהל מרכז צעירים', 'השכלה גבוהה', 'פעילות חברתית'];
     $scope.barseries = ['צפי', 'בפועל'];
     $scope.options = {
@@ -1291,31 +1304,31 @@ function PostProjParticipants() {
             'rgba(0, 0, 255, 0.8)',
         ]
     }];
-    var dat = { dep: "2" };
+        var dat = { dep: "2"};
     $http.post("WebService.asmx/ProjParticipants", dat, null)
         .then(function (response) {
             var fir1 = response.data.d[0];
             var sec1 = response.data.d[1];
 
-            dat = { dep: "6" };
+            dat = { dep: "6"};
             $http.post("WebService.asmx/ProjParticipants", dat, null)
                 .then(function (response) {
                     var fir2 = response.data.d[0];
                     var sec2 = response.data.d[1];
 
-                    dat = { dep: "3" };
+                    dat = { dep: "3"};
                     $http.post("WebService.asmx/ProjParticipants", dat, null)
                         .then(function (response) {
                             var fir3 = response.data.d[0];
                             var sec3 = response.data.d[1];
 
-                            dat = { dep: "5" };
+                            dat = { dep: "5"};
                             $http.post("WebService.asmx/ProjParticipants", dat, null)
                                 .then(function (response) {
                                     var fir4 = response.data.d[0];
                                     var sec4 = response.data.d[1];
 
-                                    dat = { dep: "4" };
+                                    dat = { dep: "4"};
                                     $http.post("WebService.asmx/ProjParticipants", dat, null)
                                         .then(function (response) {
                                             var fir5 = response.data.d[0];
@@ -1335,7 +1348,8 @@ function PostProjParticipants() {
         })
 }
 
-function PostTaskDepMon() {
+    function PostTaskDepMon(year) {
+        $scope.year = year;
     $scope.options = {
         scales: {
             yAxes: [{
@@ -1349,7 +1363,7 @@ function PostTaskDepMon() {
             display: true
         }
     }
-    var dat = { dep: "5" };
+        var dat = { dep: "5", year: year};
     $http.post("WebService.asmx/TaskDepMon", dat, null)
         .then(function (response) {
             var jan1 = response.data.d[0];
@@ -1364,7 +1378,7 @@ function PostTaskDepMon() {
             var oct1 = response.data.d[9];
             var nov1 = response.data.d[10];
             var dec1 = response.data.d[11];
-            dat = { dep: "2" };
+            dat = { dep: "2", year: year};
             $http.post("WebService.asmx/TaskDepMon", dat, null)
                 .then(function (response) {
                     var jan2 = response.data.d[0];
@@ -1379,7 +1393,7 @@ function PostTaskDepMon() {
                     var oct2 = response.data.d[9];
                     var nov2 = response.data.d[10];
                     var dec2 = response.data.d[11];
-                    dat = { dep: "4" };
+                    dat = { dep: "4", year: year};
                     $http.post("WebService.asmx/TaskDepMon", dat, null)
                         .then(function (response) {
                             var jan3 = response.data.d[0];
@@ -1394,7 +1408,7 @@ function PostTaskDepMon() {
                             var oct3 = response.data.d[9];
                             var nov3 = response.data.d[10];
                             var dec3 = response.data.d[11];
-                            dat = { dep: "6" };
+                            dat = { dep: "6", year: year};
                             $http.post("WebService.asmx/TaskDepMon", dat, null)
                                 .then(function (response) {
                                     var jan4 = response.data.d[0];
@@ -1409,7 +1423,7 @@ function PostTaskDepMon() {
                                     var oct4 = response.data.d[9];
                                     var nov4 = response.data.d[10];
                                     var dec4 = response.data.d[11];
-                                    dat = { dep: "3" };
+                                    dat = { dep: "3", year: year};
                                     $http.post("WebService.asmx/TaskDepMon", dat, null)
                                         .then(function (response) {
                                             var jan5 = response.data.d[0];
@@ -1440,7 +1454,8 @@ function PostTaskDepMon() {
 }
 
 
-function PostTaskDepQua() {
+    function PostTaskDepQua(year) {
+        $scope.year = year;
     $scope.options = {
         scales: {
             yAxes: [{
@@ -1454,7 +1469,7 @@ function PostTaskDepQua() {
             display: true
         }
     }
-    var dat = { dep: "5" };
+        var dat = { dep: "5", year: year};
     $http.post("WebService.asmx/TaskDepQua", dat, null)
         .then(function (response) {
             var fir1 = response.data.d[0];
@@ -1462,28 +1477,28 @@ function PostTaskDepQua() {
             var thi1 = response.data.d[2];
             var fou1 = response.data.d[3];
 
-            dat = { dep: "2" };
+            dat = { dep: "2", year: year};
             $http.post("WebService.asmx/TaskDepQua", dat, null)
                 .then(function (response) {
                     var fir2 = response.data.d[0];
                     var sec2 = response.data.d[1];
                     var thi2 = response.data.d[2];
                     var fou2 = response.data.d[3];
-                    dat = { dep: "4" };
+                    dat = { dep: "4", year: year};
                     $http.post("WebService.asmx/TaskDepQua", dat, null)
                         .then(function (response) {
                             var fir3 = response.data.d[0];
                             var sec3 = response.data.d[1];
                             var thi3 = response.data.d[2];
                             var fou3 = response.data.d[3];
-                            dat = { dep: "6" };
+                            dat = { dep: "6", year: year};
                             $http.post("WebService.asmx/TaskDepQua", dat, null)
                                 .then(function (response) {
                                     var fir4 = response.data.d[0];
                                     var sec4 = response.data.d[1];
                                     var thi4 = response.data.d[2];
                                     var fou4 = response.data.d[3];
-                                    dat = { dep: "3" };
+                                    dat = { dep: "3", year: year};
                                     $http.post("WebService.asmx/TaskDepQua", dat, null)
                                         .then(function (response) {
                                             var fir5 = response.data.d[0];
@@ -1505,7 +1520,7 @@ function PostTaskDepQua() {
         });
 }
 
-function custbycord() {
+    function custbycord() {
     $scope.custbycordlables = ['חיילים משוחררים', 'תעסוקה', 'מנהל מרכז צעירים', 'השכלה גבוהה', 'פעילות חברתית'];
     $scope.custpiecolors = [{ backgroundColor: ['#8B82AC', '#4092AA', '#109984', '#56964F', '#938A27'] }];
     $scope.custoptions = {
