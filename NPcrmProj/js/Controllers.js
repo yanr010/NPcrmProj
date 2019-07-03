@@ -342,8 +342,10 @@ $scope.addParticipant = function (project) {
     $scope.startDate = project.StartDate.split("T", 1);
     var time = project.Time.split(":");
     $scope.time = time[0] + ":" + time[1];
-    var finaltime = project.FinalTime.split(":");
-    $scope.finaltime = finaltime[0] + ":" + finaltime[1];
+    if (project.FinalTime != null) {
+        var finaltime = project.FinalTime.split(":");
+        $scope.finaltime = finaltime[0] + ":" + finaltime[1];
+    }
     $scope.participant = project.Participant;
     $scope.responsible = project.Responsible;
     $scope.projectCost = project.ProjectCost;

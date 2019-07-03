@@ -19,7 +19,7 @@
 
        <div class="text-center" ng-if="PartProj">
          
-            <h2>אחוזי הצלחה בפרויקט</h2>
+            <h2>משתתפים בפרוייקט לפי מחלקה</h2>
            <canvas id="bar1" class="chart chart-bar"
                 chart-data="chartdata" chart-labels="labels" chart-series="barseries" chart-options="options" chart-colors="color" legend="true"></canvas>
         </div>
